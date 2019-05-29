@@ -5,7 +5,7 @@ module.exports = {
 
     const attachmentData = {
       type: req.file.mimetype,
-      url: `http://localhost:5000/${req.file.path}`,
+      url: `/${req.file.path}`,
       isLinked: false,
     };
 
