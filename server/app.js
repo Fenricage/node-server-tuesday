@@ -9,6 +9,7 @@ const cloudinary = require('cloudinary');
 const path = require('path');
 const routes = require('./routes/');
 
+
 // const storage = multer.diskStorage({
 //   destination: (req, file, cb) => {
 //     const type = req.params.type || 'trash';
@@ -40,10 +41,10 @@ const routes = require('./routes/');
 // });
 
 const config = require('./config');
+
 const app = express();
 const router = express.Router();
 const url = process.env.MONGODB_URI || config.db;
-
 
 /** configure cloudinary */
 // cloudinary.config({
@@ -51,6 +52,38 @@ const url = process.env.MONGODB_URI || config.db;
 //   api_key: '',
 //   api_secret: '',
 // });
+
+
+// RECONNECT IF MONGO DOWN
+// const db = mongoose.connection
+//
+// db.on('connecting', function() {
+//   console.log('connecting to MongoDB...');
+// });
+//
+// db.on('error', function(error) {
+//   console.error('Error in MongoDb connection: ' + error);
+//   mongoose.disconnect();
+// });
+// db.on('connected', function() {
+//   console.log('MongoDB connected!');
+// });
+// db.once('open', function() {
+//   console.log('MongoDB connection opened!');
+// });
+// db.on('reconnected', function () {
+//   console.log('MongoDB reconnected!');
+// });
+//
+// db.on('disconnected', function() {
+//   console.log('MongoDB disconnected!');
+//   mongoose.connect(url,
+//     {
+//       server: { auto_reconnect:true },
+//       useNewUrlParser: true,
+//     });
+// });
+
 
 /** connect to MongoDB datastore */
 try {
@@ -179,7 +212,7 @@ app.use(bodyParser.json());
 app.use(expressValidator());
 app.use(helmet());
 
-// app.use('/static', express.static(path.join(__dirname, 'static')));
+app.use('/static', express.static(path.join(__dirname, 'static')));
 app.use('/api', router);
 
 /** start server */
