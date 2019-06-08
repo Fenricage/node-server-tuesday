@@ -12,6 +12,7 @@ ArticleSchema.methods.saveArticle = function (cb) {
   console.log("this", this)
 }
 
+
 // let ArticleSchema = new mongoose.Schema(
 //     {
 //         text: String,

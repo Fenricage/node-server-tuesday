@@ -181,7 +181,6 @@ try {
 
 // TEST IMG
 
-
 // TEST MULTER
 // mongoose.connection.once('open', () => {
 //   app.post('/api/writeimg/:type', multerStorage.single('image'), (req, res) => {
