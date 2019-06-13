@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const ArticleCategorySchema = new mongoose.Schema(
   {
-    _id: String,
+    name: String,
   },
 );
 

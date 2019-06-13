@@ -44,29 +44,48 @@ module.exports = {
      * проверям на наличие поле req.body.category
      */
     if (req.body.category) {
+      const findArticleCategoryQuery = { name: req.body.category };
+      const createArticleCategoryQuery = { name: req.body.category };
       /**
-       * ищем существует ли уже данная категория
+       * в зависимости от типа данных category выполняем сохранение статьи с
+       * проверкой на существование
+       * если строка то есть шанс что такой категории еще нет
+       * в случае же с объектом мы уверены что категория уже существует
+       * (TODO: существует ли? стоит ли делать проверку?)
        */
-      ArticleCategory.findById(req.body.category, (err, articleCategory) => {
-        if (err) {
-          res.send('Article category err');
-        }
-        if (!articleCategory) {
-          /**
-           * если нет то создаем новую
-           */
-          new ArticleCategory({ _id: req.body.category }).save((err, newArticleCategory) => {
+      if ('string' === typeof req.body.category) {
+        /**
+         * ищем существует ли уже данная категория
+         */
+        ArticleCategory.findOne(findArticleCategoryQuery, (err, articleCategory) => {
+          if (err) {
+            res.send('Article category err');
+          }
+          if (!articleCategory) {
+            /**
+             * если нет то создаем новую
+             * и линкуем объект категории
+             */
+            new ArticleCategory(createArticleCategoryQuery).save((err, newArticleCategory) => {
+              req.body.category = newArticleCategory;
+              saveArticle(req, res, next);
+            });
+          } else {
+            /**
+             * если есть то просто сохраняем
+             * и линкуем объект категории
+             * TODO: версию __v убери епты
+             */
+            req.body.category = articleCategory;
             saveArticle(req, res, next);
-          });
-        } else {
-          /**
-           * если есть то просто сохраняем
-           */
-          saveArticle(req, res, next);
-        }
-      });
-    }
+          }
+        });
+      } else if ('object' === typeof req.body.category) {
+        saveArticle(req, res, next);
+      }
 
+
+    }
   },
   // addArticle: (req, res, next) => {
   //     let {text, title, claps, description} = req.body
