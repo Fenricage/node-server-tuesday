@@ -5,6 +5,9 @@ module.exports = (router) => {
   router
     .route('/articles/categories')
     .get(articleCategoryController.getAllArticleCategories);
+  router
+    .route('/articles/categories/:id')
+    .delete(articleCategoryController.deleteArticleCategory);
   //
   // router
   //   .route('/users')

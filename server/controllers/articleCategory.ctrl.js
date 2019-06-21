@@ -9,7 +9,15 @@ module.exports = {
       res.status(200).send(articleCategories);
       next();
     });
-
+  },
+  deleteArticleCategory: (req, res, next) => {
+    ArticleCategory.deleteOne({_id: req.params.id}, (err, articleCategories) => {
+      if (err) {
+        res.status(500).send('Error on article Categories');
+      }
+      res.status(200).send(articleCategories);
+      next();
+    });
   },
   // addUser: (req, res, next) => {
   //   new User(req.body).save((err, newUser) => {
