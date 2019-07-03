@@ -161,7 +161,7 @@ module.exports = {
         next();
       });
   },
-  deleteArticle: (req, res, next) => {
+  deleteArticle: async (req, res, next) => {
     const deletingArticle = await Article.findById(req.params.id);
     Article.deleteOne({ _id: req.params.id }, (err, article) => {
       if (err) {
@@ -172,7 +172,7 @@ module.exports = {
       next();
     });
   },
-  patchArticle: (req, res, next) => {
+  patchArticle:  (req, res, next) => {
     Article.findByIdAndUpdate(req.params.id, req.body, { new: false }, (err, article) => {
       if (err) {
         return res.status(500).send(err);
