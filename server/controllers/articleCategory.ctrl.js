@@ -11,12 +11,29 @@ module.exports = {
     });
   },
   deleteArticleCategory: (req, res, next) => {
-    ArticleCategory.deleteOne({_id: req.params.id}, (err, articleCategories) => {
+    ArticleCategory.deleteOne({ _id: req.params.id }, (err, articleCategories) => {
       if (err) {
         res.status(500).send('Error on article Categories');
       }
       res.status(200).send(articleCategories);
       next();
+    });
+  },
+  getArticleCategory: (req, res, next) => {
+    ArticleCategory.findById(req.params.id)
+      .exec((err, articleCategory) => {
+        if (err) res.send(err);
+        else if (!articleCategory) res.send(404);
+        else res.send(articleCategory);
+        next();
+      });
+  },
+  patchArticleCategory: (req, res, next) => {
+    ArticleCategory.findByIdAndUpdate(req.params.id, req.body, { new: false }, (err, article) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      return res.send(article);
     });
   },
   // addUser: (req, res, next) => {

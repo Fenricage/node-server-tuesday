@@ -8,6 +8,12 @@ module.exports = (router) => {
   router
     .route('/articles/categories/:id')
     .delete(articleCategoryController.deleteArticleCategory);
+  router
+    .route('/articles/categories/:id')
+    .get(articleCategoryController.getArticleCategory);
+  router
+    .route('/articles/categories/:id')
+    .patch(articleCategoryController.patchArticleCategory);
   //
   // router
   //   .route('/users')
