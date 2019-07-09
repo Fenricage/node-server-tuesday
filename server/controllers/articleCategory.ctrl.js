@@ -1,4 +1,5 @@
 const ArticleCategory = require('./../models/ArticleCategory');
+const Article = require('./../models/Article');
 
 module.exports = {
   getAllArticleCategories: (req, res, next) => {
@@ -28,7 +29,20 @@ module.exports = {
         next();
       });
   },
-  patchArticleCategory: (req, res, next) => {
+  patchArticleCategory: async (req, res, next) => {
+
+    // TODO (@fenricage) баг, при первом создании и патче категории оно не отрабатывает
+    // кажется мангуст не может $set полян которых нет в схеме, name и _id из объекта category
+
+    // здесь мы апдейтим все статьи с id этой категории, заменяем name, чтобы все совпадало
+    await Article.updateMany(
+      { 'category._id': req.body._id },
+      { $set: { 'category.name': req.body.name } },
+      (err, result) => {
+        console.log('result', result);
+      },
+    );
+    //обновляем категорию
     ArticleCategory.findByIdAndUpdate(req.params.id, req.body, { new: false }, (err, article) => {
       if (err) {
         return res.status(500).send(err);
