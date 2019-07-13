@@ -121,12 +121,19 @@ module.exports = {
   //     }
   // },
   getAll: (req, res, next) => {
-    Article.find(req.params.id)
-      .populate('author')
-      .populate('comments.author').exec((err, article) => {
+
+    let { page, size } = req.query;
+    //Приводим строчные числа к нормальным числам
+    page = Number(page);
+    size = Number(size);
+
+    Article.find({})
+      .skip(size * page - size)
+      .limit(size)
+      .exec((err, articles) => {
         if (err) res.send(err);
-        else if (!article) res.send(404);
-        else res.send(article);
+        else if (!articles) res.send(404);
+        else res.send(articles);
         next();
       });
   },
@@ -172,7 +179,7 @@ module.exports = {
       next();
     });
   },
-  patchArticle:  (req, res, next) => {
+  patchArticle: (req, res, next) => {
     Article.findByIdAndUpdate(req.params.id, req.body, { new: false }, (err, article) => {
       if (err) {
         return res.status(500).send(err);
