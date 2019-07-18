@@ -127,7 +127,7 @@ module.exports = {
     page = Number(page);
     size = Number(size);
 
-    Article.find({})
+    Article.find({}, {__v: 0})
       .skip(size * page - size)
       .limit(size)
       .exec((err, articles) => {
