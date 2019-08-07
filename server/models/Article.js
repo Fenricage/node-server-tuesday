@@ -8,7 +8,12 @@ const ArticleSchema = new mongoose.Schema(
       name: String,
     },
     preview_img: Object,
+    preview_text: String,
     articles_meta: Array,
+    created_at: {
+      type: Date,
+      default: Date.now,
+    },
   },
 );
 

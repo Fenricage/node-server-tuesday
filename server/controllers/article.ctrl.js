@@ -3,6 +3,7 @@ const Attachment = require('./../models/Attachment');
 const ArticleCategory = require('./../models/ArticleCategory');
 
 const saveArticle = (req, res, next) => {
+
   new Article(req.body).save((err, newArticle) => {
     if (err) {
       res.send(err);
@@ -83,8 +84,8 @@ module.exports = {
       } else if ('object' === typeof req.body.category) {
         saveArticle(req, res, next);
       }
-
-
+    } else {
+      saveArticle(req, res, next);
     }
   },
   // addArticle: (req, res, next) => {
@@ -120,20 +121,35 @@ module.exports = {
   //         })
   //     }
   // },
-  getAll: (req, res, next) => {
+  getAll: async (req, res, next) => {
 
-    let { page, size } = req.query;
-    //Приводим строчные числа к нормальным числам
+    let { page, size, orderBy } = req.query;
+
+    // Приводим строчные числа к нормальным числам
     page = Number(page);
     size = Number(size);
+    //если  не undefined то парсим JSON и сразу присваиваем той же переменной
+    if (orderBy) {
+      orderBy = JSON.parse(orderBy);
+    }
 
-    Article.find({}, {__v: 0})
-      .skip(size * page - size)
+    const offset = size * page - size;
+    const total = await Article.count();
+    Article.find({}, { __v: 0 })
+      .sort(orderBy || {})
+      .skip(offset)
       .limit(size)
       .exec((err, articles) => {
         if (err) res.send(err);
         else if (!articles) res.send(404);
-        else res.send(articles);
+        else {
+          res.send({
+            records: articles,
+            offset,
+            limit: size,
+            total,
+          });
+        }
         next();
       });
   },
