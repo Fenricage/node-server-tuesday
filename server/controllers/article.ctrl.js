@@ -123,19 +123,37 @@ module.exports = {
   // },
   getAll: async (req, res, next) => {
 
-    let { page, size, orderBy } = req.query;
+    let {
+      page, size, orderBy, extra,
+    } = req.query;
 
     // Приводим строчные числа к нормальным числам
     page = Number(page);
     size = Number(size);
-    //если  не undefined то парсим JSON и сразу присваиваем той же переменной
+    // если  не undefined то парсим JSON и сразу присваиваем той же переменной
     if (orderBy) {
       orderBy = JSON.parse(orderBy);
     }
 
+    if (extra) {
+      extra = JSON.parse(extra);
+    }
+
+    // доп параметры - возможно стоит вынести все жэто вычиесение в миддлвар
+    // читай мануал в закладках
+    const extraFindParams = {};
+    if (extra) {
+      if (extra.category) {
+        // устанавливаем выборку по категории
+        extraFindParams['category.name'] = extra.category;
+      }
+    }
+
+
     const offset = size * page - size;
-    const total = await Article.count();
-    Article.find({}, { __v: 0 })
+    // высчитываем количество исходя из заданных параметров
+    const total = await Article.count(extraFindParams);
+    Article.find(extraFindParams, { __v: 0 })
       .sort(orderBy || {})
       .skip(offset)
       .limit(size)
