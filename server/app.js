@@ -41,7 +41,6 @@ const routes = require('./routes/');
 // });
 
 const config = require('./config');
-
 const app = express();
 const router = express.Router();
 const url = process.env.MONGODB_URI || config.db;
