@@ -4,6 +4,28 @@ const Tag = require('./../models/Tag');
 const db = mongoose.connection;
 const CLIENT_SEPARATOR = ':';
 
+const formatTagsFromCommonSeparated = (tags, separator) => tags
+  .split(',')
+  .map((formattedTag) => {
+    const trimmedTag = formattedTag.trim();
+    const splittedTag = trimmedTag.split(separator);
+
+    const namespaces = splittedTag.reduce((accumulator, splitChunkTag) => {
+      if (!accumulator.length) {
+        return [splitChunkTag];
+      }
+      const lastNamespaceAccumulator = accumulator[accumulator.length - 1];
+      const joinedWithPrevNamespace = lastNamespaceAccumulator.concat('--', splitChunkTag);
+      return [...accumulator, joinedWithPrevNamespace];
+
+    }, []);
+
+    return {
+      code: trimmedTag,
+      namespaces,
+    };
+  });
+
 module.exports = {
   addTag: async (req, res, next) => {
     const { tags } = req.body;
@@ -22,28 +44,7 @@ module.exports = {
 
 
     // создаем неймспейсы и объекты тьегов
-    const formattedTags = tags
-      .split(',')
-      .map((formattedTag) => {
-        const trimmedTag = formattedTag.trim();
-        const splittedTag = trimmedTag.split(CLIENT_SEPARATOR);
-
-        const namespaces = splittedTag.reduce((accumulator, splitChunkTag) => {
-          if (!accumulator.length) {
-            return [splitChunkTag];
-          }
-          const lastNamespaceAccumulator = accumulator[accumulator.length - 1];
-          const joinedWithPrevNamespace = lastNamespaceAccumulator.concat('--', splitChunkTag);
-          return [...accumulator, joinedWithPrevNamespace];
-
-        }, []);
-
-        return {
-          code: trimmedTag,
-          namespaces,
-        };
-
-      });
+    const formattedTags = formatTagsFromCommonSeparated(tags, CLIENT_SEPARATOR);
 
 
     // опции для навального апдейта/создания
@@ -53,7 +54,7 @@ module.exports = {
           code: tag.code,
         },
         update: {
-          $set: tag,
+          $setOnInsert: tag,
         },
         upsert: true,
       },
@@ -91,5 +92,59 @@ module.exports = {
         }
         next();
       });
+  },
+  deleteOne: async (req, res, next) => {
+    const { id } = req.params;
+    try {
+      await Tag.findOneAndDelete({ _id: id }, (err, tag) => {
+        if (err) {
+          res.status(400).send({ error: 'Couldnt delete tag' });
+        }
+        if (!tag) {
+          res
+            .status(404)
+            .send({});
+        }
+        res
+          .status(200)
+          .send(tag);
+      });
+    } catch (e) {
+      res.status(400).send({ error: 'Couldnt delete tag ERROR ' });
+    }
+  },
+  getOne: async (req, res, next) => {
+    const { id } = req.params;
+    try {
+      await Tag.findOne({ _id: id }, (err, tag) => {
+        if (err) {
+          res.status(400).send({ error: 'Couldnt find tag' });
+        }
+        if (!tag) {
+          res
+            .status(404)
+            .send({});
+        }
+        res
+          .status(200)
+          .send(tag);
+      });
+    } catch (e) {
+      res.status(400).send({ error: 'Couldnt delete tag ERROR ' });
+    }
+  },
+  updateOne: async (req, res, next) => {
+    const { id } = req.params;
+    const { code } = req.body;
+    // TODO привести к функции для одного тега, сделать проверку мб внутри функции?
+    const formattedTag = formatTagsFromCommonSeparated(code, CLIENT_SEPARATOR)[0];
+
+    Tag.findOneAndUpdate(id, formattedTag, { new: false }, (err, tag) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      // отсылает предыдущее состояние, типа до изменения хз нужно ли это
+      return res.send(tag);
+    });
   },
 };
