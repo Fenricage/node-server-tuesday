@@ -78,6 +78,7 @@ module.exports = {
   },
   getAll: async (req, res, next) => {
 
+    // FIXME заменить на countDocuments
     const total = await Tag.count();
 
     Tag.find({}, { __v: 0 })
@@ -136,10 +137,16 @@ module.exports = {
   updateOne: async (req, res, next) => {
     const { id } = req.params;
     const { code } = req.body;
-    // TODO привести к функции для одного тега, сделать проверку мб внутри функции?
-    const formattedTag = formatTagsFromCommonSeparated(code, CLIENT_SEPARATOR)[0];
+    console.log('id', id);
+    console.log('code', code);
 
-    Tag.findOneAndUpdate(id, formattedTag, { new: false }, (err, tag) => {
+    // TODO привести к функции для одного тега, сделать проверку мб внутри функции?
+    const formattedTagTest = formatTagsFromCommonSeparated(code, CLIENT_SEPARATOR);
+    console.log('formattedTagTest', formattedTagTest);
+    const formattedTag = formatTagsFromCommonSeparated(code, CLIENT_SEPARATOR)[0];
+    console.log('formattedTag', formattedTag);
+    // FIXME заменить на useFindAndModify
+    Tag.findOneAndUpdate({ _id: id }, formattedTag, { new: false }, (err, tag) => {
       if (err) {
         return res.status(500).send(err);
       }
