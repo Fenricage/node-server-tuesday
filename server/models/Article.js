@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const TagSchema = require('./Tag').schema;
 
 const ArticleSchema = new mongoose.Schema(
   {
@@ -10,6 +11,7 @@ const ArticleSchema = new mongoose.Schema(
     preview_img: Object,
     preview_text: String,
     articles_meta: Array,
+    tags: [TagSchema],
     created_at: {
       type: Date,
       default: Date.now,
@@ -18,8 +20,8 @@ const ArticleSchema = new mongoose.Schema(
 );
 
 ArticleSchema.methods.saveArticle = function (cb) {
-  console.log("this", this)
-}
+  console.log('this', this);
+};
 
 
 // let ArticleSchema = new mongoose.Schema(

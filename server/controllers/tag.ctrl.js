@@ -96,23 +96,31 @@ module.exports = {
   },
   deleteOne: async (req, res, next) => {
     const { id } = req.params;
-
+    console.log('id', id);
     try {
       await Tag.findOneAndDelete({ _id: id }, (err, tag) => {
         if (err) {
-          return res.status(400).send({ error: 'Couldnt delete tag' });
+          return res
+            .status(400)
+            .send({ error: 'Couldnt delete tag' });
         }
         if (!tag) {
+          console.log('tag', tag);
           return res
             .status(404)
-            .send({});
+            .send({
+              tag,
+              error: 'Couldn found tag',
+            });
         }
         return res
           .status(200)
           .send(tag);
       });
     } catch (e) {
-      return res.status(400).send({ error: 'Couldnt delete tag ERROR ' });
+      return res
+        .status(400)
+        .send({ error: 'Couldnt delete tag ERROR ' });
     }
   },
   getOne: async (req, res, next) => {
