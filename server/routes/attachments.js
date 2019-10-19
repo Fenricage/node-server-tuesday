@@ -8,8 +8,12 @@ module.exports = (router) => {
    */
   // TODO мб стоит обработвать и научить добавлять любые файлы?
   router
-    .route('/writeimg/:type')
-    .post(multerStorage.single('image'), attachmentcontroller.addAttachment);
+    .route('/attachments/:type')
+    .post(
+      multerStorage.single('image'),
+      attachmentcontroller.addAttachment,
+    );
+
   //
   // /**
   //  * add an article

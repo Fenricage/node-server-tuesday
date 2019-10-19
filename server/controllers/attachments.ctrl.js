@@ -1,13 +1,15 @@
 const Attachment = require('../models/Attachment');
 
 module.exports = {
-  addAttachment: (req, res, next) => {
+  addAttachment: async (req, res, next) => {
+
 
     const attachmentData = {
       type: req.file.mimetype,
       url: `/${req.file.path}`,
       isLinked: false,
     };
+
 
     new Attachment(attachmentData)
       .save((err, newAttachment) => {

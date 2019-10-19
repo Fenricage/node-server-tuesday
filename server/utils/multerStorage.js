@@ -1,15 +1,27 @@
 const fs = require('fs');
 const multer = require('multer');
+const uuid = require('uuid');
+
+// функция для создания директорий из имени файла
+const createDirPathFromFileName = (fileName, symbolsCount) => fileName
+  .substring(0, symbolsCount)
+  .split('')
+  .join('/');
+
 
 const storage = multer.diskStorage({
+  // выполняется первым
   destination: (req, file, cb) => {
+    // определяем в какую папку класть по типу
     const type = req.params.type || 'trash';
     const path = `./static/${type}`;
+    // создаем если папки еще нет
     if (!fs.existsSync(path)) {
-      fs.mkdirSync(path);
+      fs.mkdirSync(path, { recursive: true }, err => console.error('mkdirSync couldnot create new directories', err));
     }
     cb(null, path);
   },
+  // выполняется вторым
   filename: (req, file, cb) => {
     cb(null, `${new Date().toISOString()}_${file.originalname}`);
   },
@@ -17,8 +29,8 @@ const storage = multer.diskStorage({
 
 const fileFilter = (req, file, cb) => {
   if ('image/jpeg' === file.mimetype || 'image/png' === file.mimetype) {
-    console.log("req.params", req.params)
-    console.log("file", file)
+    // console.log('req.params', req.params);
+    // console.log('file', file);
     cb(null, true);
   } else {
     cb(null, false);
