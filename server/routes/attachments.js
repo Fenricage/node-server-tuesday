@@ -14,6 +14,13 @@ module.exports = (router) => {
       attachmentcontroller.addAttachment,
     );
 
+  router
+    .route('/attachments/:id')
+    .get(
+      attachmentcontroller.getAttachment,
+    );
+
+
   //
   // /**
   //  * add an article

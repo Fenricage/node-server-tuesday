@@ -78,5 +78,19 @@ module.exports = {
         }
         next();
       });
+
+
+  },
+  getAttachment: async (req, res, next) => {
+    const { id } = req.params;
+    Attachment.findById(id)
+      .exec((err, attachment) => {
+        if (err) {
+          res
+            .status(500)
+            .send({ error: 'couldnt find attachment' });
+        }
+        res.send(attachment);
+      });
   },
 };
