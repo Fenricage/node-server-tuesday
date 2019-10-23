@@ -4,6 +4,7 @@ const AttachmentSchema = new mongoose.Schema(
   {
     type: String,
     url: String,
+    img_urls: Object,
     isLinked: Boolean,
   },
 );
