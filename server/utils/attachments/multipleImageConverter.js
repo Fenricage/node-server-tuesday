@@ -9,38 +9,8 @@ const path = require('path');
 const createDirPathFromFileName = require('../createDirPathFromFileName');
 
 
-const testParamsList = [
-  {
-    resize: {
-      width: 1500,
-      height: 788,
-      fit: 'contain',
-      background: 'rgba(100, 8, 40, 1)',
-    },
-    format: {
-      value: 'png',
-      options: {
-        quality: 70,
-      },
-    },
-  },
-  {
-    resize: {
-      width: 700,
-      height: 514,
-      fit: 'contain',
-      background: 'rgba(100, 8, 40, 1)',
-    },
-    format: {
-      value: 'png',
-      options: {
-        quality: 70,
-      },
-    },
-  },
-];
-
-const multipleImageConverter = async (req, paramsList = testParamsList) => {
+// TODO написать дефолт paramsList - вынести в отдельный модуль как обхект просто
+const multipleImageConverter = async (req, paramsList) => {
   const { destination } = req.file;
 
   // достаем ext
@@ -67,23 +37,52 @@ const multipleImageConverter = async (req, paramsList = testParamsList) => {
       const image = await sharp(req.file.path)
         .resize({
           ...item.resize,
-        })
-        [item.format.value]({ ...item.format.value.options })
+        })[item.format.value]({ ...item.format.value.options })
         .toBuffer();
 
-      const imagePath = path.join(fullDirPath, `${uniqFileName}__${item.resize.width}x${item.resize.height}.${extension}`);
-      console.log('imagePath', imagePath);
+      const imagePath = path.join(fullDirPath, `${uniqFileName}_${item.resize.width}x${item.resize.height}.${extension}`);
+
       await fs.writeFile(imagePath, image, (err) => {
         if (err) {
           console.log('err to write file', err);
         }
       });
 
-      return 'done';
+
+      // метим главное изображение для того чтобы поместить данное свойство в модель
+      // ширина понадобится для именования свойств
+      return {
+        mainImg: item.mainImg || false,
+        url: imagePath,
+        width: item.resize.width,
+      };
 
     }),
-  );
+  )
+    .then((allAttachmentsData) => {
+
+      // гововим итоговый обхект со ссылкой на главное изображениеё
+      // и также со всем другими разрешениями данной пикчи
+      const resultImgData = {
+        img_url: '',
+        img_urls: {},
+      };
+
+      allAttachmentsData.forEach((attachmentData) => {
+        // проверяем не главное ли это изображение
+        // нужно по сути просто для удобства
+        if (attachmentData.mainImg) {
+          resultImgData.img_url = attachmentData.url;
+        }
+
+        // именуем добавочынй изображения в зависимости от их ширины
+        resultImgData.img_urls[`_${attachmentData.width}`] = attachmentData.url;
+      });
+
+
+      return resultImgData;
+    });
 };
 
 
-module.exports = multipleImageConverter
+module.exports = multipleImageConverter;

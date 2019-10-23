@@ -10,6 +10,38 @@ const path = require('path');
 const multipleImageConverter = require('./multipleImageConverter');
 const createDirPathFromFileName = require('../createDirPathFromFileName');
 
+const testParamsList = [
+  {
+    resize: {
+      width: 1500,
+      height: 788,
+      fit: 'contain',
+      background: 'rgba(100, 8, 40, 1)',
+    },
+    format: {
+      value: 'png',
+      options: {
+        quality: 70,
+      },
+    },
+    mainImg: true,
+  },
+  {
+    resize: {
+      width: 700,
+      height: 514,
+      fit: 'contain',
+      background: 'rgba(100, 8, 40, 1)',
+    },
+    format: {
+      value: 'png',
+      options: {
+        quality: 70,
+      },
+    },
+  },
+];
+
 const sharpImageTransformer = async (req) => {
   // тип изображения, флаг для того чтобы понять чо это и откуда
   const { type } = req.params;
@@ -53,8 +85,8 @@ const sharpImageTransformer = async (req) => {
   });
 
 
-  const testTEST = await multipleImageConverter(req);
-  console.log('testTEST', testTEST);
+  const convertedAttachments = await multipleImageConverter(req, testParamsList);
+  console.log('convertedAttachments', convertedAttachments);
   // эта хуйня удаляет файл указанный в пути - оригинальное непреобразованное изображение
   // юзать строго после сохранения всех преобразованных атачментов
   fs.unlinkSync(req.file.path);
