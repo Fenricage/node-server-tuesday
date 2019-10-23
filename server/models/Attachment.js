@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const AttachmentSchema = new mongoose.Schema(
   {
     type: String,
-    url: String,
+    img_url: String,
     img_urls: Object,
     isLinked: Boolean,
   },

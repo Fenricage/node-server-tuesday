@@ -68,18 +68,24 @@ const multipleImageConverter = async (req, paramsList) => {
         img_urls: {},
       };
 
-      allAttachmentsData.forEach((attachmentData) => {
+      allAttachmentsData.forEach((attachmentData, index, arr) => {
         // проверяем не главное ли это изображение
         // нужно по сути просто для удобства
-        if (attachmentData.mainImg) {
-          resultImgData.img_url = attachmentData.url;
+        // если длина массива равна 1 то при любом раскладе пишем url в главное поле
+        if (1 === arr.length) {
+          resultImgData.img_url = `/${attachmentData.url}`;
+        } else if (attachmentData.mainImg) {
+          resultImgData.img_url = `/${attachmentData.url}`;
         }
 
+
         // именуем добавочынй изображения в зависимости от их ширины
-        resultImgData.img_urls[`_${attachmentData.width}`] = attachmentData.url;
+        resultImgData.img_urls[`_${attachmentData.width}`] = `/${attachmentData.url}`;
       });
 
-
+      // эта хуйня удаляет файл указанный в пути - оригинальное непреобразованное изображение
+      // юзать строго после сохранения всех преобразованных атачментов
+      fs.unlinkSync(req.file.path);
       return resultImgData;
     });
 };
