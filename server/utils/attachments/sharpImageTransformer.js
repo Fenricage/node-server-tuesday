@@ -6,6 +6,8 @@ const { promisify } = require('util');
 
 const mkdir = promisify(fs.mkdir);
 const path = require('path');
+
+const multipleImageConverter = require('./multipleImageConverter');
 const createDirPathFromFileName = require('../createDirPathFromFileName');
 
 const sharpImageTransformer = async (req) => {
@@ -50,6 +52,9 @@ const sharpImageTransformer = async (req) => {
     }
   });
 
+
+  const testTEST = await multipleImageConverter(req);
+  console.log('testTEST', testTEST);
   // эта хуйня удаляет файл указанный в пути - оригинальное непреобразованное изображение
   // юзать строго после сохранения всех преобразованных атачментов
   fs.unlinkSync(req.file.path);
