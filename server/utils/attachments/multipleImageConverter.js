@@ -72,6 +72,7 @@ const multipleImageConverter = async (req, paramsList) => {
         // проверяем не главное ли это изображение
         // нужно по сути просто для удобства
         // если длина массива равна 1 то при любом раскладе пишем url в главное поле
+        // WARNING: слеш тут обязателен!!
         if (1 === arr.length) {
           resultImgData.img_url = `/${attachmentData.url}`;
         } else if (attachmentData.mainImg) {
