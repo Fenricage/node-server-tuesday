@@ -1,15 +1,31 @@
 module.exports = [
   {
     resize: {
-      width: 600,
-      height: 315,
-      fit: 'contain',
+      width: 300,
+      height: 157,
+      fit: 'cover',
       background: 'rgba(0, 0, 0, 1)',
     },
     format: {
-      value: 'png',
+      value: 'jpeg',
       options: {
         quality: 70,
+        progressive: true,
+      },
+    },
+  },
+  {
+    resize: {
+      width: 600,
+      height: 315,
+      fit: 'cover',
+      background: 'rgba(0, 0, 0, 1)',
+    },
+    format: {
+      value: 'jpeg',
+      options: {
+        quality: 70,
+        progressive: true,
       },
     },
   },
@@ -21,9 +37,10 @@ module.exports = [
       background: 'rgba(0, 0, 0, 1)',
     },
     format: {
-      value: 'png',
+      value: 'jpeg',
       options: {
         quality: 70,
+        progressive: true,
       },
     },
   },
@@ -35,9 +52,10 @@ module.exports = [
       background: 'rgba(0, 0, 0, 1)',
     },
     format: {
-      value: 'png',
+      value: 'jpeg',
       options: {
         quality: 70,
+        progressive: true,
       },
     },
     mainImg: true,
@@ -50,9 +68,10 @@ module.exports = [
       background: 'rgba(0, 0, 0, 1)',
     },
     format: {
-      value: 'png',
+      value: 'jpeg',
       options: {
         quality: 70,
+        progressive: true,
       },
     },
   },
@@ -64,9 +83,10 @@ module.exports = [
       background: 'rgba(0, 0, 0, 1)',
     },
     format: {
-      value: 'png',
+      value: 'jpeg',
       options: {
         quality: 70,
+        progressive: true,
       },
     },
   },
@@ -78,9 +98,10 @@ module.exports = [
       background: 'rgba(0, 0, 0, 1)',
     },
     format: {
-      value: 'png',
+      value: 'jpeg',
       options: {
         quality: 70,
+        progressive: true,
       },
     },
   },
