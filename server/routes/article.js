@@ -49,8 +49,6 @@ module.exports = (router) => {
     .patch(articlecontroller.patchArticle);
 
   router
-    .route('/upload')
-    .post(async (req, res, next) => {
-
-    });
+    .route('/articles/search')
+    .get(articlecontroller.searchArticles);
 };

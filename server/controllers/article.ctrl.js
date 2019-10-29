@@ -221,4 +221,18 @@ module.exports = {
       return res.send(article);
     });
   },
+  searchArticles: (req, res, next) => {
+    const regex = new RegExp('hello', 'i');
+    Article.aggregate([
+      // Project the concatenated full name along with the original doc
+      // { $project: { text: { $concat: ['$title', ' ', '$preview_text'] }, doc: '$$ROOT' } },
+      { $match: { value: { '$in': 'articles_meta' } } },
+    ], (err, articles) => {
+      // Extract the original doc from each item
+      // persons = persons.map(item => item.doc);
+      console.log(articles);
+      res.send(articles);
+    });
+
+  },
 };
