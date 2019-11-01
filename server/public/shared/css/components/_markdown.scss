@@ -1,0 +1,60 @@
+:root {
+  // link
+  --color-link: hsla(210, 74%, 41%, 1);
+  // blockquote
+  --color-blockquote: hsla(212, 8%, 45%, 1);
+  --color-border-blockquote: hsla(210, 10%, 89%, 1);
+}
+
+.markdown {
+  $self: &;
+  &__link {
+    color: var(--color-link);
+    text-decoration: none;
+    &:hover {
+      color: var(--color-link);
+      text-decoration: underline;
+    }
+  }
+  &__paragraph {
+
+  }
+  &__h1 {
+    padding-top: 12px;
+    margin: 0;
+    font-weight: bold;
+    font-style: normal;
+    font-family: 'PT Serif', Helvetica, Arial, sans-serif;
+  }
+  &__h2 {
+    margin: 48px 0 0 0;
+    font-weight: bold;
+    font-style: normal;
+    font-family: 'PT Serif', Helvetica, Arial, sans-serif;
+  }
+  &__h3 {
+    margin: 48px 0 0 0;
+    font-weight: bold;
+    font-style: normal;
+    font-family: 'PT Serif', Helvetica, Arial, sans-serif;
+  }
+  &__h4 {
+
+  }
+  &__inline-code {
+    padding: 2px 4px;
+    border-radius: 4px;
+    color: #c0341d;
+    background-color: #fbe5e1;
+  }
+  &__blockquote {
+    margin: 0;
+    padding: 8px 12px;
+    border-left: 2px solid var(--color-border-blockquote);
+    color: var(--color-blockquote);
+    #{ $self }__paragraph {
+      margin: 0;
+    }
+  }
+}
+

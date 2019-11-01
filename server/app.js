@@ -1,4 +1,5 @@
 const express = require('express');
+const next = require('next');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -13,6 +14,12 @@ const app = express();
 const router = express.Router();
 const url = process.env.MONGODB_URI || config.db;
 
+// next
+const dev = process.env.NODE_DEV !== 'production';
+// dir показывает гже искать pages
+const nextApp = next({ dir: './public', dev });
+const handle = nextApp.getRequestHandler(); // part of next config
+
 
 /** connect to MongoDB datastore */
 try {
@@ -25,28 +32,43 @@ try {
 }
 
 
-const port = 5000 || process.env.PORT;
+nextApp.prepare().then(() => {
+  const port = 5000 || process.env.PORT;
 
-/** set up routes {API Endpoints} */
-routes(router);
-
-app.use('/', express.static(path.resolve(__dirname, '../dist')));
-
-app.get(/^(?!.*api|.*static).*$/, (req, res, next) => { // send static to all, but not to api route and static folder
-  res.sendFile(path.resolve(__dirname, '../dist/index.html'));
-});
+  /** set up routes {API Endpoints} */
+  routes(router);
 
 
-/** set up middlewares */
-app.use(cors());
-app.use(bodyParser.json());
-app.use(expressValidator());
-app.use(helmet());
+  // кажется эта часть для SPA
+  // app.use('/', express.static(path.resolve(__dirname, '../dist')));
+  //
+  // app.get(/^(?!.*api|.*static).*$/, (req, res) => { // отправляем index.html на все кроме запросов которые начинаются со static и api
+  //   res.sendFile(path.resolve(__dirname, '../dist/index.html'));
+  // });
 
-app.use('/static', express.static(path.join(__dirname, 'static')));
-app.use('/api', router);
+  // здесь тогда будет для SSR
 
-/** start server */
-app.listen(port, () => {
-  console.log(`Server started at port: ${port}`);
+
+  /** set up middlewares */
+  app.use(cors());
+  app.use(bodyParser.json());
+  app.use(expressValidator());
+  app.use(helmet());
+
+  app.use('/static', express.static(path.join(__dirname, 'static')));
+  app.use('/api', router);
+  // тоже самое что и с SPA, обходим api и static
+  // убрать static. сделать проверки напрямую по path, отменить то что начинается со /static
+  // разрешить /_next
+  app.get(/^(?!.*api).*$/, (req, res) => {
+    if (!req.originalUrl.match(/^\/static/)) {
+      return handle(req, res);
+    }
+  });
+
+  /** start server */
+  app.listen(port, () => {
+    console.log(`Server started at port: ${port}`);
+  });
+
 });

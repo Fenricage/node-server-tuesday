@@ -1,0 +1,47 @@
+h1 {
+  font-size: 42px;
+  line-height: 1.25;
+  font-weight: 800;
+  margin: 0 0 40px;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.22;
+  margin: 0 0 25px;
+}
+
+h3 {
+  margin: 0 0 6px;
+}
+
+
+a {
+  color: var(--color-admin-primary);
+  transition: background-color 250ms, color 250ms;
+
+  &:hover {
+    color: var(--color-admin-lprimary);
+    transition: none;
+  }
+
+  cursor: pointer;
+}
+
+ul {
+  padding: 0;
+
+  li {
+    list-style-type: none;
+  }
+}
+
+
+html body .p1 {
+  font-size: 14px;
+}
+
+html body .p2 {
+  font-size: 18px;
+}
