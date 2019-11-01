@@ -1,0 +1,27 @@
+.b-sidebar-content {
+  background-color: var(--color-dark);
+  height: 100vh;
+  &__logo {
+    background-color: var(--color-dark);
+    padding: 18px 12px;
+    pointer-events: none;
+    cursor: default;
+    h2 {
+      color: #fff;
+      margin: 0;
+      padding: 6px;
+      letter-spacing: 6px;
+      font-size: 16px;
+      text-transform: uppercase;
+      font-weight: 500;
+      border: 2px solid #fff;
+      display: inline-block;
+    }
+  }
+  &__links {
+    a {
+      font-weight: 400;
+    }
+  }
+}
+

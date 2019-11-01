@@ -1,4 +1,4 @@
-import api from 'Shared/api/index';
+import api from '../shared/api/index';
 import {
   USERS_FETCH_FAILURE,
   USERS_FETCH_SUCCESS,
@@ -6,7 +6,7 @@ import {
   USERS_DELETE_USER,
   USERS_DELETE_USER_FAILURE,
   USERS_DELETE_USER_SUCCESS,
-} from 'Shared/constants/users';
+} from '../shared/constants/users';
 import { fromJS, Map } from 'immutable';
 import { store } from '../index';
 

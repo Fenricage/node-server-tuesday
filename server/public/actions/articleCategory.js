@@ -1,5 +1,4 @@
-import api from 'Shared/api';
-import {fromJS} from 'immutable';
+import { fromJS } from 'immutable';
 import {
   ARTICLE_CATEGORY_PATCH_FETCH_SUCCESS,
   ARTICLE_CATEGORY_PATCH_FETCH_FAILURE,
@@ -10,7 +9,8 @@ import {
   ARTICLE_CATEGORY_CREATE_FETCH_SUCCESS,
   ARTICLE_CATEGORY_CREATE_FETCH_FAILURE,
   ARTICLE_CATEGORY_CREATE_FETCH,
-} from 'Shared/constants/articleCategory';
+} from '../shared/constants/articleCategory';
+import api from '../shared/api';
 
 
 export const getOneArticleCategory = id => api.articeCategories.getOne(id);

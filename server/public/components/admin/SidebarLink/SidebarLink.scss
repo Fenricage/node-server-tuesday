@@ -1,0 +1,15 @@
+.b-sidebar-link {
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #fff;
+  font-size: 14px;
+  &:hover {
+    color: #fff;
+    background-color: var(--color-ddark);
+  }
+  &.is-selected {
+    background-color: var(--color-ddark);
+  }
+}

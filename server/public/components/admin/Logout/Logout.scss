@@ -1,0 +1,10 @@
+.b-logout {
+  button {
+    border: 0;
+    background-color: transparent;
+    color: #fff;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

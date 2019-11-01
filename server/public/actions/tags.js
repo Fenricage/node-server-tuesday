@@ -1,4 +1,4 @@
-import api from 'Shared/api';
+import api from '../shared/api';
 import { fromJS } from 'immutable';
 import {
   TAGS_INIT,
@@ -13,7 +13,7 @@ import {
   TAGS_PATCH_FETCH,
   TAGS_PATCH_FETCH_FAILURE,
   TAGS_PATCH_FETCH_SUCCESS,
-} from 'Shared/constants/tags';
+} from '../shared/constants/tags';
 import { store } from '../index';
 
 

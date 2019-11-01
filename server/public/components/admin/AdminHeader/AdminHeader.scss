@@ -1,0 +1,12 @@
+.b-admin-header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-admin-primary);
+  color: #fff;
+  h2 {
+    margin: 0;
+    font-size: 20px;
+  }
+}
+

@@ -5,9 +5,9 @@ import {
   ARTICLES_DELETE_ARTICLE,
   ARTICLES_DELETE_ARTICLE_FAILURE,
   ARTICLES_DELETE_ARTICLE_SUCCESS,
-} from 'Shared/constants/articles';
+} from '../shared/constants/articles';
 import { fromJS } from 'immutable';
-import { store } from '../index';
+// import { store } from '../index';
 import api from '../shared/api/index';
 
 export const getAllArticles = queryParams => api.articles.getAll(queryParams);
@@ -39,45 +39,49 @@ export const getAllArticlesAndSet = queryParams => (dispatch) => {
 
 export const reqSetDeletingStatus = (id) => {
 
-  const isDeleting = store
-    .getState()
-    .getIn(['articles', 'isDeleting'])
-    .push(id);
+  // const isDeleting = store
+  //   .getState()
+  //   .getIn(['articles', 'isDeleting'])
+  //   .push(id);
 
   return {
     type: ARTICLES_DELETE_ARTICLE,
-    payload: isDeleting,
+    // payload: isDeleting,
+    payload: [],
   };
 };
 
 export const reqDeleteArticleSuccess = (id) => {
-  const isDeleting = store
-    .getState()
-    .getIn(['articles', 'isDeleting'])
-    .filter(item => item !== id);
+  // const isDeleting = store
+  //   .getState()
+  //   .getIn(['articles', 'isDeleting'])
+  //   .filter(item => item !== id);
 
-  const updatedArticles = store.getState()
-    .getIn(['articles', 'data', 'records'])
-    .filter(record => record.get('_id') !== id);
+  // const updatedArticles = store.getState()
+  //   .getIn(['articles', 'data', 'records'])
+  //   .filter(record => record.get('_id') !== id);
 
   return {
     type: ARTICLES_DELETE_ARTICLE_SUCCESS,
     payload: {
-      isDeleting,
-      updatedArticles,
+      // isDeleting,
+      // updatedArticles,
+      isDeleting:[],
+      updatedArticles:[]
     },
   };
 };
 
 export const reqDeleteArticleFailure = (id, e) => {
-  const isDeleting = store
-    .getState()
-    .getIn(['articles', 'isDeleting'])
-    .filter(item => item !== id);
+  // const isDeleting = store
+  //   .getState()
+  //   .getIn(['articles', 'isDeleting'])
+  //   .filter(item => item !== id);
   return {
     type: ARTICLES_DELETE_ARTICLE_FAILURE,
     payload: {
-      isDeleting,
+      // isDeleting,
+      isDeleting:[],
       e,
     },
   };
