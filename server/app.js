@@ -6,10 +6,10 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const expressValidator = require('express-validator');
 const path = require('path');
-const routes = require('./routes/');
-
+const routes = require('./routes/index');
 const config = require('./config');
 
+const nextRoutes = require('./public/routes');
 const app = express();
 const router = express.Router();
 const url = process.env.MONGODB_URI || config.db;
@@ -18,6 +18,8 @@ const url = process.env.MONGODB_URI || config.db;
 const dev = process.env.NODE_DEV !== 'production';
 // dir показывает гже искать pages
 const nextApp = next({ dir: './public', dev });
+const handler = nextRoutes.getRequestHandler(nextApp); // part of next config
+// TODO: это рудимент от прошлой конфигурации, удалить если выживет верхнее решение
 const handle = nextApp.getRequestHandler(); // part of next config
 
 
@@ -60,11 +62,16 @@ nextApp.prepare().then(() => {
   // тоже самое что и с SPA, обходим api и static
   // убрать static. сделать проверки напрямую по path, отменить то что начинается со /static
   // разрешить /_next
+
+  // app.use(handler)
+
   app.get(/^(?!.*api).*$/, (req, res) => {
     if (!req.originalUrl.match(/^\/static/)) {
-      return handle(req, res);
+      return handler(req, res);
     }
   });
+
+
 
   /** start server */
   app.listen(port, () => {

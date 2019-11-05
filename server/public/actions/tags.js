@@ -14,7 +14,7 @@ import {
   TAGS_PATCH_FETCH_FAILURE,
   TAGS_PATCH_FETCH_SUCCESS,
 } from '../shared/constants/tags';
-import { store } from '../index';
+// import { store } from '../index';
 
 
 export const getAllTags = () => api.tags.getAll();
@@ -102,37 +102,40 @@ export const patchTag = (id, tagData) => (dispatch) => {
 
 export const reqSetDeletingStatus = (id) => {
 
-  const isDeleting = store.getState()
-    .getIn(['tags', 'isDeleting'])
-    .push(id);
+  // const isDeleting = store.getState()
+  //   .getIn(['tags', 'isDeleting'])
+  //   .push(id);
 
   return {
     type: TAGS_DELETE_TAG,
-    payload: isDeleting,
+    // payload: isDeleting,
+    payload: [],
   };
 };
 export const deleteTagSuccess = (id) => {
 
-  const isDeleting = store.getState()
-    .getIn(['tags', 'isDeleting'])
-    .filter(item => item !== id);
+  // const isDeleting = store.getState()
+  //   .getIn(['tags', 'isDeleting'])
+  //   .filter(item => item !== id);
 
   return {
     type: TAGS_DELETE_TAG_SUCCESS,
-    payload: isDeleting,
+    // payload: isDeleting,
+    payload: [],
   };
 };
 
 
 export const deleteTagFailure = (id) => {
 
-  const isDeleting = store.getState()
-    .getIn(['tags', 'isDeleting'])
-    .filter(item => item !== id);
+  // const isDeleting = store.getState()
+  //   .getIn(['tags', 'isDeleting'])
+  //   .filter(item => item !== id);
 
   return {
     type: TAGS_DELETE_TAG_FAILURE,
-    payload: isDeleting,
+    // payload: isDeleting,
+    payload: [],
   };
 };
 

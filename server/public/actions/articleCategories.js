@@ -9,7 +9,7 @@ import {
 } from '../shared/constants/articleCategories';
 import api from '../shared/api/index'
 
-import { store } from '../index';
+// import { store } from '../index';
 
 const getAllArticleCategoriesFetch = () => ({
   type: ARTICLE_CATEGORIES_GET_ALL_FETCH,
@@ -39,12 +39,13 @@ export const getAllArticleCategories = () => (dispatch) => {
 
 
 const reqSetDeletingStatus = (id) => {
-  const isDeleting = store.getState()
-    .getIn(['articleCategories', 'isDeleting'])
-    .push(id);
+  // const isDeleting = store.getState()
+  //   .getIn(['articleCategories', 'isDeleting'])
+  //   .push(id);
   return {
     type: ARTICLE_CATEGORIES_DELETE_ARTICLE,
-    payload: isDeleting,
+    // payload: isDeleting,
+    payload: [],
   };
 };
 
@@ -71,14 +72,15 @@ const reqDeleteArticleCategorySuccess = (id) => {
 };
 
 const reqDeleteArticleCategoryFailure = (id, e) => {
-  const isDeleting = store.getState()
-    .getIn(['articleCategories', 'isDeleting'])
-    .push(id)
-    .filter(item => item !== id);
+  // const isDeleting = store.getState()
+  //   .getIn(['articleCategories', 'isDeleting'])
+  //   .push(id)
+  //   .filter(item => item !== id);
   return {
     type: ARTICLE_CATEGORIES_DELETE_ARTICLE_FAILURE,
     payload: {
-      isDeleting,
+      // isDeleting,
+      isDeleting: [],
       e,
     },
   };
