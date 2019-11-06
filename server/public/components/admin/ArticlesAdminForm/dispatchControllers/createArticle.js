@@ -1,6 +1,6 @@
 import {
   createArticle as createArticleAction,
-} from 'Actions/article';
+} from '../../../../actions/article';
 
 const createArticle = async (values, dispatch) => {
   try {

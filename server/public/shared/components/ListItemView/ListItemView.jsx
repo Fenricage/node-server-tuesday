@@ -16,7 +16,7 @@ const ListItemView = ({
     {/* <Link className="list-item__link" to={`${match.path}/${item.get('_id')}`}> */}
     {/*  {item.get('title')} */}
     {/* </Link> */}
-    <Link href={`/articles/${item.get('_id')}`}>
+    <Link href={`/admin/articles/${item.get('_id')}`}>
       <a
         className="list-item__link"
       >

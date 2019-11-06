@@ -11,15 +11,12 @@ import {
   change,
 } from 'redux-form/immutable';
 
-
-import {
-  RenderArticleItems,
-  Input,
-  SelectCustom,
-  Attachment,
-  Button,
-  TagList,
-} from 'Components';
+import RenderArticleItems from '../RenderArticleItems/RenderArticleItems';
+import Input from '../../../shared/components/Input/Input';
+import Button from '../../../shared/components/Button/Button';
+import TagList from '../../../shared/components/TagList/TagList';
+import SelectCustom from '../../../shared/components/SelectCustom/SelectCustom';
+import Attachment from '../../../shared/components/Attachment/Attachment';
 
 import createArticle from './dispatchControllers/createArticle';
 import patchArticle from './dispatchControllers/patchArticle';
@@ -62,9 +59,9 @@ class ArticlesAdminForm extends Component {
   }
 
   onHandleSubmitForm = () => {
-    const { handleSubmit, match } = this.props;
-    if (match.params.id) {
-      return handleSubmit(patchArticle(match.params.id));
+    const { handleSubmit, match, query } = this.props;
+    if (query.id) {
+      return handleSubmit(patchArticle(query.id));
     }
     return handleSubmit(createArticle);
 

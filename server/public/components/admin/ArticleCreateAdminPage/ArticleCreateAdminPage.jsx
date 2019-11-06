@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { reqArticleAndSet, initArticle } from '../../../actions/article';
-// import { ArticlesAdminForm } from 'Components';
+import ArticlesAdminForm from '../ArticlesAdminForm/ArticlesAdminForm';
 import { getAllArticleCategories } from '../../../actions/articleCategories';
 import { getAllTagsAndSet } from '../../../actions/tags';
 import './ArticleCreateAdminPage.scss';
@@ -31,14 +31,15 @@ class ArticleCreateAdminPage extends Component {
       match,
       reqArticleAndSetDispatch,
       initArticleDispatch,
+      query: { id: queryId },
+      query,
     } = this.props;
 
-    // if (match.params.id) {
-    //   const id = match.params.id;
-    //   reqArticleAndSetDispatch(id);
-    // } else {
-    //   initArticleDispatch();
-    // }
+    if (queryId) {
+      reqArticleAndSetDispatch(queryId);
+    } else {
+      initArticleDispatch();
+    }
 
     initArticleDispatch();
   };
@@ -60,6 +61,8 @@ class ArticleCreateAdminPage extends Component {
       //   },
       // },
       match,
+      query: { id },
+      query,
       isLoadedArticles,
       isLoadedArticleCategories,
       articleCategories,
@@ -67,10 +70,10 @@ class ArticleCreateAdminPage extends Component {
       tags,
     } = this.props;
 
-    // if (!isLoadedArticles && id) {
-    //   return <p>Loading ...</p>;
-    // }
 
+    if (!isLoadedArticles && 'create' !== id) {
+      return <p>Loading ...</p>;
+    }
 
     if (!isLoadedArticleCategories) {
       return <p>Loading ...</p>;
@@ -83,17 +86,19 @@ class ArticleCreateAdminPage extends Component {
     return (
       <section>
         <h1>Create Article</h1>
-        {/*<ArticlesAdminForm*/}
-        {/*  toOptionsTransformer={this.toOptionsArticleCategoryTransformer}*/}
-        {/*  articleCategories={articleCategories}*/}
-        {/*  match={match}*/}
-        {/*  tags={tags}*/}
-        {/*/>*/}
+        <ArticlesAdminForm
+          toOptionsTransformer={this.toOptionsArticleCategoryTransformer}
+          articleCategories={articleCategories}
+          query={query}
+          match={match}
+          tags={tags}
+        />
       </section>
     );
   }
 
 }
+
 
 ArticleCreateAdminPage.propTypes = {
   match: PropTypes.shape().isRequired,

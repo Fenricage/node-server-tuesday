@@ -1,6 +1,6 @@
 import {
   patchArticle as patchArticleAction,
-} from 'Actions/article';
+} from '../../../../actions/article';
 
 const patchArticle = (id) => async (values, dispatch) => {
   try {

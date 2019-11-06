@@ -10,6 +10,7 @@ const routes = require('./routes/index');
 const config = require('./config');
 
 const nextRoutes = require('./public/routes');
+
 const app = express();
 const router = express.Router();
 const url = process.env.MONGODB_URI || config.db;
@@ -70,7 +71,6 @@ nextApp.prepare().then(() => {
       return handler(req, res);
     }
   });
-
 
 
   /** start server */
