@@ -48,7 +48,7 @@
     "@babel/runtime": "^7.2.0",
     "@zeit/next-css": "^1.0.2-canary.2",
     "@zeit/next-sass": "^1.0.2-canary.2",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
     "classnames": "^2.2.6",
