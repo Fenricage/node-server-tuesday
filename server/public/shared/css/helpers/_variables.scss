@@ -48,10 +48,6 @@
   // article
   --article-h2: var(--color-black-54);
 
-  // media queries
-  @custom-media --md-viewport (width >= 768px);
-  @custom-media --lg-viewport (width >= 1024px);
-
   // paddings layout
   --sm-padding: 20px;
   --md-padding: 28px;

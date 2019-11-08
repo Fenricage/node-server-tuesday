@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { withRouter } from 'next/router';
 import qs from 'qs';
 import { fromJS } from 'immutable';
 import './HomeMainPage.scss';
-import { getAllArticlesAndSet } from '../../../actions/articles';
-import HomeMainPageView from '../HomeMainPageView/HomeMainPageView'
-// import Pagination from '../../../shared/components/Pagination/Pagination'
 import { connect } from 'react-redux';
+import { getAllArticlesAndSet } from '../../../actions/articles';
+import HomeMainPageView from '../HomeMainPageView/HomeMainPageView';
+import Pagination from '../../../shared/components/Pagination/Pagination';
+import AllUsersAdminPageWithLayout from '../../../pages/admin/users';
 // import { history } from '../../../index';
 
 class HomeMainPage extends Component {
@@ -29,17 +31,25 @@ class HomeMainPage extends Component {
     const {
       location,
       match,
+      router,
     } = this.props;
 
     const {
       location: prevLocation,
       match: prevMatch,
+      router: prevRouter,
     } = prevProps;
 
     // сравниваем query параметры
     // if ((location.search !== prevLocation.search) || match.url !== prevMatch.url) {
     //   this.getArticles();
     // }
+
+
+    // new
+    if (router.asPath !== prevRouter.asPath) {
+      this.getArticles();
+    }
 
   }
 
@@ -49,34 +59,35 @@ class HomeMainPage extends Component {
       getAllArticlesAndSetDispatch,
       location,
       // match: { params },
+      router,
     } = this.props;
 
     const { pageSize } = this.state;
 
-    // const query = qs.parse(location.search, { ignoreQueryPrefix: true });
+    const { query } = router;
     // есть query - объект не пуст
     // TODO нпиши хелпер, который определяет что query.page это строка, (typeof string)
     // которая после преобразования к числу имеет тип числа (еtypeof number)
-    // if (Object.keys(query).length && query.page && query.size) {
-    //   // TODO проверка на наличие в query page  и size
-    //   const { page, size } = query;
-    //   // extra для дополнительных параметров
-    //   const extra = {};
-    //   // if (params.category) {
-    //   //   extra.category = params.category;
-    //   // }
-    //   const queryParams = { page, size, orderBy: { _id: -1 } };
-    //   queryParams.extra = extra;
-    //   return getAllArticlesAndSetDispatch(queryParams);
-    //   //  первая страница с предустановленным размером
-    // }
+    if (Object.keys(query).length && query.page && query.size) {
+      // TODO проверка на наличие в query page  и size
+      const { page, size } = query;
+      // extra для дополнительных параметров
+      const extra = {};
+      // if (params.category) {
+      //   extra.category = params.category;
+      // }
+      const queryParams = { page, size, orderBy: { _id: -1 } };
+      queryParams.extra = extra;
+      return getAllArticlesAndSetDispatch(queryParams);
+      //  первая страница с предустановленным размером
+    }
     const queryParams = { page: 1, size: pageSize, orderBy: { _id: -1 } };
     // extra для дополнительных параметров
-    // const extra = {};
+    const extra = {};
     // if (params.category) {
     //   extra.category = params.category;
     // }
-    // queryParams.extra = extra;
+    queryParams.extra = extra;
     return getAllArticlesAndSetDispatch(queryParams);
 
 
@@ -93,10 +104,10 @@ class HomeMainPage extends Component {
   }));
 
   handlePageClick = ({ selected }) => {
-    const { match } = this.props;
+    const { match, router } = this.props;
     const { pageSize } = this.state;
     // "selected" began with 0
-    // history.push(`${match.url}/?page=${selected + 1}&size=${pageSize}`.replace('//', '/'));
+    router.push(`${router.pathname}/?page=${selected + 1}&size=${pageSize}`.replace('//', '/'));
   }
 
   render() {
@@ -106,23 +117,23 @@ class HomeMainPage extends Component {
       articles,
       match,
       totalArticles,
+      router,
     } = this.props;
 
     const {
       pageSize,
       initLoaded,
     } = this.state;
-
     const isOnePage = totalArticles <= pageSize;
 
     return (
       <section>
-        {/*<Pagination*/}
-        {/*  total={totalArticles}*/}
-        {/*  pageSize={pageSize}*/}
-        {/*  className={isOnePage && 'hidden'}*/}
-        {/*  onPageChange={this.handlePageClick}*/}
-        {/*/>*/}
+        <Pagination
+          total={totalArticles}
+          pageSize={pageSize}
+          className={isOnePage && 'hidden'}
+          onPageChange={this.handlePageClick}
+        />
         <HomeMainPageView
           articles={articles}
           initLoaded={initLoaded}
@@ -146,4 +157,4 @@ const mapDispatchToProps = dispatch => ({
   getAllArticlesAndSetDispatch: queryParams => dispatch(getAllArticlesAndSet(queryParams)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeMainPage);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(HomeMainPage));

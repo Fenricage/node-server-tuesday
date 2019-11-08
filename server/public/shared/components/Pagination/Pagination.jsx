@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'next/router';
 import ReactPaginate from 'react-paginate';
 import cs from 'classnames';
 import qs from 'qs';
@@ -29,6 +30,7 @@ class Pagination extends Component {
       pageSize,
       onPageChange,
       className,
+      router,
     } = this.props;
 
 
@@ -37,7 +39,8 @@ class Pagination extends Component {
     }
 
     // формируем объект из query параметров
-    const query = qs.parse(location.search, { ignoreQueryPrefix: true });
+    const {query} = router
+
     // формируем инит выделенной страницы в компоненте пагинации
     // и вычитаем единицу чтобы подогнать под формат
     // если query параметров нет то принято считать что мы на первой странице
@@ -72,5 +75,4 @@ class Pagination extends Component {
 
 }
 
-// export default withRouter(Pagination);
-export default Pagination;
+export default withRouter(Pagination);
