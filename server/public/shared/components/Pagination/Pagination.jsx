@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withRouter } from 'next/router';
 import ReactPaginate from 'react-paginate';
 import cs from 'classnames';
-import qs from 'qs';
 import './Pagination.scss';
 
 class Pagination extends Component {
@@ -25,7 +24,6 @@ class Pagination extends Component {
 
   render() {
     const {
-      location,
       total,
       pageSize,
       onPageChange,
@@ -39,7 +37,7 @@ class Pagination extends Component {
     }
 
     // формируем объект из query параметров
-    const {query} = router
+    const { query } = router;
 
     // формируем инит выделенной страницы в компоненте пагинации
     // и вычитаем единицу чтобы подогнать под формат

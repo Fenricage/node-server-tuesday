@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import { withRouter } from 'next/router';
-import qs from 'qs';
 import { fromJS } from 'immutable';
 import './HomeMainPage.scss';
 import { connect } from 'react-redux';
 import { getAllArticlesAndSet } from '../../../actions/articles';
 import HomeMainPageView from '../HomeMainPageView/HomeMainPageView';
 import Pagination from '../../../shared/components/Pagination/Pagination';
-import AllUsersAdminPageWithLayout from '../../../pages/admin/users';
-// import { history } from '../../../index';
 
 class HomeMainPage extends Component {
 
@@ -29,36 +26,24 @@ class HomeMainPage extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const {
-      location,
-      match,
       router,
     } = this.props;
 
     const {
-      location: prevLocation,
-      match: prevMatch,
       router: prevRouter,
     } = prevProps;
 
-    // сравниваем query параметры
-    // if ((location.search !== prevLocation.search) || match.url !== prevMatch.url) {
-    //   this.getArticles();
-    // }
+    // сравниваем пути? мб стоит query параметры срапавнивать
 
-
-    // new
     if (router.asPath !== prevRouter.asPath) {
       this.getArticles();
     }
 
   }
 
-
   getArticles = () => {
     const {
       getAllArticlesAndSetDispatch,
-      location,
-      // match: { params },
       router,
     } = this.props;
 
@@ -89,10 +74,7 @@ class HomeMainPage extends Component {
     // }
     queryParams.extra = extra;
     return getAllArticlesAndSetDispatch(queryParams);
-
-
-  }
-
+  };
 
   // TODO:(@fenticage) эта хуйня нужна вообщзе?
   transformArticlesToItemGridData = articles => articles.map(article => fromJS({
@@ -108,7 +90,7 @@ class HomeMainPage extends Component {
     const { pageSize } = this.state;
     // "selected" began with 0
     router.push(`${router.pathname}/?page=${selected + 1}&size=${pageSize}`.replace('//', '/'));
-  }
+  };
 
   render() {
 
@@ -144,7 +126,6 @@ class HomeMainPage extends Component {
 
     );
   }
-
 }
 
 const mapStateToProps = state => ({
