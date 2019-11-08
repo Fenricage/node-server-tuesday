@@ -8,7 +8,7 @@ import {
   USERS_DELETE_USER_SUCCESS,
 } from '../shared/constants/users';
 import { fromJS, Map } from 'immutable';
-import { store } from '../index';
+// import { store } from '../index';
 
 
 const reqUsersFetchInit = () => ({
@@ -51,31 +51,31 @@ export const reqSetDeletingStatus = (id) => {
 
 export const reqDeleteUserSuccess = (id) => {
 
-  const isDeleting = store.getState()
-    .getIn(['users', 'isDeleting'])
-    .filter(item => item !== id);
-
-  const updatedUsers = store.getState()
-    .getIn(['users', 'data'])
-    .filter(user => user.get('_id') !== id);
+  // const isDeleting = store.getState()
+  //   .getIn(['users', 'isDeleting'])
+  //   .filter(item => item !== id);
+  //
+  // const updatedUsers = store.getState()
+  //   .getIn(['users', 'data'])
+  //   .filter(user => user.get('_id') !== id);
 
   return {
     type: USERS_DELETE_USER_SUCCESS,
     payload: {
-      isDeleting,
-      updatedUsers,
+      isDeleting: [],
+      updatedUsers: [],
     },
   };
 };
 
 export const reqDeleteUserFailure = (id, e) => {
-  const isDeleting = store.getState()
-    .getIn(['users', 'isDeleting'])
-    .filter(item => item !== id);
+  // const isDeleting = store.getState()
+  //   .getIn(['users', 'isDeleting'])
+  //   .filter(item => item !== id);
   return {
     type: USERS_DELETE_USER_FAILURE,
     payload: {
-      isDeleting,
+      isDeleting: [],
       e,
     },
   };

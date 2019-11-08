@@ -1,0 +1,17 @@
+.logo {
+  $self: &;
+  line-height: 1;
+
+  &__letter {
+
+  }
+
+  &__rect {
+
+  }
+  &:hover {
+    #{ $self }__rect {
+      stroke-width: 3px;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+.header {
+  &__top-bar {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media (--md-viewport) {
+      justify-content: flex-start;
+    }
+    @media (--lg-viewport) {
+
+    }
+  }
+  &__logo {
+    margin-top: 12px;
+  }
+}

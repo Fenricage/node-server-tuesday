@@ -6,7 +6,7 @@ import List from '../../../shared/components/List/List';
 import './AllArticlesAdminPageView.scss';
 
 const AllArticlesAdminPageView = ({
-  articles, isLoadedArticles, onDeleteArticleHandler, isDeletingArticles,
+  articles, isLoadedArticles, onDeleteArticleHandler, isDeletingArticles, pathname,
 }) => (
   <section className="b-all-articles-admin-page">
     <section className="b-all-articles-admin-page__top-bar">
@@ -22,6 +22,7 @@ const AllArticlesAdminPageView = ({
       </Link>
     </section>
     <List
+      pathname={pathname}
       data={articles}
       isLoaded={isLoadedArticles}
       onDeleteItem={onDeleteArticleHandler}

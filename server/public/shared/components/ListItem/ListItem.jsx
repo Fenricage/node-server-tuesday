@@ -12,8 +12,8 @@ class ListItem extends Component {
       isDeletingItems,
       item,
     } = this.props;
-
     const isCurrentItemDeleting = isDeletingItems.includes(item.get('_id'));
+
     return (
       <ListItemView
         {...this.props}

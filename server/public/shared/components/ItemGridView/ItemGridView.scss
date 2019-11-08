@@ -1,0 +1,13 @@
+.item-grid {
+  display: grid;
+  grid-template-rows: auto;
+  //grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
+  grid-gap: 12px;
+  @media (--md-viewport) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (--lg-viewport) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

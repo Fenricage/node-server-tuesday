@@ -11,29 +11,32 @@ const ListItemView = ({
   onDeleteItem,
   isCurrentItemDeleting,
   item,
-}) => (
-  <section className="list-item">
-    {/* <Link className="list-item__link" to={`${match.path}/${item.get('_id')}`}> */}
-    {/*  {item.get('title')} */}
-    {/* </Link> */}
-    <Link href={`/admin/articles/${item.get('_id')}`}>
-      <a
-        className="list-item__link"
+  pathname,
+}) => {
+  return (
+    <section className="list-item">
+      {/* <Link className="list-item__link" to={`${match.path}/${item.get('_id')}`}> */}
+      {/*  {item.get('title')} */}
+      {/* </Link> */}
+      <Link href={`${pathname}/${item.get('_id')}`}>
+        <a
+          className="list-item__link"
+        >
+          {item.get('title')}
+        </a>
+      </Link>
+      <Button
+        className="list-item__delete"
+        type="button"
+        loaderClassName="type-cross-button"
+        isLoading={isCurrentItemDeleting}
+        onClick={onDeleteItem(item.get('_id'))}
       >
-        {item.get('title')}
-      </a>
-    </Link>
-    <Button
-      className="list-item__delete"
-      type="button"
-      loaderClassName="type-cross-button"
-      isLoading={isCurrentItemDeleting}
-      onClick={onDeleteItem(item.get('_id'))}
-    >
-      <RemoveCrossIcon />
-    </Button>
-  </section>
-);
+        <RemoveCrossIcon />
+      </Button>
+    </section>
+  );
+}
 
 ListItemView.propTypes = {
   onDeleteItem: PropTypes.func,

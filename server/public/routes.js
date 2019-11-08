@@ -5,7 +5,11 @@ module.exports = routes()
   .add('/', '/')
   .add('/admin', '/admin')
   .add('/admin/articles', '/admin/articles')
-  .add('articleDetail', '/admin/articles/:id', '/admin/articles/create'); // неочевидный референс - по articleDetail страницы нет, это просто индекс роута, 3 аргумент - страница в pages, посередине - паттерн
+  .add('/admin/users', '/admin/users')
+  .add('/admin/tags', '/admin/tags')
+  .add('articleDetail', '/admin/articles/:id', '/admin/articles/create') // неочевидный референс - по articleDetail страницы нет, это просто индекс роута, 3 аргумент - страница в pages, посередине - паттерн
+  .add('/admin/article-categories', '/admin/article-categories')
+  .add('articleCategoryDetail', '/admin/article-categories/:id', '/admin/article-categories/create');
 // .add('/admin/articles/create', '/admin/articles/create')
 
 // .add('blog', '/blog/:slug')

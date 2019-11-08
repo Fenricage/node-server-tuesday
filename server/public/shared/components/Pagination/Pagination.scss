@@ -1,0 +1,45 @@
+.pagination {
+  display: flex;
+  margin: 6px 0 24px 0;
+  justify-content: center;
+  @media (--md-viewport) {
+
+  }
+  @media (--lg-viewport) {
+    justify-content: flex-start;
+  }
+  > li {
+    padding: 0;
+    outline: none;
+    > a {
+      outline: none;
+      padding: 10px 16px;
+      color: var(--color-home-nav-font-default);
+      border-bottom: 2px solid transparent;
+      &:hover {
+        color: var(--color-home-nav-font-hover);
+        border-bottom-color: var(--color-home-nav-font-default);
+      }
+    }
+    & + li {
+
+    }
+    &.active {
+      > a {
+        color: var(--color-home-nav-font-active);
+        border-bottom-color: var(--color-home-nav-font-active);
+        &:hover {
+          color: var(--color-home-nav-font-active);
+          border-bottom-color: var(--color-home-nav-font-active);
+        }
+      }
+    }
+    &.disabled {
+      visibility: hidden;
+    }
+  }
+  &_hidden {
+    visibility: hidden;
+  }
+}
+

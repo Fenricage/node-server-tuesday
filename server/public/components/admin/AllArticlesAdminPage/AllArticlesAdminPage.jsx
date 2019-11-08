@@ -30,6 +30,7 @@ class AllArticlesAdminPage extends Component {
       articles,
       isLoadedArticles,
       isDeletingArticles,
+      pathname,
     } = this.props;
 
     if (!isLoadedArticles) {
@@ -41,6 +42,7 @@ class AllArticlesAdminPage extends Component {
 
     return (
       <AllArticlesAdminPageView
+        pathname={pathname}
         articles={transformedToListFormatArticles}
         isLoadedArticles={isLoadedArticles}
         onDeleteArticleHandler={this.onDeleteArticleHandler}
