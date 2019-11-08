@@ -51,7 +51,6 @@ nextApp.prepare().then(() => {
 
   // здесь тогда будет для SSR
 
-
   /** set up middlewares */
   app.use(cors());
   app.use(bodyParser.json());
