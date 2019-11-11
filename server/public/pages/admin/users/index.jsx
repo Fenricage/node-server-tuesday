@@ -19,7 +19,6 @@ class AllUsersAdminPageWithLayout extends Component {
 
 
 AllUsersAdminPageWithLayout.getInitialProps = async ({ query, pathname }) => {
-  console.log('\x1b[36m', 'pathname', pathname, '\x1b[0m');
   return { query, pathname };
 };
 
