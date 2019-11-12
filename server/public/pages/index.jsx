@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import HomeLayout from '../shared/layouts/HomeLayout/HomeLayout';
 import HomeMainPage from '../components/home/HomeMainPage/HomeMainPage';
-import { getAllArticleCategories } from '../actions/articleCategories';
+import { getAllArticleCategoriesServer } from '../actions/articleCategories';
 import { getAllTagsAndSet } from '../actions/tags';
 
 import api from '../shared/api/index'
@@ -32,6 +32,7 @@ class HomePageWithLayout extends Component {
 // вызывается и на сервере и на клиенте (при маршриутизации) работает тлько на страницах, на страницах читай что это замена cdm
 HomePageWithLayout.getInitialProps = async ({ query, pathname, store, isServer }) => {
   const { dispatch } = store;
+  // dispatch(getAllArticleCategoriesServer())
   // const articleCategories = await api.articeCategories.getAll({baseUrl: 'http://localhost:5000'});
   // const tags = await api.tags.getAll({baseUrl: 'http://localhost:5000'});
   console.log(" SECOND GET INITIAL PROPS COMPONENT")

@@ -6,24 +6,33 @@ import { fromJS } from 'immutable';
 import { configureStore } from '../store/configureStore';
 
 import { initializeApi } from '../shared/api/initializeApi';
-import {API_SERVER, API_BROWSER} from "../shared/constants/api";
+import { API_SERVER, API_BROWSER } from '../shared/constants/api';
 
 import '../shared/css/app.scss';
 
-initializeApi();
+// вызывается только на сервере при первом посещениии и на клиенте при маршриутизации
+// TODO надо засетить апи для сервера, и при этом не сетить каждый раз при маршриутизации
+// в конструктор? просто выше? проверять на is? (дорого)
+// TODO правильно ли инитить здесь?
+// инициализируем API
+
 
 class MyApp extends App {
 
   constructor(props) {
     super(props);
-    // инициализируем API, положи в отдельный модуль
+    // ГОВНОКОД!
+    // для клиента
+    // на сервере тожэе выполнится, но почему то после всех getInitials
+    initializeApi();
   }
 
 
-  // вызывается только на сервере при первом посещениии и на клиенте при маршриутизации
-  // TODO надо засетить апи для сервера, и при этом не сетить каждый раз при маршриутизации
-  // в конструктор? просто выше? проверять на is? (дорого)
+
   static async getInitialProps({ Component, ctx }) {
+    // ГОВНОКОД!
+    // для сервера
+    initializeApi();
     // console.log('apitest.is(HUI)', apitest.is('HUI'))
     console.log(' FIRST _APP routing again initial call WTF?!?!?');
     // apitest.set('HUI', 'HUI');

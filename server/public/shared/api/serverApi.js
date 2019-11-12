@@ -19,11 +19,10 @@ const ServerApi = function (address) {
     } else {
       // здесь нужно сделать проверку на сервер: чтобы подставить порт на которм он находится
       // иначе будет ECONNREFUSED
-
       // console.log('\x1b[36m', 'extra', extra, '\x1b[0m');
       // console.log('\x1b[36m', 'axios.defaults', axios.defaults, '\x1b[0m');
 
-      axios.defaults.baseURL = extra && extra.baseUrl ? `${extra.baseUrl}/api` : '/api';
+      axios.defaults.baseURL = extra && extra.baseUrl ? `${extra.baseUrl}/api` : 'http://localhost:5000/api';
       // axios.defaults.baseURL = extra && extra.baseUrl ? extra.baseUrl : `${SERVER_URL}/api`;
     }
 

@@ -7,7 +7,7 @@ import {
   ARTICLE_CATEGORIES_DELETE_ARTICLE_FAILURE,
   ARTICLE_CATEGORIES_DELETE_ARTICLE_SUCCESS,
 } from '../shared/constants/articleCategories';
-import { API_BROWSER } from '../shared/constants/api';
+import { API_BROWSER, API_SERVER } from '../shared/constants/api';
 import api from '../shared/api/index';
 
 // import { store } from '../index';
@@ -27,8 +27,21 @@ const getAllArticleCategoriesFailure = e => ({
 });
 
 export const getAllArticleCategories = () => (dispatch) => {
+  console.log("GET ALL ARTICLE CATEGORIES!!!!!!!!!!")
   dispatch(getAllArticleCategoriesFetch());
   return api.get(API_BROWSER).articeCategories.getAll()
+    .then((categories) => {
+      dispatch(getAllArticleCategoriesSuccess(fromJS(categories)));
+    })
+    .catch((e) => {
+      console.error('Get All Article Categories is Failure', { ...e });
+      dispatch(getAllArticleCategoriesFailure(e));
+    });
+};
+
+export const getAllArticleCategoriesServer = () => (dispatch) => {
+  dispatch(getAllArticleCategoriesFetch());
+  return api.get(API_SERVER).articeCategories.getAll()
     .then((categories) => {
       dispatch(getAllArticleCategoriesSuccess(fromJS(categories)));
     })
