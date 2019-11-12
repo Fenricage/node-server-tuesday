@@ -11,8 +11,9 @@ import {
   ARTICLE_PATCH_FETCH_SUCCESS,
 } from '../shared/constants/article';
 import api from '../shared/api/index';
+import { API_BROWSER } from '../shared/constants/api';
 
-export const getOneArticle = id => api.articles.getOne(id);
+export const getOneArticle = id => api.get(API_BROWSER).articles.getOne(id);
 
 export const initArticle = () => ({
   type: ARTICLE_INIT,
@@ -54,7 +55,7 @@ export const createArticleSuccess = () => ({
 
 export const createArticle = articleData => (dispatch) => {
   dispatch(fetchCreateArticle());
-  return api.articles.create(articleData)
+  return api.get(API_BROWSER).articles.create(articleData)
     .then((res) => {
       dispatch(createArticleSuccess());
       console.log('res', res);
@@ -80,7 +81,7 @@ const patchArticleSuccess = () => ({
 
 export const patchArticle = (id, articleData) => (dispatch) => {
   dispatch(fetchPatchArticle());
-  return api.articles.patch(id, articleData)
+  return api.get(API_BROWSER).articles.patch(id, articleData)
     .then((res) => {
       dispatch(patchArticleSuccess());
     })

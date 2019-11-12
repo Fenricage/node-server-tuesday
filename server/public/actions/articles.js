@@ -8,9 +8,10 @@ import {
 } from '../shared/constants/articles';
 import { fromJS } from 'immutable';
 // import { store } from '../index';
+import { API_BROWSER } from '../shared/constants/api';
 import api from '../shared/api/index';
 
-export const getAllArticles = queryParams => api.articles.getAll(queryParams);
+export const getAllArticles = queryParams => api.get(API_BROWSER).articles.getAll(queryParams);
 
 export const fetchAllArticles = () => ({
   type: ARTICLES_FETCH,
@@ -90,7 +91,7 @@ export const reqDeleteArticleFailure = (id, e) => {
 
 export const reqDeleteArticle = id => (dispatch) => {
   dispatch(reqSetDeletingStatus(id));
-  return api.articles.delete(id)
+  return api.get(API_BROWSER).articles.delete(id)
     .then((article) => {
       dispatch(reqDeleteArticleSuccess(id));
     })

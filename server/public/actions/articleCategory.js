@@ -10,10 +10,11 @@ import {
   ARTICLE_CATEGORY_CREATE_FETCH_FAILURE,
   ARTICLE_CATEGORY_CREATE_FETCH,
 } from '../shared/constants/articleCategory';
+import { API_BROWSER } from '../shared/constants/api';
 import api from '../shared/api';
 
 
-export const getOneArticleCategory = id => api.articeCategories.getOne(id);
+export const getOneArticleCategory = id => api.get(API_BROWSER).articeCategories.getOne(id);
 
 export const initArticleCategory = () => ({
   type: ARTICLE_CATEGORY_INIT,
@@ -56,7 +57,7 @@ const patchArticleCategorySuccess = () => ({
 
 export const patchArticleCategory = (id, articleCategoryData) => (dispatch) => {
   dispatch(fetchPatchArticleCategory());
-  return api.articeCategories.patch(id, articleCategoryData)
+  return api.get(API_BROWSER).articeCategories.patch(id, articleCategoryData)
     .then((res) => {
       dispatch(patchArticleCategorySuccess());
       console.log('res', res);

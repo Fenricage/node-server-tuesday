@@ -5,7 +5,6 @@ import { getAllArticleCategories } from '../actions/articleCategories';
 import { getAllTagsAndSet } from '../actions/tags';
 
 import api from '../shared/api/index'
-import {apitest} from "../shared/api/index";
 
 class HomePageWithLayout extends Component {
 
@@ -36,7 +35,7 @@ HomePageWithLayout.getInitialProps = async ({ query, pathname, store, isServer }
   // const articleCategories = await api.articeCategories.getAll({baseUrl: 'http://localhost:5000'});
   // const tags = await api.tags.getAll({baseUrl: 'http://localhost:5000'});
   console.log(" SECOND GET INITIAL PROPS COMPONENT")
-  console.log('\x1b[36m', 'apitest.get(HUI)' , apitest.get('HUI'), '\x1b[0m');
+  // console.log('\x1b[36m', 'apitest.get(HUI)' , apitest.get('HUI'), '\x1b[0m');
   // console.log("SERVE AND CLIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEENT!!!!!!!!!") вызывает и на клиенте при маршритизации why?
   return { query, pathname };
 };

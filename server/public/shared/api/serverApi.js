@@ -4,7 +4,7 @@ import endpoints from './endpoints';
 // TODO заменить history
 // import { history } from '../../index';
 
-const BrowserApi = function (address) {
+const ServerApi = function (address) {
 
   const headers = {
     'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ const BrowserApi = function (address) {
     }
 
 
-    localStorage.getItem('token') ? headers['x-access-token'] = `${localStorage.getItem('token')}` : headers['x-access-token'] = null;
+    // localStorage.getItem('token') ? headers['x-access-token'] = `${localStorage.getItem('token')}` : headers['x-access-token'] = null;
     extra.headers = extra.headers ? extra.headers : {};
 
     return new Promise((resolve, reject) => {
@@ -51,7 +51,7 @@ const BrowserApi = function (address) {
           } else {
             if (401 === err.response.status) {
 
-              localStorage.removeItem('token');
+              // localStorage.removeItem('token');
               // history.push('/login');
 
             } else if (403 === err.response.status) {
@@ -67,5 +67,5 @@ const BrowserApi = function (address) {
 };
 
 
-const api = new BrowserApi();
+const api = new ServerApi();
 export default api;

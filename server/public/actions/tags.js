@@ -14,10 +14,11 @@ import {
   TAGS_PATCH_FETCH_FAILURE,
   TAGS_PATCH_FETCH_SUCCESS,
 } from '../shared/constants/tags';
+import { API_BROWSER } from '../shared/constants/api';
 // import { store } from '../index';
 
 
-export const getAllTags = () => api.tags.getAll();
+export const getAllTags = () => api.get(API_BROWSER).tags.getAll();
 
 export const fetchAllATags = () => ({
   type: TAGS_INIT,
@@ -59,7 +60,7 @@ export const createTagsSuccess = () => ({
 
 export const createTags = tagsData => (dispatch) => {
   dispatch(fetchCreateTags());
-  return api.tags.create(tagsData)
+  return api.get(API_BROWSER).tags.create(tagsData)
     .then((res) => {
       dispatch(createTagsSuccess());
       console.log('res', res);
@@ -87,7 +88,7 @@ export const patchTag = (id, tagData) => (dispatch) => {
 
   dispatch(fetchPatchTag());
   console.log('id, tagData', id, tagData)
-  return api.tags.patch(id, tagData)
+  return api.get(API_BROWSER).tags.patch(id, tagData)
     .then((res) => {
       dispatch(patchTagSuccess());
       console.log('res', res);
@@ -144,7 +145,7 @@ export const deleteTag = id => async (dispatch) => {
 
   dispatch(reqSetDeletingStatus(id));
 
-  return api.tags.deleteOne(id)
+  return api.get(API_BROWSER).tags.deleteOne(id)
     .then(async (res) => {
       await dispatch(deleteTagSuccess(id));
       await dispatch(getAllTagsAndSet());

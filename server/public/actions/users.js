@@ -1,4 +1,5 @@
 import api from '../shared/api/index';
+import { fromJS, Map } from 'immutable';
 import {
   USERS_FETCH_FAILURE,
   USERS_FETCH_SUCCESS,
@@ -7,7 +8,9 @@ import {
   USERS_DELETE_USER_FAILURE,
   USERS_DELETE_USER_SUCCESS,
 } from '../shared/constants/users';
-import { fromJS, Map } from 'immutable';
+import { API_BROWSER } from '../shared/constants/api';
+
+
 // import { store } from '../index';
 
 
@@ -27,7 +30,7 @@ const reqUsersFetchFailure = e => ({
 
 export const reqUsersFetch = () => (dispatch) => {
   dispatch(reqUsersFetchInit);
-  return api.users.getAll()
+  return api.get(API_BROWSER).users.getAll()
     .then((users) => {
       dispatch(reqUsersFetchSuccess(fromJS(users)));
     })
@@ -84,7 +87,7 @@ export const reqDeleteUserFailure = (id, e) => {
 
 export const reqDeleteUser = id => (dispatch) => {
   dispatch(reqSetDeletingStatus(id));
-  return api.articles.delete(id)
+  return api.get(API_BROWSER).articles.delete(id)
     .then((user) => {
       dispatch(reqDeleteUserSuccess(id));
     })

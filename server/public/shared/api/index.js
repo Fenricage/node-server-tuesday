@@ -1,6 +1,3 @@
-import browserApi from './browserApi';
-import { API_BROWSER, API_SERVER } from '../constants/api';
-
 class Api {
 
   constructor(props) {
@@ -24,7 +21,7 @@ class Api {
 
 }
 
-export const apitest = new Api();
+const api = new Api();
 
 
-export default browserApi;
+export default api;

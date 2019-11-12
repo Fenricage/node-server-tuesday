@@ -1,5 +1,6 @@
 // import { push } from 'react-router-redux';
 import Router from 'next/router';
+import { API_BROWSER } from '../shared/constants/api';
 import api from '../shared/api/index';
 
 import {
@@ -32,7 +33,7 @@ export const setRegisteringLoader = status => ({
   payload: status,
 });
 
-export const getCurrentUser = () => api.auth.currentUser()
+export const getCurrentUser = () => api.get(API_BROWSER).auth.currentUser()
   .then((res) => {
     console.log('res', res);
   })
@@ -51,7 +52,7 @@ export const checkAuthFailure = () => ({
 export const checkAuth = () => (dispatch) => {
   const token = localStorage.getItem('token');
 
-  return api.auth.currentUser() // check that token is verificate
+  return api.get(API_BROWSER).auth.currentUser() // check that token is verificate
     .then((res) => { //
       dispatch(checkAuthSuccess());
     })
@@ -91,7 +92,7 @@ export const registerUserSuccess = () => ({
 
 export const registerUser = values => (dispatch) => {
   dispatch(setRegisteringLoader(true));
-  return api.auth.register(values)
+  return api.get(API_BROWSER).auth.register(values)
     .then((res) => {
       // dispatch(setRegisteringLoader(false))
       // dispatch(setStatusText({
@@ -105,7 +106,7 @@ export const registerUser = values => (dispatch) => {
 
 export const loginUser = values => (dispatch) => {
   dispatch(setAuthLoader(true));
-  return api.auth.login(values)
+  return api.get(API_BROWSER).auth.login(values)
     .then((res) => {
       dispatch(authLoginUserSuccess(res.token));
       // dispatch(push('/admin'));

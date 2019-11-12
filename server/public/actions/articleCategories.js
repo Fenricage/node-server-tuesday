@@ -7,7 +7,8 @@ import {
   ARTICLE_CATEGORIES_DELETE_ARTICLE_FAILURE,
   ARTICLE_CATEGORIES_DELETE_ARTICLE_SUCCESS,
 } from '../shared/constants/articleCategories';
-import api from '../shared/api/index'
+import { API_BROWSER } from '../shared/constants/api';
+import api from '../shared/api/index';
 
 // import { store } from '../index';
 
@@ -27,7 +28,7 @@ const getAllArticleCategoriesFailure = e => ({
 
 export const getAllArticleCategories = () => (dispatch) => {
   dispatch(getAllArticleCategoriesFetch());
-  return api.articeCategories.getAll()
+  return api.get(API_BROWSER).articeCategories.getAll()
     .then((categories) => {
       dispatch(getAllArticleCategoriesSuccess(fromJS(categories)));
     })
@@ -38,17 +39,11 @@ export const getAllArticleCategories = () => (dispatch) => {
 };
 
 
-const reqSetDeletingStatus = (id) => {
-  // const isDeleting = store.getState()
-  //   .getIn(['articleCategories', 'isDeleting'])
-  //   .push(id);
-  return {
-    type: ARTICLE_CATEGORIES_DELETE_ARTICLE,
-    // payload: isDeleting,
-    payload: [],
-  };
-};
-
+const reqSetDeletingStatus = id => ({
+  type: ARTICLE_CATEGORIES_DELETE_ARTICLE,
+  // payload: isDeleting,
+  payload: [],
+});
 const reqDeleteArticleCategorySuccess = (id) => {
 
   const isDeleting = store.getState()
@@ -71,25 +66,17 @@ const reqDeleteArticleCategorySuccess = (id) => {
   };
 };
 
-const reqDeleteArticleCategoryFailure = (id, e) => {
-  // const isDeleting = store.getState()
-  //   .getIn(['articleCategories', 'isDeleting'])
-  //   .push(id)
-  //   .filter(item => item !== id);
-  return {
-    type: ARTICLE_CATEGORIES_DELETE_ARTICLE_FAILURE,
-    payload: {
-      // isDeleting,
-      isDeleting: [],
-      e,
-    },
-  };
-};
-
-
+const reqDeleteArticleCategoryFailure = (id, e) => ({
+  type: ARTICLE_CATEGORIES_DELETE_ARTICLE_FAILURE,
+  payload: {
+    // isDeleting,
+    isDeleting: [],
+    e,
+  },
+});
 export const reqDeleteArticleCategory = id => (dispatch) => {
   dispatch(reqSetDeletingStatus(id));
-  return api.articeCategories.deleteOne(id)
+  return api.get(API_BROWSER).articeCategories.deleteOne(id)
     .then((articleCategory) => {
       dispatch(reqDeleteArticleCategorySuccess(id));
     })
