@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArticleMetaComponent } from 'Components';
+import ArticleMetaComponent from '../ArticleMetaComponent/ArticleMetaComponent';
 import './ArticleMetaView.scss';
 
 const ArticleMetaView = ({ articleMeta }) => {

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { ArticleMeta } from 'Components';
-import { getHumanDate, getHumanTime } from 'Helpers';
+import Link from 'next/link';
+import ArticleMeta from '../ArticleMeta/ArticleMeta';
+import { getHumanDate, getHumanTime } from '../../../helpers/index';
 import './ArticleDetailPageView.scss';
 
 const ArticleDetailPageView = ({ articleData }) => {
@@ -15,7 +15,11 @@ const ArticleDetailPageView = ({ articleData }) => {
       <h2 className="article-detail-page__h2">{articleData.get('preview_text')}</h2>
       <section className="article-detail-page__info">
         <time className="article-detail-page__date-publication" dateTime={articleData.get('created_at')} pubdate={date}>{`${date} ${time}`}</time>
-        <Link to="#" className="article-detail-page__category">{articleData.getIn(['category', 'name'])}</Link>
+        <Link href="#">
+          <a href="" className="article-detail-page__category">
+            {articleData.getIn(['category', 'name'])}
+          </a>
+        </Link>
       </section>
       {articleData.get('preview_img') && (
         <img

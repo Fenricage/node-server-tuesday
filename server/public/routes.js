@@ -7,9 +7,12 @@ module.exports = routes()
   .add('/admin/articles', '/admin/articles')
   .add('/admin/users', '/admin/users')
   .add('/admin/tags', '/admin/tags')
-  .add('articleDetail', '/admin/articles/:id', '/admin/articles/create') // неочевидный референс - по articleDetail страницы нет, это просто индекс роута, 3 аргумент - страница в pages, посередине - паттерн
+  .add('adminArticleDetail', '/admin/articles/:id', '/admin/articles/create') // неочевидный референс - по articleDetail страницы нет, это просто индекс роута, 3 аргумент - страница в pages, посередине - паттерн
   .add('/admin/article-categories', '/admin/article-categories')
-  .add('articleCategoryDetail', '/admin/article-categories/:id', '/admin/article-categories/create');
+  .add('articleCategoryDetail', '/admin/article-categories/:id', '/admin/article-categories/create')
+  .add('/auth/login', '/auth/login')
+  .add('/auth/register', '/auth/register')
+  .add('articleDetail', '/articles/:id', '/articles/detail')
 // .add('/admin/articles/create', '/admin/articles/create')
 
 // .add('blog', '/blog/:slug')

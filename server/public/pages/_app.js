@@ -28,7 +28,11 @@ class MyApp extends App {
   }
 
 
-
+  //TODO
+  // https://github.com/bekliev/nextjs/blob/master/pages/_app.jsx#L22
+  // https://spectrum.chat/next-js/general/one-time-rendered-layout-inside-app-js~13af80aa-c4dc-41da-8106-22a90bede0df
+  // чекни это, должно помочь с единственным лайаутом, чтобы не было лишних ререндеров и дерганий
+  // https://adamwathan.me/2019/10/17/persistent-layout-patterns-in-nextjs/ - ТОЧНО ПОМОЖЕТ
   static async getInitialProps({ Component, ctx }) {
     // ГОВНОКОД!
     // для сервера

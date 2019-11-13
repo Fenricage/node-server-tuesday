@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ArticleMetaView } from 'Components';
+import ArticleMetaView from '../ArticleMetaView/ArticleMetaView';
 import './ArticleMeta.scss';
 
 class ArticleMeta extends Component {

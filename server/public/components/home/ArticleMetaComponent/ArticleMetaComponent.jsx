@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import ReactMarkdown from 'react-markdown/with-html';
-import CodeBlock from 'Shared/components/CodeBlock/CodeBlock';
+import CodeBlock from '../../../shared/components/CodeBlock/CodeBlock';
 import './ArticleMetaComponent.scss';
 
 
