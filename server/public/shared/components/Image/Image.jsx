@@ -10,7 +10,7 @@ const Image = ({ className, ...other }) => {
 
   const [loadedState, setLoaded] = useState(false);
   const img = useRef(null)
-  console.log('img', img)
+  // console.log('img', img)
   return (
     <img
       className={cs({

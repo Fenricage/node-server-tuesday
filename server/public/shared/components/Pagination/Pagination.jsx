@@ -13,7 +13,6 @@ class Pagination extends Component {
     };
   }
 
-
   shouldComponentUpdate(nextProps, nextState) {
     if (nextProps.total === undefined) {
       return false;
@@ -39,6 +38,7 @@ class Pagination extends Component {
     // формируем объект из query параметров
     const { query } = router;
 
+    // TODO возможно react-paginate дизейблит иногда ссылки, что меняет курсов на default, это бесит и мешает
     // формируем инит выделенной страницы в компоненте пагинации
     // и вычитаем единицу чтобы подогнать под формат
     // если query параметров нет то принято считать что мы на первой странице
