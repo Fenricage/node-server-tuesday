@@ -36,6 +36,8 @@ class HomeLayout extends Component {
       isLoadedTags,
       children,
     } = this.props;
+
+
     // ждем пока загрузятся категории статей - те что в навигации будут
     if (!isLoadedArticleCategories && !isLoadedTags) {
       return <p>loading...</p>;

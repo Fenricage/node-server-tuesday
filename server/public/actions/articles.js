@@ -8,10 +8,11 @@ import {
 } from '../shared/constants/articles';
 import { fromJS } from 'immutable';
 // import { store } from '../index';
-import { API_BROWSER } from '../shared/constants/api';
+import { API_BROWSER, API_SERVER } from '../shared/constants/api';
 import api from '../shared/api/index';
 
 export const getAllArticles = queryParams => api.get(API_BROWSER).articles.getAll(queryParams);
+export const getAllArticlesServer = queryParams => api.get(API_SERVER).articles.getAll(queryParams);
 
 export const fetchAllArticles = () => ({
   type: ARTICLES_FETCH,
@@ -30,6 +31,17 @@ export const fetchAllArticlesFailure = e => ({
 export const getAllArticlesAndSet = queryParams => (dispatch) => {
   dispatch(fetchAllArticles());
   return getAllArticles(queryParams)
+    .then((articles) => {
+      dispatch(fetchAllArticlesSuccess(fromJS(articles)));
+    })
+    .catch((e) => {
+      dispatch(fetchAllArticlesFailure(e));
+    });
+};
+
+export const getAllArticlesAndSetServer = queryParams => (dispatch) => {
+  dispatch(fetchAllArticles());
+  return getAllArticlesServer(queryParams)
     .then((articles) => {
       dispatch(fetchAllArticlesSuccess(fromJS(articles)));
     })

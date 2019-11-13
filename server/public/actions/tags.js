@@ -14,11 +14,12 @@ import {
   TAGS_PATCH_FETCH_FAILURE,
   TAGS_PATCH_FETCH_SUCCESS,
 } from '../shared/constants/tags';
-import { API_BROWSER } from '../shared/constants/api';
+import { API_BROWSER, API_SERVER } from '../shared/constants/api';
 // import { store } from '../index';
 
 
 export const getAllTags = () => api.get(API_BROWSER).tags.getAll();
+export const getAllTagsServer = () => api.get(API_SERVER).tags.getAll();
 
 export const fetchAllATags = () => ({
   type: TAGS_INIT,
@@ -37,6 +38,17 @@ export const fetchAllTagsFailure = e => ({
 export const getAllTagsAndSet = queryParams => (dispatch) => {
   dispatch(fetchAllATags());
   return getAllTags(queryParams)
+    .then((tags) => {
+      dispatch(fetchAllATagsSuccess(fromJS(tags)));
+    })
+    .catch((e) => {
+      dispatch(fetchAllTagsFailure(e));
+    });
+};
+
+export const getAllTagsAndSetServer = queryParams => (dispatch) => {
+  dispatch(fetchAllATags());
+  return getAllTagsServer(queryParams)
     .then((tags) => {
       dispatch(fetchAllATagsSuccess(fromJS(tags)));
     })

@@ -27,7 +27,6 @@ const getAllArticleCategoriesFailure = e => ({
 });
 
 export const getAllArticleCategories = () => (dispatch) => {
-  console.log("GET ALL ARTICLE CATEGORIES!!!!!!!!!!")
   dispatch(getAllArticleCategoriesFetch());
   return api.get(API_BROWSER).articeCategories.getAll()
     .then((categories) => {

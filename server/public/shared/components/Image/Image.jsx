@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import cs from 'classnames';
 import './Image.scss';
 
@@ -9,13 +9,15 @@ import './Image.scss';
 const Image = ({ className, ...other }) => {
 
   const [loadedState, setLoaded] = useState(false);
-
+  const img = useRef(null)
+  console.log('img', img)
   return (
     <img
       className={cs({
         [`${className}`]: className,
       })}
-      style={{ visibility: loadedState ? 'visible' : 'hidden' }}
+      ref={img}
+      // style={{ visibility: loadedState ? 'visible' : 'hidden' }}
       onLoad={() => setLoaded(true)}
       {...other}
     />
