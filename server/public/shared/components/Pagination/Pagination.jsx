@@ -17,6 +17,12 @@ class Pagination extends Component {
     if (nextProps.total === undefined) {
       return false;
     }
+    // TODO уменьшает еоличество рендеров, пргверь
+    // const {router} = this.props
+    // const {router: nextRouter} = nextProps
+    // if (router.asPath === nextRouter.asPath) {
+    //   return false;
+    // }
     return true;
   }
 
@@ -30,7 +36,6 @@ class Pagination extends Component {
       router,
     } = this.props;
 
-
     if (!total) {
       return null;
     }
@@ -38,7 +43,6 @@ class Pagination extends Component {
     // формируем объект из query параметров
     const { query } = router;
 
-    // TODO возможно react-paginate дизейблит иногда ссылки, что меняет курсов на default, это бесит и мешает
     // формируем инит выделенной страницы в компоненте пагинации
     // и вычитаем единицу чтобы подогнать под формат
     // если query параметров нет то принято считать что мы на первой странице
