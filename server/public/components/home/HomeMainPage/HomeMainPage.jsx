@@ -19,8 +19,8 @@ class HomeMainPage extends Component {
 
 
   componentDidMount() {
-    this.getArticles()
-      .then(() => this.setState({ initLoaded: true }));
+    // this.getArticles()
+    //   .then(() => this.setState({ initLoaded: true }));
   }
 
 
@@ -35,9 +35,9 @@ class HomeMainPage extends Component {
 
     // сравниваем пути? мб стоит query параметры срапавнивать
 
-    if (router.asPath !== prevRouter.asPath) {
-      this.getArticles();
-    }
+    // if (router.asPath !== prevRouter.asPath) {
+    //   this.getArticles();
+    // }
 
   }
 

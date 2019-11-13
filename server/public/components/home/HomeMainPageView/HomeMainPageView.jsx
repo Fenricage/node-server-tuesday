@@ -12,12 +12,12 @@ const HomeMainPageView = ({
 
   // показываем лоадер только при первой инициализации
   // TODO вернуть как разберешься с SSR init loaded не нужен при ssr
-  if (!initLoaded) {
-    return <p>loader hom main page view ...</p>;
-  }
-  if (!isLoadedArticles) {
-    return <p>loader hom main page view ...</p>;
-  }
+  // if (!initLoaded) {
+  //   return <p>loader hom main page view ...</p>;
+  // }
+  // if (!isLoadedArticles) {
+  //   return <p>loader hom main page view ...</p>;
+  // }
   // трансформируем данные под грид
   const transformedArticles = transformArticlesToItemGridData(articles.get('records'));
 

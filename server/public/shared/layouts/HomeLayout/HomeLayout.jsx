@@ -23,8 +23,8 @@ class HomeLayout extends Component {
       getAllTagsAndSetDispatch,
     } = this.props;
     //  запрашиваем категории, чтобы потом пришить их к навигации
-    getAllArticleCategoriesDispatch();
-    getAllTagsAndSetDispatch();
+    // getAllArticleCategoriesDispatch();
+    // getAllTagsAndSetDispatch();
   }
 
 
@@ -39,9 +39,9 @@ class HomeLayout extends Component {
 
 
     // ждем пока загрузятся категории статей - те что в навигации будут
-    if (!isLoadedArticleCategories && !isLoadedTags) {
-      return <p>loading...</p>;
-    }
+    // if (!isLoadedArticleCategories && !isLoadedTags) {
+    //   return <p>loading...</p>;
+    // }
 
     return (
       <section className="l-home">

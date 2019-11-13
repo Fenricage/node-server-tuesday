@@ -29,9 +29,9 @@ HomePageWithLayout.getInitialProps = async ({
   const { dispatch } = store;
   const { page = 1, size = 4 } = query;
   const queryParams = { page, size, orderBy: { _id: -1 } };
-  // await dispatch(getAllArticleCategoriesServer());
-  // await dispatch(getAllTagsAndSetServer());
-  // await dispatch(getAllArticlesAndSetServer(queryParams));
+  await dispatch(getAllArticleCategoriesServer());
+  await dispatch(getAllTagsAndSetServer());
+  await dispatch(getAllArticlesAndSetServer(queryParams));
   // console.log('\x1b[36m', 'store.getState()', store.getState().toJS(), '\x1b[0m');
 
   // console.log(' SECOND GET INITIAL PROPS COMPONENT');
