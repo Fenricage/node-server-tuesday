@@ -24,6 +24,7 @@ class HomePageWithLayout extends Component {
 HomePageWithLayout.getInitialProps = async ({
   query, pathname, store, isServer,
 }) => {
+  console.log('query', query)
   const { dispatch } = store;
   const { page = 1, size = 4 } = query;
   const queryParams = { page, size, orderBy: { _id: -1 } };

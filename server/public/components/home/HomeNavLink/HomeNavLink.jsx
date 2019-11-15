@@ -22,7 +22,7 @@ const HomeNavLink = ({
   exact, to, label, onClick,
 }) => {
   const router = useRouter();
-  console.log('router', router)
+
   return (
     <Link
       href={to}

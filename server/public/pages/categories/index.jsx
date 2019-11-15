@@ -10,10 +10,10 @@ class HomePageWithLayout extends Component {
   render() {
     const { query, pathname } = this.props;
     return (
-        <HomeMainPage
-          query={query}
-          pathname={pathname}
-        />
+      <HomeMainPage
+        query={query}
+        pathname={pathname}
+      />
     );
   }
 
@@ -22,9 +22,9 @@ class HomePageWithLayout extends Component {
 
 // вызывается и на сервере и на клиенте (при маршриутизации) работает тлько на страницах, на страницах читай что это замена cdm
 HomePageWithLayout.getInitialProps = async ({
-  query, pathname, store, isServer,
-}) => {
-  console.log("IT IS SERVER SET ARTICLES NOW!!")
+                                              query, pathname, store, isServer,
+                                            }) => {
+  console.log('query', query)
   const { dispatch } = store;
   const { page = 1, size = 4 } = query;
   const queryParams = { page, size, orderBy: { _id: -1 } };

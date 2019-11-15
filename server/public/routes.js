@@ -4,6 +4,7 @@ const routes = require('next-routes');
 module.exports = routes()
   .add('/', '/')
   .add('/articles', '/articles')
+  .add('/best', '/')
   .add('/admin', '/admin')
   .add('/admin/articles', '/admin/articles')
   .add('/admin/users', '/admin/users')
@@ -14,7 +15,7 @@ module.exports = routes()
   .add('/auth/login', '/auth/login')
   .add('/auth/register', '/auth/register')
   .add('articleDetail', '/articles/:id', '/articles/detail')
-  .add('articleCategoryDetail', '/categories/:id', '/');
+  .add('articleCategoryDetail', '/categories/:categoryId', '/categories');
 // .add('/admin/articles/create', '/admin/articles/create')
 
 // .add('blog', '/blog/:slug')

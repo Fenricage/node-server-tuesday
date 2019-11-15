@@ -55,8 +55,8 @@ class MyApp extends App {
     const {
       Component, pageProps, store, router,
     } = this.props;
-    console.log('\x1b[36m', 'router', router, '\x1b[0m');
-    console.log('Component.getLayout', Component.getLayout);
+    // console.log('\x1b[36m', 'router', router, '\x1b[0m');
+    // console.log('Component.getLayout', Component.getLayout);
 
     const getLayout = Component.getLayout || (page => page);
 
