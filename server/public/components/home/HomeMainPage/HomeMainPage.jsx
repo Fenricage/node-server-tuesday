@@ -89,7 +89,7 @@ class HomeMainPage extends Component {
     const { match, router } = this.props;
     const { pageSize } = this.state;
     // "selected" began with 0
-    router.push(`${router.pathname}/?page=${selected + 1}&size=${pageSize}`.replace('//', '/'));
+    router.push(`${router.pathname}?page=${selected + 1}&size=${pageSize}`.replace('//', '/'));
   };
 
   render() {
