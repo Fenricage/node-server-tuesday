@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "cd server && cross-env NODE_ENV=development REACT_APP_SERVER_URL=http://localhost:7777 nodemon app.js",
-    "dev": "cd server && nodemon app.js"
+    "dev": "cd server && nodemon app.js",
+    "build": "cd server && next build",
+    "export": "cd server && next export"
+
   },
   "author": "fenricage",
   "license": "ISC",
