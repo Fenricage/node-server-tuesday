@@ -14,15 +14,18 @@ class Pagination extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
+    // уменьшает еоличество рендеров, пргверь
+    const { router } = this.props;
+    const { router: nextRouter } = nextProps;
+
     if (nextProps.total === undefined) {
       return false;
     }
-    // TODO уменьшает еоличество рендеров, пргверь
-    // const {router} = this.props
-    // const {router: nextRouter} = nextProps
-    // if (router.asPath === nextRouter.asPath) {
-    //   return false;
-    // }
+
+    if (router.asPath === nextRouter.asPath) {
+      return false;
+    }
+
     return true;
   }
 

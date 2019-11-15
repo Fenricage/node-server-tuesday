@@ -3,17 +3,17 @@ import HomeMainPage from '../components/home/HomeMainPage/HomeMainPage';
 import { getAllArticleCategoriesServer } from '../actions/articleCategories';
 import { getAllTagsAndSet, getAllTagsAndSetServer } from '../actions/tags';
 import { getAllArticlesAndSetServer } from '../actions/articles';
-import {getLayout} from "../shared/layouts/HomeLayout/HomeLayout";
+import { getLayout } from '../shared/layouts/HomeLayout/HomeLayout';
 
 class HomePageWithLayout extends Component {
 
   render() {
     const { query, pathname } = this.props;
     return (
-        <HomeMainPage
-          query={query}
-          pathname={pathname}
-        />
+      <HomeMainPage
+        query={query}
+        pathname={pathname}
+      />
     );
   }
 
@@ -24,8 +24,8 @@ class HomePageWithLayout extends Component {
 HomePageWithLayout.getInitialProps = async ({
   query, pathname, store, isServer,
 }) => {
-  console.log('query', query)
   const { dispatch } = store;
+  console.log('\x1b[36m', 'INDEX GET INITIAL PROPS', '\x1b[0m');
   const { page = 1, size = 4 } = query;
   const queryParams = { page, size, orderBy: { _id: -1 } };
   await dispatch(getAllArticleCategoriesServer());
@@ -38,6 +38,6 @@ HomePageWithLayout.getInitialProps = async ({
   return { query, pathname };
 };
 
-HomePageWithLayout.getLayout = getLayout
+HomePageWithLayout.getLayout = getLayout;
 
 export default HomePageWithLayout;

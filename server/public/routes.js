@@ -16,6 +16,9 @@ module.exports = routes()
   .add('/auth/register', '/auth/register')
   .add('articleDetail', '/articles/:id', '/articles/detail')
   // TODO странная херня творится с этой тсраницей, если переходить из нее на articles -> articles?page=1&size-4 то она иногда вызывает бесконечный cdu
+  // TODO дело в forcePage в Pagination
+  // точнее getIntitialProps
+  // проблема в компонента Pagination, без него все ок
   .add('articleCategoryDetail', '/categories/:categoryId', '/categories');
 // .add('/admin/articles/create', '/admin/articles/create')
 

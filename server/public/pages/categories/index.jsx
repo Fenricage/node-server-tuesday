@@ -3,7 +3,7 @@ import HomeMainPage from '../../components/home/HomeMainPage/HomeMainPage';
 import { getAllArticleCategoriesServer } from '../../actions/articleCategories';
 import { getAllTagsAndSet, getAllTagsAndSetServer } from '../../actions/tags';
 import { getAllArticlesAndSetServer } from '../../actions/articles';
-import {getLayout} from "../../shared/layouts/HomeLayout/HomeLayout";
+import { getLayout } from '../../shared/layouts/HomeLayout/HomeLayout';
 
 class HomePageWithLayout extends Component {
 
@@ -22,9 +22,9 @@ class HomePageWithLayout extends Component {
 
 // вызывается и на сервере и на клиенте (при маршриутизации) работает тлько на страницах, на страницах читай что это замена cdm
 HomePageWithLayout.getInitialProps = async ({
-                                              query, pathname, store, isServer,
-                                            }) => {
-  console.log('query', query)
+  query, pathname, store, isServer,
+}) => {
+  console.log('\x1b[36m', 'CATEGORIES GET INITIAL PROPS', '\x1b[0m');
   const { dispatch } = store;
   const { page = 1, size = 4 } = query;
   const queryParams = { page, size, orderBy: { _id: -1 } };
@@ -38,6 +38,6 @@ HomePageWithLayout.getInitialProps = async ({
   return { query, pathname };
 };
 
-HomePageWithLayout.getLayout = getLayout
+HomePageWithLayout.getLayout = getLayout;
 
 export default HomePageWithLayout;
