@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
-import HomeLayout from '../shared/layouts/HomeLayout/HomeLayout';
 import HomeMainPage from '../components/home/HomeMainPage/HomeMainPage';
 import { getAllArticleCategoriesServer } from '../actions/articleCategories';
 import { getAllTagsAndSet, getAllTagsAndSetServer } from '../actions/tags';
 import { getAllArticlesAndSetServer } from '../actions/articles';
+import {getLayout} from "../shared/layouts/HomeLayout/HomeLayout";
 
 class HomePageWithLayout extends Component {
 
   render() {
     const { query, pathname } = this.props;
     return (
-      <HomeLayout>
         <HomeMainPage
           query={query}
           pathname={pathname}
         />
-      </HomeLayout>
     );
   }
 
@@ -39,5 +37,6 @@ HomePageWithLayout.getInitialProps = async ({
   return { query, pathname };
 };
 
+HomePageWithLayout.getLayout = getLayout
 
 export default HomePageWithLayout;

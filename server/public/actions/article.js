@@ -11,9 +11,10 @@ import {
   ARTICLE_PATCH_FETCH_SUCCESS,
 } from '../shared/constants/article';
 import api from '../shared/api/index';
-import { API_BROWSER } from '../shared/constants/api';
+import { API_BROWSER, API_SERVER } from '../shared/constants/api';
 
 export const getOneArticle = id => api.get(API_BROWSER).articles.getOne(id);
+export const getOneArticleServer = id => api.get(API_SERVER).articles.getOne(id);
 
 export const initArticle = () => ({
   type: ARTICLE_INIT,
@@ -33,6 +34,17 @@ export const fetchOneArticlesFailure = e => ({
 export const reqArticleAndSet = id => (dispatch) => {
   dispatch(initArticle());
   return getOneArticle(id)
+    .then((article) => {
+      dispatch(fetchOneArticlesSuccess(fromJS(article)));
+    })
+    .catch((e) => {
+      dispatch(fetchOneArticlesFailure(e));
+    });
+};
+
+export const reqArticleAndSetServer = id => (dispatch) => {
+  dispatch(initArticle());
+  return getOneArticleServer(id)
     .then((article) => {
       dispatch(fetchOneArticlesSuccess(fromJS(article)));
     })

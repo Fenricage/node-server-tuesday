@@ -72,4 +72,6 @@ const HomeLayoutConnected = connect(
   mapDispatchToProps,
 )(HomeLayout);
 
+export const getLayout = page => <HomeLayoutConnected>{page}</HomeLayoutConnected>;
+
 export default HomeLayoutConnected;

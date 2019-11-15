@@ -28,7 +28,7 @@ class MyApp extends App {
   }
 
 
-  //TODO
+  // TODO
   // https://github.com/bekliev/nextjs/blob/master/pages/_app.jsx#L22
   // https://spectrum.chat/next-js/general/one-time-rendered-layout-inside-app-js~13af80aa-c4dc-41da-8106-22a90bede0df
   // чекни это, должно помочь с единственным лайаутом, чтобы не было лишних ререндеров и дерганий
@@ -38,7 +38,7 @@ class MyApp extends App {
     // для сервера
     initializeApi();
     // console.log('apitest.is(HUI)', apitest.is('HUI'))
-    console.log(' FIRST _APP routing again initial call WTF?!?!?');
+    // console.log(' FIRST _APP routing again initial call WTF?!?!?');
     // apitest.set('HUI', 'HUI');
 
     // const browsernoe = apitest.get(API_BROWSER)
@@ -46,16 +46,32 @@ class MyApp extends App {
     const pageProps = Component.getInitialProps ?
       await Component.getInitialProps(ctx) :
       {};
-    console.log('THIRD _APP AFTER ALL COMPONENT INITIAL PROP');
+    // console.log('THIRD _APP AFTER ALL COMPONENT INITIAL PROP');
     // console.log("ONLY SERVER?") нет, при маршритизации вызывается на клиенте
     return { pageProps };
   }
 
   render() {
-    const { Component, pageProps, store } = this.props;
+    const {
+      Component, pageProps, store, router,
+    } = this.props;
+    console.log('\x1b[36m', 'router', router, '\x1b[0m');
+    console.log('Component.getLayout', Component.getLayout);
+
+    const getLayout = Component.getLayout || (page => page);
+
+    //
+    // if(router.pathname.startsWith('/articles')) {
+    //   return (
+    //     <Provider store={store}>
+    //       <p>ARTCIELS</p>
+    //     </Provider>
+    //   );
+    // }
+
     return (
       <Provider store={store}>
-        <Component {...pageProps} />
+        {getLayout(<Component {...pageProps} />)}
       </Provider>
     );
   }

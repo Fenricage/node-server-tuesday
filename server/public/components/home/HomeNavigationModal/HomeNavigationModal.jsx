@@ -57,7 +57,7 @@ class HomeNavigationModal extends Component {
                     (item, index) => (
                       <Link
                         className="home-nav-modal__link"
-                        to={`${data.to}/${item}`}
+                        href={`${data.to}/${item}`}
                         onClick={onClose}
                         key={index}
                       >

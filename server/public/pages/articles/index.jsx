@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
-import HomeLayout from '../../shared/layouts/HomeLayout/HomeLayout';
-import ArticleDetailPage from '../../components/home/ArticleDetailPage/ArticleDetailPage';
-import { reqArticleAndSetServer } from '../../actions/article';
-import { getAllTagsAndSetServer } from '../../actions/tags';
+import HomeMainPage from '../../components/home/HomeMainPage/HomeMainPage';
 import { getAllArticleCategoriesServer } from '../../actions/articleCategories';
+import { getAllTagsAndSet, getAllTagsAndSetServer } from '../../actions/tags';
+import { getAllArticlesAndSetServer } from '../../actions/articles';
+import {getLayout} from "../../shared/layouts/HomeLayout/HomeLayout";
 
-
-class ArticleDetailPageWithLayout extends Component {
+class HomePageWithLayout extends Component {
 
   render() {
     const { query, pathname } = this.props;
     return (
-      <HomeLayout>
-        <ArticleDetailPage
+        <HomeMainPage
           query={query}
           pathname={pathname}
         />
-      </HomeLayout>
     );
   }
 
@@ -24,21 +21,15 @@ class ArticleDetailPageWithLayout extends Component {
 
 
 // вызывается и на сервере и на клиенте (при маршриутизации) работает тлько на страницах, на страницах читай что это замена cdm
-ArticleDetailPageWithLayout.getInitialProps = async ({
+HomePageWithLayout.getInitialProps = async ({
   query, pathname, store, isServer,
 }) => {
-
-  const { id } = query;
   const { dispatch } = store;
-  await dispatch(reqArticleAndSetServer(id));
-  await dispatch(getAllTagsAndSetServer());
+  const { page = 1, size = 4 } = query;
+  const queryParams = { page, size, orderBy: { _id: -1 } };
   await dispatch(getAllArticleCategoriesServer());
-  // const { dispatch } = store;
-  // const { page = 1, size = 4 } = query;
-  // const queryParams = { page, size, orderBy: { _id: -1 } };
-  // await dispatch(getAllArticleCategoriesServer());
-  // await dispatch(getAllTagsAndSetServer());
-  // await dispatch(getAllArticlesAndSetServer(queryParams));
+  await dispatch(getAllTagsAndSetServer());
+  await dispatch(getAllArticlesAndSetServer(queryParams));
   // console.log('\x1b[36m', 'store.getState()', store.getState().toJS(), '\x1b[0m');
 
   // console.log(' SECOND GET INITIAL PROPS COMPONENT');
@@ -46,5 +37,6 @@ ArticleDetailPageWithLayout.getInitialProps = async ({
   return { query, pathname };
 };
 
+HomePageWithLayout.getLayout = getLayout
 
-export default ArticleDetailPageWithLayout;
+export default HomePageWithLayout;

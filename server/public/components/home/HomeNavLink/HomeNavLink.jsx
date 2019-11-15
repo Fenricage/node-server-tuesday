@@ -1,6 +1,8 @@
 import React from 'react';
 // import { NavLink } from 'react-router-dom';
-import Link from 'next/link'
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import cs from 'classnames';
 import './HomeNavLink.scss';
 
 // const HomeNavLink = ({ exact, to, label, onClick }) => (
@@ -16,17 +18,26 @@ import './HomeNavLink.scss';
 // );
 
 
-const HomeNavLink = ({ exact, to, label, onClick }) => (
-  <Link
-    className="home-nav-link"
-    href={to}
-    activeClassName="home-nav-link_selected"
-    onClick={onClick}
-  >
-    <a className="home-nav-link">
-      {label}
-    </a>
-  </Link>
-);
+const HomeNavLink = ({
+  exact, to, label, onClick,
+}) => {
+  const router = useRouter();
+  console.log('router', router)
+  return (
+    <Link
+      href={to}
+    >
+      <a
+        className={cs({
+          'home-nav-link': true,
+          'home-nav-link_selected': router.pathname === to,
+        })}
+        onClick={onClick}
+      >
+        {label}
+      </a>
+    </Link>
+  );
+};
 
 export default HomeNavLink;

@@ -9,15 +9,15 @@ class ArticleDetailPage extends Component {
 
   componentDidMount() {
     const { match, reqArticleAndSetDispatch, query: { id: queryId }, } = this.props;
-    reqArticleAndSetDispatch(queryId);
+    // reqArticleAndSetDispatch(queryId);
   }
 
 
   render() {
     const { isLoadedArticle, articleData } = this.props;
-    if (!isLoadedArticle) {
-      return <p>loader...</p>;
-    }
+    // if (!isLoadedArticle) {
+    //   return <p>loader...</p>;
+    // }
     return (
       <ArticleDetailPageView articleData={articleData} />
     );
