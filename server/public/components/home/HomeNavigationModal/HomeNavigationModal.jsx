@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import cs from 'classnames';
-import Link from 'next/link';
+import {Link} from '../../../routes';
+
 import Times from '../../../shared/icons/Times/Times';
 import Button from '../../../shared/components/Button/Button';
 import './HomeNavigationModal.scss';
@@ -57,7 +58,7 @@ class HomeNavigationModal extends Component {
                     (item, index) => (
                       <Link
                         className="home-nav-modal__link"
-                        href={`${data.to}/${item}`}
+                        route={`${data.to}/${item}`}
                         onClick={onClose}
                         key={index}
                       >

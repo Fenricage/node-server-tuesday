@@ -1,6 +1,7 @@
 import React from 'react';
 // import { NavLink } from 'react-router-dom';
 import { useRouter } from 'next/router';
+// TODO мб стоиь импортнуть Link из ../routes next-route
 import Link from 'next/link';
 import cs from 'classnames';
 import './HomeNavLink.scss';

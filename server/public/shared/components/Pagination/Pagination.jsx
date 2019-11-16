@@ -25,7 +25,8 @@ class Pagination extends Component {
     if (router.asPath === nextRouter.asPath) {
       return false;
     }
-
+    console.log('router PAGINATION', router)
+    console.log('nextRouter PAGINATION', nextRouter)
     return true;
   }
 
@@ -64,8 +65,9 @@ class Pagination extends Component {
           breakClassName="break-me"
           pageCount={Math.ceil(total / pageSize)}
           marginPagesDisplayed={2}
-          forcePage={selectedPage}
+          initialPage={selectedPage}
           pageRangeDisplayed={5}
+          disableInitialCallback
           disabledClassName="disabled"
           onPageChange={onPageChange}
           containerClassName={cs({

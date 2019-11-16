@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'next/router';
 import { fromJS } from 'immutable';
+import { Link, Router as NextRouter } from '../../../routes';
 import './HomeMainPage.scss';
 import { connect } from 'react-redux';
 import { getAllArticlesAndSet } from '../../../actions/articles';
@@ -89,10 +90,10 @@ class HomeMainPage extends Component {
     const { match, router } = this.props;
     const { pageSize } = this.state;
     // "selected" began with 0
-    if(router.pathname.startsWith('/categories')) {
-      router.push(`${router.pathname}/${router.query.categoryId}?page=${selected + 1}&size=${pageSize}`.replace('//', '/'));
+    if (router.pathname.startsWith('/categories')) {
+      NextRouter.pushRoute(`${router.pathname}/${router.query.categoryId}?page=${selected + 1}&size=${pageSize}`.replace('//', '/'));
     } else {
-      router.push(`${router.pathname}?page=${selected + 1}&size=${pageSize}`.replace('//', '/'));
+      NextRouter.pushRoute(`${router.pathname}?page=${selected + 1}&size=${pageSize}`.replace('//', '/'));
     }
 
   };
@@ -112,7 +113,7 @@ class HomeMainPage extends Component {
       initLoaded,
     } = this.state;
     const isOnePage = totalArticles <= pageSize;
-    console.log('router RENDER', router)
+
     return (
       <section>
         <Pagination
@@ -131,6 +132,7 @@ class HomeMainPage extends Component {
 
     );
   }
+
 }
 
 const mapStateToProps = state => ({
