@@ -25,8 +25,7 @@ class Pagination extends Component {
     if (router.asPath === nextRouter.asPath) {
       return false;
     }
-    console.log('router PAGINATION', router)
-    console.log('nextRouter PAGINATION', nextRouter)
+
     return true;
   }
 

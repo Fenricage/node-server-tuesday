@@ -89,6 +89,7 @@ class HomeMainPage extends Component {
   handlePageClick = ({ selected }) => {
     const { match, router } = this.props;
     const { pageSize } = this.state;
+
     // "selected" began with 0
     if (router.pathname.startsWith('/categories')) {
       NextRouter.pushRoute(`${router.pathname}/${router.query.categoryId}?page=${selected + 1}&size=${pageSize}`.replace('//', '/'));
