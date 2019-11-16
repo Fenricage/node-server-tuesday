@@ -24,10 +24,18 @@ class HomePageWithLayout extends Component {
 HomePageWithLayout.getInitialProps = async ({
   query, pathname, store, isServer,
 }) => {
-  const { dispatch } = store;
-  console.log('\x1b[36m', 'INDEX GET INITIAL PROPS', '\x1b[0m');
-  const { page = 1, size = 4 } = query;
+  const {dispatch} = store;
+  const { page = 1, size = 4, categoryId } = query;
   const queryParams = { page, size, orderBy: { _id: -1 } };
+
+  // готовим extra для categories
+  // TODO надо наверное объединить все индексные страницы в одну
+  const extra = {};
+  if (categoryId) {
+    extra.category = categoryId;
+  }
+  queryParams.extra = extra;
+
   await dispatch(getAllArticleCategoriesServer());
   await dispatch(getAllTagsAndSetServer());
   await dispatch(getAllArticlesAndSetServer(queryParams));

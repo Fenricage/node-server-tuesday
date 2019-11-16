@@ -2,9 +2,13 @@ const routes = require('next-routes');
 
 // Name   Page      Pattern
 module.exports = routes()
+  // HOME
   .add('/', '/')
   .add('/articles', '/articles')
   .add('/best', '/')
+  .add('articleDetail', '/articles/:id', '/articles/detail')
+  .add('articleCategoryDetail', '/categories/:categoryId', '/categories')
+  // ADMIN
   .add('/admin', '/admin')
   .add('/admin/articles', '/admin/articles')
   .add('/admin/users', '/admin/users')
@@ -12,17 +16,6 @@ module.exports = routes()
   .add('adminArticleDetail', '/admin/articles/:id', '/admin/articles/create') // неочевидный референс - по articleDetail страницы нет, это просто индекс роута, 3 аргумент - страница в pages, посередине - паттерн
   .add('/admin/article-categories', '/admin/article-categories')
   .add('articleAdminCategoryDetail', '/admin/article-categories/:id', '/admin/article-categories/create')
+  // AUTH
   .add('/auth/login', '/auth/login')
-  .add('/auth/register', '/auth/register')
-  .add('articleDetail', '/articles/:id', '/articles/detail')
-  // TODO странная херня творится с этой тсраницей, если переходить из нее на articles -> articles?page=1&size-4 то она иногда вызывает бесконечный cdu
-  // TODO дело в forcePage в Pagination
-  // точнее getIntitialProps
-  // проблема в компонента Pagination, без него все ок
-  .add('articleCategoryDetail', '/categories/:categoryId', '/categories');
-// .add('/admin/articles/create', '/admin/articles/create')
-
-// .add('blog', '/blog/:slug')
-// .add('user', '/user/:id', 'profile')
-// .add('/:noname/:lang(en|es)/:wow+', 'complex')
-// .add({ name: 'beta', pattern: '/v3', page: 'v3' });
+  .add('/auth/register', '/auth/register');

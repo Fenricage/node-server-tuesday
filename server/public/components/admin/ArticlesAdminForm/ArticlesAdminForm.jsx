@@ -59,8 +59,9 @@ class ArticlesAdminForm extends Component {
   }
 
   onHandleSubmitForm = () => {
-    const { handleSubmit, match, query } = this.props;
-    if (query.id) {
+    const { handleSubmit, query } = this.props;
+    // TODO говнокод пофиксь
+    if (query.id !== 'create') {
       return handleSubmit(patchArticle(query.id));
     }
     return handleSubmit(createArticle);

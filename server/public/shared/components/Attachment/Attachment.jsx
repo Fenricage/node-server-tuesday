@@ -6,6 +6,7 @@ import {
 import FileInput from '../FileInput/FileInput';
 import './Attachment.scss';
 import api from '../../api/index';
+import { API_SERVER, API_BROWSER } from '../../constants/api';
 
 class Attachment extends Component {
 
@@ -22,9 +23,9 @@ class Attachment extends Component {
     const formData = new FormData();
     formData.append('image', file);
     // создаем
-    const response = await api.utils.createAttachment(formData, type);
+    const response = await api.get(API_BROWSER).utils.createAttachment(formData, type);
     // получаем
-    const imageData = await api.utils.getAttachment(response._id);
+    const imageData = await api.get(API_BROWSER).utils.getAttachment(response._id);
     // пишем в форму
     callbackHandler(fromJS(imageData));
   }
