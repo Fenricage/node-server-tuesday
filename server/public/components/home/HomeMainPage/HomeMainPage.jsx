@@ -89,7 +89,12 @@ class HomeMainPage extends Component {
     const { match, router } = this.props;
     const { pageSize } = this.state;
     // "selected" began with 0
-    router.push(`${router.pathname}?page=${selected + 1}&size=${pageSize}`.replace('//', '/'));
+    if(router.pathname.startsWith('/categories')) {
+      router.push(`${router.pathname}/${router.query.categoryId}?page=${selected + 1}&size=${pageSize}`.replace('//', '/'));
+    } else {
+      router.push(`${router.pathname}?page=${selected + 1}&size=${pageSize}`.replace('//', '/'));
+    }
+
   };
 
   render() {
@@ -107,7 +112,7 @@ class HomeMainPage extends Component {
       initLoaded,
     } = this.state;
     const isOnePage = totalArticles <= pageSize;
-
+    console.log('router RENDER', router)
     return (
       <section>
         <Pagination
