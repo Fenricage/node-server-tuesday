@@ -4,6 +4,7 @@ import { getAllArticleCategoriesServer } from '../../actions/articleCategories';
 import { getAllTagsAndSet, getAllTagsAndSetServer } from '../../actions/tags';
 import { getAllArticlesAndSetServer } from '../../actions/articles';
 import { getLayout } from '../../shared/layouts/HomeLayout/HomeLayout';
+import { SIZE_PAGE } from '../../shared/constants/page';
 
 class HomePageWithLayout extends Component {
 
@@ -25,16 +26,20 @@ HomePageWithLayout.getInitialProps = async ({
   query, pathname, store, isServer,
 }) => {
   const { dispatch } = store;
-  const { page = 1, size = 4, categoryId } = query;
-  const queryParams = { page, size, orderBy: { _id: -1 } };
+  const { page = 1, size = SIZE_PAGE, categoryId = 'Блог' } = query;
+  const queryParams = {
+    page, size, orderBy: { _id: -1 }, extra: { category: categoryId },
+  };
 
   // готовим extra для categories
   // TODO надо наверное объединить все индексные страницы в одну
-  const extra = {};
-  if (categoryId) {
-    extra.category = categoryId;
-  }
-  queryParams.extra = extra;
+  // const extra = {};
+  //
+  // if (categoryId) {
+  //   extra.category = categoryId;
+  // }
+  //
+  // queryParams.extra = extra;
 
   await dispatch(getAllArticleCategoriesServer());
   await dispatch(getAllTagsAndSetServer());

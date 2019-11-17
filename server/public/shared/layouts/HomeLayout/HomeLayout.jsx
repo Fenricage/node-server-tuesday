@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 // import { Header, HomeMainPage, ArticleDetailPage } from 'Components';
 import Header from '../../../components/home/Header/Header';
+import Footer from "../../../shared/components/Footer/Footer";
 import { getAllArticleCategories } from '../../../actions/articleCategories';
 import { getAllTagsAndSet } from '../../../actions/tags';
 import './HomeLayout.scss';
@@ -44,12 +45,15 @@ class HomeLayout extends Component {
     // }
 
     return (
-      <section className="l-home">
-        <Header />
-        <main>
-          {children}
-        </main>
-      </section>
+      <Fragment>
+        <section className="l-home">
+          <Header />
+          <main>
+            {children}
+          </main>
+        </section>
+        <Footer/>
+      </Fragment>
     );
   }
 

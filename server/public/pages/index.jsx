@@ -4,6 +4,7 @@ import { getAllArticleCategoriesServer } from '../actions/articleCategories';
 import { getAllTagsAndSet, getAllTagsAndSetServer } from '../actions/tags';
 import { getAllArticlesAndSetServer } from '../actions/articles';
 import { getLayout } from '../shared/layouts/HomeLayout/HomeLayout';
+import { SIZE_PAGE } from '../shared/constants/page';
 
 class HomePageWithLayout extends Component {
 
@@ -24,8 +25,8 @@ class HomePageWithLayout extends Component {
 HomePageWithLayout.getInitialProps = async ({
   query, pathname, store, isServer,
 }) => {
-  const {dispatch} = store;
-  const { page = 1, size = 4, categoryId } = query;
+  const { dispatch } = store;
+  const { page = 1, size = SIZE_PAGE, categoryId } = query;
   const queryParams = { page, size, orderBy: { _id: -1 } };
 
   // готовим extra для categories

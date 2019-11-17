@@ -1,9 +1,10 @@
 .item-grid {
   display: grid;
   grid-template-rows: auto;
+  margin-top: 3rem;
   //grid-template-columns: 1fr 1fr 1fr;
   grid-template-columns: 1fr;
-  grid-gap: 12px;
+  grid-gap: 32px;
   @media (--md-viewport) {
     grid-template-columns: 1fr 1fr;
   }

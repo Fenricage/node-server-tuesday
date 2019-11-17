@@ -5,6 +5,10 @@ body, html {
   padding: 0;
 }
 
+::selection {
+  background: rgba(255,235,20,.7);
+}
+
 html {
   font: var(--main-font);
   color: var(--color-font);

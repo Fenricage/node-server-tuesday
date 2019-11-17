@@ -4,6 +4,7 @@ import { getAllArticleCategoriesServer } from '../../actions/articleCategories';
 import { getAllTagsAndSet, getAllTagsAndSetServer } from '../../actions/tags';
 import { getAllArticlesAndSetServer } from '../../actions/articles';
 import { getLayout } from '../../shared/layouts/HomeLayout/HomeLayout';
+import { SIZE_PAGE } from '../../shared/constants/page';
 
 class HomePageWithLayout extends Component {
 
@@ -26,7 +27,7 @@ HomePageWithLayout.getInitialProps = async ({
 }) => {
   const { dispatch } = store;
   console.log('\x1b[36m', 'ARTICLES GET INITIAL PROPS', '\x1b[0m');
-  const { page = 1, size = 4 } = query;
+  const { page = 1, size = SIZE_PAGE } = query;
   const queryParams = { page, size, orderBy: { _id: -1 } };
   await dispatch(getAllArticleCategoriesServer());
   await dispatch(getAllTagsAndSetServer());

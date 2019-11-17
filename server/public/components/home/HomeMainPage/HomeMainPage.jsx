@@ -7,13 +7,14 @@ import { connect } from 'react-redux';
 import { getAllArticlesAndSet } from '../../../actions/articles';
 import HomeMainPageView from '../HomeMainPageView/HomeMainPageView';
 import Pagination from '../../../shared/components/Pagination/Pagination';
+import { SIZE_PAGE } from '../../../shared/constants/page';
 
 class HomeMainPage extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      pageSize: 4,
+      pageSize: SIZE_PAGE,
       initLoaded: false,
     };
   }
@@ -100,7 +101,6 @@ class HomeMainPage extends Component {
   };
 
   render() {
-
     const {
       isLoadedArticles,
       articles,

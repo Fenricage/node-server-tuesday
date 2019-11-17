@@ -1,14 +1,15 @@
 import React from 'react';
 import { List, fromJS } from 'immutable';
 import Link from 'next/link';
+import { withRouter } from 'next/router';
 import Image from '../../../shared/components/Image/Image';
 import prepareImgSrcSets from '../../../helpers/prepareImgSrcSets';
 import './EntryBadge.scss';
 
 
-const EntryBadge = ({ dataItem }) => {
+const EntryBadge = ({ dataItem, router }) => {
 
-
+  console.log('router ENTRY', router)
   // TODO перенести в badge
   const imgUrls = dataItem.getIn(['previewImg', 'img_urls']);
 
@@ -60,4 +61,4 @@ const EntryBadge = ({ dataItem }) => {
   );
 };
 
-export default EntryBadge;
+export default withRouter(EntryBadge);
