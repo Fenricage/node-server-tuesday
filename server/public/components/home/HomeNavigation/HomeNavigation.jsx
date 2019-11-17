@@ -244,6 +244,12 @@ class HomeNavigation extends Component {
         },
       },
       {
+        to: '/blog',
+        type: 'link',
+        label: 'Блог',
+        exact: false,
+      },
+      {
         to: '/search',
         type: 'button',
         label: 'Поиск',

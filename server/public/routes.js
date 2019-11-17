@@ -6,6 +6,7 @@ module.exports = routes()
   .add('/', '/')
   .add('/articles', '/articles')
   .add('/best', '/')
+  .add('/blog', '/blog')
   .add('articleDetail', '/articles/:id', '/articles/detail')
   .add('articleCategoryDetail', '/categories/:categoryId', '/categories')
   // ADMIN
