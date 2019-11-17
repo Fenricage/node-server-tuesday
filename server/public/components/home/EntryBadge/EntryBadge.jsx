@@ -27,8 +27,8 @@ const EntryBadge = ({ dataItem }) => {
     <article className="entry-badge">
       <Link href={`/articles/${dataItem.get('_id')}`}>
         <a className="entry-badge__link-wrap">
-          {dataItem.get('previewImg') && (
-            <figure className="entry-badge__figure">
+          <figure className="entry-badge__figure">
+            {dataItem.get('previewImg') && (
               <Image
                 width={940}
                 height={493}
@@ -37,8 +37,8 @@ const EntryBadge = ({ dataItem }) => {
                 srcSet={imgSrcSet}
                 alt=""
               />
-            </figure>
-          )}
+            )}
+          </figure>
           <div className="entry-badge__text-wrapper">
             {/* <Link */}
             {/*  to={`/categories/${dataItem.get('category')}`} */}
