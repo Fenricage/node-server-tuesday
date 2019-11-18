@@ -37,7 +37,8 @@ const multipleImageConverter = async (req, paramsList) => {
       const image = await sharp(req.file.path)
         .resize({
           ...item.resize,
-        }).jpeg({ progressive: true })
+        //  TODO нужно переключение форматов
+        })[`${item.format.value}`]({ progressive: true })
         .toBuffer();
 
       const imagePath = path.join(fullDirPath, `${uniqFileName}_${item.resize.width}x${item.resize.height}.${extension}`);

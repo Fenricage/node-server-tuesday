@@ -15,7 +15,7 @@
   // стили для страницы блога
   &_context-blog {
     grid-template-columns: 1fr;
-    grid-gap: 12px;
+    grid-gap: 0px;
     #{ $self }__angle {
 
     }

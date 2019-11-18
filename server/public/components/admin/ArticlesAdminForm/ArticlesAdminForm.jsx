@@ -27,6 +27,7 @@ class ArticlesAdminForm extends Component {
     super(props);
     this.state = {
       isCategoryToggledToInput: false,
+      articlePreviewType: null,
     };
   }
 
@@ -80,7 +81,7 @@ class ArticlesAdminForm extends Component {
       tags,
     } = this.props;
 
-    const { isCategoryToggledToInput } = this.state;
+    const { isCategoryToggledToInput, articlePreviewType } = this.state;
 
     const articleCategoriesOptions = toOptionsTransformer(articleCategories);
 
@@ -140,9 +141,10 @@ class ArticlesAdminForm extends Component {
               />
             )
           }
+          <button type="button" onClick={() => this.setState({ articlePreviewType: 'articlePreviewBlog' })}>set type to blog</button>
           <Attachment
             name="preview_img"
-            type="articlePreview"
+            type={articlePreviewType || 'articlePreview'}
           />
           <FieldArray
             name="articles_meta"

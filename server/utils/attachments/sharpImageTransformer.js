@@ -1,6 +1,7 @@
 const multipleImageConverter = require('./multipleImageConverter');
 
 const configArticlePreview = require('./attachmentTypeConfigurations/articlePreview')
+const configArticlePreviewBlog = require('./attachmentTypeConfigurations/articlePreviewBlog')
 
 
 const sharpImageTransformer = async (req) => {
@@ -12,6 +13,11 @@ const sharpImageTransformer = async (req) => {
   switch (type) {
     case 'articlePreview':
       convertedAttachments = await multipleImageConverter(req, configArticlePreview);
+      return {
+        ...convertedAttachments,
+      };
+    case 'articlePreviewBlog':
+      convertedAttachments = await multipleImageConverter(req, configArticlePreviewBlog);
       return {
         ...convertedAttachments,
       };
