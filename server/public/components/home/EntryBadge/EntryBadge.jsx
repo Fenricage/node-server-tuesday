@@ -9,8 +9,6 @@ import './EntryBadge.scss';
 
 const EntryBadge = ({ dataItem, router }) => {
 
-  console.log('router ENTRY', router)
-  // TODO перенести в badge
   const imgUrls = dataItem.getIn(['previewImg', 'img_urls']);
 
   // создаем структуру массив массивов [размер, url]

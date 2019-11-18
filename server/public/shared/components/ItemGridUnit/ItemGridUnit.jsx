@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import ItemGridUnitView from '../ItemGridUnitView/ItemGridUnitView';
 import { itemGridContext, withItemGrid } from '../../contexts';
 import EntryBadge from '../../../components/home/EntryBadge/EntryBadge';
+import BlogEntryBadge from '../../../components/blog/BlogEntryBadge/BlogEntryBadge';
 import './ItemGridUnit.scss';
 
 const gridComponents = {
   EntryBadge,
+  BlogEntryBadge,
 };
 
 

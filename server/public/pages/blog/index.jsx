@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import HomeMainPage from '../../components/home/HomeMainPage/HomeMainPage';
+import BlogMainPage from '../../components/blog/BlogMainPage/BlogMainPage';
 import { getAllArticleCategoriesServer } from '../../actions/articleCategories';
 import { getAllTagsAndSet, getAllTagsAndSetServer } from '../../actions/tags';
 import { getAllArticlesAndSetServer } from '../../actions/articles';
-import { getLayout } from '../../shared/layouts/HomeLayout/HomeLayout';
+import { getLayout } from '../../shared/layouts/BlogLayout/BlogLayout';
 import { SIZE_PAGE } from '../../shared/constants/page';
 
 class HomePageWithLayout extends Component {
@@ -11,7 +11,7 @@ class HomePageWithLayout extends Component {
   render() {
     const { query, pathname } = this.props;
     return (
-      <HomeMainPage
+      <BlogMainPage
         query={query}
         pathname={pathname}
       />
@@ -21,7 +21,6 @@ class HomePageWithLayout extends Component {
 }
 
 
-// вызывается и на сервере и на клиенте (при маршриутизации) работает тлько на страницах, на страницах читай что это замена cdm
 HomePageWithLayout.getInitialProps = async ({
   query, pathname, store, isServer,
 }) => {

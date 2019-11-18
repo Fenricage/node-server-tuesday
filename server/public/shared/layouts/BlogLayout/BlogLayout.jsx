@@ -1,14 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-// import { Header, HomeMainPage, ArticleDetailPage } from 'Components';
 import Header from '../../../components/home/Header/Header';
-import Footer from '../../components/Footer/Footer';
+import BlogFooter from '../../../components/blog/BlogFooter/BlogFooter';
 import { getAllArticleCategories } from '../../../actions/articleCategories';
 import { getAllTagsAndSet } from '../../../actions/tags';
-import './HomeLayout.scss';
+import './BlogLayout.scss';
 
 
-class HomeLayout extends Component {
+class BlogLayout extends Component {
 
   constructor(props) {
     super(props);
@@ -52,7 +51,7 @@ class HomeLayout extends Component {
             {children}
           </main>
         </section>
-        <Footer />
+        <BlogFooter />
       </Fragment>
     );
   }
@@ -71,11 +70,11 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-const HomeLayoutConnected = connect(
+const BlogLayoutConnected = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(HomeLayout);
+)(BlogLayout);
 
-export const getLayout = page => <HomeLayoutConnected>{page}</HomeLayoutConnected>;
+export const getLayout = page => <BlogLayoutConnected>{page}</BlogLayoutConnected>;
 
-export default HomeLayoutConnected;
+export default BlogLayoutConnected;

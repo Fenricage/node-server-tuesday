@@ -1,10 +1,14 @@
 import React from 'react';
+import cs from 'classnames';
 import ItemGridUnit from '../ItemGridUnit/ItemGridUnit';
 import './ItemGridView.scss';
 
-const ItemGridView = ({ data }) => {
+const ItemGridView = ({ data, className }) => {
   return (
-    <section className="item-grid">
+    <section className={cs({
+      'item-grid': true,
+      [`item-grid_${className}`]: className,
+    })}>
       {
         data.map(dataItem => (
           <ItemGridUnit
