@@ -30,7 +30,7 @@
     transition: color ease .25s;
     color: var(--color-home-nav-font-default);
     &:hover {
-      color: #5183f5;
+      color: var(--color-blog-blue);
       transition: none;
     }
     & + & {

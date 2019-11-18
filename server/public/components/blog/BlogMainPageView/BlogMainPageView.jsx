@@ -23,6 +23,7 @@ const BlogMainPageView = ({
 
   return (
     <section className="blog-main-page">
+      <h2 className="blog-main-page__title">Latest Articles</h2>
       <ItemGridProvider value={{
         viewComponent: 'BlogEntryBadge',
         className: 'context-blog',

@@ -28,7 +28,7 @@ class Attachment extends Component {
     const imageData = await api.get(API_BROWSER).utils.getAttachment(response._id);
     // пишем в форму
     callbackHandler(fromJS(imageData));
-  }
+  };
 
   render() {
     const { name } = this.props;
