@@ -7,7 +7,8 @@
     "start": "cd server && cross-env NODE_ENV=development REACT_APP_SERVER_URL=http://localhost:7777 nodemon app.js",
     "dev": "cd server && nodemon app.js",
     "build": "cd server/public cross-env NODE_ENV=production REACT_APP_SERVER_URL=http://localhost:7777 && next build",
-    "export": "cd server/public && next export"
+    "export": "cd server/public && next export",
+    "prod": "cd server && cross-env NODE_ENV=production REACT_APP_SERVER_URL=http://localhost:7777 nodemon app.js"
   },
   "author": "fenricage",
   "license": "ISC",
