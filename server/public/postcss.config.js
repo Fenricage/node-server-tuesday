@@ -25,8 +25,8 @@ module.exports = () => ({
       ],
     }),
     postCSSPresetEnv({
-      stage: 1,
-      preserve: false,
+      // stage: 1,
+      // preserve: false,
       // importFrom: './shared/css/helpers/_variables.scss',
     }),
     // cssnano({
