@@ -1,5 +1,5 @@
 export const SERVER_URL = process.env.REACT_APP_SERVER_URL;
-
+console.log("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF", SERVER_URL)
 if (!SERVER_URL) {
   throw new Error('Set up SERVER_URL environment variable in package.json');
 }
