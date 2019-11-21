@@ -15,8 +15,14 @@ const app = express();
 const router = express.Router();
 const url = process.env.MONGODB_URI || config.db;
 
+
 // next
-const dev = process.env.NODE_DEV !== 'production';
+
+
+
+// nут раньше был NODE_DEV лол (почему?)
+const dev = process.env.NODE_ENV !== 'production';
+console.log('dev IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII((((((((((((((((((((((((((((((', dev, process.env.NODE_ENV)
 // dir показывает гже искать pages
 const nextApp = next({ dir: './public', dev });
 const handler = nextRoutes.getRequestHandler(nextApp); // part of next config
@@ -51,6 +57,13 @@ nextApp.prepare().then(() => {
 
   // здесь тогда будет для SSR
 
+
+
+
+
+
+
+
   /** set up middlewares */
   app.use(cors());
   app.use(bodyParser.json());
@@ -64,6 +77,8 @@ nextApp.prepare().then(() => {
   // разрешить /_next
 
   // app.use(handler)
+
+
 
   app.get(/^(?!.*api).*$/, (req, res) => {
     if (!req.originalUrl.match(/^\/static/)) {
