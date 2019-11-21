@@ -14,20 +14,32 @@ module.exports = () => ({
     url,
     imports,
     nested,
-    postcssCustomMedia({
-      importFrom: [
-        {
-          customMedia: {
-            '--md-viewport': '(width >= 768px)',
-            '--lg-viewport': '(width >= 1024px)',
-          },
-        },
-      ],
-    }),
+    // postcssCustomMedia({
+    //   importFrom: [
+    //     {
+    //       customMedia: {
+    //         '--md-viewport': '(width >= 768px)',
+    //         '--lg-viewport': '(width >= 1024px)',
+    //       },
+    //     },
+    //   ],
+    // }),
     postCSSPresetEnv({
-      // stage: 1,
+      stage: 1,
       // preserve: false,
       // importFrom: './shared/css/helpers/_variables.scss',
+      features: {
+        'custom-media-queries': {
+          importFrom: [
+            {
+              customMedia: {
+                '--md-viewport': '(width >= 768px)',
+                '--lg-viewport': '(width >= 1024px)',
+              },
+            },
+          ],
+        },
+      }
     }),
     // cssnano({
     //   preset: 'default',
