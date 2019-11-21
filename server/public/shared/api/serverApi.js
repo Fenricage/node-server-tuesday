@@ -22,7 +22,7 @@ const ServerApi = function (address) {
       // console.log('\x1b[36m', 'extra', extra, '\x1b[0m');
       // console.log('\x1b[36m', 'axios.defaults', axios.defaults, '\x1b[0m');
 
-      axios.defaults.baseURL = extra && extra.baseUrl ? `${extra.baseUrl}/api` : 'http://localhost:5000/api';
+      axios.defaults.baseURL = extra && extra.baseUrl ? `${extra.baseUrl}/api` : `${SERVER_URL}/api`;
       // axios.defaults.baseURL = extra && extra.baseUrl ? extra.baseUrl : `${SERVER_URL}/api`;
     }
 

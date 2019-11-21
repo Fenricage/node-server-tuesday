@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SERVER_URL, NODE_ENV } from '../utils/config';
+import { SERVER_URL, NODE_ENV, CLIENT_URL } from '../utils/config';
 import endpoints from './endpoints';
 // TODO заменить history
 // import { history } from '../../index';
@@ -15,15 +15,14 @@ const BrowserApi = function (address) {
     // проверка на прод или дев, корректирует запросы
     // Если НЕ РАВНО
     if (NODE_ENV !== 'development') {
-      axios.defaults.baseURL = extra && extra.baseUrl ? extra.baseUrl : `${SERVER_URL}/api`;
+      axios.defaults.baseURL = extra && extra.baseUrl ? extra.baseUrl : `${CLIENT_URL}/api`;
     } else {
       // здесь нужно сделать проверку на сервер: чтобы подставить порт на которм он находится
       // иначе будет ECONNREFUSED
 
       // console.log('\x1b[36m', 'extra', extra, '\x1b[0m');
       // console.log('\x1b[36m', 'axios.defaults', axios.defaults, '\x1b[0m');
-
-      axios.defaults.baseURL = extra && extra.baseUrl ? `${extra.baseUrl}/api` : '/api';
+      axios.defaults.baseURL = extra && extra.baseUrl ? `${extra.baseUrl}/api` : `${CLIENT_URL}/api`;
       // axios.defaults.baseURL = extra && extra.baseUrl ? extra.baseUrl : `${SERVER_URL}/api`;
     }
 

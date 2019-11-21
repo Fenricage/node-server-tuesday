@@ -15,6 +15,7 @@ module.exports = withCSS(withFonts(withSass({
   }),
   env: {
     REACT_APP_SERVER_URL: process.env.REACT_APP_SERVER_URL,
+    REACT_APP_CLIENT_URL: process.env.REACT_APP_CLIENT_URL,
   },
   // убирает роутинг по файлам из директории pages (нахуя?)
   useFileSystemPublicRoutes: false,

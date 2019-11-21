@@ -4,11 +4,11 @@
   "description": "Server for tuesday system",
   "main": "index.js",
   "scripts": {
-    "start": "cd server && cross-env NODE_ENV=development REACT_APP_SERVER_URL=http://localhost:7777 nodemon app.js",
+    "start": "cd server && cross-env NODE_ENV=development REACT_APP_SERVER_URL=http://localhost:5000 REACT_APP_CLIENT_URL=http://localhost:7777 nodemon app.js",
     "dev": "cd server && nodemon app.js",
-    "build": "cd server/public cross-env NODE_ENV=production REACT_APP_SERVER_URL=http://localhost:7777 && next build",
+    "build": "cd server/public cross-env NODE_ENV=production REACT_APP_SERVER_URL=http://nginx:80 REACT_APP_CLIENT_URL=http://localhost:7777 && next build",
     "export": "cd server/public && next export",
-    "prod": "cd server && cross-env NODE_ENV=production REACT_APP_SERVER_URL=http://localhost:7777 nodemon app.js"
+    "prod": "cd server && cross-env NODE_ENV=production nodemon app.js"
   },
   "author": "fenricage",
   "license": "ISC",
