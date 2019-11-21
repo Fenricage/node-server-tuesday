@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import HomeMainPage from '../../components/home/HomeMainPage/HomeMainPage';
-import { getAllArticleCategoriesServer } from '../../actions/articleCategories';
+import {getAllArticleCategories, getAllArticleCategoriesServer} from '../../actions/articleCategories';
 import { getAllTagsAndSet, getAllTagsAndSetServer } from '../../actions/tags';
-import { getAllArticlesAndSetServer } from '../../actions/articles';
+import {getAllArticlesAndSet, getAllArticlesAndSetServer} from '../../actions/articles';
 import { getLayout } from '../../shared/layouts/HomeLayout/HomeLayout';
 import {SIZE_PAGE} from "../../shared/constants/page";
 
@@ -37,9 +37,15 @@ HomePageWithLayout.getInitialProps = async ({
   }
   queryParams.extra = extra;
 
-  await dispatch(getAllArticleCategoriesServer());
-  await dispatch(getAllTagsAndSetServer());
-  await dispatch(getAllArticlesAndSetServer(queryParams));
+  if(isServer) {
+    await dispatch(getAllArticleCategoriesServer());
+    await dispatch(getAllTagsAndSetServer());
+    await dispatch(getAllArticlesAndSetServer(queryParams));
+  } else {
+    await dispatch(getAllArticleCategories());
+    await dispatch(getAllTagsAndSet());
+    await dispatch(getAllArticlesAndSet(queryParams));
+  }
   // console.log('\x1b[36m', 'store.getState()', store.getState().toJS(), '\x1b[0m');
 
   // console.log(' SECOND GET INITIAL PROPS COMPONENT');
