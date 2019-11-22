@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { withRouter } from 'next/router';
 import Image from '../../../shared/components/Image/Image';
 import prepareImgSrcSets from '../../../helpers/prepareImgSrcSets';
+import { CLIENT_URL } from '../../../shared/utils/config';
 import './EntryBadge.scss';
 
 
@@ -32,7 +33,7 @@ const EntryBadge = ({ dataItem, router }) => {
                 width={940}
                 height={493}
                 className="entry-badge__img"
-                src={dataItem.getIn(['previewImg', 'img_url'])}
+                src={`${CLIENT_URL}/${dataItem.getIn(['previewImg', 'img_url'])}`}
                 srcSet={imgSrcSet}
                 alt=""
               />

@@ -1,0 +1,12 @@
+{
+  "extends": "stylelint-config-airbnb",
+  "plugins": [
+    "stylelint-selector-bem-pattern"
+  ],
+  "rules": {
+    "indentation": 2,
+    "plugin/selector-bem-pattern": {
+      "preset": "bem"
+    }
+  }
+}

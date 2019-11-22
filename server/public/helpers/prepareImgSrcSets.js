@@ -1,3 +1,5 @@
+import { CLIENT_URL } from '../shared/utils/config';
+
 const prepareImgSrcSets = (entries) => {
   let imgSrcSet = '';
   entries.forEach((item, index) => {
@@ -5,11 +7,11 @@ const prepareImgSrcSets = (entries) => {
     const url = item.get(1);
 
     if (0 === index) {
-      imgSrcSet += `${url} ${width}w,`;
+      imgSrcSet += `${CLIENT_URL}/${url} ${width}w,`;
     } else if (entries.size === index + 1) {
-      imgSrcSet += ` ${url} ${width}w`;
+      imgSrcSet += ` ${CLIENT_URL}/${url} ${width}w`;
     } else {
-      imgSrcSet += ` ${url} ${width}w,`;
+      imgSrcSet += ` ${CLIENT_URL}/${url} ${width}w,`;
     }
   });
 

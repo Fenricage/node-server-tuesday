@@ -19,8 +19,6 @@ const url = process.env.MONGODB_URI || config.db;
 // next
 
 
-
-
 // nут раньше был NODE_DEV лол (почему?)
 const dev = process.env.NODE_ENV !== 'production';
 console.log('dev IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII((((((((((((((((((((((((((((((', dev, process.env.NODE_ENV)
