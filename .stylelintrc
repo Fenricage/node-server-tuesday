@@ -1,12 +1,24 @@
 {
-  "extends": "stylelint-config-airbnb",
+  "extends": [
+    "stylelint-config-airbnb",
+    "stylelint-config-rational-order"
+  ],
   "plugins": [
-    "stylelint-selector-bem-pattern"
+    "stylelint-selector-bem-pattern",
+    "stylelint-order",
+    "stylelint-config-rational-order/plugin"
   ],
   "rules": {
     "indentation": 2,
     "plugin/selector-bem-pattern": {
       "preset": "bem"
-    }
+    },
+    "order/properties-order": [],
+    "plugin/rational-order": [
+      true,
+      {
+        "empty-line-between-groups": true
+      }
+    ]
   }
 }
