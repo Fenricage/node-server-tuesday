@@ -1,20 +1,25 @@
 .item-grid-unit {
   word-break: break-word;
+
   & + & {
     border-top: 1px solid rgba(0, 0, 0, .12);
+
     @media (--md-viewport) {
       border-top: 0;
     }
   }
+
   &__figure {
     display: block;
     margin: 0;
     text-align: center;
     background-color: #ddd;
   }
+
   &__text-wrapper {
     padding-top: 22px;
   }
+
   &__link-wrap {
     border-radius: 2px;
     display: flex;
@@ -23,6 +28,7 @@
     padding: 14px;
     height: 100%;
   }
+
   &__title {
     text-decoration: none;
     font-size: 19px;
@@ -30,12 +36,14 @@
     margin-top: 6px;
     font-weight: 800;
   }
+
   &__img {
     display: block;
     vertical-align: top;
     width: 100%;
     height: auto;
   }
+
   &__category {
     font-weight: bold;
     font-size: 12px;

@@ -1,6 +1,8 @@
 .render-article-items {
+
   &__add-buttons {
     margin: 24px 0;
+
     > button + button {
       margin-left: 6px;
     }

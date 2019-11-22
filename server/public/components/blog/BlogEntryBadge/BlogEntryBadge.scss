@@ -2,8 +2,10 @@
   $self: &;
   word-break: break-word;
   margin: 0 -1.3rem;
+
   & + & {
     border-top: 1px solid rgba(0, 0, 0, .12);
+
     @media (--md-viewport) {
       border-top: 0;
     }
@@ -13,6 +15,7 @@
     display: flex;
     align-items: center;
   }
+
   &__link-wrap {
     border-radius: .3rem;
     display: flex;
@@ -22,18 +25,22 @@
     height: 100%;
     border: 2px dashed transparent;
     transition: background-color ease .25s;
+
     &:hover {
       background-color: #f2f2f2;
       transition: none;
+
       #{ $self }__title {
         color: var(--color-home-nav-font-hover);
       }
     }
+
     &:active {
       border-color: var(--color-blog-blue);
       background-color: var(--color-blog-blue-opacity);
     }
   }
+
   &__title {
     text-decoration: none;
     font-size: 1.3rem;
@@ -49,15 +56,18 @@
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
+
     &:hover {
       text-decoration: underline;
     }
   }
+
   &__figure {
     display: block;
     margin: 0;
     text-align: center;
   }
+
   &__img {
     display: block;
     vertical-align: top;

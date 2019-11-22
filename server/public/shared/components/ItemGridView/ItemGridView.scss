@@ -6,9 +6,11 @@
   //grid-template-columns: 1fr 1fr 1fr;
   grid-template-columns: 1fr;
   grid-gap: 32px;
+
   @media (--md-viewport) {
     grid-template-columns: 1fr 1fr;
   }
+
   @media (--lg-viewport) {
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -16,6 +18,7 @@
   &_context-blog {
     grid-template-columns: 1fr;
     grid-gap: 0px;
+
     #{ $self }__angle {
 
     }

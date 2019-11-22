@@ -8,12 +8,14 @@
   flex-flow: column nowrap;
   left: 0;
   background-color: #fff;
+
   &__inner {
     display: flex;
     flex-flow: column nowrap;
     padding: var(--sm-padding);
     width: 100%;
   }
+
   &__link {
     text-decoration: none;
     text-transform: uppercase;
@@ -21,9 +23,11 @@
     color: var(--color-home-nav-font-default);
     font-weight: 500;
   }
+
   &__title {
     margin: 0;
   }
+
   &__close {
     width: 40px;
     height: 40px;
@@ -31,17 +35,21 @@
     outline: none;
     background-color: transparent;
   }
+
   &__top-bar {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+
     @media (--md-viewport) {
 
     }
+
     @media (--lg-viewport) {
       margin-bottom: 0;
     }
   }
+
   &__main-area {
     display: flex;
     flex-flow: column nowrap;
@@ -49,9 +57,11 @@
     position: relative;
     color: red;
     height: calc(100vh - 100px);
+
     @media (--md-viewport) {
 
     }
+
     @media (--lg-viewport) {
       height: auto;
     }
@@ -79,6 +89,7 @@
     //  }
     //}
   }
+
   &__main-area-inner {
     display: flex;
     flex-flow: column nowrap;
@@ -91,16 +102,19 @@
     position: absolute;
     max-height: 300px;
     box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, .05);
-    #{ $self }__inner  {
+
+    #{ $self }__inner {
       padding: var(--lg-padding);
       margin: 0 auto;
       max-width: var(--max-width);
       flex-wrap: wrap;
       max-height: 300px;
     }
+
     #{ $self }__main-area-inner {
       flex-wrap: wrap;
     }
+
     #{ $self }__link {
       text-decoration: none;
       text-transform: none;

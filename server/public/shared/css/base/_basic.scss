@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
   height: 100%;
   width: 100%;
   margin: 0;
@@ -24,6 +25,8 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
-html *, html :after, html :before {
+html *,
+html :after,
+html :before {
   box-sizing: border-box;
 }

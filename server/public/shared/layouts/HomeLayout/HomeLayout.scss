@@ -3,9 +3,11 @@
   padding: 0 var(--sm-padding);
   min-height: 100vh;
   margin: 0 auto;
+
   @media (--md-viewport) {
     padding: 0 var(--md-padding);
   }
+
   @media (--lg-viewport) {
     padding: 0 var(--lg-padding);
   }

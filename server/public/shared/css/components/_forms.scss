@@ -2,12 +2,14 @@
   $self: ".b-form-row";
   display: flex;
   flex-flow: column nowrap;
+
   &__title-box {
     display: flex;
     align-items: baseline;
     margin: 0 0 6px 0;
     min-height: 24px;
     justify-content: space-between;
+
     h3 {
       min-height: 24px;
       height: 24px;
@@ -29,7 +31,9 @@
   }
 
   &.m-note {
+
     .b-form-row__field {
+
       input {
         padding-right: 40px;
       }
@@ -67,6 +71,7 @@
     }
 
     .react-select--is-disabled {
+
       .react-select__indicators {
         display: none;
       }
@@ -80,11 +85,13 @@
       }
     }
 
-    > input, .react-select {
+    > input,
+    .react-select {
       width: 100%;
     }
 
     .react-select {
+
       input {
         box-shadow: inset 0 0 0 1px transparent;
       }
@@ -105,13 +112,16 @@
 
   &.gray-form-row {
     // делаем свою жизнь проще
-    #{ $self }__input{
+    #{ $self }__input {
       box-shadow: none;
       padding: .7rem 1rem;
       border-radius: .4rem;
       background-color: hsla(0, 0%, 94%, 1);
       margin-bottom: 2rem;
-      &:hover, &:focus, &:active:not([disabled]) {
+
+      &:hover,
+      &:focus,
+      &:active:not([disabled]) {
         box-shadow: none;
         background-color: hsla(0, 0%, 92%, 1);
       }
@@ -127,7 +137,11 @@ select {
 }
 
 
-input[type=password], input[type=text], input[type=email], input[type=number], textarea {
+input[type=password],
+input[type=text],
+input[type=email],
+input[type=number],
+textarea {
   -webkit-appearance: none;
   padding: 10px 16px;
   border: 0;
@@ -145,7 +159,8 @@ input[type=password], input[type=text], input[type=email], input[type=number], t
     box-shadow: inset 0 0 0 1px var(--color-form-black);
   }
 
-  &:active:not([disabled]), &:focus {
+  &:active:not([disabled]),
+  &:focus {
     box-shadow: inset 0 0 0 1.5px var(--color-admin-primary);
   }
 
@@ -181,18 +196,24 @@ input[type=password], input[type=text], input[type=email], input[type=number], t
     border: none;
     box-shadow: inset 0 0 0 1px var(--color-form-gray);
     border-radius: 0;
+
     &:hover {
       box-shadow: inset 0 0 0 1px var(--color-form-black);
+
       .react-select__indicator:after {
         border-top-color: var(--color-form-black);
       }
     }
+
     &--is-focused {
       box-shadow: inset 0 0 0 1.5px var(--color-form-black);
+
       &:hover {
         box-shadow: inset 0 0 0 1.5px var(--color-form-black);
       }
+
       .react-select__dropdown-indicator {
+
         &:after {
           content: "";
           display: block;
@@ -301,6 +322,7 @@ input[type=password], input[type=text], input[type=email], input[type=number], t
   input:checked + label {
     //background-color: var(--color-purple);
     background-color: var(--color-admin-primary);
+
     &:hover::after {
       display: block;
       border-color: #fff;
@@ -364,6 +386,7 @@ input[type=password], input[type=text], input[type=email], input[type=number], t
   }
 
   input:checked + label {
+
     &:hover::after {
       display: block;
       //background-color: var(--color-purple);
@@ -378,6 +401,7 @@ input[type=password], input[type=text], input[type=email], input[type=number], t
 
 //типа нулевых стилей но от класса для надежности
 .b-form {
+
   &__block {
     margin-bottom: 24px;
   }

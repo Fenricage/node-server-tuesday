@@ -4,19 +4,24 @@
   position: relative;
   margin: 0 calc(-1 * var(--sm-padding));
   overflow: hidden;
+
   @media (--md-viewport) {
     margin: 0 calc(-1 * var(--md-padding));
   }
+
   @media (--lg-viewport) {
     margin: 0 calc(-1 * var(--lg-padding));
   }
+
   &__links {
     display: flex;
     width: 100%;
     align-items: center;
     overflow: auto;
-    &:before, &:after  {
-      content: '';
+
+    &:before,
+    &:after {
+      content: "";
       position: absolute;
       top: 0;
       display: block;
@@ -24,9 +29,11 @@
       width: 15px;
       box-shadow: 0 0 30px 15px #fff;
     }
+
     &:before {
       left: -15px;
     }
+
     &:after {
       right: -15px;
     }

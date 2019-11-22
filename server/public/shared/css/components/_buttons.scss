@@ -2,7 +2,11 @@ html button {
   cursor: pointer;
 }
 
-html .btn, html a.btn, html button.btn, html input.btn, html label.btn {
+html .btn,
+html a.btn,
+html button.btn,
+html input.btn,
+html label.btn {
   font-size: 14px;
   line-height: 24px;
   font-weight: bold;
@@ -51,10 +55,12 @@ html .btn, html a.btn, html button.btn, html input.btn, html label.btn {
     background-position: 0 100%;
     transition: background-position ease .5s;
     padding-right: 30px;
+
     &:hover {
       transition: none;
       background-position: 90% 100%;
     }
+
     span {
       font-size: 23px;
       position: absolute;
@@ -64,6 +70,7 @@ html .btn, html a.btn, html button.btn, html input.btn, html label.btn {
   }
 
   &.is-load {
+
     .btn-loader {
       display: block;
     }

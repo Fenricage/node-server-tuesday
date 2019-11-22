@@ -11,13 +11,16 @@
   padding: 0 .5rem;
   margin: .3rem;
   cursor: pointer;
+
   &__text {
 
   }
+
   &__delete {
     margin-left: .3rem;
     color: #888;
     text-decoration: underline;
+
     &:hover {
       text-decoration: none;
     }

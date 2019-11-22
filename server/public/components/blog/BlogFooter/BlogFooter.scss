@@ -14,30 +14,37 @@
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+
     @media (--md-viewport) {
       padding: 0 var(--md-padding);
     }
+
     @media (--lg-viewport) {
       padding: 0 var(--lg-padding);
     }
   }
+
   &__support {
 
   }
+
   &__support-link {
     font-size: 1.2rem;
     text-decoration: none;
     font-weight: 300;
     transition: color ease .25s;
     color: var(--color-home-nav-font-default);
+
     &:hover {
       color: var(--color-blog-blue);
       transition: none;
     }
+
     & + & {
       margin-left: 1.2rem;
     }
   }
+
   &__links-icons {
 
   }

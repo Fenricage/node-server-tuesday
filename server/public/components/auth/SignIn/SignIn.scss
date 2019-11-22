@@ -4,26 +4,35 @@
   width: 340px;
   height: auto;
   background-color: #fff;
+
   > h2 {
     text-align: center;
   }
+
   > p {
+
     &.success {
       color: var(--color-admin-primary);
     }
+
     &.error {
       color: var(--color-error);
     }
   }
+
   > form {
+
     > * + * {
       margin-top: 20px;
     }
   }
+
   &__switch {
     text-align: center;
   }
+
   &__box-button {
+
     .btn {
       width: 100%;
     }

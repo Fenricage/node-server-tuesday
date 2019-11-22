@@ -5,10 +5,12 @@
   font-weight: 600;
   color: #fff;
   font-size: 14px;
+
   &:hover {
     color: #fff;
     background-color: var(--color-ddark);
   }
+
   &.is-selected {
     background-color: var(--color-ddark);
   }

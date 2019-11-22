@@ -9,16 +9,21 @@
   &__rect {
 
   }
+
   &:hover {
+
     #{ $self }__rect {
       stroke-width: 3px;
     }
   }
+
   &_theme-white {
     fill: #fff;
+
     #{ $self }__letter {
       fill: #fff;
     }
+
     #{ $self }__rect {
       stroke: #fff;
     }

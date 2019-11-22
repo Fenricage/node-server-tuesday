@@ -21,12 +21,12 @@ a {
   color: var(--color-admin-primary);
   transition: background-color 250ms, color 250ms;
 
+  cursor: pointer;
+
   &:hover {
     color: var(--color-admin-lprimary);
     transition: none;
   }
-
-  cursor: pointer;
 }
 
 ul {

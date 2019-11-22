@@ -2,60 +2,74 @@
   margin: 20px auto;
   max-width: 700px;
   padding: 0 8px;
-  @media (--md-viewport) {
-    padding: 0 20px;
-  }
+
   @media (--lg-viewport) {
 
   }
+
+  @media (--md-viewport) {
+    padding: 0 20px;
+  }
+
   &__h1 {
     padding-top: 12px;
     margin: 0;
     font-weight: bold;
     font-style: normal;
     word-break: break-word;
-    font-family: 'PT Serif', Helvetica, Arial, sans-serif;
+    font-family: "PT Serif", Helvetica, Arial, sans-serif;
   }
+
   &__h1 + &__date-publication {
     margin-top: 8px;
   }
+
   &__h1 + &__h2 {
     margin-top: 12px;
   }
+
   &__h2 {
-    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
     font-weight: 400;
     font-size: 24px;
     word-break: break-word;
     margin: 0;
     color: var(--article-h2);
   }
+
   &__h2 + &__info {
     margin-top: 8px;
   }
+
   &__preview-img {
 
   }
+
   &__img {
 
   }
+
   &__md {
+
     > h1 {
       padding-top: 12px;
       margin: 0;
       font-weight: bold;
       font-style: normal;
-      font-family: 'PT Serif', Helvetica, Arial, sans-serif;
+      font-family: "PT Serif", Helvetica, Arial, sans-serif;
     }
+
     > h2 {
       margin: 48px 0 0 0;
       font-weight: bold;
       font-style: normal;
-      font-family: 'PT Serif', Helvetica, Arial, sans-serif;
+      font-family: "PT Serif", Helvetica, Arial, sans-serif;
     }
+
     > h3 {
 
     }
+
     > p {
 
     }
@@ -77,20 +91,24 @@
   h2 + p {
     margin-top: 12px;
   }
+
   article {
     margin-top: 52px;
   }
+
   p {
     margin-top: 38px;
     font-size: 21px;
     line-height: 1.58;
     font-weight: normal;
     font-style: normal;
-    font-family: 'Lora', Helvetica, Arial, sans-serif;
+    font-family: "Lora", Helvetica, Arial, sans-serif;
   }
+
   * + img {
     margin-top: 32px;
   }
+
   img {
     max-width: 100%;
   }

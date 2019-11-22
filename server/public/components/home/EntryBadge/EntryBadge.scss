@@ -1,26 +1,32 @@
 .entry-badge {
   word-break: break-word;
+
   & + & {
     border-top: 1px solid rgba(0, 0, 0, .12);
+
     @media (--md-viewport) {
       border-top: 0;
     }
   }
+
   &__figure {
     display: block;
     margin: 0;
     position: relative;
     text-align: center;
     background-color: rgba(0, 0, 0, .05);
+
     &:before {
       content: "";
       display: block;
       padding-bottom: 52.5%;
     }
   }
+
   &__text-wrapper {
     padding-top: 22px;
   }
+
   &__link-wrap {
     border-radius: 2px;
     display: flex;
@@ -28,6 +34,7 @@
     text-decoration: none;
     height: 100%;
   }
+
   &__title {
     text-decoration: none;
     font-size: 19px;
@@ -35,6 +42,7 @@
     margin-top: 6px;
     font-weight: 800;
   }
+
   &__img {
     display: block;
     vertical-align: top;
@@ -48,12 +56,14 @@
     -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
   }
+
   &__category {
     font-weight: bold;
     text-decoration: none;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
+
     &:hover {
       text-decoration: underline;
     }

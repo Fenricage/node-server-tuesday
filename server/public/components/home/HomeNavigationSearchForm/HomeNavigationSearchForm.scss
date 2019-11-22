@@ -3,9 +3,11 @@
     margin: 0 auto;
     max-width: 600px;
   }
+
   @media (--lg-viewport) {
     max-width: 700px;
   }
+
   &__form {
 
   }
