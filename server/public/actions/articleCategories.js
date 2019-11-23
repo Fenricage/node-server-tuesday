@@ -58,22 +58,22 @@ const reqSetDeletingStatus = id => ({
 });
 const reqDeleteArticleCategorySuccess = (id) => {
 
-  const isDeleting = store.getState()
-    .getIn(['articleCategories', 'isDeleting'])
-    .push(id)
-    .filter(item => item !== id);
+  // const isDeleting = store.getState()
+  //   .getIn(['articleCategories', 'isDeleting'])
+  //   .push(id)
+  //   .filter(item => item !== id);
 
 
-  const updatedArticleCategories = store.getState()
-    .getIn(['articleCategories', 'data'])
-    .filter(article => article.get('_id') !== id);
+  // const updatedArticleCategories = store.getState()
+  //   .getIn(['articleCategories', 'data'])
+  //   .filter(article => article.get('_id') !== id);
 
 
   return {
     type: ARTICLE_CATEGORIES_DELETE_ARTICLE_SUCCESS,
     payload: {
-      isDeleting,
-      updatedArticleCategories,
+      isDeleting: [],
+      // updatedArticleCategories,
     },
   };
 };

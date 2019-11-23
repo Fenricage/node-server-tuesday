@@ -1,17 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Map } from 'immutable';
 import AllArticleCategoriesAdminPageView from '../AllArticleCategoriesAdminPageView/AllArticleCategoriesAdminPageView';
 import { getAllArticleCategories, reqDeleteArticleCategory } from '../../../actions/articleCategories';
-import { Map } from 'immutable';
 
 class AllArticleCategoriesAdminPage extends Component {
 
-  componentDidMount() {
-    const { getAllArticleCategoriesDispatch } = this.props;
-    getAllArticleCategoriesDispatch();
+  constructor(props) {
+    super(props);
+    this.state = {
+      initArticleCategoriesLoaded: false,
+    };
   }
 
-  onDeleteArticleCategoryHandler = id => () => this.props.reqDeleteArticleCategoryDispatch(id)
+
+  componentDidMount() {
+    const { getAllArticleCategoriesDispatch } = this.props;
+    getAllArticleCategoriesDispatch()
+      .then(() => {
+        this.setState({
+          initArticleCategoriesLoaded: true,
+        });
+      });
+  }
+
+  onDeleteArticleCategoryHandler = id => () => {
+    const { getAllArticleCategoriesDispatch } = this.props;
+    return this.props.reqDeleteArticleCategoryDispatch(id)
+      .then(() => {
+        getAllArticleCategoriesDispatch();
+      });
+  }
 
   transformArticleCategoriesDataToListFormat = articleCategories => articleCategories
     .map(articleCategory => new Map({
@@ -28,6 +47,17 @@ class AllArticleCategoriesAdminPage extends Component {
     } = this.props;
 
 
+    console.log('articleCategories', articleCategories)
+
+    const { initArticleCategoriesLoaded } = this.state;
+
+
+    if (!initArticleCategoriesLoaded) {
+      return <p>Loader ...</p>;
+    }
+
+
+
     // eslint-disable-next-line max-len
     const transformedToListFormatArticles = this.transformArticleCategoriesDataToListFormat(articleCategories);
 
@@ -35,6 +65,7 @@ class AllArticleCategoriesAdminPage extends Component {
       <AllArticleCategoriesAdminPageView
         pathname={pathname}
         articleCategories={transformedToListFormatArticles}
+        initArticleCategoriesLoaded={initArticleCategoriesLoaded}
         isLoadedArticleCategories={isLoadedArticleCategories}
         onDeleteArticleCategoryHandler={this.onDeleteArticleCategoryHandler}
         isDeletingArticleCategories={isDeletingArticleCategories}
@@ -48,8 +79,6 @@ const mapStateToProps = (state, ownProps) => ({
   articleCategories: state.getIn(['articleCategories', 'data']),
   isLoadedArticleCategories: state.getIn(['articleCategories', 'isLoaded']),
   isDeletingArticleCategories: state.getIn(['articleCategories', 'isDeleting']),
-  // articles: state.articles.data,
-  // isLoaded: state.articles.isLoaded,
 });
 
 const mapDispatchToProps = dispatch => ({

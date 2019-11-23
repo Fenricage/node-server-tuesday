@@ -65,22 +65,19 @@ export const reqSetDeletingStatus = (id) => {
 };
 
 export const reqDeleteArticleSuccess = (id) => {
+
+  // TODO это еще нужно сделать P.S и добавить в редюсер
   // const isDeleting = store
   //   .getState()
   //   .getIn(['articles', 'isDeleting'])
   //   .filter(item => item !== id);
 
-  // const updatedArticles = store.getState()
-  //   .getIn(['articles', 'data', 'records'])
-  //   .filter(record => record.get('_id') !== id);
 
   return {
     type: ARTICLES_DELETE_ARTICLE_SUCCESS,
     payload: {
-      // isDeleting,
-      // updatedArticles,
-      isDeleting:[],
-      updatedArticles:[]
+      isDeleting: [],
+      // updatedArticles:[]
     },
   };
 };

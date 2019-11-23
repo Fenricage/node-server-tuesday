@@ -1,4 +1,4 @@
-.b-all-articles-admin-page {
+.all-articles-admin-page {
 
   h1 {
     margin-bottom: 0;
@@ -9,5 +9,12 @@
     align-items: baseline;
     justify-content: space-between;
     margin-bottom: 40px;
+  }
+
+  &__list {
+
+    &_is-load {
+      opacity: .5;
+    }
   }
 }

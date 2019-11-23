@@ -37,7 +37,7 @@ export default (state = initialState, action) => {
     case ARTICLES_DELETE_ARTICLE_SUCCESS:
       return state
         .set('isDeleting', action.payload.isDeleting)
-        .setIn(['data', 'records'], action.payload.updatedArticles);
+        // .setIn(['data', 'records'], action.payload.updatedArticles);
     case ARTICLES_DELETE_ARTICLE_FAILURE:
       return state.merge({
         error: action.payload.e,

@@ -18,7 +18,7 @@ const initialState = fromJS({
 export default (state = initialState, action) => {
   switch (action.type) {
     case ARTICLE_CATEGORIES_GET_ALL_FETCH:
-      return initialState;
+      return state.set('isLoaded', false);
 
     case ARTICLE_CATEGORIES_GET_ALL_SUCCESS:
       return state.merge({
@@ -35,7 +35,7 @@ export default (state = initialState, action) => {
     case ARTICLE_CATEGORIES_DELETE_ARTICLE_SUCCESS:
       return state.merge({
         isDeleting: action.payload.isDeleting,
-        data: action.payload.updatedArticleCategories,
+        // data: action.payload.updatedArticleCategories,
       });
     case ARTICLE_CATEGORIES_DELETE_ARTICLE_FAILURE:
       return state.merge({

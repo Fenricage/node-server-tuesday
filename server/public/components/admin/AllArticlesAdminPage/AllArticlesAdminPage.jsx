@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
-import AllArticlesAdminPageView from '../AllArticlesAdminPageView/AllArticlesAdminPageView'
+import AllArticlesAdminPageView from '../AllArticlesAdminPageView/AllArticlesAdminPageView';
 import { getAllArticlesAndSet, reqDeleteArticle } from '../../../actions/articles';
 import './AllArticlesAdminPage.scss';
 
@@ -10,20 +10,40 @@ class AllArticlesAdminPage extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      initLoadedArticles: false,
+    };
   }
 
   componentDidMount() {
     const { getAllArticlesAndSetDispatch } = this.props;
-    getAllArticlesAndSetDispatch();
+    getAllArticlesAndSetDispatch()
+      .then(() => {
+        this.setState({
+          initLoadedArticles: true,
+        });
+      });
   }
+
+
+  componentDidUpdate(prevProps, prevState) {
+
+  }
+
 
   transformArticleDataToListFormat = records => records.map(record => new Map({
     title: record.get('title'),
     _id: record.get('_id'),
   }))
 
-  onDeleteArticleHandler = id => () => this.props.reqDeleteArticleDispatch(id)
+  onDeleteArticleHandler = id => () => {
+    const { getAllArticlesAndSetDispatch } = this.props;
+    // TODO сделай на await
+    return this.props.reqDeleteArticleDispatch(id)
+      .then((res) => {
+        getAllArticlesAndSetDispatch();
+      });
+  }
 
   render() {
     const {
@@ -33,7 +53,11 @@ class AllArticlesAdminPage extends Component {
       pathname,
     } = this.props;
 
-    if (!isLoadedArticles) {
+    const {
+      initLoadedArticles,
+    } = this.state;
+
+    if (!initLoadedArticles) {
       return <p>Loader ...</p>;
     }
     // transform data to format list component
@@ -45,6 +69,7 @@ class AllArticlesAdminPage extends Component {
         pathname={pathname}
         articles={transformedToListFormatArticles}
         isLoadedArticles={isLoadedArticles}
+        initLoadedArticles={initLoadedArticles}
         onDeleteArticleHandler={this.onDeleteArticleHandler}
         isDeletingArticles={isDeletingArticles}
       />
@@ -59,7 +84,7 @@ const mapStateToProps = (state, ownProps) => ({
   isDeletingArticles: state.getIn(['articles', 'isDeleting']),
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   getAllArticlesAndSetDispatch: () => dispatch(getAllArticlesAndSet()),
   reqDeleteArticleDispatch: id => dispatch(reqDeleteArticle(id)),
 });
