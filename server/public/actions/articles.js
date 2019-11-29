@@ -1,3 +1,4 @@
+import { fromJS } from 'immutable';
 import {
   ARTICLES_FETCH,
   ARTICLES_FETCH_FAILURE,
@@ -6,7 +7,6 @@ import {
   ARTICLES_DELETE_ARTICLE_FAILURE,
   ARTICLES_DELETE_ARTICLE_SUCCESS,
 } from '../shared/constants/articles';
-import { fromJS } from 'immutable';
 // import { store } from '../index';
 import { API_BROWSER, API_SERVER } from '../shared/constants/api';
 import api from '../shared/api/index';
@@ -50,54 +50,26 @@ export const getAllArticlesAndSetServer = queryParams => (dispatch) => {
     });
 };
 
-export const reqSetDeletingStatus = (id) => {
-
-  // const isDeleting = store
-  //   .getState()
-  //   .getIn(['articles', 'isDeleting'])
-  //   .push(id);
-
-  return {
-    type: ARTICLES_DELETE_ARTICLE,
-    // payload: isDeleting,
-    payload: [],
-  };
-};
-
-export const reqDeleteArticleSuccess = (id) => {
-
-  // TODO это еще нужно сделать P.S и добавить в редюсер
-  // const isDeleting = store
-  //   .getState()
-  //   .getIn(['articles', 'isDeleting'])
-  //   .filter(item => item !== id);
-
-
-  return {
-    type: ARTICLES_DELETE_ARTICLE_SUCCESS,
-    payload: {
-      isDeleting: [],
-      // updatedArticles:[]
-    },
-  };
-};
-
-export const reqDeleteArticleFailure = (id, e) => {
-  // const isDeleting = store
-  //   .getState()
-  //   .getIn(['articles', 'isDeleting'])
-  //   .filter(item => item !== id);
-  return {
-    type: ARTICLES_DELETE_ARTICLE_FAILURE,
-    payload: {
-      // isDeleting,
-      isDeleting:[],
-      e,
-    },
-  };
-};
-
-
+export const reqSetDeletingStatus = id => ({
+  type: ARTICLES_DELETE_ARTICLE,
+  // payload: isDeleting,
+  payload: [],
+});
+export const reqDeleteArticleSuccess = id => ({
+  type: ARTICLES_DELETE_ARTICLE_SUCCESS,
+  payload: {
+    isDeleting: [],
+    // updatedArticles:[]
+  },
+});
+export const reqDeleteArticleFailure = (id, e) => ({
+  type: ARTICLES_DELETE_ARTICLE_FAILURE,
+  payload: {
+    // isDeleting,
+    isDeleting: [],
+    e,
+  },
+});
 export const reqDeleteArticle = id => (dispatch) => {
   dispatch(reqSetDeletingStatus(id));
   return api.get(API_BROWSER).articles.delete(id)
@@ -112,6 +84,6 @@ export const reqDeleteArticle = id => (dispatch) => {
 
 
 export const searchArticles = (query) => {
-  console.log('query', query) 
-  return api.get(API_BROWSER).articles.search(query)
-}
+  console.log('query', query);
+  return api.get(API_BROWSER).articles.search(query);
+};
