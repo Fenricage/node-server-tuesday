@@ -47,7 +47,11 @@ class HomeNavigationSearchForm extends Component {
             component={Input}
             name="search"
             type="text"
-            onChange={e => debouncedSearchArticles({ search: e.target.value })}
+            onChange={
+              e => debouncedSearchArticles(
+                fromJS({ search: e.target.value }),
+              )
+            }
             className="gray-form-row"
             placeholder="Enter the search request ..."
           />

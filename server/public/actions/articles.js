@@ -7,7 +7,7 @@ import {
   ARTICLES_DELETE_ARTICLE_FAILURE,
   ARTICLES_DELETE_ARTICLE_SUCCESS,
 } from '../shared/constants/articles';
-// import { store } from '../index';
+
 import { API_BROWSER, API_SERVER } from '../shared/constants/api';
 import api from '../shared/api/index';
 
@@ -84,6 +84,7 @@ export const reqDeleteArticle = id => (dispatch) => {
 
 
 export const searchArticles = (query) => {
-  console.log('query', query);
-  return api.get(API_BROWSER).articles.search(query);
+  if (query.get('search').length >= 3) {
+    return api.get(API_BROWSER).articles.search(query);
+  }
 };
