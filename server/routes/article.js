@@ -36,6 +36,11 @@ module.exports = (router) => {
   /**
      * get a particlular article to view
      */
+
+  router
+    .route('/article/search')
+    .post(articlecontroller.searchArticles);
+
   router
     .route('/article/:id')
     .get(articlecontroller.getArticle);
@@ -48,7 +53,4 @@ module.exports = (router) => {
     .route('/article/:id')
     .patch(articlecontroller.patchArticle);
 
-  router
-    .route('/articles/search')
-    .get(articlecontroller.searchArticles);
 };

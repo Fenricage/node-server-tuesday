@@ -34,7 +34,7 @@ class AllArticlesAdminPage extends Component {
   transformArticleDataToListFormat = records => records.map(record => new Map({
     title: record.get('title'),
     _id: record.get('_id'),
-  }))
+  }));
 
   onDeleteArticleHandler = id => () => {
     const { getAllArticlesAndSetDispatch } = this.props;

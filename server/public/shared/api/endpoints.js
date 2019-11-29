@@ -122,6 +122,11 @@ const endpoints = r => ({
         method: 'patch',
         data,
       }),
+    search: query => r('/article/search',
+      {
+        method: 'post',
+        data: query,
+      }),
   },
   articeCategories: {
     getAll: extra => r('articles/categories',

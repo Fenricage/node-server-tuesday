@@ -222,15 +222,35 @@ module.exports = {
     });
   },
   searchArticles: (req, res, next) => {
-    const regex = new RegExp('hello', 'i');
+
+    const { body: { search } } = req;
+
+    const regex = new RegExp(search, 'i');
+
+
+    // ищем совпадения по превью, тайтлу и всем маркдаунам
     Article.aggregate([
-      // Project the concatenated full name along with the original doc
-      // { $project: { text: { $concat: ['$title', ' ', '$preview_text'] }, doc: '$$ROOT' } },
-      { $match: { value: { '$in': 'articles_meta' } } },
+      {
+        $match: {
+          $or: [
+            { preview_text: regex },
+            { title: regex },
+            {
+              articles_meta: {
+                $elemMatch: {
+                  $and: [
+                    { type: 'markdown' },
+                    { value: regex },
+                  ],
+                },
+              },
+            },
+          ],
+        },
+      },
     ], (err, articles) => {
       // Extract the original doc from each item
       // persons = persons.map(item => item.doc);
-      console.log(articles);
       res.send(articles);
     });
 

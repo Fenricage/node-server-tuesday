@@ -109,3 +109,9 @@ export const reqDeleteArticle = id => (dispatch) => {
       console.error('Failed to delete article', e, { ...e });
     });
 };
+
+
+export const searchArticles = (query) => {
+  console.log('query', query) 
+  return api.get(API_BROWSER).articles.search(query)
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Immutable, { isImmutable, fromJS } from 'immutable';
+import Debounce from 'awesome-debounce-promise';
 import { connect } from 'react-redux';
 import {
   Field,
@@ -8,18 +9,45 @@ import {
   change,
 } from 'redux-form/immutable';
 import Input from '../../../shared/components/Input/Input';
+import { searchArticles } from '../../../actions/articles';
 import './HomeNavigationSearchForm.scss';
+
+const debouncedSearchArticles = Debounce(searchArticles, 3000)
+
 
 class HomeNavigationSearchForm extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      articles: [],
+    };
+  }
+
+
   render() {
+
+    const { handleSubmit } = this.props;
+
     return (
       <section className="home-navigation-search-form">
-        <form action="" className="home-navigation-search-form__form">
+        <form
+          action=""
+          className="home-navigation-search-form__form"
+          onSubmit={handleSubmit((values, dispatch) => {
+            searchArticles(values)
+              .then((articles) => {
+                this.setState({
+                  articles,
+                });
+              });
+          })}
+        >
           <Field
             component={Input}
             name="search"
             type="text"
+            onChange={(e) => debouncedSearchArticles({search: e.target.value})}
             className="gray-form-row"
             placeholder="Enter the search request ..."
           />
