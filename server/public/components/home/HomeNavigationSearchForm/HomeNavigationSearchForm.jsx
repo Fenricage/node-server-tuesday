@@ -12,7 +12,7 @@ import Input from '../../../shared/components/Input/Input';
 import { searchArticles } from '../../../actions/articles';
 import './HomeNavigationSearchForm.scss';
 
-const debouncedSearchArticles = Debounce(searchArticles, 3000)
+const debouncedSearchArticles = Debounce(searchArticles, 3000);
 
 
 class HomeNavigationSearchForm extends Component {
@@ -47,7 +47,7 @@ class HomeNavigationSearchForm extends Component {
             component={Input}
             name="search"
             type="text"
-            onChange={(e) => debouncedSearchArticles({search: e.target.value})}
+            onChange={e => debouncedSearchArticles({ search: e.target.value })}
             className="gray-form-row"
             placeholder="Enter the search request ..."
           />
