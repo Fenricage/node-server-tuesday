@@ -4,6 +4,7 @@
   top: 0;
   right: 0;
   bottom: 0;
+  overflow: auto;
   display: flex;
   flex-flow: column nowrap;
   left: 0;
@@ -80,5 +81,11 @@
     overflow: auto;
     position: relative;
     height: 100%;
+  }
+
+  &__articles-grid {
+    &_is-loading {
+      opacity: .3;
+    }
   }
 }

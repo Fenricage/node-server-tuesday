@@ -78,7 +78,7 @@ class HomeMainPage extends Component {
     return getAllArticlesAndSetDispatch(queryParams);
   };
 
-  // TODO:(@fenticage) эта хуйня нужна вообщзе?
+  // TODO:(@fenticage) эта хуйня нужна вообщзе? в хелперы есть клон уже к тому же
   transformArticlesToItemGridData = articles => articles.map(article => fromJS({
     _id: article.get('_id'),
     previewImg: article.get('preview_img') ? article.get('preview_img') : '',

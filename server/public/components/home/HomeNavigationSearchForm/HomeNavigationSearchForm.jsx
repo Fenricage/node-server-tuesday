@@ -12,46 +12,73 @@ import Input from '../../../shared/components/Input/Input';
 import { searchArticles } from '../../../actions/articles';
 import './HomeNavigationSearchForm.scss';
 
-const debouncedSearchArticles = Debounce(searchArticles, 3000);
+const debouncedSearchArticles = Debounce(searchArticles, 500);
 
+const MIN_CHARS_FOR_REQ = 3;
 
 class HomeNavigationSearchForm extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      articles: [],
-    };
-  }
+
+
+  handleChangeSearch = (e) => {
+
+    const {
+      setArticlesLoadingStatus,
+      setArticlesData,
+      setLastSearchQuery,
+    } = this.props;
+
+
+    // проверяем длину на момент onChange
+    if (e.target.value.length >= MIN_CHARS_FOR_REQ) {
+      setArticlesLoadingStatus(true);
+      const search = e.target.value;
+      return debouncedSearchArticles(
+        fromJS({ search }),
+      )
+        .then((articles) => {
+          // еще раз проверяем длину после выполнения асинхронного запроса
+          if (e.target.value.length >= MIN_CHARS_FOR_REQ) {
+            setArticlesData(fromJS(articles));
+            setLastSearchQuery(search);
+          }
+          setArticlesLoadingStatus(false);
+        });
+    } else {
+      setArticlesLoadingStatus(false);
+      // TODO(@fenricage): поставить таймер, чтобы не сразу очищалось
+      setArticlesData([]);
+    }
+  };
 
 
   render() {
 
-    const { handleSubmit } = this.props;
+    const {
+      handleSubmit,
+      setArticlesLoadingStatus,
+      setArticlesData,
+    } = this.props;
 
     return (
       <section className="home-navigation-search-form">
         <form
           action=""
           className="home-navigation-search-form__form"
-          onSubmit={handleSubmit((values, dispatch) => {
-            searchArticles(values)
-              .then((articles) => {
-                this.setState({
-                  articles,
-                });
-              });
-          })}
+          // onSubmit={handleSubmit((values, dispatch) => {
+          //   searchArticles(values)
+          //     .then((articles) => {
+          //       this.setState({
+          //         articles,
+          //       });
+          //     });
+          // })}
         >
           <Field
             component={Input}
             name="search"
             type="text"
-            onChange={
-              e => debouncedSearchArticles(
-                fromJS({ search: e.target.value }),
-              )
-            }
+            onChange={this.handleChangeSearch}
             className="gray-form-row"
             placeholder="Enter the search request ..."
           />

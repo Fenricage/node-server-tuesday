@@ -6,7 +6,12 @@ import './ItemGrid.scss';
 class ItemGrid extends Component {
 
   render() {
-    const { data, contextItemGrid: { className } } = this.props;
+    const {
+      data,
+      contextItemGrid: {
+        className,
+      },
+    } = this.props;
 
     return (
       <ItemGridView

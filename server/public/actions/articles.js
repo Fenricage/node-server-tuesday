@@ -84,7 +84,5 @@ export const reqDeleteArticle = id => (dispatch) => {
 
 
 export const searchArticles = (query) => {
-  if (query.get('search').length >= 3) {
     return api.get(API_BROWSER).articles.search(query);
-  }
 };
