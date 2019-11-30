@@ -83,7 +83,13 @@
     height: 100%;
   }
 
+  &__articles {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
   &__articles-grid {
+    grid-template-columns: 1fr 1fr;
     &_is-loading {
       opacity: .3;
     }

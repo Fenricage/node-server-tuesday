@@ -7,7 +7,7 @@ const ItemGridView = ({ data, className }) => {
   return (
     <section className={cs({
       'item-grid': true,
-      [`item-grid_${className}`]: className,
+      [`${className}`]: className,
     })}>
       {
         data.map(dataItem => (

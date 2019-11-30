@@ -104,7 +104,7 @@ class HomeNavigationSearchModal extends Component {
                 setLastSearchQuery={this.setLastSearchQuery}
               />
             </section>
-            <section className="home-navigation-search__articles">
+            <section className="home-navigation-search-modal__articles">
               {isLoading && 'loading ...'}
               <ItemGridProvider value={{
                 viewComponent: 'EntryBadge',

@@ -12,12 +12,20 @@ import Input from '../../../shared/components/Input/Input';
 import { searchArticles } from '../../../actions/articles';
 import './HomeNavigationSearchForm.scss';
 
+
+const resetArticles = () => new Promise((resolve, reject) => {
+
+  resolve(true);
+
+});
+
+const debouncedResetArticles = Debounce(resetArticles, 500);
+
 const debouncedSearchArticles = Debounce(searchArticles, 500);
 
 const MIN_CHARS_FOR_REQ = 3;
 
 class HomeNavigationSearchForm extends Component {
-
 
 
   handleChangeSearch = (e) => {
@@ -28,11 +36,14 @@ class HomeNavigationSearchForm extends Component {
       setLastSearchQuery,
     } = this.props;
 
+    // на каждое изменение сетим лоадер
+    setArticlesLoadingStatus(true);
 
     // проверяем длину на момент onChange
     if (e.target.value.length >= MIN_CHARS_FOR_REQ) {
-      setArticlesLoadingStatus(true);
+
       const search = e.target.value;
+
       return debouncedSearchArticles(
         fromJS({ search }),
       )
@@ -41,14 +52,18 @@ class HomeNavigationSearchForm extends Component {
           if (e.target.value.length >= MIN_CHARS_FOR_REQ) {
             setArticlesData(fromJS(articles));
             setLastSearchQuery(search);
+            setArticlesLoadingStatus(false);
           }
-          setArticlesLoadingStatus(false);
         });
-    } else {
-      setArticlesLoadingStatus(false);
-      // TODO(@fenricage): поставить таймер, чтобы не сразу очищалось
-      setArticlesData([]);
     }
+    debouncedResetArticles()
+      .then(() => {
+        if (e.target.value.length < MIN_CHARS_FOR_REQ) {
+          setArticlesData([]);
+          setArticlesLoadingStatus(false);
+        }
+      });
+
   };
 
 
