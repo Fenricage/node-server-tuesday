@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 import { connect } from 'react-redux';
 // import { withRouter } from 'react-router-dom';
-
+import { fromJS } from 'immutable';
 import Button from '../../../shared/components/Button/Button';
 import Angle from '../../../shared/icons/Angle/Angle';
 import Portal from '../../../shared/components/Portal/Portal';
@@ -187,8 +187,11 @@ class HomeNavigation extends Component {
     const { articleCategories } = this.props;
 
 
-    const transformedArticleCategories = articleCategories
-      .map(articleCategory => articleCategory.get('name'));
+    const transformedToMenuFormatArticleCategories = articleCategories
+      .map(articleCategory => fromJS({
+        label: articleCategory.get('name'),
+        value: articleCategory.get('name'),
+      }));
 
     const homeNavItems = [
       {
@@ -217,7 +220,7 @@ class HomeNavigation extends Component {
         subMenu: {
           title: 'Категории',
           to: '/categories',
-          links: transformedArticleCategories,
+          links: transformedToMenuFormatArticleCategories,
         },
       },
       {
@@ -240,7 +243,16 @@ class HomeNavigation extends Component {
         subMenu: {
           title: 'Еще',
           to: '/',
-          links: ['Абаут ас', 'Контакты'],
+          links: fromJS([
+            {
+              label: 'Абаут ас',
+              value: 'about',
+            },
+            {
+              label: 'Контакты',
+              value: 'contacts',
+            },
+          ]),
         },
       },
       {

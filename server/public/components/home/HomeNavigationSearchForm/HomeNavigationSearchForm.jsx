@@ -14,13 +14,10 @@ import './HomeNavigationSearchForm.scss';
 
 
 const resetArticles = () => new Promise((resolve, reject) => {
-
   resolve(true);
-
 });
 
 const debouncedResetArticles = Debounce(resetArticles, 500);
-
 const debouncedSearchArticles = Debounce(searchArticles, 500);
 
 const MIN_CHARS_FOR_REQ = 3;
@@ -60,6 +57,7 @@ class HomeNavigationSearchForm extends Component {
 
     // TODO(@fenricage): сделать проверку на предыдущие значения
     // лоадер не должен появляться если предыдущая длина была меньше MIN_CHARS_FOR_REQ
+    // выполнится если длина меньше 3
     debouncedResetArticles()
       .then(() => {
         if (e.target.value.length < MIN_CHARS_FOR_REQ) {

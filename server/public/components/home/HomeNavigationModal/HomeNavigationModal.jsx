@@ -7,12 +7,6 @@ import './HomeNavigationModal.scss';
 
 class HomeNavigationModal extends Component {
 
-
-  componentDidMount() {
-
-  }
-
-
   render() {
     const {
       onClose,
@@ -25,6 +19,8 @@ class HomeNavigationModal extends Component {
         cross,
       },
     } = this.props;
+
+    // data всегда должна быть в формате List[Map({value, label})]
 
     return (
       <div
@@ -63,12 +59,12 @@ class HomeNavigationModal extends Component {
                     (item, index) => (
                       <Link
                         className="home-nav-modal__link"
-                        route={`${data.to}/${item}`}
+                        route={`${data.to}/${item.get('value')}`.replace('//', '/')}
                         onClick={onClose}
                         key={index}
                       >
                         <a className="home-nav-modal__link">
-                          {item}
+                          {item.get('label')}
                         </a>
                       </Link>
                     ),
