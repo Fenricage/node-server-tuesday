@@ -56,6 +56,10 @@ class HomeNavigationSearchForm extends Component {
           }
         });
     }
+
+
+    // TODO(@fenricage): сделать проверку на предыдущие значения
+    // лоадер не должен появляться если предыдущая длина была меньше MIN_CHARS_FOR_REQ
     debouncedResetArticles()
       .then(() => {
         if (e.target.value.length < MIN_CHARS_FOR_REQ) {
