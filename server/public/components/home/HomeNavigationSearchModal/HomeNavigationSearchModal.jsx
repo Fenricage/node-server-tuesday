@@ -105,7 +105,7 @@ class HomeNavigationSearchModal extends Component {
               />
             </section>
             <section className="home-navigation-search-modal__articles">
-              {isLoading && 'loading ...'}
+              {/*{isLoading && 'loading ...'}*/}
               <ItemGridProvider value={{
                 viewComponent: 'EntryBadge',
                 className: cs({

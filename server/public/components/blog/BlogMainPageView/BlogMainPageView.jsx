@@ -1,4 +1,5 @@
 import React from 'react';
+import cs from 'classnames';
 import ItemGrid from '../../../shared/components/ItemGrid/ItemGrid';
 import './BlogMainPageView.scss';
 import { ItemGridProvider } from '../../../shared/contexts';
@@ -26,7 +27,9 @@ const BlogMainPageView = ({
       <h2 className="blog-main-page__title">Latest Articles</h2>
       <ItemGridProvider value={{
         viewComponent: 'BlogEntryBadge',
-        className: 'context-blog',
+        className: cs({
+          'blog-main-page__grid': true,
+        }),
       }}
       >
         <ItemGrid

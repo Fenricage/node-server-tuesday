@@ -19,4 +19,6 @@ module.exports = routes()
   .add('articleAdminCategoryDetail', '/admin/article-categories/:id', '/admin/article-categories/create')
   // AUTH
   .add('/auth/login', '/auth/login')
-  .add('/auth/register', '/auth/register');
+  .add('/auth/register', '/auth/register')
+  // OTHER
+  .add('/about', '/about');
