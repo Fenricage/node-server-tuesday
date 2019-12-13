@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Router as NextRouter } from '../../../routes';
 import { logout } from '../../../actions/auth';
 import './Logout.scss';
+
 
 class Logout extends Component {
 
     logoutHandler = () => {
       const { logout } = this.props;
       logout();
+      NextRouter.pushRoute('/auth/login');
     }
 
     render() {

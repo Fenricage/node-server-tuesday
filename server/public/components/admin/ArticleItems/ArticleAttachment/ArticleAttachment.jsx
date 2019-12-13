@@ -6,6 +6,7 @@ import { fromJS } from 'immutable';
 import FileInput from '../../../../shared/components/FileInput/FileInput';
 import './ArticleAttachment.scss';
 import api from '../../../../shared/api/index';
+import { API_BROWSER } from '../../../../shared/constants/api';
 
 
 class ArticleAttachment extends Component {
@@ -22,9 +23,9 @@ class ArticleAttachment extends Component {
     const formData = new FormData();
     formData.append('image', file);
     // создаем
-    const response = await api.utils.createAttachment(formData, 'article');
+    const response = await api.get(API_BROWSER).utils.createAttachment(formData, 'article');
     // получаем
-    const imageData = await api.utils.getAttachment(response._id);
+    const imageData = await api.get(API_BROWSER).utils.getAttachment(response._id);
     callbackHandler(fromJS(imageData));
   }
 
