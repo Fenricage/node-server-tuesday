@@ -25,12 +25,14 @@ const BrowserApi = function (address) {
       axios.defaults.baseURL = extra && extra.baseUrl ? `${extra.baseUrl}/api` : `${CLIENT_URL}/api`;
       // axios.defaults.baseURL = extra && extra.baseUrl ? extra.baseUrl : `${SERVER_URL}/api`;
     }
-
+    console.log('\x1b[36m', 'test browser api' , '\x1b[0m');
 
     localStorage.getItem('token') ?
       headers['x-access-token'] = `${localStorage.getItem('token')}` :
       headers['x-access-token'] = null;
 
+    // TODO(@fenricage): переименуй или напиши иначе, выглядит как говно
+    // TODO(@fenricage) сделсть то же самое в serverApi
     extra.headers = extra.headers ? extra.headers : {};
 
     return new Promise((resolve, reject) => {
@@ -45,7 +47,11 @@ const BrowserApi = function (address) {
         timeout: 60000,
       })
         .then((response) => {
-          resolve(response.data);
+          resolve({
+            ...response.data,
+            status: response.status,
+            statusText: response.statusText,
+          });
         })
         .catch((err) => {
           if (!err.response) {

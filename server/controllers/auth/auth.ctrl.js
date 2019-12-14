@@ -81,6 +81,9 @@ module.exports = {
       // отдаем ок респонс, отправляем токен
       res
         .status(200)
+        .set({
+          'Set-Cookie': `Token=${token}; Path=/; `,
+        })
         .send({ auth: true, token });
     });
   },

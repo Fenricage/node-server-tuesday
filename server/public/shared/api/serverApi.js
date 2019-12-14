@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { SERVER_URL, NODE_ENV } from '../utils/config';
+import Cookies from 'js-cookie';
 import endpoints from './endpoints';
 // TODO заменить history
 // import { history } from '../../index';
@@ -26,7 +27,8 @@ const ServerApi = function (address) {
       // axios.defaults.baseURL = extra && extra.baseUrl ? extra.baseUrl : `${SERVER_URL}/api`;
     }
 
-
+    console.log('\x1b[36m', 'test server api' , '\x1b[0m');
+    console.log('\x1b[36m', 'Cookies.get(Token)' , Cookies.get('Token'), '\x1b[0m');
     // localStorage.getItem('token') ? headers['x-access-token'] = `${localStorage.getItem('token')}` : headers['x-access-token'] = null;
     extra.headers = extra.headers ? extra.headers : {};
 
