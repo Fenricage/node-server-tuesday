@@ -25,7 +25,7 @@ const BrowserApi = function (address) {
       axios.defaults.baseURL = extra && extra.baseUrl ? `${extra.baseUrl}/api` : `${CLIENT_URL}/api`;
       // axios.defaults.baseURL = extra && extra.baseUrl ? extra.baseUrl : `${SERVER_URL}/api`;
     }
-    console.log('\x1b[36m', 'test browser api' , '\x1b[0m');
+
 
     localStorage.getItem('token') ?
       headers['x-access-token'] = `${localStorage.getItem('token')}` :
@@ -47,11 +47,10 @@ const BrowserApi = function (address) {
         timeout: 60000,
       })
         .then((response) => {
-          resolve({
-            ...response.data,
-            status: response.status,
-            statusText: response.statusText,
-          });
+          // если поменять на {
+          // ...response.data и добавить статус то прилется править везде запросы
+          // }
+          resolve(response.data);
         })
         .catch((err) => {
           if (!err.response) {
