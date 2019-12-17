@@ -1,6 +1,8 @@
 import axios from 'axios';
-import { SERVER_URL, NODE_ENV } from '../utils/config';
 import Cookies from 'js-cookie';
+import nextCookie from 'next-cookies';
+import { SERVER_URL, NODE_ENV } from '../utils/config';
+import { Router as NextRouter } from '../../routes';
 import endpoints from './endpoints';
 // TODO заменить history
 // import { history } from '../../index';
@@ -12,7 +14,7 @@ const ServerApi = function (address) {
     'Cache-Control': 'no-cache',
   };
 
-  const r = (url, extra = {}) => {
+  const r = (url, extra = {}, context) => {
     // проверка на прод или дев, корректирует запросы
     // Если НЕ РАВНО
     if (NODE_ENV !== 'development') {
@@ -27,10 +29,11 @@ const ServerApi = function (address) {
       // axios.defaults.baseURL = extra && extra.baseUrl ? extra.baseUrl : `${SERVER_URL}/api`;
     }
 
-    console.log('\x1b[36m', 'test server api' , '\x1b[0m');
-    console.log('\x1b[36m', 'Cookies.get(Token)' , Cookies.get('Token'), '\x1b[0m');
     // localStorage.getItem('token') ? headers['x-access-token'] = `${localStorage.getItem('token')}` : headers['x-access-token'] = null;
     extra.headers = extra.headers ? extra.headers : {};
+
+    // const {Token} = nextCookie(context)
+    // console.log('\x1b[36m', '---------------------------Token' , Token, '\x1b[0m');
 
     return new Promise((resolve, reject) => {
       axios({
@@ -44,19 +47,27 @@ const ServerApi = function (address) {
         timeout: 60000,
       })
         .then((response) => {
+          console.log('\x1b[36m', 'response', response, '\x1b[0m');
           resolve(response.data);
         })
         .catch((err) => {
           if (!err.response) {
             reject(err);
           } else {
-            if (401 === err.response.status) {
 
+            // если статус относится к неавторизованным то удаляем токен и делаем релирект на логин
+            if (401 === err.response.status || 403 === err.response.status) {
               // localStorage.removeItem('token');
-              // history.push('/login');
-
-            } else if (403 === err.response.status) {
-              // history.push('/access-denied');
+              // Cookies.remove('Token');
+              // console.log('\x1b[36m', 'Cookies.get(Token)' , Cookies.get('Token'), '\x1b[0m');
+              // NextRouter.push('/auth/login');
+              // err.response.writeHead(302, { Location: '/auth/login' });
+              // err.response.end();
+              console.log('\x1b[36m', 'err.response' , err.response, '\x1b[0m');
+              context.res.writeHead(302, { Location: '/auth/login' });
+              context.res.end();
+              return;
+              // console.log('\x1b[36m', '401, 403' , 401, 403, '\x1b[0m');
             }
             reject(err);
           }

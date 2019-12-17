@@ -21,8 +21,9 @@ const endpoints = r => ({
       method: 'post',
       data,
     }),
-    currentUser: () => r('/me', {
+    currentUser: extra => r('/me', {
       method: 'get',
+      ...extra,
     }),
   },
   utils: {
