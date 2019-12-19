@@ -1,4 +1,3 @@
-// сюда вынести ундпоинты из индекса
 const endpoints = r => ({
   auth: {
     getToken: (username, password) => r('/token/obtain/',
