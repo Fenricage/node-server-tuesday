@@ -1,10 +1,11 @@
+const verifyToken = require('../controllers/auth/verifyToken');
 const tagcontroller = require('./../controllers/tag.ctrl');
 
 module.exports = (router) => {
 
   router
     .route('/tags')
-    .post(tagcontroller.addTag);
+    .post(verifyToken, tagcontroller.addTag);
 
   router
     .route('/tags')
@@ -12,7 +13,7 @@ module.exports = (router) => {
 
   router
     .route('/tags/:id')
-    .delete(tagcontroller.deleteOne);
+    .delete(verifyToken, tagcontroller.deleteOne);
 
   router
     .route('/tags/:id')
@@ -20,5 +21,5 @@ module.exports = (router) => {
 
   router
     .route('/tags/:id')
-    .patch(tagcontroller.updateOne);
+    .patch(verifyToken, tagcontroller.updateOne);
 };

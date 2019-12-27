@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AdminLayout from '../../shared/layouts/AdminLayout/AdminLayout';
 import MainAdminPage from '../../components/admin/MainAdminPage/MainAdminPage';
+import withAuthSync from '../../hoc/withAuthSync';
 
 class IndexAdminPage extends Component {
 
@@ -14,4 +15,4 @@ class IndexAdminPage extends Component {
 
 }
 
-export default IndexAdminPage;
+export default withAuthSync(IndexAdminPage);

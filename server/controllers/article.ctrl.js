@@ -207,6 +207,10 @@ module.exports = {
     Article.deleteOne({ _id: req.params.id }, (err, article) => {
       if (err) {
         res.send(err);
+      } else if (!article.deletedCount) {
+        res
+          .status(404)
+          .send({ error: 'Article not found' });
       } else {
         res.send(deletingArticle);
       }

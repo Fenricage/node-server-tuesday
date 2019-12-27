@@ -1,5 +1,6 @@
 const multipart = require('connect-multiparty');
 const articlecontroller = require('./../controllers/article.ctrl');
+const verifyToken = require('../controllers/auth/verifyToken');
 
 const multipartWare = multipart();
 
@@ -17,21 +18,21 @@ module.exports = (router) => {
      */
   router
     .route('/article')
-    .post(multipartWare, articlecontroller.addArticle);
+    .post(verifyToken, multipartWare, articlecontroller.addArticle);
 
   /**
      * clap on an article
      */
   router
     .route('/article/clap')
-    .post(articlecontroller.clapArticle);
+    .post(verifyToken, articlecontroller.clapArticle);
 
   /**
      * comment on an article
      */
   router
     .route('/article/comment')
-    .post(articlecontroller.commentArticle);
+    .post(verifyToken, articlecontroller.commentArticle);
 
   /**
      * get a particlular article to view
@@ -47,10 +48,10 @@ module.exports = (router) => {
 
   router
     .route('/article/:id')
-    .delete(articlecontroller.deleteArticle);
+    .delete(verifyToken, articlecontroller.deleteArticle);
 
   router
     .route('/article/:id')
-    .patch(articlecontroller.patchArticle);
+    .patch(verifyToken, articlecontroller.patchArticle);
 
 };

@@ -1,9 +1,10 @@
+const verifyToken = require('../controllers/auth/verifyToken');
 const usercontroller = require('./../controllers/users.ctrl');
 
 module.exports = (router) => {
   router
     .route('/user')
-    .post(usercontroller.addUser);
+    .post(verifyToken, usercontroller.addUser);
 
   router
     .route('/users')
@@ -15,9 +16,9 @@ module.exports = (router) => {
 
   router
     .route('/user/:id')
-    .delete(usercontroller.deleteUser);
+    .delete(verifyToken, usercontroller.deleteUser);
 
   router
     .route('/user/:id')
-    .put(usercontroller.updateUser);
+    .put(verifyToken, usercontroller.updateUser);
 };

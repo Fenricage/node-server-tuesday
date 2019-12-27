@@ -37,7 +37,7 @@ HomePageWithLayout.getInitialProps = async ({
   }
   queryParams.extra = extra;
 
-  if(isServer) {
+  if (isServer) {
     await dispatch(getAllArticleCategoriesServer());
     await dispatch(getAllTagsAndSetServer());
     await dispatch(getAllArticlesAndSetServer(queryParams));

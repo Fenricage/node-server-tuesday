@@ -1,4 +1,4 @@
-// const usercontroller = require('./../controllers/users.ctrl');
+const verifyToken = require('../controllers/auth/verifyToken');
 const articleCategoryController = require('./../controllers/articleCategory.ctrl')
 
 module.exports = (router) => {
@@ -7,13 +7,13 @@ module.exports = (router) => {
     .get(articleCategoryController.getAllArticleCategories);
   router
     .route('/articles/categories/:id')
-    .delete(articleCategoryController.deleteArticleCategory);
+    .delete(verifyToken, articleCategoryController.deleteArticleCategory);
   router
     .route('/articles/categories/:id')
     .get(articleCategoryController.getArticleCategory);
   router
     .route('/articles/categories/:id')
-    .patch(articleCategoryController.patchArticleCategory);
+    .patch(verifyToken, articleCategoryController.patchArticleCategory);
   //
   // router
   //   .route('/users')

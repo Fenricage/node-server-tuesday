@@ -83,7 +83,7 @@ module.exports = {
       // если юзер найден и пароль норм то создаем токен
       // и устанавливаем ему время жизни
       const token = jwt.sign({ id: user._id }, config.secret, {
-        expiresIn: 10 // expires in 10 seconds
+        expiresIn: 86400 // expires in 24 hours
       });
 
       console.log('\x1b[36m', 'token' , token, '\x1b[0m');
