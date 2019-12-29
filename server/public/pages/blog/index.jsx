@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import BlogMainPage from '../../components/blog/BlogMainPage/BlogMainPage';
-import {getAllArticleCategories, getAllArticleCategoriesServer} from '../../actions/articleCategories';
+import { getAllArticleCategories, getAllArticleCategoriesServer } from '../../actions/articleCategories';
 import { getAllTagsAndSet, getAllTagsAndSetServer } from '../../actions/tags';
-import {getAllArticlesAndSet, getAllArticlesAndSetServer} from '../../actions/articles';
+import { getAllArticlesAndSet, getAllArticlesAndSetServer } from '../../actions/articles';
 import { getLayout } from '../../shared/layouts/BlogLayout/BlogLayout';
 import { SIZE_PAGE } from '../../shared/constants/page';
 
@@ -24,8 +24,15 @@ class HomePageWithLayout extends Component {
 HomePageWithLayout.getInitialProps = async ({
   query, pathname, store, isServer,
 }) => {
+
   const { dispatch } = store;
-  const { page = 1, size = SIZE_PAGE, categoryId = 'Блог' } = query;
+  const {
+    page = 1,
+    size = 5,
+    categoryId = 'Блог',
+  } = query;
+
+  // получаем последние 5 статей из категории блога
   const queryParams = {
     page, size, orderBy: { _id: -1 }, extra: { category: categoryId },
   };
@@ -40,7 +47,7 @@ HomePageWithLayout.getInitialProps = async ({
   //
   // queryParams.extra = extra;
 
-  if(isServer) {
+  if (isServer) {
     await dispatch(getAllArticleCategoriesServer());
     await dispatch(getAllTagsAndSetServer());
     await dispatch(getAllArticlesAndSetServer(queryParams));

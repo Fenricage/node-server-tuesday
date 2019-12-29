@@ -1,7 +1,6 @@
 import axios from 'axios';
 import nextCookie from 'next-cookies';
 import { NODE_ENV, SERVER_URL } from '../utils/config';
-import endpoints from './endpoints';
 
 class ServerApiClass {
 

@@ -24,7 +24,7 @@ const BlogEntryBadge = ({ dataItem }) => {
 
   return (
     <article className="blog-entry-badge">
-      <Link href={`/articles/${dataItem.get('_id')}`}>
+      <Link href={`/blog/${dataItem.get('_id')}`}>
         <a className="blog-entry-badge__link-wrap">
           <figure className="blog-entry-badge__figure">
             {dataItem.get('previewImg') && (

@@ -98,11 +98,11 @@
 
   &__main-area-inner {
     position: relative;
-
     display: flex;
     flex-flow: column nowrap;
     height: 100%;
     overflow: auto;
+    align-items: flex-start;
   }
   // mods
   &_is-desktop {
@@ -110,7 +110,7 @@
 
     max-height: 300px;
 
-    box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, .05);
+    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, .05);
 
     #{ $self }__inner {
       flex-wrap: wrap;

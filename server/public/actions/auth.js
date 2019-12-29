@@ -1,4 +1,3 @@
-// import { push } from 'react-router-redux';
 import Router from 'next/router';
 import Cookies from 'js-cookie';
 import { API_BROWSER, API_SERVER } from '../shared/constants/api';
@@ -25,7 +24,7 @@ export const setStatusText = text => ({
 
 export const logout = () => {
   localStorage.removeItem('token');
-  Cookies.remove('Token')
+  Cookies.remove('Token');
   return {
     type: LOGOUT,
   };
@@ -36,18 +35,15 @@ export const setRegisteringLoader = status => ({
   payload: status,
 });
 
-export const getCurrentUserServer = (extra, context) => {
-
-  return getApiDependingOnContext(context).auth.currentUser(extra, context)
-    .then((user) => {
-      console.log('res', user);
-      return user;
-    })
-    .catch((e) => {
-      console.error('error getCurrenUser', { ...e });
-      return e.response.data;
-    });
-}
+export const getCurrentUserServer = (extra, context) => getApiDependingOnContext(context).auth.currentUser(extra, context)
+  .then((user) => {
+    console.log('res', user);
+    return user;
+  })
+  .catch((e) => {
+    console.error('error getCurrenUser', { ...e });
+    return e.response.data;
+  });
 
 export const getCurrentUser = () => api.get(API_BROWSER).auth.currentUser()
   .then((res) => {

@@ -3,7 +3,7 @@ import { withRouter } from 'next/router';
 import { fromJS } from 'immutable';
 import { connect } from 'react-redux';
 import { getAllArticlesAndSet } from '../../../actions/articles';
-import BlogMainPageView from '../../blog/BlogMainPageView/BlogMainPageView';
+import BlogMainPageView from '../BlogMainPageView/BlogMainPageView';
 import { SIZE_PAGE } from '../../../shared/constants/page';
 import './BlogMainPage.scss';
 
@@ -66,7 +66,11 @@ class HomeMainPage extends Component {
       return getAllArticlesAndSetDispatch(queryParams);
       //  первая страница с предустановленным размером
     }
-    const queryParams = { page: 1, size: pageSize, orderBy: { _id: -1 } };
+    const queryParams = {
+      page: 1,
+      size: pageSize,
+      orderBy: { _id: -1 },
+    };
     // extra для дополнительных параметров
     const extra = {};
     // if (params.category) {

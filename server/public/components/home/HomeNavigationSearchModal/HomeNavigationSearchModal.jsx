@@ -31,6 +31,22 @@ class HomeNavigationSearchModal extends Component {
     };
   }
 
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeydownCloseModal);
+  }
+
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeydownCloseModal);
+  }
+
+  handleKeydownCloseModal = (e) => {
+    if ('Escape' === e.key) {
+      this.props.onClose();
+    }
+  };
+
   setArticlesLoadingStatus = (status) => {
     this.setState(prevState => ({
       articles: {
@@ -56,7 +72,7 @@ class HomeNavigationSearchModal extends Component {
         lastSearchQuery: query,
       },
     }));
-  }
+  };
 
   render() {
 
@@ -105,7 +121,7 @@ class HomeNavigationSearchModal extends Component {
               />
             </section>
             <section className="home-navigation-search-modal__articles">
-              {/*{isLoading && 'loading ...'}*/}
+              {/* {isLoading && 'loading ...'} */}
               <ItemGridProvider value={{
                 viewComponent: 'EntryBadge',
                 className: cs({

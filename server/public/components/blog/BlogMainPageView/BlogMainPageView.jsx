@@ -36,6 +36,7 @@ const BlogMainPageView = ({
           data={transformedArticles}
         />
       </ItemGridProvider>
+      <h2 className="blog-main-page__title">Most Popular</h2>
     </section>
   );
 };

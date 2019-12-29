@@ -2,7 +2,6 @@ import axios from 'axios';
 import { Router as NextRouter } from '../../routes';
 import Cookies from 'js-cookie';
 import { CLIENT_URL, NODE_ENV, SERVER_URL } from '../utils/config';
-import endpoints from './endpoints';
 
 class BrowserApiClass {
 
