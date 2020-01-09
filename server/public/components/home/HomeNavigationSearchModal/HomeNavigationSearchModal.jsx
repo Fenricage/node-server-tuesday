@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import cs from 'classnames';
 import { connect } from 'react-redux';
-import { fromJS } from 'immutable';
+import { fromJS, List } from 'immutable';
 import Button from '../../../shared/components/Button/Button';
 import Times from '../../../shared/icons/Times/Times';
 import { ItemGridProvider } from '../../../shared/contexts/index';
@@ -25,7 +25,7 @@ class HomeNavigationSearchModal extends Component {
     this.state = {
       articles: {
         isLoading: false,
-        data: [],
+        data: new List(),
         lastSearchQuery: '',
       },
     };
@@ -34,11 +34,13 @@ class HomeNavigationSearchModal extends Component {
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeydownCloseModal);
+    this.setStunStyles(true);
   }
 
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeydownCloseModal);
+    this.setStunStyles(false);
   }
 
   handleKeydownCloseModal = (e) => {
@@ -74,6 +76,16 @@ class HomeNavigationSearchModal extends Component {
     }));
   };
 
+  setStunStyles = (status) => {
+    const htmlNode = document.querySelector('html');
+    if (status) {
+      htmlNode.style.overflow = 'hidden';
+    } else {
+      htmlNode.style.overflow = null;
+    }
+
+  };
+
   render() {
 
     const {
@@ -94,7 +106,6 @@ class HomeNavigationSearchModal extends Component {
 
     // TODO(@fenricage): оптимизируй, функция выполняется на каждый рендер лол LOL!!
     const transformedArticlesData = transformArticlesToItemGridData(articlesData);
-    console.log('transformedArticlesData', transformedArticlesData);
 
 
     return (

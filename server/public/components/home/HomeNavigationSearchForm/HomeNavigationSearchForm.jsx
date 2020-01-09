@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Immutable, { isImmutable, fromJS } from 'immutable';
+import Immutable, { isImmutable, fromJS, List } from 'immutable';
 import Debounce from 'awesome-debounce-promise';
 import { connect } from 'react-redux';
 import {
@@ -61,7 +61,7 @@ class HomeNavigationSearchForm extends Component {
     debouncedResetArticles()
       .then(() => {
         if (e.target.value.length < MIN_CHARS_FOR_REQ) {
-          setArticlesData([]);
+          setArticlesData(new List());
           setArticlesLoadingStatus(false);
         }
       });

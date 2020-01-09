@@ -1,0 +1,26 @@
+.item-grid {
+  $self: &;
+  display: grid;
+  grid-template-rows: auto;
+  margin-top: 3rem;
+  //grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
+  grid-gap: 32px;
+
+  @media (--md-viewport) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (--lg-viewport) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  // стили для страницы блога
+  &_context-blog {
+    grid-template-columns: 1fr;
+    grid-gap: 0px;
+
+    #{ $self }__angle {
+
+    }
+  }
+}
