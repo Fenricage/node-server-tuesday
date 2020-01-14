@@ -15,7 +15,7 @@ import './HomeLayout.scss';
 
 // сначала возвращает, потом сетит в useEffect
 // при первом вызове возвращает undefined
-function usePrevious(value) {
+function inPropvious(value) {
   const ref = useRef();
   useEffect(() => {
     ref.current = value;
@@ -80,47 +80,16 @@ const Fade = ({
   transitionFadeStyles,
   defaultDisplayFadeStyles,
   fadeCounter,
-  itemsNodes,
-  handleChangeFadeStatus,
   children
 }) => {
 
 
-  const defaultDisplayFadeStylesAfterMutate = {};
-
-  // const prevAmounts = usePrevious({ items, inProp, fadeCounter });
-
-  // useEffect(() => {
-  //   //
-  //   if (prevAmounts !== undefined && !items.equals(prevAmounts.items)) {
-  //     // console.log('items nodes changed', items);
-  //     handleChangeFadeStatus(!inProp);
-  //   }
-  // }, [inProp, handleChangeFadeStatus, items, prevAmounts]);
+  let defaultDisplayFadeStylesAfterMutate = {};
 
   // устанавливает display: none если еще ни разу не активировали fade анимацию
-  // if (!fadeCounter) {
-  //   defaultDisplayFadeStylesAfterMutate = defaultDisplayFadeStyles;
-  // }
-
-
-
-  // let displayedNodes = itemsNodes;
-
-  // if (!inProp && !prevAmounts) {
-  //   displayedNodes = itemsNodes;
-  // } else if (!inProp) {
-  //   displayedNodes = prevAmounts.items.map((item, idx) => (
-  //     <span style={{ marginLeft: '8px' }} key={idx}>{item.get('name')}</span>
-  //   ));
-  // } else {
-  //   displayedNodes = itemsNodes;
-  // }
-  // console.log('inProp', inProp)
-  // if(prevAmounts) {
-  //   console.log('prevAmounts.inProp', prevAmounts.inProp)
-  // }
-
+  if (!fadeCounter) {
+    defaultDisplayFadeStylesAfterMutate = defaultDisplayFadeStyles;
+  }
 
   return (
 
@@ -155,6 +124,7 @@ class HomeLayout extends Component {
         },
       ]),
       fadeStatus: true,
+      isTransitioning: false,
       defaultFadeStyles,
       transitionFadeStyles,
       displayFadeStyles,
@@ -177,8 +147,6 @@ class HomeLayout extends Component {
 
 
     this.handleChangeFadeStatus(!this.state.fadeStatus);
-
-
 
     setTimeout(() => {
       this.handleChangeFadeStatus(!this.state.fadeStatus);
@@ -206,6 +174,7 @@ class HomeLayout extends Component {
         ...prevState,
         transitionFadeStyles: displayFadeStyles,
         fadeStatus: status,
+        isTransitioning: true,
         fadeCounter: prevState.fadeCounter + 1,
       }));
 
@@ -217,12 +186,20 @@ class HomeLayout extends Component {
           fadeCounter: prevState.fadeCounter + 1,
         }));
       }, 0);
+
+      setTimeout(() => {
+        this.setState(prevState => ({
+          ...prevState,
+          isTransitioning: false,
+        }));
+      }, duration);
     } else {
 
       this.setState(prevState => ({
         ...prevState,
         transitionFadeStyles,
         fadeStatus: status,
+        isTransitioning: true,
         fadeCounter: prevState.fadeCounter + 1,
       }));
 
@@ -233,6 +210,7 @@ class HomeLayout extends Component {
           ...prevState,
           transitionFadeStyles: displayFadeStyles,
           fadeStatus: status,
+          isTransitioning: false,
           fadeCounter: prevState.fadeCounter + 1,
         }));
       }, duration);
@@ -261,6 +239,7 @@ class HomeLayout extends Component {
       transitionFadeStyles,
       displayFadeStyles,
       fadeCounter,
+      isTransitioning,
     } = this.state;
 
 
@@ -292,7 +271,7 @@ class HomeLayout extends Component {
             {itemsNodes}
           </Fade>
           <div>
-            <button type="button" onClick={this.handleAddItem}>
+            <button type="button" onClick={this.handleAddItem} disabled={isTransitioning}>
               добавить item
             </button>
             <button type="button" onClick={e => this.handleChangeFadeStatus(!this.state.fadeStatus)}>

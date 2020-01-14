@@ -90,6 +90,7 @@
 
   &__articles-grid {
     grid-template-columns: 1fr 1fr;
+    transition: opacity ease-out .2s;
     &_is-loading {
       opacity: .3;
     }

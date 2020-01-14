@@ -11,8 +11,8 @@ class ItemGrid extends Component {
   // TODO добавть CSSTRAansition roup animation
   shouldComponentUpdate(nextProps, nextState) {
 
-    console.log('this className', this.props.contextItemGrid.className)
-    console.log('next className', nextProps.contextItemGrid.className)
+    // console.log('this className', this.props.contextItemGrid.className)
+    // console.log('next className', nextProps.contextItemGrid.className)
     // console.log('equal data', this.props.data.equals(nextProps.data))
 
     if (!this.props.data.equals(nextProps.data)) {
@@ -39,7 +39,7 @@ class ItemGrid extends Component {
 
 
 
-    console.log("RENDER ITEM GRIRd")
+    // console.log("RENDER ITEM GRIRd")
 
     return (
       <section className={cs({
