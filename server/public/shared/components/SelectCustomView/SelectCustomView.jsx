@@ -13,8 +13,8 @@ const SelectCustomView = ({
   optionalButtonText,
   optionalButtonHandler,
 }) => (
-  <section className={`b-form-row ${className}`}>
-    <section className="b-form-row__title-box">
+  <section className={`form-row ${className}`}>
+    <section className="form-row__title-box">
       <h3>{title}</h3>
       {
         optionalButtonText && optionalButtonHandler ?
@@ -29,8 +29,8 @@ const SelectCustomView = ({
           null
       }
     </section>
-    <section className="b-form-row__wrap">
-      <section className="b-form-row__field">
+    <section className="form-row__wrap">
+      <section className="form-row__field">
         <Select
           value={transformedValue || undefined}
           options={options}

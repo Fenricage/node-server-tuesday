@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import cs from 'classnames';
+import './Input.scss';
 
 const Input = ({
   title,
   required,
   placeholder,
-  autofocus,
+  autoFocus,
   input,
   meta,
   className,
@@ -14,17 +15,18 @@ const Input = ({
   ...other
 }) => (
   <section className={cs({
-    'b-form-row': true,
     [`${className}`]: className,
+    'input-form-row': true,
   })}
   >
-    <section className="b-form-row__title-box">
-      <h3>{title}</h3>
+    <section className="input-form-row__title-box">
+      <h3 className="input-form-row__title">{title}</h3>
       {
         optionalButtonText && optionalButtonHandler ?
           (
             <button
               type="button"
+              className="input-form-row__optional-button"
               onClick={optionalButtonHandler}
             >
               {optionalButtonText}
@@ -33,13 +35,12 @@ const Input = ({
           null
       }
     </section>
-    <section className="b-form-row__wrap">
-      <section className="b-form-row__field">
+    <section className="input-form-row__wrap">
+      <section className="input-form-row__field">
         <input
-          className="b-form-row__input"
+          className="input-form-row__input"
           {...input}
           {...other}
-          autoFocus={autofocus}
           placeholder={placeholder || title || ''}
         />
       </section>

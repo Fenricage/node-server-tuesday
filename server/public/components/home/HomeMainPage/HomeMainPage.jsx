@@ -117,17 +117,17 @@ class HomeMainPage extends Component {
 
     return (
       <section>
-        <Pagination
-          total={totalArticles}
-          pageSize={pageSize}
-          className={isOnePage && 'hidden'}
-          onPageChange={this.handlePageClick}
-        />
         <HomeMainPageView
           articles={articles}
           initLoaded={initLoaded}
           isLoadedArticles={isLoadedArticles}
           transformArticlesToItemGridData={this.transformArticlesToItemGridData}
+        />
+        <Pagination
+          total={totalArticles}
+          pageSize={pageSize}
+          className={isOnePage && 'hidden'}
+          onPageChange={this.handlePageClick}
         />
       </section>
 

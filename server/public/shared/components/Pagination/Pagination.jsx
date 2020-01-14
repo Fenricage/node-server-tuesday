@@ -56,26 +56,39 @@ class Pagination extends Component {
     }
 
     return (
-      <section>
+      <section className="pagination">
+        <button type="button" className="pagination__prev">
+          Предыдущая
+        </button>
         <ReactPaginate
-          previousLabel="<<"
-          nextLabel=">>"
+          previousLabel="Предыдущая"
+          nextLabel="Следующая"
           breakLabel="..."
-          breakClassName="break-me"
           pageCount={Math.ceil(total / pageSize)}
           marginPagesDisplayed={2}
           initialPage={selectedPage}
           pageRangeDisplayed={5}
           disableInitialCallback
-          disabledClassName="disabled"
           onPageChange={onPageChange}
           containerClassName={cs({
-            pagination: true,
+            pagination__container: true,
             [`pagination_${className}`]: className,
           })}
           subContainerClassName="pages pagination"
-          activeClassName="active"
+          previousClassName="pagination__previous-page"
+          previousLinkClassName="pagination__previous-link"
+          breakClassName="pagination__break-page"
+          breakLinkClassName="pagination__break-link"
+          pageClassName="pagination__page"
+          pageLinkClassName="pagination__page-link"
+          activeClassName="pagination__page_active"
+          nextClassName="pagination__next-page"
+          nextLinkClassName="pagination__next-link"
+          disabledClassName="disabled"
         />
+        <button type="button" className="pagination__next">
+          Следующая
+        </button>
       </section>
     );
   }

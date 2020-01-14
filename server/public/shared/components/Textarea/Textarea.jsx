@@ -10,10 +10,10 @@ const Textarea = ({
   meta,
   ...other
 }) => (
-  <section className="b-form-row">
+  <section className="form-row">
     <h3>{title}</h3>
-    <section className="b-form-row__wrap">
-      <section className="b-form-row__field">
+    <section className="form-row__wrap">
+      <section className="form-row__field">
         <textarea
           {...input}
           {...other}

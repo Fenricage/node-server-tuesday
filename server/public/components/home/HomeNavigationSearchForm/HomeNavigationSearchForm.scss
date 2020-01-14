@@ -1,7 +1,12 @@
+$searh-placeholder-color: #ccc;
+
 .home-navigation-search-form {
+  $input: ".input-form-row";
+  position: relative;
+  transition: max-width ease .5s;
   @media (--md-viewport) {
     margin: 0 auto;
-    max-width: 600px;
+    width: 600px;
   }
 
   @media (--lg-viewport) {
@@ -11,4 +16,95 @@
   &__form {
 
   }
+
+  &__search-input {
+
+    #{ $input }__input {
+      text-align: center;
+      font-size: 2.3rem;
+      color: #2d2d2d;
+      &::-webkit-input-placeholder {
+        color: $searh-placeholder-color;
+      }
+
+      &:-ms-input-placeholder {
+        color: $searh-placeholder-color;
+      }
+
+      &::placeholder {
+        color: $searh-placeholder-color;
+      }
+    }
+  }
+
+  &__input-border {
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    transition: margin ease .5s, background-color ease .5s;
+    height: 2px;
+
+    background-color: #8e8e8e;
+
+    &_is-focused {
+      background-color: #2d2d2d;
+      margin: 0 -10px;
+      @media (--md-viewport) {
+        margin: 0 -20px
+      }
+      @media (--lg-viewport) {
+        margin: 0 -20px
+      }
+    }
+  }
+
+  &__input-loader {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    opacity: 0;
+    transition: opacity ease .5s, margin ease .5s;
+    height: 2px;
+
+    background: linear-gradient(270deg, #54dbb8, #2173b6, #54dbb8, #54dbb8);
+    background-size: 50%;
+
+    -webkit-animation: InputLoaderAnimation 1s ease-out infinite;
+    -moz-animation: InputLoaderAnimation 1s ease-out infinite;
+    animation: InputLoaderAnimation 1s ease-out infinite;
+
+    &_is-loading {
+      opacity: 1;
+    }
+
+    &_is-focused {
+      margin: 0 -10px;
+      @media (--md-viewport) {
+        margin: 0 -20px
+      }
+      @media (--lg-viewport) {
+        margin: 0 -20px
+      }
+    }
+  }
+
+}
+
+
+@-webkit-keyframes InputLoaderAnimation {
+    0%{background-position:0% 0%}
+  100%{background-position:100% 0%}
+}
+@-moz-keyframes InputLoaderAnimation {
+    0%{background-position:0% 0%}
+  100%{background-position:100% 0%}
+}
+@keyframes InputLoaderAnimation {
+  0%{background-position:0% 0%}
+  100%{background-position:100% 0%}
 }

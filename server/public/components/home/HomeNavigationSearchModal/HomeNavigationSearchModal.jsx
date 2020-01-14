@@ -12,7 +12,7 @@ import ItemGrid from '../../../shared/components/ItemGrid/ItemGrid';
 import HomeNavigationSearchForm from '../HomeNavigationSearchForm/HomeNavigationSearchForm';
 import './HomeNavigationSearchModal.scss';
 
-const duration = 300;
+const duration = 150;
 
 const defaultFadeStyles = {
   transition: `all ${duration}ms ease-in-out`,
@@ -293,6 +293,7 @@ class HomeNavigationSearchModal extends Component {
                 setArticlesLoadingStatus={this.setArticlesLoadingStatus}
                 setArticlesData={this.setArticlesData}
                 setLastSearchQuery={this.setLastSearchQuery}
+                isLoading={isLoading}
               />
             </section>
             <section className="home-navigation-search-modal__articles">
@@ -301,7 +302,7 @@ class HomeNavigationSearchModal extends Component {
                 viewComponent: 'EntryBadge',
                 className: cs({
                   'home-navigation-search-modal__articles-grid': true,
-                  'home-navigation-search-modal__articles-grid_is-loading': isLoading || isTransitioning,
+                  // 'home-navigation-search-modal__articles-grid_is-loading': isLoading || isTransitioning,
                 }),
               }}
               >

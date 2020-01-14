@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Immutable, { isImmutable, fromJS, List } from 'immutable';
+import cs from 'classnames';
 import Debounce from 'awesome-debounce-promise';
 import { connect } from 'react-redux';
 import {
@@ -24,6 +25,18 @@ const MIN_CHARS_FOR_REQ = 3;
 
 class HomeNavigationSearchForm extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      isFocused: false,
+    };
+  }
+
+  handleSetFocusState = (status) => {
+    this.setState({
+      isFocused: status,
+    })
+  };
 
   handleChangeSearch = (e) => {
 
@@ -75,13 +88,22 @@ class HomeNavigationSearchForm extends Component {
       handleSubmit,
       setArticlesLoadingStatus,
       setArticlesData,
+      isLoading,
     } = this.props;
 
+    const { isFocused } = this.state;
+    console.log('isFocused', isFocused)
     return (
-      <section className="home-navigation-search-form">
+      <section className={cs({
+        "home-navigation-search-form": true,
+      })}>
         <form
           action=""
-          className="home-navigation-search-form__form"
+          className={
+            cs({
+              'home-navigation-search-form__form': true,
+            })
+          }
           // onSubmit={handleSubmit((values, dispatch) => {
           //   searchArticles(values)
           //     .then((articles) => {
@@ -96,8 +118,24 @@ class HomeNavigationSearchForm extends Component {
             name="search"
             type="text"
             onChange={this.handleChangeSearch}
-            className="gray-form-row"
-            placeholder="Enter the search request ..."
+            onFocus={() => this.handleSetFocusState(true)}
+            onBlur={() => this.handleSetFocusState(false)}
+            className={cs({
+              'home-navigation-search-form__search-input': true,
+            })}
+            placeholder="Поиск"
+          />
+          <div className={cs({
+            'home-navigation-search-form__input-border': true,
+            'home-navigation-search-form__input-border_is-hidden': isLoading,
+            'home-navigation-search-form__input-border_is-focused': isFocused,
+          })}
+          />
+          <div className={cs({
+            'home-navigation-search-form__input-loader': true,
+            'home-navigation-search-form__input-loader_is-loading': isLoading,
+            'home-navigation-search-form__input-loader_is-focused': isFocused,
+          })}
           />
         </form>
       </section>
