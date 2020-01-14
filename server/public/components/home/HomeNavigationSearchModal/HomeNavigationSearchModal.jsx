@@ -141,6 +141,7 @@ class HomeNavigationSearchModal extends Component {
                 }),
               }}
               >
+
                 <ItemGrid
                   data={transformedArticlesData}
                 />

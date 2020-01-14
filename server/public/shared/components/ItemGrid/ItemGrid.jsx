@@ -17,11 +17,11 @@ class ItemGrid extends Component {
 
     if (!this.props.data.equals(nextProps.data)) {
       return true;
-    };
+    }
 
     if (!this.props.contextItemGrid.className !== nextProps.contextItemGrid.className) {
       return true;
-    };
+    }
 
 
     return false;
