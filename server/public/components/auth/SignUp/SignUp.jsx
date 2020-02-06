@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form/immutable';
 import Link from 'next/link';
+import cs from 'classnames';
 import Input from '../../../shared/components/Input/Input';
 import Button from '../../../shared/components/Button/Button';
 import register from './dispatchControllers/register';
@@ -39,14 +40,24 @@ class SignUpForm extends Component {
       } = this.props;
 
       return (
-        <section className="b-signup">
-          <h2>Sign up</h2>
-          <p className={statusType}>{statusText}</p>
-          <form onSubmit={handleSubmit(register)}>
+        <section className="signup">
+          <h2 className="signup__title">Sign up</h2>
+          {statusText ? (
+            <p className={cs({
+              'signup__status-text': true,
+              [`${statusType}`]: statusType,
+            })}>
+              {statusText}
+            </p>
+          ) : null}
+          <form
+            onSubmit={handleSubmit(register)}
+          >
             <Field
               placeholder="Enter your e-mail"
               title="E-mail"
               name="email"
+              className="signup__input-row"
               component={Input}
               type="text"
             />
@@ -55,6 +66,7 @@ class SignUpForm extends Component {
               autofocus
               title="Username"
               name="username"
+              className="signup__input-row"
               component={Input}
               type="text"
             />
@@ -62,10 +74,11 @@ class SignUpForm extends Component {
               placeholder="Enter your password"
               title="Password"
               name="password"
+              className="signup__input-row"
               component={Input}
               type="text"
             />
-            <section className="b-signup__box-button">
+            <section className="signup__box-button">
               <Button
                 type="submit"
                 className="btn"
@@ -74,7 +87,7 @@ class SignUpForm extends Component {
                 Register
               </Button>
             </section>
-            <section className="b-signup__switch">
+            <section className="signup__switch">
               <Link href="/auth/login">
                 <a>
                   Switch To Sign in

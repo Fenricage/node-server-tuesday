@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'next/router';
 import { fromJS } from 'immutable';
+import cs from 'classnames';
 import { Link, Router as NextRouter } from '../../../routes';
 import './HomeMainPage.scss';
 import { connect } from 'react-redux';
@@ -20,12 +21,6 @@ class HomeMainPage extends Component {
   }
 
 
-  componentDidMount() {
-    // this.getArticles()
-    //   .then(() => this.setState({ initLoaded: true }));
-  }
-
-
   componentDidUpdate(prevProps, prevState) {
     const {
       router,
@@ -35,6 +30,7 @@ class HomeMainPage extends Component {
       router: prevRouter,
     } = prevProps;
 
+
     // сравниваем пути? мб стоит query параметры срапавнивать
 
     // if (router.asPath !== prevRouter.asPath) {
@@ -42,6 +38,7 @@ class HomeMainPage extends Component {
     // }
 
   }
+
 
   getArticles = () => {
     const {
@@ -98,7 +95,65 @@ class HomeMainPage extends Component {
       NextRouter.pushRoute(`${router.pathname}?page=${selected + 1}&size=${pageSize}`.replace('//', '/'));
     }
 
+    // setTimeout(() => {
+    //   const neededPaginationNode = document
+    //     .querySelector('.home-main-page__pagination .pagination__page_active');
+    //
+    //   console.log('neededPaginationNode', neededPaginationNode)
+    //
+    //   let nextSibling = {
+    //     node: neededPaginationNode.nextElementSibling,
+    //     siblingCounter: 1,
+    //   }
+    //
+    //   let prevSibling = {
+    //     node: neededPaginationNode.previousElementSibling,
+    //     siblingCounter: 1,
+    //   }
+    //
+    //   while (nextSibling.node.classList.contains('pagination__page') || nextSibling.node.classList.contains('pagination__break-page')) {
+    //     // console.log('nextSibling', nextSibling.node)
+    //
+    //     const classForDelete = nextSibling.node.className
+    //       .split(' ')
+    //       .find(classNameChunk => {
+    //         return /sibling__.*/.test(classNameChunk);
+    //       });
+    //
+    //     if (classForDelete) {
+    //       nextSibling.node.classList.remove(classForDelete);
+    //     }
+    //
+    //     nextSibling.node.classList.add(`sibling__${nextSibling.siblingCounter}`);
+    //     nextSibling.node = nextSibling.node.nextElementSibling;
+    //     nextSibling.siblingCounter = nextSibling.siblingCounter + 1;
+    //   }
+    //
+    //   while (prevSibling.node.classList.contains('pagination__page') || prevSibling.node.classList.contains('pagination__break-page')) {
+    //     // console.log('nextSibling', nextSibling.node)
+    //
+    //     const classForDelete = prevSibling.node.className
+    //       .split(' ')
+    //       .find(classNameChunk => {
+    //         return /sibling__.*/.test(classNameChunk);
+    //       });
+    //
+    //     if (classForDelete) {
+    //       prevSibling.node.classList.remove(classForDelete);
+    //     }
+    //
+    //     prevSibling.node.classList.add(`sibling__${prevSibling.siblingCounter}`);
+    //     prevSibling.node = prevSibling.node.nextElementSibling;
+    //     prevSibling.siblingCounter = prevSibling.siblingCounter + 1;
+    //   }
+    //
+    //
+    //
+    // }, 0);
+
   };
+
+
 
   render() {
     const {
@@ -116,18 +171,21 @@ class HomeMainPage extends Component {
     const isOnePage = totalArticles <= pageSize;
 
     return (
-      <section>
+      <section className="home-main-page">
+        <Pagination
+          total={totalArticles}
+          pageSize={pageSize}
+          className={cs({
+            'home-main-page__pagination': true,
+            hidden: isOnePage,
+          })}
+          onPageChange={this.handlePageClick}
+        />
         <HomeMainPageView
           articles={articles}
           initLoaded={initLoaded}
           isLoadedArticles={isLoadedArticles}
           transformArticlesToItemGridData={this.transformArticlesToItemGridData}
-        />
-        <Pagination
-          total={totalArticles}
-          pageSize={pageSize}
-          className={isOnePage && 'hidden'}
-          onPageChange={this.handlePageClick}
         />
       </section>
 

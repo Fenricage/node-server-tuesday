@@ -1,15 +1,18 @@
-.b-signin {
+@import "../../../shared/css/helpers/mixins/input-default-form-row";
+
+.signin {
+  $default-input: ".input-form-row";
   padding: 16px;
   margin: auto;
   width: 340px;
   height: auto;
   background-color: #fff;
 
-  > h2 {
+  &__title {
     text-align: center;
   }
 
-  > p {
+  &__status-text {
 
     &.success {
       color: var(--color-admin-primary);
@@ -20,21 +23,25 @@
     }
   }
 
-  > form {
+  &__input-row {
+    @include input-default-form-row;
+  }
 
-    > * + * {
-      margin-top: 20px;
-    }
+  &__input-row + &__input-row {
+    margin-top: 1.8rem;
   }
 
   &__switch {
     text-align: center;
+    margin-top: 1rem;
   }
 
   &__box-button {
-
+    margin-top: 3rem;
     .btn {
       width: 100%;
     }
   }
+
+
 }

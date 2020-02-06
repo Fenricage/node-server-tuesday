@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form/immutable';
+import cs from 'classnames';
 import './SignIn.scss';
 import Link from 'next/link';
 import Input from '../../../shared/components/Input/Input';
@@ -31,17 +32,26 @@ class SignInForm extends Component {
     } = this.props;
 
     return (
-      <section className="b-signin">
-        <h2>Sign in</h2>
+      <section className="signin">
+        <h2 className="signin__title">Sign in</h2>
         {statusText ? (
-          <p className={statusType}>{statusText}</p>
+          <p className={cs({
+            'signin__status-text': true,
+            [`${statusType}`]: statusType,
+          })}>
+            {statusText}
+          </p>
         ) : null}
-        <form onSubmit={handleSubmit(login)}>
+        <form
+          onSubmit={handleSubmit(login)}
+          className="signin__form"
+        >
           <Field
             placeholder="Enter your login e-mail"
             autofocus
             title="E-mail"
             name="email"
+            className="signin__input-row"
             component={Input}
             type="email"
           />
@@ -49,10 +59,11 @@ class SignInForm extends Component {
             placeholder="Enter your password"
             title="Password"
             name="password"
+            className="signin__input-row"
             component={Input}
             type="password"
           />
-          <section className="b-signin__box-button">
+          <section className="signin__box-button">
             <Button
               type="submit"
               className="btn"
@@ -61,7 +72,7 @@ class SignInForm extends Component {
               Log in
             </Button>
           </section>
-          <section className="b-signin__switch">
+          <section className="signin__switch">
             <Link href="/auth/register">
               <a>Switch To Sign up</a>
             </Link>

@@ -1,0 +1,37 @@
+// деволтный стиль для текстового инпута
+
+@mixin input-default-form-row {
+  $self: ".input-form-row";
+  #{ $self }__input {
+    -webkit-appearance: none;
+    padding: 10px 16px;
+    border: 0;
+    box-shadow: inset 0 0 0 1px var(--color-form-gray);
+    line-height: 24px;
+    cursor: text;
+    width: 100%;
+    transition: opacity .15s ease 0s, transform .15s ease 0s;
+    outline: 0;
+    font-size: 14px;
+    font-weight: 400;
+    resize: none;
+
+    &:hover {
+        box-shadow: inset 0 0 0 1px var(--color-form-black);
+    }
+
+
+    &:focus {
+        box-shadow: inset 0 0 0 1.5px var(--color-admin-primary);
+    }
+
+    &:active:not([disabled]) {
+        box-shadow: inset 0 0 0 1.5px var(--color-admin-primary);
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        background-color: rgba(0, 0, 0, .05);
+    }
+  }
+}
