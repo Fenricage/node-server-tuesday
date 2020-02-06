@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import uuid from 'uuid';
 import cs from 'classnames';
 import './Input.scss';
@@ -15,7 +15,9 @@ const Input = ({
   optionalButtonHandler,
   ...other
 }) => {
+
   const uid = uuid.v4();
+
   return (
     <section className={cs({
       [`${className}`]: className,
@@ -50,7 +52,8 @@ const Input = ({
         </section>
       </section>
     </section>
-  )
+  );
+
 };
 
 export default Input;
