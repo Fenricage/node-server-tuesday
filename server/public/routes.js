@@ -6,7 +6,6 @@ module.exports = routes()
   .add('/', '/')
   .add('/articles', '/articles')
   .add('/best', '/')
-  .add('/blog', '/blog')
   .add('articleDetail', '/articles/:id', '/articles/detail')
   .add('articleCategoryDetail', '/categories/:categoryId', '/categories')
   // ADMIN
@@ -21,4 +20,7 @@ module.exports = routes()
   .add('/auth/login', '/auth/login')
   .add('/auth/register', '/auth/register')
   // OTHER
-  .add('/about', '/about');
+  .add('/about', '/about')
+  // BLOG
+  .add('/blog', '/blog')
+  .add('blogDetail', '/blog/:id', '/blog/detail');

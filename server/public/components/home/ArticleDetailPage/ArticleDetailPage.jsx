@@ -19,7 +19,9 @@ class ArticleDetailPage extends Component {
     //   return <p>loader...</p>;
     // }
     return (
-      <ArticleDetailPageView articleData={articleData} />
+      <ArticleDetailPageView
+        articleData={articleData}
+      />
     );
   }
 
