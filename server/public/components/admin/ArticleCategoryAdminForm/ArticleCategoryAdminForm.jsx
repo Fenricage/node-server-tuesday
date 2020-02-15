@@ -43,6 +43,14 @@ class ArticleCategoryAdminForm extends Component {
             title="Category Name"
             placeholder="Enter the category name..."
           />
+          <Field
+            component={Input}
+            className="b-form__block"
+            name="code"
+            type="text"
+            title="Code Name"
+            placeholder="Enter the code name..."
+          />
           <section className="b-form__block">
             <button type="submit" className="btn">{isPatching ? 'patching...' : 'Submit'}</button>
           </section>

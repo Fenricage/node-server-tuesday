@@ -129,10 +129,12 @@ const endpoints = r => ({
       }),
   },
   articeCategories: {
-    getAll: extra => r('articles/categories',
+    getAll: queryParams => r('articles/categories',
       {
         method: 'get',
-        ...extra,
+        params: {
+          ...queryParams,
+        },
       }),
     deleteOne: id => r(`articles/categories/${id}`,
       {

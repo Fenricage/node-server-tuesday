@@ -1,8 +1,8 @@
 import React, { Component, createRef } from 'react';
 import { withRouter } from 'next/router';
 import ReactPaginate from 'react-paginate';
-import { Link, Router as NextRouter } from '../../../routes';
 import cs from 'classnames';
+import { Link, Router as NextRouter } from '../../../routes';
 import './Pagination.scss';
 
 class Pagination extends Component {
@@ -12,7 +12,7 @@ class Pagination extends Component {
     const initialPage = parseInt(props.router.query.page, 10) || 0;
     this.state = {
       selectedPage: initialPage,
-      maxPage: Math.ceil(props.total/props.pageSize),
+      maxPage: Math.ceil(props.total / props.pageSize),
     };
 
     this.pagination = createRef();
@@ -26,8 +26,6 @@ class Pagination extends Component {
 
     if (router.query.page !== prevRouter.query.page) {
       this.setSelectedPage();
-
-
     }
 
     if (this.state.selectedPage !== prevState.selectedPage) {
@@ -58,17 +56,25 @@ class Pagination extends Component {
 
   setSelectedPage = () => {
     const { router } = this.props;
-    //TODO декрементирует на единицу, мешает хэндлерам, пересмотреть логику
+    // TODO декрементирует на единицу, мешает хэндлерам, пересмотреть логику
     const selectedPage = parseInt(router.query.page, 10);
-    this.setState({
-      selectedPage,
-    });
+
+
+    if (router.query.page !== undefined) {
+      this.setState({
+        selectedPage,
+      });
+    } else {
+      this.setState({
+        selectedPage: 1,
+      });
+    }
   };
 
   handleClickNextPage = (e) => {
     const { match, router, pageSize } = this.props;
     const { selectedPage } = this.state;
-    console.log('selectedPage', selectedPage)
+    console.log('selectedPage', selectedPage);
 
     if (router.pathname.startsWith('/categories')) {
       NextRouter.pushRoute(`${router.pathname}/${router.query.categoryId}?page=${selectedPage + 1}&size=${pageSize}`.replace('//', '/'));
@@ -135,7 +141,7 @@ class Pagination extends Component {
           type="button"
           className="pagination__prev"
           onClick={this.handleClickPrevPage}
-          disabled={selectedPage === 1}
+          disabled={1 === selectedPage}
         >
           Предыдущая
         </button>

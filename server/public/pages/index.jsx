@@ -11,10 +11,11 @@ class HomePageWithLayout extends Component {
   render() {
     const { query, pathname } = this.props;
     return (
-      <HomeMainPage
-        query={query}
-        pathname={pathname}
-      />
+      <p>main page</p>
+      // <HomeMainPage
+      //   query={query}
+      //   pathname={pathname}
+      // />
     );
   }
 
@@ -27,7 +28,13 @@ HomePageWithLayout.getInitialProps = async ({
 }) => {
   const { dispatch } = store;
   const { page = 1, size = SIZE_PAGE, categoryId } = query;
-  const queryParams = { page, size, orderBy: { _id: -1 } };
+
+  const getArticlesQueryParams = { page, size, orderBy: { _id: -1 } };
+  const getArticlesCategoriesQueryParams = {
+    extra: {
+      exclude: 'blog',
+    },
+  };
 
   // готовим extra для categories
   // TODO надо наверное объединить все индексные страницы в одну
@@ -35,16 +42,16 @@ HomePageWithLayout.getInitialProps = async ({
   if (categoryId) {
     extra.category = categoryId;
   }
-  queryParams.extra = extra;
+  getArticlesQueryParams.extra = extra;
 
   if (isServer) {
-    await dispatch(getAllArticleCategoriesServer());
+    await dispatch(getAllArticleCategoriesServer(getArticlesCategoriesQueryParams));
     await dispatch(getAllTagsAndSetServer());
-    await dispatch(getAllArticlesAndSetServer(queryParams));
+    await dispatch(getAllArticlesAndSetServer(getArticlesQueryParams));
   } else {
-    await dispatch(getAllArticleCategories());
+    await dispatch(getAllArticleCategories(getArticlesCategoriesQueryParams));
     await dispatch(getAllTagsAndSet());
-    await dispatch(getAllArticlesAndSet(queryParams));
+    await dispatch(getAllArticlesAndSet(getArticlesQueryParams));
   }
 
   return { query, pathname };

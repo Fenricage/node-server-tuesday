@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import HomeMainPage from '../../components/home/HomeMainPage/HomeMainPage';
-import { getAllArticleCategoriesServer } from '../../actions/articleCategories';
+import {getAllArticleCategories, getAllArticleCategoriesServer} from '../../actions/articleCategories';
 import { getAllTagsAndSet, getAllTagsAndSetServer } from '../../actions/tags';
-import { getAllArticlesAndSetServer } from '../../actions/articles';
+import {getAllArticlesAndSet, getAllArticlesAndSetServer} from '../../actions/articles';
 import { getLayout } from '../../shared/layouts/HomeLayout/HomeLayout';
 import { SIZE_PAGE } from '../../shared/constants/page';
 
@@ -26,16 +26,33 @@ HomePageWithLayout.getInitialProps = async ({
   query, pathname, store, isServer,
 }) => {
   const { dispatch } = store;
-  console.log('\x1b[36m', 'ARTICLES GET INITIAL PROPS', '\x1b[0m');
-  const { page = 1, size = SIZE_PAGE } = query;
-  const queryParams = { page, size, orderBy: { _id: -1 } };
-  await dispatch(getAllArticleCategoriesServer());
-  await dispatch(getAllTagsAndSetServer());
-  await dispatch(getAllArticlesAndSetServer(queryParams));
-  // console.log('\x1b[36m', 'store.getState()', store.getState().toJS(), '\x1b[0m');
+  const { page = 1, size = SIZE_PAGE, categoryId } = query;
 
-  // console.log(' SECOND GET INITIAL PROPS COMPONENT');
-  // console.log("SERVE AND CLIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEENT!!!!!!!!!") вызывает и на клиенте при маршритизации why?
+  const getArticlesQueryParams = { page, size, orderBy: { _id: -1 } };
+  const getArticlesCategoriesQueryParams = {
+    extra: {
+      exclude: 'blog',
+    },
+  };
+
+  // готовим extra для categories
+  // TODO надо наверное объединить все индексные страницы в одну
+  const extra = {};
+  if (categoryId) {
+    extra.category = categoryId;
+  }
+  getArticlesQueryParams.extra = extra;
+
+  if (isServer) {
+    await dispatch(getAllArticleCategoriesServer(getArticlesCategoriesQueryParams));
+    await dispatch(getAllTagsAndSetServer());
+    await dispatch(getAllArticlesAndSetServer(getArticlesQueryParams));
+  } else {
+    await dispatch(getAllArticleCategories(getArticlesCategoriesQueryParams));
+    await dispatch(getAllTagsAndSet());
+    await dispatch(getAllArticlesAndSet(getArticlesQueryParams));
+  }
+
   return { query, pathname };
 };
 

@@ -26,9 +26,9 @@ const getAllArticleCategoriesFailure = e => ({
   payload: e,
 });
 
-export const getAllArticleCategories = () => (dispatch) => {
+export const getAllArticleCategories = (queryParams) => (dispatch) => {
   dispatch(getAllArticleCategoriesFetch());
-  return api.get(API_BROWSER).articeCategories.getAll()
+  return api.get(API_BROWSER).articeCategories.getAll(queryParams)
     .then((categories) => {
       dispatch(getAllArticleCategoriesSuccess(fromJS(categories)));
     })
@@ -38,9 +38,9 @@ export const getAllArticleCategories = () => (dispatch) => {
     });
 };
 
-export const getAllArticleCategoriesServer = () => (dispatch) => {
+export const getAllArticleCategoriesServer = (queryParams) => (dispatch) => {
   dispatch(getAllArticleCategoriesFetch());
-  return api.get(API_SERVER).articeCategories.getAll()
+  return api.get(API_SERVER).articeCategories.getAll(queryParams)
     .then((categories) => {
       dispatch(getAllArticleCategoriesSuccess(fromJS(categories)));
     })
