@@ -2,14 +2,16 @@ import React, { Component, createRef } from 'react';
 import { withRouter } from 'next/router';
 import ReactPaginate from 'react-paginate';
 import cs from 'classnames';
-import { Link, Router as NextRouter } from '../../../routes';
+import { Router as NextRouter } from '../../../routes';
 import './Pagination.scss';
 
 class Pagination extends Component {
 
   constructor(props) {
     super(props);
-    const initialPage = parseInt(props.router.query.page, 10) || 0;
+
+    const initialPage = parseInt(props.router.query.page, 10) || 1;
+
     this.state = {
       selectedPage: initialPage,
       maxPage: Math.ceil(props.total / props.pageSize),
@@ -19,10 +21,8 @@ class Pagination extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { router, className } = this.props;
+    const { router } = this.props;
     const { router: prevRouter } = prevProps;
-
-    const { selectedPage } = this.state;
 
     if (router.query.page !== prevRouter.query.page) {
       this.setSelectedPage();
@@ -30,8 +30,6 @@ class Pagination extends Component {
 
     if (this.state.selectedPage !== prevState.selectedPage) {
       // TODO(@fenricage): вынести за пределы данного компонента. Ввести пропс onUpdatePage
-
-
     }
   }
 
