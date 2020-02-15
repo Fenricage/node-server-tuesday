@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import HomeLayout from '../../shared/layouts/HomeLayout/HomeLayout';
-import ArticleDetailPage from '../../components/home/ArticleDetailPage/ArticleDetailPage';
+import BlogDetailPage from '../../components/blog/BlogDetailPage/BlogDetailPage';
 import { reqArticleAndSetServer } from '../../actions/article';
 import { getAllTagsAndSetServer } from '../../actions/tags';
 import { getAllArticleCategoriesServer } from '../../actions/articleCategories';
@@ -12,7 +12,7 @@ class ArticleDetailPageWithLayout extends Component {
     const { query, pathname } = this.props;
     return (
       <HomeLayout>
-        <ArticleDetailPage
+        <BlogDetailPage
           query={query}
           pathname={pathname}
         />
