@@ -1,6 +1,15 @@
-.b-articles-admin-form {
+@import "../../../shared/css/helpers/mixins/input-default-form-row";
+@import "../../../shared/css/helpers/mixins/textarea-default-form-row";
 
+.articles-admin-form {
+  $default-input: ".input-form-row";
 
+  &__input-row {
+    @include input-default-form-row;
+  }
 
+  &__textarea-row {
+    @include textarea-default-form-row;
+  }
 }
 

@@ -1,7 +1,7 @@
 // дефолтный стиль для текстового инпута
 
-@mixin input-default-form-row {
-  $self: ".input-form-row";
+@mixin button-default-form-row {
+  $self: ".button-form-row";
   #{ $self }__input {
     -webkit-appearance: none;
     padding: 10px 16px;

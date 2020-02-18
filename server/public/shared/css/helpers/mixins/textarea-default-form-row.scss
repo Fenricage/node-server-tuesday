@@ -1,8 +1,8 @@
-// дефолтный стиль для текстового инпута
+// дефолтный стиль для текстарии
 
-@mixin input-default-form-row {
-  $self: ".input-form-row";
-  #{ $self }__input {
+@mixin textarea-default-form-row {
+  $self: ".textarea-form-row";
+  #{ $self }__textarea {
     -webkit-appearance: none;
     padding: 10px 16px;
     border: 0;

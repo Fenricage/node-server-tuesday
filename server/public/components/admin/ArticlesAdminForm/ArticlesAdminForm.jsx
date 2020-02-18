@@ -87,7 +87,7 @@ class ArticlesAdminForm extends Component {
 
     return (
       <section
-        className="b-articles-admin-form"
+        className="articles-admin-form"
       >
         <form
           className="b-form"
@@ -95,7 +95,7 @@ class ArticlesAdminForm extends Component {
         >
           <Field
             component={Input}
-            className="b-form__block"
+            className="b-form__block articles-admin-form__input-row"
             name="title"
             type="text"
             title="Title"
@@ -103,7 +103,7 @@ class ArticlesAdminForm extends Component {
           />
           <Field
             component={Input}
-            className="b-form__block"
+            className="b-form__block articles-admin-form__input-row"
             name="preview_text"
             type="text"
             title="Preview Text"

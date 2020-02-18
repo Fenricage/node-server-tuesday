@@ -15,6 +15,7 @@
   // forms
   --color-form-gray: hsla(0, 0%, 75%, 1);
   --color-form-black: hsla(0, 0%, 16%, 1);
+  --border-form-element-border-radius: 4px;
 
   // nav-fonts-color
   --color-home-nav-font-default: var(--color-black-54);
@@ -59,4 +60,8 @@
   // blog
   --color-blog-blue: hsla(222, 89%, 64%, 1);
   --color-blog-blue-opacity: hsla(223, 88%, 97%, 1);
+
+  // button
+  --border-button-border-radius: 4px;
+
 }
