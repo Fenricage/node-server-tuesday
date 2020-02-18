@@ -15,7 +15,7 @@
   overflow: hidden;
   min-width: 120px;
   padding: 8px 15px 8px 15px;
-  background-color: var(--color-admin-primary);
+  background-color: var(--color-admin-lprimary);
   cursor: pointer;
   -webkit-transition: background-color 250ms, color 250ms;
   transition: background-color 250ms, color 250ms;
@@ -29,5 +29,9 @@
 
   &:active {
     transform: scale(.99, .99);
+  }
+
+  &:hover {
+    background-color: var(--color-admin-primary);
   }
 }
