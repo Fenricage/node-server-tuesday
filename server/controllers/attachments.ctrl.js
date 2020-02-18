@@ -23,8 +23,19 @@ module.exports = {
         }
         next();
       });
-
-
+  },
+  getAll: async (req, res, next) => {
+    Attachment.find({}, { __v: 0 })
+      .exec((err, attachments) => {
+        if (err) res.send(err);
+        else if (!attachments) res.send(404);
+        else {
+          res.send({
+            attachments,
+          });
+        }
+        next();
+      });
   },
   getAttachment: async (req, res, next) => {
     const { id } = req.params;

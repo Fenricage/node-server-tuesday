@@ -8,6 +8,12 @@ module.exports = (router) => {
    */
   // TODO мб стоит обработвать и научить добавлять любые файлы?
   router
+    .route('/attachments')
+    .get(
+      attachmentcontroller.getAll,
+    );
+
+  router
     .route('/attachments/:type')
     .post(
       multerStorage.single('image'),

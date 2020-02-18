@@ -9,4 +9,5 @@ const AttachmentSchema = new mongoose.Schema(
     originalName: String,
   },
 );
+
 module.exports = mongoose.model('Attachment', AttachmentSchema);
