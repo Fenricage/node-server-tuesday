@@ -12,7 +12,7 @@ const verifyToken = (req, res, next) => {
 
   // verifies secret and checks exp
   jwt.verify(token, config.secret, (err, decoded) => {
-    console.log('\x1b[36m', 'decoded', decoded, '\x1b[0m');
+    // console.log('\x1b[36m', 'decoded', decoded, '\x1b[0m');
 
     if (!decoded) {
       return res

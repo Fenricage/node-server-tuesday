@@ -96,32 +96,49 @@ module.exports = {
   },
   deleteOne: async (req, res, next) => {
     const { id } = req.params;
-    console.log('id', id);
-    try {
-      await Tag.findOneAndDelete({ _id: id }, (err, tag) => {
-        if (err) {
-          return res
-            .status(400)
-            .send({ error: 'Couldnt delete tag' });
-        }
-        if (!tag) {
-          console.log('tag', tag);
-          return res
-            .status(404)
-            .send({
-              tag,
-              error: 'Couldn found tag',
-            });
-        }
-        return res
-          .status(200)
-          .send(tag);
-      });
-    } catch (e) {
-      return res
-        .status(400)
-        .send({ error: 'Couldnt delete tag ERROR ' });
-    }
+    console.log('\x1b[36m', 'id' , id, '\x1b[0m');
+    const deletingTag = await Tag.findById(id);
+    console.log('\x1b[36m', 'deletingTag' , deletingTag, '\x1b[0m');
+
+    Tag.deleteOne({ _id: id }, (err, tag) => {
+      if (err) {
+        res.send(err);
+      } else if (!tag.deletedCount) {
+
+        res
+          .status(404)
+          .send({ error: 'Tag not found' });
+      } else {
+        res.send(deletingTag);
+      }
+      next();
+    });
+    // return res.send(deletingTag)
+    // try {
+    //   await Tag.findOneAndDelete({ _id: id }, (err, tag) => {
+    //     if (err) {
+    //       return res
+    //         .status(400)
+    //         .send({ error: 'Couldnt delete tag' });
+    //     }
+    //     if (!tag) {
+    //       console.log('\x1b[36m', 'ERR' , tag, '\x1b[0m');
+    //       return res
+    //         .status(404)
+    //         .send({
+    //           tag,
+    //           error: 'Couldn found tag',
+    //         });
+    //     }
+    //     return res
+    //       .status(200)
+    //       .send(tag);
+    //   });
+    // } catch (e) {
+    //   return res
+    //     .status(400)
+    //     .send({ error: 'Couldnt delete tag ERROR ' });
+    // }
   },
   getOne: async (req, res, next) => {
     const { id } = req.params;

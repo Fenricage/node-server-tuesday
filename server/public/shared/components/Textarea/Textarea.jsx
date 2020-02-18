@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'uuid';
 import './Textarea.scss';
 
 const Textarea = ({
@@ -9,20 +10,25 @@ const Textarea = ({
   input,
   meta,
   ...other
-}) => (
-  <section className="form-row">
-    <h3>{title}</h3>
-    <section className="form-row__wrap">
-      <section className="form-row__field">
-        <textarea
-          {...input}
-          {...other}
-          autoFocus={autofocus}
-          placeholder={placeholder || title || ''}
-        />
+}) => {
+  const uid = uuid.v4();
+  return (
+    <section className="textarea-form-row">
+      <label htmlFor={uid} className="textarea-form-row__title">{title}</label>
+      <section className="textarea-form-row__wrap">
+        <section className="textarea-form-row__field">
+          <textarea
+            {...input}
+            {...other}
+            id={uid}
+            className="textarea-form-row__textarea"
+            autoFocus={autofocus}
+            placeholder={placeholder || title || ''}
+          />
+        </section>
       </section>
     </section>
-  </section>
-);
+  );
+};
 
 export default Textarea;

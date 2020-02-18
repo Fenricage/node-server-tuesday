@@ -1,0 +1,36 @@
+.textarea-form-row {
+  $self: ".textarea-form-row";
+
+  &__wrap {
+    display: flex;
+  }
+
+  &__field {
+    display: flex;
+    flex: 1 1 0;
+    flex-flow: column nowrap;
+  }
+
+  &__title {
+    min-height: 24px;
+    height: 24px;
+    font-size: 1.17rem;
+    margin: 0;
+    padding-bottom: 32px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  &__textarea {
+    -webkit-appearance: none;
+    padding: 10px 16px;
+    border: 0;
+    //box-shadow: inset 0 0 0 1px var(--color-form-gray);
+    line-height: 24px;
+    cursor: text;
+    width: 100%;
+    outline: 0;
+    font-size: 14px;
+    font-weight: 400;
+  }
+}

@@ -26,7 +26,7 @@ class BlogDetailPage extends Component {
     // }
     return (
       <section className="article-detail-page">
-        <h1>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h1>
+        <h1>Отдельный layout для блога</h1>
         <h1 className="article-detail-page__h1">{articleData.get('title')}</h1>
         <h2 className="article-detail-page__h2">{articleData.get('preview_text')}</h2>
         <section className="article-detail-page__info">
