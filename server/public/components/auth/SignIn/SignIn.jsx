@@ -66,7 +66,7 @@ class SignInForm extends Component {
           <section className="signin__box-button">
             <Button
               type="submit"
-              className="btn"
+              className="signin__login-button"
               isLoading={false}
             >
               Log in

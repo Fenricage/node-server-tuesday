@@ -81,7 +81,7 @@ class SignUpForm extends Component {
             <section className="signup__box-button">
               <Button
                 type="submit"
-                className="btn"
+                className="signup__register-button"
                 isLoading={isRegistering}
               >
                 Register

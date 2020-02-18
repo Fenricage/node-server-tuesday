@@ -12,6 +12,7 @@ const Button = ({
 }) => (
   <button
     className={cs({
+      button: true,
       [`${className}`]: className,
     })}
     {...other}

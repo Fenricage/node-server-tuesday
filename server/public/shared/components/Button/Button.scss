@@ -1,0 +1,14 @@
+// примечание: тут находятся только стили сброса для компонента
+// стилизация под конкретный случай расширяется при помощи миксинов
+// или наслеованием стилей от элемента
+
+.button {
+  cursor: pointer;
+  border: 0;
+  text-decoration: none;
+  white-space: nowrap;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+}

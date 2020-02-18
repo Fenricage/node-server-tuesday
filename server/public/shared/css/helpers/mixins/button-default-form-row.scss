@@ -1,37 +1,33 @@
 // дефолтный стиль для текстового инпута
 
 @mixin button-default-form-row {
-  $self: ".button-form-row";
-  #{ $self }__input {
-    -webkit-appearance: none;
-    padding: 10px 16px;
-    border: 0;
-    box-shadow: inset 0 0 0 1px var(--color-form-gray);
-    line-height: 24px;
-    cursor: text;
-    width: 100%;
-    transition: opacity .15s ease 0s, transform .15s ease 0s;
-    outline: 0;
-    font-size: 14px;
-    font-weight: 400;
-    resize: none;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: bold;
+  border: 0;
+  height: 44px;
+  text-decoration: none;
+  color: #fff;
+  white-space: nowrap;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+  min-width: 120px;
+  padding: 8px 15px 8px 15px;
+  background-color: var(--color-admin-primary);
+  cursor: pointer;
+  -webkit-transition: background-color 250ms, color 250ms;
+  transition: background-color 250ms, color 250ms;
+  outline: 0;
+  border-radius: var(--border-button-border-radius);
 
-    &:hover {
-      box-shadow: inset 0 0 0 1px var(--color-form-black);
-    }
+  &:disabled {
+    opacity: .25;
+    cursor: not-allowed;
+  }
 
-
-    &:focus {
-      box-shadow: inset 0 0 0 1.5px var(--color-admin-primary);
-    }
-
-    &:active:not([disabled]) {
-      box-shadow: inset 0 0 0 1.5px var(--color-admin-primary);
-    }
-
-    &:disabled {
-      cursor: not-allowed;
-      background-color: rgba(0, 0, 0, .05);
-    }
+  &:active {
+    transform: scale(.99, .99);
   }
 }
