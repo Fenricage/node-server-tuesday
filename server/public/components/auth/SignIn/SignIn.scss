@@ -33,11 +33,6 @@
     margin-top: 1.15rem;
   }
 
-  &__switch {
-    text-align: center;
-    margin-top: 1rem;
-  }
-
   &__box-button {
     margin-top: 1.72rem;
   }
@@ -47,5 +42,16 @@
     width: 100%;
   }
 
+  &__switch {
+    text-align: center;
+    margin-top: 1rem;
+    color: var(--color-text-auth-switch);
+  }
 
+  &__switch-link {
+    color: var(--color-link-auth-switch);
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

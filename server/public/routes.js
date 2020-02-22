@@ -16,6 +16,7 @@ module.exports = routes()
   .add('adminArticleDetail', '/admin/articles/:id', '/admin/articles/create') // неочевидный референс - по articleDetail страницы нет, это просто индекс роута, 3 аргумент - страница в pages, посередине - паттерн
   .add('/admin/article-categories', '/admin/article-categories')
   .add('articleAdminCategoryDetail', '/admin/article-categories/:id', '/admin/article-categories/create')
+  .add('/admin/attachments', '/admin/attachments')
   // AUTH
   .add('/auth/login', '/auth/login')
   .add('/auth/register', '/auth/register')

@@ -16,32 +16,15 @@ h3 {
   margin: 0 0 6px;
 }
 
-
 a {
-  color: var(--color-admin-primary);
-  transition: background-color 250ms, color 250ms;
-
   cursor: pointer;
-
-  &:hover {
-    color: var(--color-admin-lprimary);
-    transition: none;
-  }
+  text-decoration: none;
 }
 
 ul {
   padding: 0;
-
-  li {
-    list-style-type: none;
-  }
 }
 
-
-html body .p1 {
-  font-size: 14px;
-}
-
-html body .p2 {
-  font-size: 18px;
+li {
+  list-style-type: none;
 }

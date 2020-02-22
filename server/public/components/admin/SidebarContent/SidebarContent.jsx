@@ -28,6 +28,11 @@ const sidebarLinks = [
     label: 'Tags',
     exact: false,
   },
+  {
+    to: '/admin/attachments',
+    label: 'Attachments',
+    exact: false,
+  },
 ];
 
 class SidebarContent extends Component {

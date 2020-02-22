@@ -72,11 +72,12 @@ class SignInForm extends Component {
               Log in
             </Button>
           </section>
-          <section className="signin__switch">
+          <p className="signin__switch">
+            Already has account?&#160;
             <Link href="/auth/register">
-              <a>Switch To Sign up</a>
+              <a className="signin__switch-link">Sign up</a>
             </Link>
-          </section>
+          </p>
         </form>
       </section>
     );

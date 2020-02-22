@@ -87,13 +87,14 @@ class SignUpForm extends Component {
                 Register
               </Button>
             </section>
-            <section className="signup__switch">
+            <p className="signup__switch">
+              Have not account yet?&#160;
               <Link href="/auth/login">
-                <a>
-                  Switch To Sign in
+                <a className="signup__switch-link">
+                  Sign in
                 </a>
               </Link>
-            </section>
+            </p>
           </form>
         </section>
       );
