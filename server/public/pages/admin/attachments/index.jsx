@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import { Router as NextRouter } from '../../../routes';
 import AdminLayout from '../../../shared/layouts/AdminLayout/AdminLayout';
 import AllArticlesAdminPage from '../../../components/admin/AllArticlesAdminPage/AllArticlesAdminPage';
+import AllAttachmentsAdminPage from '../../../components/admin/AllAttachmentsAdminPage/AllAttachmentsAdminPage'
 import auth from '../../../helpers/auth';
 import { getCurrentUser, getCurrentUserServer } from '../../../actions/auth';
 import withAuthSync from '../../../hoc/withAuthSync';
@@ -14,7 +15,7 @@ class ArticlesAdminPageWithLayout extends Component {
     const { pathname } = this.props;
     return (
       <AdminLayout>
-        attachmnets
+        <AllAttachmentsAdminPage/>
       </AdminLayout>
     );
   }

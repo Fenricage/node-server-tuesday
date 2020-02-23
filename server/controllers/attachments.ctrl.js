@@ -25,13 +25,15 @@ module.exports = {
       });
   },
   getAll: async (req, res, next) => {
+    const total = await Attachment.count({});
     Attachment.find({}, { __v: 0 })
       .exec((err, attachments) => {
         if (err) res.send(err);
         else if (!attachments) res.send(404);
         else {
           res.send({
-            attachments,
+            total,
+            records: attachments,
           });
         }
         next();

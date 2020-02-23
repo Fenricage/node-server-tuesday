@@ -169,6 +169,12 @@ const endpoints = r => ({
         method: 'delete',
       }),
   },
+  attachments: {
+    getAll: extra => r('/attachments', {
+      method: 'get',
+      ...extra,
+    })
+  }
 });
 
 export default endpoints;
