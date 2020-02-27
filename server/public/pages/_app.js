@@ -28,6 +28,12 @@ class MyApp extends App {
   }
 
 
+  componentDidMount() {
+    // TODO(@fenricage): понадобится в будущем для тем, чекни _basic.scss или overreacted блог абрамова
+    // document.getElementsByTagName('body')[0].classList.add('light');
+  }
+
+
   // TODO
   // https://github.com/bekliev/nextjs/blob/master/pages/_app.jsx#L22
   // https://spectrum.chat/next-js/general/one-time-rendered-layout-inside-app-js~13af80aa-c4dc-41da-8106-22a90bede0df

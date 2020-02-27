@@ -30,3 +30,11 @@ html :after,
 html :before {
   box-sizing: border-box;
 }
+
+body.light {
+  --color-test: white;
+}
+
+body.dark {
+  --color-test: black;
+}

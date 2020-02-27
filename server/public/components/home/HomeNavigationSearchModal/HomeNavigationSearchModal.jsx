@@ -3,7 +3,11 @@ import cs from 'classnames';
 import { connect } from 'react-redux';
 import { fromJS, List } from 'immutable';
 import {
-  TransitionGroup, CSSTransition, SwitchTransition, Transition, ReplaceTransition,
+  TransitionGroup,
+  CSSTransition,
+  SwitchTransition,
+  Transition,
+  ReplaceTransition,
 } from 'react-transition-group';
 import Button from '../../../shared/components/Button/Button';
 import Times from '../../../shared/icons/Times/Times';

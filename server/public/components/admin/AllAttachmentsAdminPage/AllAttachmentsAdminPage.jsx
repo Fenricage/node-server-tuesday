@@ -1,7 +1,10 @@
 import React, { useEffect, useState, useReducer } from 'react';
+import { ItemGridProvider } from '../../../shared/contexts/index';
+import ItemGrid from '../../../shared/components/ItemGrid/ItemGrid';
 import { API_BROWSER } from '../../../shared/constants/api';
 import api from '../../../shared/api/index';
 import './AllAttachmentsAdminPage.scss';
+import cs from "classnames";
 
 const initialState = {
   attachments: {
@@ -48,20 +51,36 @@ const AllAttachmentsAdminPage = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const { attachments } = state;
+  const {
+    attachments: {
+      data: attachmentsData,
+      isLoaded: isAttachmentsLoaded,
+    },
+  } = state;
 
   useEffect(() => {
     const fetchAttachments = async () => {
       const attachments = await api.get(API_BROWSER).attachments.getAll();
-      console.log('attachments', attachments) 
+      dispatch({ type: 'setAttachmentsData', payload: attachments });
     };
 
-    fetchAttachments()
+    fetchAttachments();
+
   }, [dispatch]);
+
+  if (!isAttachmentsLoaded) {
+    return <p>loaded...</p>;
+  }
 
   return (
     <div className="all-attachments-admin-page">
-      att compoentne
+
+      {attachmentsData.records.map((attachmentRecord) => {
+        return (
+          <p key={attachmentRecord._id}>{attachmentRecord._id}</p>
+        )
+      })}
+
     </div>
   );
 };
