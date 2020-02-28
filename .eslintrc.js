@@ -1,47 +1,47 @@
-{
-  "parser": "babel-eslint",
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es6": true
+module.exports = {
+  parser: "babel-eslint",
+  env: {
+    browser: true,
+    commonjs: true,
+    es6: true
   },
-  "extends": "airbnb",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true,
-      "jsx": true
+  extends: "airbnb",
+  parserOptions: {
+    ecmaFeatures: {
+      experimentalObjectRestSpread: true,
+      jsx: true
     },
-    "sourceType": "module"
+    sourceType: "module"
   },
-  "plugins": [
+  plugins: [
     "react",
     "react-hooks"
   ],
-  "rules": {
+  rules: {
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
-        "components": [
+        components: [
           "Link"
         ],
-        "specialLink": [
+        specialLink: [
           "to"
         ]
       }
     ],
-    "indent": [
+    indent: [
       "error",
       2,
       {
-        "SwitchCase": 1
+        SwitchCase: 1
       }
     ],
     "linebreak-style": 0,
-    "quotes": [
+    quotes: [
       "error",
       "single"
     ],
-    "semi": [
+    semi: [
       "error",
       "always"
     ],
@@ -49,11 +49,11 @@
       "error",
       "after"
     ],
-    "yoda": [
+    yoda: [
       "error",
       "always",
       {
-        "onlyEquality": true
+        onlyEquality: true
       }
     ],
     "no-underscore-dangle": "off",
@@ -63,4 +63,4 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn"
   }
-}
+};
