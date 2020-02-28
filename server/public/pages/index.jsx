@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import { getAllArticleCategoriesServer, getAllArticleCategories } from '../actions/articleCategories';
+import {
+  getAllArticleCategoriesServer,
+  getAllArticleCategories,
+} from '../actions/articleCategories';
 import { getAllTagsAndSet, getAllTagsAndSetServer } from '../actions/tags';
-import { getAllArticlesAndSetServer, getAllArticlesAndSet } from '../actions/articles';
+import {
+  getAllArticlesAndSetServer,
+  getAllArticlesAndSet,
+} from '../actions/articles';
 import { getLayout } from '../shared/layouts/HomeLayout/HomeLayout';
 import { SIZE_PAGE } from '../shared/constants/page';
 
 class HomePageWithLayout extends Component {
-
   render() {
     const { query, pathname } = this.props;
     return (
@@ -17,13 +22,14 @@ class HomePageWithLayout extends Component {
       // />
     );
   }
-
 }
-
 
 // вызывается и на сервере и на клиенте (при маршриутизации) работает тлько на страницах, на страницах читай что это замена cdm
 HomePageWithLayout.getInitialProps = async ({
-  query, pathname, store, isServer,
+  query,
+  pathname,
+  store,
+  isServer,
 }) => {
   const { dispatch } = store;
   const { page = 1, size = SIZE_PAGE, categoryId } = query;
@@ -44,7 +50,9 @@ HomePageWithLayout.getInitialProps = async ({
   getArticlesQueryParams.extra = extra;
 
   if (isServer) {
-    await dispatch(getAllArticleCategoriesServer(getArticlesCategoriesQueryParams));
+    await dispatch(
+      getAllArticleCategoriesServer(getArticlesCategoriesQueryParams),
+    );
     await dispatch(getAllTagsAndSetServer());
     await dispatch(getAllArticlesAndSetServer(getArticlesQueryParams));
   } else {

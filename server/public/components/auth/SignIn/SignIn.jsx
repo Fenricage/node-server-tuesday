@@ -8,16 +8,13 @@ import Input from '../../../shared/components/Input/Input';
 import Button from '../../../shared/components/Button/Button';
 import login from './dispatchControllers/login';
 
-
 class SignInForm extends Component {
-
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   render() {
-
     const {
       handleSubmit,
       pristine,
@@ -25,27 +22,23 @@ class SignInForm extends Component {
       valid,
       invalid,
       isAuthenticating,
-      statusAuth: {
-        statusText,
-        statusType,
-      },
+      statusAuth: { statusText, statusType },
     } = this.props;
 
     return (
       <section className="signin">
         <h2 className="signin__title">Sign in</h2>
         {statusText ? (
-          <p className={cs({
-            'signin__status-text': true,
-            [`${statusType}`]: statusType,
-          })}>
+          <p
+            className={cs({
+              'signin__status-text': true,
+              [`${statusType}`]: statusType,
+            })}
+          >
             {statusText}
           </p>
         ) : null}
-        <form
-          onSubmit={handleSubmit(login)}
-          className="signin__form"
-        >
+        <form onSubmit={handleSubmit(login)} className="signin__form">
           <Field
             placeholder="Enter your login e-mail"
             autofocus
@@ -82,7 +75,6 @@ class SignInForm extends Component {
       </section>
     );
   }
-
 }
 
 const mapStateToProps = (state, ownProps) => ({
@@ -90,15 +82,9 @@ const mapStateToProps = (state, ownProps) => ({
   isAuthenticating: state.getIn(['auth', 'isAuthenticating']),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({});
 
-});
-
-
-const SignIn = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(SignInForm);
+const SignIn = connect(mapStateToProps, mapDispatchToProps)(SignInForm);
 
 const formConfiguration = {
   form: 'signin-form',

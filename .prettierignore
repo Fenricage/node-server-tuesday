@@ -1,0 +1,3 @@
+# отключаем prettier для css файлов, ими занимается stylelint
+*.css
+*.scss
