@@ -5,6 +5,7 @@ module.exports = {
     commonjs: true,
     es6: true
   },
+  // наследует eslint конфиг от airbnb
   extends: "airbnb",
   parserOptions: {
     ecmaFeatures: {
@@ -18,6 +19,7 @@ module.exports = {
     "react-hooks"
   ],
   rules: {
+    // штука для nextовских ссылок, проверяет атрибуты
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
@@ -29,26 +31,8 @@ module.exports = {
         ]
       }
     ],
-    indent: [
-      "error",
-      2,
-      {
-        SwitchCase: 1
-      }
-    ],
-    "linebreak-style": 0,
-    quotes: [
-      "error",
-      "single"
-    ],
-    semi: [
-      "error",
-      "always"
-    ],
-    "operator-linebreak": [
-      "error",
-      "after"
-    ],
+    // буквальное значение условия идет первым, а переменная - вторым
+    // if ("red" === color) {}
     yoda: [
       "error",
       "always",
@@ -56,11 +40,9 @@ module.exports = {
         onlyEquality: true
       }
     ],
-    "no-underscore-dangle": "off",
-    "no-plusplus": "off",
-    "import/no-unresolved": "off",
-    "padded-blocks": ["error", {"classes": "always"}],
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    "no-underscore-dangle": "error", // регулирует подобные "висячие"  названия в идентификаторах _foo
+    "no-plusplus": "off", // регулирует унарные опреаторы -- и ++
+    "react-hooks/rules-of-hooks": "error", // правила хуков для заполнения deps в эффектах
+    "react-hooks/exhaustive-deps": "warn", // правила хуков для заполнения deps в эффектах
   }
 };

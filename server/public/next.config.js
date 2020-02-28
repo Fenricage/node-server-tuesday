@@ -1,10 +1,10 @@
 const withSass = require('@zeit/next-sass');
 const withCSS = require('@zeit/next-css');
 const withFonts = require('next-fonts');
-const dotEnvResult = require('dotenv').config()
+const dotEnvResult = require('dotenv').config();
 
 if (dotEnvResult.error) {
-  throw dotEnvResult.error
+  throw dotEnvResult.error;
 }
 
 module.exports = withCSS(withFonts(withSass({
