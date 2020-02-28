@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import HomeMainPage from '../components/home/HomeMainPage/HomeMainPage';
 import { getAllArticleCategoriesServer, getAllArticleCategories } from '../actions/articleCategories';
 import { getAllTagsAndSet, getAllTagsAndSetServer } from '../actions/tags';
 import { getAllArticlesAndSetServer, getAllArticlesAndSet } from '../actions/articles';
