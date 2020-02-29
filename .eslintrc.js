@@ -1,14 +1,14 @@
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   env: {
     browser: true,
     commonjs: true,
     es6: true,
   },
   // наследует eslint конфиг от airbnb
-  // prettier/* отменяют правила eslint которые могут конфликтовать с prettier (ВАЖНО - подключать всегда последними, для переопределения)
   extends: [
     'airbnb',
+    'plugin:@typescript-eslint/recommended',
   ],
   parserOptions: {
     ecmaFeatures: {
