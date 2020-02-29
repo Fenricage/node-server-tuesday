@@ -6,7 +6,14 @@ module.exports = {
     es6: true,
   },
   // наследует eslint конфиг от airbnb
-  extends: 'airbnb',
+  // prettier/* отменяют правила eslint которые могут конфликтовать с prettier (ВАЖНО - подключать всегда последними, для переопределения)
+  extends: [
+    'airbnb',
+    'plugin:prettier/recommended', // связывает конфиг prettier и плагин
+    'prettier', // отключает конфликтующтие правила eslint js с prettier
+    'prettier/react', // отключает конфликтующтие правила eslint react с prettier
+    'prettier/standard', // отключает конфликтующтие правила eslint js с prettier
+  ],
   parserOptions: {
     ecmaFeatures: {
       experimentalObjectRestSpread: true,
@@ -14,7 +21,7 @@ module.exports = {
     },
     sourceType: 'module',
   },
-  plugins: ['react', 'react-hooks'],
+  plugins: ['react', 'react-hooks', 'prettier'],
   // добавление и переопределение правил
   rules: {
     // штука для next-овских ссылок, проверяет атрибуты
@@ -38,11 +45,5 @@ module.exports = {
     'no-plusplus': 'off', // регулирует унарные опреаторы -- и ++
     'react-hooks/rules-of-hooks': 'error', // правила хуков для заполнения deps в эффектах
     'react-hooks/exhaustive-deps': 'warn', // правила хуков для заполнения deps в эффектах
-    'indent': 'off', // отключаем правило индентации, это ответственность prettier
-    'semi': 'off', // отключаем правило точки с запятой, это ответственность prettier
-    'comma-dangle': 'off', // отключаем правило запятой, это ответственность prettier
-    'jsx-quotes': 'off', // отключаем правило кавычек в jsx, это ответственность prettier
-    'object-curly-spacing': 'off', // отключаем правило расстояний между в скобках литералов объектов, это ответственность prettier
-    'max-len': 'off', // отключаем макс длину, это ответственность prettier
   },
 };

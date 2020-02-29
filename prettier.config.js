@@ -12,9 +12,7 @@ module.exports = {
   overrides: [
     {
       files: ['*.js', '*.jsx', '*.tsx', '*.ts'],
-      options: {
-
-      },
-    }
+      options: {},
+    },
   ],
 };

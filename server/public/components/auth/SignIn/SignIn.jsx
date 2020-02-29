@@ -82,7 +82,7 @@ const mapStateToProps = (state, ownProps) => ({
   isAuthenticating: state.getIn(['auth', 'isAuthenticating']),
 });
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = (dispatch) => ({});
 
 const SignIn = connect(mapStateToProps, mapDispatchToProps)(SignInForm);
 
