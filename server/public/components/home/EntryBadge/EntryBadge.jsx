@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, fromJS } from 'immutable';
+import { List } from 'immutable';
 import Link from 'next/link';
 import { withRouter } from 'next/router';
 import Image from '../../../shared/components/Image/Image';
