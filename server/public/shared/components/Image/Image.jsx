@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import cs from 'classnames';
 import './Image.scss';
 
 const Image = ({ className, ...other }) => {
-  const [loadedState, setLoaded] = useState(false);
+  const [ loadedState, setLoaded ] = useState(false);
   const img = useRef(null);
-  // console.log('img', img)
+
   return (
     <img
       className={cs({

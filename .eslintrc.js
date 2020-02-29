@@ -43,6 +43,6 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error', // правила хуков для заполнения deps в эффектах
     'react-hooks/exhaustive-deps': 'warn', // правила хуков для заполнения deps в эффектах
     // СТИЛЕВЫЕ ПРАВИЛА
-
+    'array-bracket-spacing': ['error', 'always'], // устанавливает spacing в массивах
   },
 };
