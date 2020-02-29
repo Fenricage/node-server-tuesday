@@ -11,26 +11,25 @@ import {
 import { API_BROWSER, API_SERVER } from '../shared/constants/api';
 import api from '../shared/api/index';
 
-export const getAllArticles = (queryParams) =>
-  api.get(API_BROWSER).articles.getAll(queryParams);
-export const getAllArticlesServer = (queryParams) =>
-  api.get(API_SERVER).articles.getAll(queryParams);
+export const getAllArticles = queryParams => api.get(API_BROWSER).articles.getAll(queryParams);
+export const getAllArticlesServer = queryParams => api.get(API_SERVER).articles.getAll(queryParams);
+
 
 export const fetchAllArticles = () => ({
   type: ARTICLES_FETCH,
 });
 
-export const fetchAllArticlesSuccess = (articles) => ({
+export const fetchAllArticlesSuccess = articles => ({
   type: ARTICLES_FETCH_SUCCESS,
   payload: articles,
 });
 
-export const fetchAllArticlesFailure = (e) => ({
+export const fetchAllArticlesFailure = e => ({
   type: ARTICLES_FETCH_FAILURE,
   payload: e,
 });
 
-export const getAllArticlesAndSet = (queryParams) => (dispatch) => {
+export const getAllArticlesAndSet = queryParams => (dispatch) => {
   dispatch(fetchAllArticles());
   return getAllArticles(queryParams)
     .then((articles) => {
@@ -41,7 +40,7 @@ export const getAllArticlesAndSet = (queryParams) => (dispatch) => {
     });
 };
 
-export const getAllArticlesAndSetServer = (queryParams) => (dispatch) => {
+export const getAllArticlesAndSetServer = queryParams => (dispatch) => {
   dispatch(fetchAllArticles());
   return getAllArticlesServer(queryParams)
     .then((articles) => {
@@ -52,12 +51,12 @@ export const getAllArticlesAndSetServer = (queryParams) => (dispatch) => {
     });
 };
 
-export const reqSetDeletingStatus = (id) => ({
+export const reqSetDeletingStatus = id => ({
   type: ARTICLES_DELETE_ARTICLE,
   // payload: isDeleting,
   payload: [],
 });
-export const reqDeleteArticleSuccess = (id) => ({
+export const reqDeleteArticleSuccess = id => ({
   type: ARTICLES_DELETE_ARTICLE_SUCCESS,
   payload: {
     isDeleting: [],
@@ -72,7 +71,7 @@ export const reqDeleteArticleFailure = (id, e) => ({
     e,
   },
 });
-export const reqDeleteArticle = (id) => (dispatch) => {
+export const reqDeleteArticle = id => (dispatch) => {
   dispatch(reqSetDeletingStatus(id));
   return api
     .get(API_BROWSER)
@@ -86,6 +85,4 @@ export const reqDeleteArticle = (id) => (dispatch) => {
     });
 };
 
-export const searchArticles = (query) => {
-  return api.get(API_BROWSER).articles.search(query);
-};
+export const searchArticles = query => api.get(API_BROWSER).articles.search(query);
