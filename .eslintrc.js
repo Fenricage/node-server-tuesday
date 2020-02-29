@@ -9,7 +9,7 @@ module.exports = {
   // prettier/* отменяют правила eslint которые могут конфликтовать с prettier (ВАЖНО - подключать всегда последними, для переопределения)
   extends: [
     'airbnb',
-    'plugin:prettier/recommended', // связывает конфиг prettier и плагин
+    'plugin:prettier/recommended', // связывает конфиг prettier и плагин, а ТАКЖЕ дублирует правила prettier в eslint, возволяя тем самым при помощи команды Fix Eslint Problems устранять заодно и Prettier Problems
     'prettier', // отключает конфликтующтие правила eslint js с prettier
     'prettier/react', // отключает конфликтующтие правила eslint react с prettier
     'prettier/standard', // отключает конфликтующтие правила eslint js с prettier
