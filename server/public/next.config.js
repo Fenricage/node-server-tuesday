@@ -7,14 +7,18 @@ if (dotEnvResult.error) {
   throw dotEnvResult.error;
 }
 
-module.exports = withCSS(withFonts(withSass({
-  exportPathMap: () => ({
-    '/': { page: '/' },
-  }),
-  env: {
-    REACT_APP_SERVER_URL: process.env.REACT_APP_SERVER_URL,
-    REACT_APP_CLIENT_URL: process.env.REACT_APP_CLIENT_URL,
-  },
-  // убирает роутинг по файлам из директории pages (нахуя?)
-  useFileSystemPublicRoutes: false,
-})));
+module.exports = withCSS(
+  withFonts(
+    withSass({
+      exportPathMap: () => ({
+        '/': { page: '/' },
+      }),
+      env: {
+        REACT_APP_SERVER_URL: process.env.REACT_APP_SERVER_URL,
+        REACT_APP_CLIENT_URL: process.env.REACT_APP_CLIENT_URL,
+      },
+      // убирает роутинг по файлам из директории pages (нахуя?)
+      useFileSystemPublicRoutes: false,
+    }),
+  ),
+);
