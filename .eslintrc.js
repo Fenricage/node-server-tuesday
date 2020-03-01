@@ -1,14 +1,14 @@
 module.exports = {
-  parser: '@typescript-eslint/parser',
+  parser: 'babel-eslint',
   env: {
     browser: true,
     commonjs: true,
     es6: true,
   },
   // наследует eslint конфиг от airbnb
+  // prettier/* отменяют правила eslint которые могут конфликтовать с prettier (ВАЖНО - подключать всегда последними, для переопределения)
   extends: [
     'airbnb',
-    'plugin:@typescript-eslint/recommended',
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -43,6 +43,6 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error', // правила хуков для заполнения deps в эффектах
     'react-hooks/exhaustive-deps': 'warn', // правила хуков для заполнения deps в эффектах
     // СТИЛЕВЫЕ ПРАВИЛА
-    'array-bracket-spacing': ['error', 'always'], // устанавливает spacing в массивах
+    'array-bracket-spacing': ['error', 'always'],
   },
 };
