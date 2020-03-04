@@ -11,7 +11,6 @@ import Pagination from '../../../shared/components/Pagination/Pagination';
 import { SIZE_PAGE } from '../../../shared/constants/page';
 
 class HomeMainPage extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -36,7 +35,6 @@ class HomeMainPage extends Component {
     // if (router.asPath !== prevRouter.asPath) {
     //   this.getArticles();
     // }
-
   }
 
 
@@ -80,7 +78,7 @@ class HomeMainPage extends Component {
     _id: article.get('_id'),
     previewImg: article.get('preview_img') ? article.get('preview_img') : '',
     title: article.get('title'),
-    category: article.getIn(['category', 'name']),
+    category: article.getIn([ 'category', 'name' ]),
     tags: article.get('tags'),
   }));
 
@@ -150,9 +148,7 @@ class HomeMainPage extends Component {
     //
     //
     // }, 0);
-
   };
-
 
 
   render() {
@@ -191,13 +187,12 @@ class HomeMainPage extends Component {
 
     );
   }
-
 }
 
 const mapStateToProps = state => ({
-  articles: state.getIn(['articles', 'data']),
-  isLoadedArticles: state.getIn(['articles', 'isLoaded']),
-  totalArticles: state.getIn(['articles', 'data', 'total']),
+  articles: state.getIn([ 'articles', 'data' ]),
+  isLoadedArticles: state.getIn([ 'articles', 'isLoaded' ]),
+  totalArticles: state.getIn([ 'articles', 'data', 'total' ]),
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -4,26 +4,36 @@ import ItemGrid from '../../../shared/components/ItemGrid/ItemGrid';
 import { API_BROWSER } from '../../../shared/constants/api';
 import api from '../../../shared/api/index';
 import './AllAttachmentsAdminPage.scss';
-import cs from "classnames";
+import { Map, fromJS, List } from 'immutable';
+import cs from 'classnames';
 
-const initialState = {
+const initialState = fromJS({
   attachments: {
     data: {},
     isLoaded: false,
   },
-};
+});
 
 function reducer(state, action) {
   switch (action.type) {
     case 'setAttachmentsData':
-      return {
-        ...state,
-        attachments: {
-          ...state.attachments,
-          data: action.payload,
-          isLoaded: true,
-        },
-      };
+
+      return state
+        .merge({
+          attachments: Map({
+            data: action.payload,
+            isLoaded: true,
+          }),
+        });
+
+      // return {
+      //   ...state,
+      //   attachments: {
+      //     ...state.attachments,
+      //     data: action.payload,
+      //     isLoaded: true,
+      //   },
+      // };
     // case 'replaceItemRevisionData':
     //
     //   // при отсутствии параметра в match роутера, забираем sequence из item дефолтной ревизии
@@ -48,38 +58,39 @@ function reducer(state, action) {
 }
 
 const AllAttachmentsAdminPage = () => {
+  const [ state, dispatch ] = useReducer(reducer, initialState);
+  const attachmentsData = state.getIn([ 'attachments', 'data' ]);
+  const isAttachmentsLoaded = state.getIn([ 'attachments', 'isLoaded' ]);
 
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  const {
-    attachments: {
-      data: attachmentsData,
-      isLoaded: isAttachmentsLoaded,
-    },
-  } = state;
-
+  console.log('attachmentsData', attachmentsData);
   useEffect(() => {
     const fetchAttachments = async () => {
       const attachments = await api.get(API_BROWSER).attachments.getAll();
-      dispatch({ type: 'setAttachmentsData', payload: attachments });
+      dispatch({ type: 'setAttachmentsData', payload: fromJS(attachments) });
     };
-
     fetchAttachments();
-
-  }, [dispatch]);
+  }, [ dispatch ]);
 
   if (!isAttachmentsLoaded) {
     return <p>loaded...</p>;
   }
+  console.log('attachmentsData.getrecords)', attachmentsData.get('records'))
 
   return (
     <div className="all-attachments-admin-page">
 
-      {attachmentsData.records.map((attachmentRecord) => {
-        return (
-          <p key={attachmentRecord._id}>{attachmentRecord._id}</p>
-        )
-      })}
+      {/* {attachmentsData.get('records').map(attachmentRecord => ( */}
+      {/*  <p key={attachmentRecord.get('_id')}>{attachmentRecord.get('_id')}</p> */}
+      {/* ))} */}
+
+      <ItemGridProvider value={{
+        viewComponent: 'AdminAttachmentEntryBadge',
+      }}
+      >
+        <ItemGrid
+          data={attachmentsData.get('records')}
+        />
+      </ItemGridProvider>
 
     </div>
   );

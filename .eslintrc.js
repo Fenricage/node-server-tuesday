@@ -44,5 +44,6 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn', // правила хуков для заполнения deps в эффектах
     // СТИЛЕВЫЕ ПРАВИЛА
     'array-bracket-spacing': ['error', 'always'],
+    'arrow-body-style': 'off',
   },
 };
