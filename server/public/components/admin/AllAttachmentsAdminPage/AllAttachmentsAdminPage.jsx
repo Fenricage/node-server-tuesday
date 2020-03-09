@@ -62,7 +62,6 @@ const AllAttachmentsAdminPage = () => {
   const attachmentsData = state.getIn([ 'attachments', 'data' ]);
   const isAttachmentsLoaded = state.getIn([ 'attachments', 'isLoaded' ]);
 
-  console.log('attachmentsData', attachmentsData);
   useEffect(() => {
     const fetchAttachments = async () => {
       const attachments = await api.get(API_BROWSER).attachments.getAll();
@@ -71,10 +70,13 @@ const AllAttachmentsAdminPage = () => {
     fetchAttachments();
   }, [ dispatch ]);
 
+  const deleteOneAttachment = () => {
+
+  };
+
   if (!isAttachmentsLoaded) {
     return <p>loaded...</p>;
   }
-  console.log('attachmentsData.getrecords)', attachmentsData.get('records'))
 
   return (
     <div className="all-attachments-admin-page">
@@ -86,6 +88,7 @@ const AllAttachmentsAdminPage = () => {
       <ItemGridProvider value={{
         viewComponent: 'AdminAttachmentEntryBadge',
       }}
+
       >
         <ItemGrid
           data={attachmentsData.get('records')}

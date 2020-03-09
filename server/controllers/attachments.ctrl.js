@@ -1,10 +1,11 @@
+const fs = require('fs');
+const path = require('path');
 const Attachment = require('../models/Attachment');
 const sharpImageTransformer = require('../utils/attachments/sharpImageTransformer');
 
 
 module.exports = {
   addAttachment: async (req, res, next) => {
-
     // возвращает объект который мы оправим на клиент
     // данный трансформер решает какой тип передан и возвращает соответствующий объект
     const attachment = await sharpImageTransformer(req);
@@ -50,5 +51,28 @@ module.exports = {
         }
         res.send(attachment);
       });
+  },
+  deleteAttachment: async (req, res, next) => {
+    const deletingAttachment = await Attachment.findById(req.params.id);
+
+    const deletingAttachmentDir = path.join(
+      process.cwd(),
+      path.dirname(deletingAttachment.img_url),
+    );
+
+
+    // console.log('\x1b[36m', 'fs.existsSync(deletingAttachment.img_url)' , fs.existsSync(deletingAttachment.img_url), '\x1b[0m');
+    // Attachment.deleteOne({ _id: req.params.id }, (err, attachment) => {
+    //   if (err) {
+    //     res.send(err);
+    //   } else if (!attachment.deletedCount) {
+    //     res
+    //       .status(404)
+    //       .send({ error: 'Article not found' });
+    //   } else {
+    //     res.send(deletingAttachment);
+    //   }
+    //   next();
+    // });
   },
 };

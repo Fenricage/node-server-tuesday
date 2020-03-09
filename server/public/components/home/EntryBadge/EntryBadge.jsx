@@ -7,13 +7,11 @@ import prepareImgSrcSets from '../../../helpers/prepareImgSrcSets';
 import { CLIENT_URL } from '../../../shared/utils/config';
 import './EntryBadge.scss';
 
-
 const EntryBadge = ({ dataItem, router }) => {
-
-  const imgUrls = dataItem.getIn(['previewImg', 'img_urls']);
+  const imgUrls = dataItem.getIn([ 'previewImg', 'img_urls' ]);
 
   // создаем структуру массив массивов [размер, url]
-  const entries = new List(imgUrls).map(item => new List([item[0], item[1]]));
+  const entries = new List(imgUrls).map(item => new List([ item[0], item[1] ]));
   // TODO вынести в хелпер
   // готовим строку для атрибута srcset
   // eslint-disable-next-line no-unused-vars
@@ -33,7 +31,7 @@ const EntryBadge = ({ dataItem, router }) => {
                 width={940}
                 height={493}
                 className="entry-badge__img"
-                src={`${CLIENT_URL}/${dataItem.getIn(['previewImg', 'img_url'])}`}
+                src={`${CLIENT_URL}/${dataItem.getIn([ 'previewImg', 'img_url' ])}`}
                 srcSet={imgSrcSet}
                 alt=""
               />

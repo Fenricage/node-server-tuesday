@@ -6,7 +6,6 @@ const storage = multer.diskStorage({
 
   // выполняется первым
   destination: (req, file, cb) => {
-
     // определяем в какую папку класть по типу
     const type = req.params.type || 'trash';
     const path = `./static/${type}`;
@@ -21,7 +20,6 @@ const storage = multer.diskStorage({
     }
 
     cb(null, path);
-
   },
   // выполняется вторым
   filename: (req, file, cb) => {

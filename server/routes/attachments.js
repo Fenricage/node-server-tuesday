@@ -2,7 +2,6 @@ const attachmentcontroller = require('../controllers/attachments.ctrl');
 const multerStorage = require('../utils/multerStorage');
 
 module.exports = (router) => {
-
   /**
    * set images
    */
@@ -26,47 +25,9 @@ module.exports = (router) => {
       attachmentcontroller.getAttachment,
     );
 
-
-  //
-  // /**
-  //  * add an article
-  //  */
-  // router
-  //   .route('/article')
-  //   .post(multipartWare, articlecontroller.addArticle);
-  //
-  // /**
-  //  * clap on an article
-  //  */
-  // router
-  //   .route('/article/clap')
-  //   .post(articlecontroller.clapArticle);
-  //
-  // /**
-  //  * comment on an article
-  //  */
-  // router
-  //   .route('/article/comment')
-  //   .post(articlecontroller.commentArticle);
-  //
-  // /**
-  //  * get a particlular article to view
-  //  */
-  // router
-  //   .route('/article/:id')
-  //   .get(articlecontroller.getArticle);
-  //
-  // router
-  //   .route('/article/:id')
-  //   .delete(articlecontroller.deleteArticle);
-  //
-  // router
-  //   .route('/article/:id')
-  //   .patch(articlecontroller.patchArticle);
-  //
-  // router
-  //   .route('/upload')
-  //   .post(async (req, res, next) => {
-  //
-  //   });
+  router
+    .route('/attachments/:id')
+    .delete(
+      attachmentcontroller.deleteAttachment,
+    );
 };
