@@ -55,24 +55,36 @@ module.exports = {
   deleteAttachment: async (req, res, next) => {
     const deletingAttachment = await Attachment.findById(req.params.id);
 
-    const deletingAttachmentDir = path.join(
-      process.cwd(),
-      path.dirname(deletingAttachment.img_url),
-    );
+    const allSizeAttachmentsPaths = Object
+      .values(deletingAttachment.img_urls)
+      .map(attachmentPath => path.join(
+        process.cwd(),
+        attachmentPath,
+      ));
 
+    const attachmentPromises = allSizeAttachmentsPaths
+      .map(async (attachmentPath) => {
+        return fs.promises.unlink(attachmentPath);
+      });
 
-    // console.log('\x1b[36m', 'fs.existsSync(deletingAttachment.img_url)' , fs.existsSync(deletingAttachment.img_url), '\x1b[0m');
-    // Attachment.deleteOne({ _id: req.params.id }, (err, attachment) => {
-    //   if (err) {
-    //     res.send(err);
-    //   } else if (!attachment.deletedCount) {
-    //     res
-    //       .status(404)
-    //       .send({ error: 'Article not found' });
-    //   } else {
-    //     res.send(deletingAttachment);
-    //   }
-    //   next();
-    // });
+    Attachment.deleteOne({ _id: req.params.id }, async (err, attachment) => {
+      if (err) {
+        res.send(err);
+      } else if (!attachment.deletedCount) {
+        res
+          .status(404)
+          .send({ error: 'Article not found' });
+      } else {
+        // delete all attachments
+        try {
+          await Promise.all(attachmentPromises);
+        } catch {
+          console.log('\x1b[36m', 'one of attachment already deleted', '\x1b[0m');
+        }
+
+        res.send(deletingAttachment);
+      }
+      next();
+    });
   },
 };
