@@ -3,12 +3,13 @@
 // или наслеованием стилей от элемента
 
 .button {
-  cursor: pointer;
-  border: 0;
-  text-decoration: none;
+  display: inline-block;
+
   white-space: nowrap;
   text-align: center;
-  display: inline-block;
+  text-decoration: none;
   vertical-align: middle;
-  overflow: hidden;
+
+  border: 0;
+  cursor: pointer;
 }
