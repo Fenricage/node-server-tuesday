@@ -5,7 +5,6 @@ import endpoints from './endpoints';
 // import { history } from '../../index';
 
 const BrowserApi = function (address) {
-
   const headers = {
     'Content-Type': 'application/json',
     'Cache-Control': 'no-cache',
@@ -27,9 +26,9 @@ const BrowserApi = function (address) {
     }
 
 
-    localStorage.getItem('token') ?
-      headers['x-access-token'] = `${localStorage.getItem('token')}` :
-      headers['x-access-token'] = null;
+    localStorage.getItem('token')
+      ? headers['x-access-token'] = `${localStorage.getItem('token')}`
+      : headers['x-access-token'] = null;
 
     // TODO(@fenricage): переименуй или напиши иначе, выглядит как говно
     // TODO(@fenricage) сделсть то же самое в serverApi
@@ -57,10 +56,8 @@ const BrowserApi = function (address) {
             reject(err);
           } else {
             if (401 === err.response.status) {
-
               localStorage.removeItem('token');
               // history.push('/login');
-
             } else if (403 === err.response.status) {
               // history.push('/access-denied');
             }
