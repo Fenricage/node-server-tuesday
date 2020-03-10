@@ -5,38 +5,21 @@ const verifyToken = require('../controllers/auth/verifyToken');
 const multipartWare = multipart();
 
 module.exports = (router) => {
-
-  /**
-     * get all articles
-     */
   router
     .route('/articles')
     .get(articlecontroller.getAll);
 
-  /**
-     * add an article
-     */
   router
     .route('/article')
     .post(verifyToken, multipartWare, articlecontroller.addArticle);
 
-  /**
-     * clap on an article
-     */
   router
     .route('/article/clap')
     .post(verifyToken, articlecontroller.clapArticle);
 
-  /**
-     * comment on an article
-     */
   router
     .route('/article/comment')
     .post(verifyToken, articlecontroller.commentArticle);
-
-  /**
-     * get a particlular article to view
-     */
 
   router
     .route('/article/search')
@@ -53,5 +36,4 @@ module.exports = (router) => {
   router
     .route('/article/:id')
     .patch(verifyToken, articlecontroller.patchArticle);
-
 };

@@ -2,7 +2,6 @@ const verifyToken = require('../controllers/auth/verifyToken');
 const tagcontroller = require('./../controllers/tag.ctrl');
 
 module.exports = (router) => {
-
   router
     .route('/tags')
     .post(verifyToken, tagcontroller.addTag);

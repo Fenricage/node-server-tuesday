@@ -11,7 +11,7 @@ const ArticleSchema = new mongoose.Schema(
     preview_img: Object,
     preview_text: String,
     articles_meta: Array,
-    tags: [TagSchema],
+    tags: [ TagSchema ],
     created_at: {
       type: Date,
       default: Date.now,

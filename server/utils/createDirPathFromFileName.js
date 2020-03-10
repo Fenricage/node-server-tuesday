@@ -1,6 +1,5 @@
 // функция для создания директорий из имени файла
 const createDirPathFromFileName = (fileName, symbolsCount, step) => {
-
   if (fileName.length < symbolsCount || fileName.length < step) {
     // eslint-disable-next-line no-console
     console.warn('fileName is less than symbolCount or step');
@@ -31,7 +30,6 @@ const createDirPathFromFileName = (fileName, symbolsCount, step) => {
 
 
   return arrWithSlashes.join('');
-
 };
 
 module.exports = createDirPathFromFileName;

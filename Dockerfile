@@ -23,6 +23,6 @@ RUN chmod +x /wait
 
 ## Launch the wait tool and then your application
 
-CMD /wait && npm run prod
+CMD /wait && npm run build && npm run prod
 
 #CMD [ "npm", "run", "start" ]

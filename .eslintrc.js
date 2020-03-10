@@ -5,8 +5,7 @@ module.exports = {
     commonjs: true,
     es6: true,
   },
-  // наследует eslint конфиг от airbnb
-  // prettier/* отменяют правила eslint которые могут конфликтовать с prettier (ВАЖНО - подключать всегда последними, для переопределения)
+  // inherits eslint config from airbnb
   extends: [
     'airbnb',
   ],
@@ -18,10 +17,10 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react', 'react-hooks'],
-  // добавление и переопределение правил
+  // adds and overrides rules
   rules: {
-    // ФУНКЦИОНАЛЬНЫЕ ПРАВИЛА
-    // штука для next-овских ссылок, проверяет атрибуты
+    // FUNCTIONAL RULES
+    // check nextjs's link, for attributes href, to
     'jsx-a11y/anchor-is-valid': [
       'error',
       {
@@ -29,7 +28,7 @@ module.exports = {
         specialLink: ['to'],
       },
     ],
-    // буквальное значение условия идет первым, а переменная - вторым
+    // checks that condition's value is first, then variable
     // if ("red" === color) {}
     'yoda': [
       'error',
@@ -38,11 +37,11 @@ module.exports = {
         onlyEquality: true,
       },
     ],
-    'no-underscore-dangle': 'error', // регулирует подобные "висячие"  названия в идентификаторах _foo
-    'no-plusplus': 'off', // регулирует унарные опреаторы -- и ++
-    'react-hooks/rules-of-hooks': 'error', // правила хуков для заполнения deps в эффектах
-    'react-hooks/exhaustive-deps': 'warn', // правила хуков для заполнения deps в эффектах
-    // СТИЛЕВЫЕ ПРАВИЛА
+    'no-underscore-dangle': 'error', // regulates underscore symbol before var, methods names (like a _foo, _tmp)
+    'no-plusplus': 'off', // regulates unary operators -- and  ++
+    'react-hooks/rules-of-hooks': 'error', // hook's rules for fill effect dep
+    'react-hooks/exhaustive-deps': 'warn', // hook's rules for fill effect dep
+    // STYLES RULES
     'array-bracket-spacing': ['error', 'always'],
     'arrow-body-style': 'off',
   },

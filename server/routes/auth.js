@@ -8,12 +8,15 @@ module.exports = (router) => {
       authcontroller.validate('registerUser'),
       authcontroller.registerUser,
     );
+
   router
     .route('/me')
     .get(verifyToken, authcontroller.getCurrentUser);
+
   router
     .route('/logout')
     .get(verifyToken, authcontroller.logout);
+
   router
     .route('/login')
     .post(authcontroller.loginUser);
