@@ -1,7 +1,8 @@
 .blog-entry-badge {
   $self: &;
-  word-break: break-word;
   margin: 0 -1.3rem;
+
+  word-break: break-word;
 
   & + & {
     border-top: 1px solid rgba(0, 0, 0, .12);
@@ -17,17 +18,21 @@
   }
 
   &__link-wrap {
-    border-radius: .3rem;
     display: flex;
     flex-flow: row nowrap;
-    text-decoration: none;
-    padding: .6rem 1.3rem;
     height: 100%;
+    padding: .6rem 1.3rem;
+
+    text-decoration: none;
+
     border: 2px dashed transparent;
+    border-radius: .3rem;
+
     transition: background-color ease .25s;
 
     &:hover {
       background-color: #f2f2f2;
+
       transition: none;
 
       #{ $self }__title {
@@ -36,26 +41,27 @@
     }
 
     &:active {
-      border-color: var(--color-blog-blue);
       background-color: var(--color-blog-blue-opacity);
+      border-color: var(--color-blog-blue);
     }
   }
 
   &__title {
-    text-decoration: none;
-    font-size: 1.3rem;
     margin: 0;
+    margin-left: 1.8rem;
+
     color: var(--color-home-nav-font-default);
     font-weight: normal;
-    margin-left: 1.8rem;
+    font-size: 1.3rem;
+    text-decoration: none;
   }
 
   &__category {
     font-weight: bold;
-    text-decoration: none;
     font-size: 12px;
-    text-transform: uppercase;
     letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
 
     &:hover {
       text-decoration: underline;
@@ -65,15 +71,17 @@
   &__figure {
     display: block;
     margin: 0;
+
     text-align: center;
   }
 
   &__img {
     display: block;
-    vertical-align: top;
     width: 30px;
-    height: 30px;
     max-width: 100%;
+    height: 30px;
     max-height: 100%;
+
+    vertical-align: top;
   }
 }

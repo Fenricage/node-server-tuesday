@@ -24,25 +24,28 @@
   }
 
   &__h1 {
-    padding-top: 12px;
     margin: 0;
+    padding-top: 12px;
+
     font-weight: bold;
-    font-style: normal;
     font-family: "PT Serif", Helvetica, Arial, sans-serif;
+    font-style: normal;
   }
 
   &__h2 {
     margin: 48px 0 0 0;
+
     font-weight: bold;
-    font-style: normal;
     font-family: "PT Serif", Helvetica, Arial, sans-serif;
+    font-style: normal;
   }
 
   &__h3 {
     margin: 48px 0 0 0;
+
     font-weight: bold;
-    font-style: normal;
     font-family: "PT Serif", Helvetica, Arial, sans-serif;
+    font-style: normal;
   }
 
   &__h4 {
@@ -51,16 +54,20 @@
 
   &__inline-code {
     padding: 2px 4px;
-    border-radius: 4px;
+
     color: #c0341d;
+
     background-color: #fbe5e1;
+    border-radius: 4px;
   }
 
   &__blockquote {
     margin: 0;
     padding: 8px 12px;
-    border-left: 2px solid var(--color-border-blockquote);
+
     color: var(--color-blockquote);
+
+    border-left: 2px solid var(--color-border-blockquote);
 
     #{ $self }__paragraph {
       margin: 0;

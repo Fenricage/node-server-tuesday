@@ -6,14 +6,15 @@
 
 
 .list-item {
-  border-radius: 3px;
   display: flex;
-  width: 100%;
   align-items: stretch;
   justify-content: space-between;
-  background-color: var(--color-bg-list-item);
-  box-shadow: var(--shadow-default);
+  width: 100%;
   overflow: hidden;
+
+  background-color: var(--color-bg-list-item);
+  border-radius: 3px;
+  box-shadow: var(--shadow-default);
 
   &:hover {
     box-shadow: var(--shadow-hover);
@@ -26,8 +27,9 @@
   &__link {
     flex: 1;
     padding: 10px;
-    text-decoration: none;
+
     color: var(--color-font);
+    text-decoration: none;
 
     &:hover {
       color: inherit;
@@ -35,14 +37,14 @@
   }
 
   &__delete {
-    padding: 10px;
-    height: 50px;
     width: 50px;
+    height: 50px;
+    padding: 10px;
   }
 
   button {
-    border: 0;
     background-color: transparent;
+    border: 0;
     cursor: pointer;
   }
 }

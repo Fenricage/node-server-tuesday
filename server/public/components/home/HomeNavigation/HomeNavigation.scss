@@ -1,7 +1,8 @@
 .home-navigation {
-  height: 50px;
-  display: flex;
   position: relative;
+
+  display: flex;
+  height: 50px;
   margin: 0 calc(-1 * var(--sm-padding));
   overflow: hidden;
 
@@ -15,19 +16,22 @@
 
   &__links {
     display: flex;
-    width: 100%;
     align-items: center;
+    width: 100%;
     overflow: auto;
 
     &:before,
     &:after {
-      content: "";
       position: absolute;
       top: 0;
+
       display: block;
-      height: 100%;
       width: 15px;
+      height: 100%;
+
       box-shadow: 0 0 30px 15px #fff;
+
+      content: "";
     }
 
     &:before {

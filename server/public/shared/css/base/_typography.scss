@@ -1,15 +1,17 @@
 h1 {
+  margin: 0 0 40px;
+
+  font-weight: 800;
   font-size: 42px;
   line-height: 1.25;
-  font-weight: 800;
-  margin: 0 0 40px;
 }
 
 h2 {
-  font-size: 28px;
-  font-weight: 800;
-  line-height: 1.22;
   margin: 0 0 25px;
+
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 1.22;
 }
 
 h3 {
@@ -17,8 +19,9 @@ h3 {
 }
 
 a {
-  cursor: pointer;
   text-decoration: none;
+
+  cursor: pointer;
 }
 
 ul {

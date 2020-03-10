@@ -9,11 +9,11 @@
   //}
 
   &__content {
-    max-width: var(--max-width);
-    padding: 0 var(--sm-padding);
-    margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--sm-padding);
 
     @media (--md-viewport) {
       padding: 0 var(--md-padding);
@@ -29,14 +29,16 @@
   }
 
   &__support-link {
+    color: var(--color-home-nav-font-default);
+    font-weight: 300;
     font-size: 1.2rem;
     text-decoration: none;
-    font-weight: 300;
+
     transition: color ease .25s;
-    color: var(--color-home-nav-font-default);
 
     &:hover {
       color: var(--color-blog-blue);
+
       transition: none;
     }
 

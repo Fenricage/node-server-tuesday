@@ -1,15 +1,17 @@
 .home-nav-link {
   $self: &;
-  text-decoration: none;
-  text-transform: uppercase;
+  padding: 13px 10px;
+
+  color: var(--color-home-nav-font-default);
   font-size: 15px;
   line-height: 24px;
-  padding: 13px 10px;
-  color: var(--color-home-nav-font-default);
-  border: 0;
-  background-color: transparent;
-  outline: none;
   white-space: nowrap;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  background-color: transparent;
+  border: 0;
+  outline: none;
   //display: block;
   //padding: 8px 12px;
   //text-decoration: none;
@@ -68,6 +70,7 @@
 
   &__angle {
     margin-left: 5px;
+
     transform: translate(0px, -1px);
 
     > path {

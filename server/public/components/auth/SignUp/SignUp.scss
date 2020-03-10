@@ -1,11 +1,13 @@
 @import "../../../shared/css/helpers/mixins/input-default-form-row";
+
 @import "../../../shared/css/helpers/mixins/button-default-form-row";
 
 .signup {
-  padding: 32px;
-  margin: auto;
   width: 340px;
   height: auto;
+  margin: auto;
+  padding: 32px;
+
   background-color: #fff;
   border-radius: var(--border-form-element-border-radius);
 
@@ -37,18 +39,21 @@
   }
 
   &__register-button {
-    @include button-default-form-row;
     width: 100%;
+
+    @include button-default-form-row;
   }
 
   &__switch {
-    text-align: center;
     margin-top: 1rem;
+
     color: var(--color-text-auth-switch);
+    text-align: center;
   }
 
   &__switch-link {
     color: var(--color-link-auth-switch);
+
     &:hover {
       text-decoration: underline;
     }

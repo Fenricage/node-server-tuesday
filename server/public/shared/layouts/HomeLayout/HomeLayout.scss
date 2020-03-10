@@ -1,8 +1,8 @@
 .l-home {
   max-width: var(--max-width);
-  padding: 0 var(--sm-padding);
   min-height: 100vh;
   margin: 0 auto;
+  padding: 0 var(--sm-padding);
 
   @media (--md-viewport) {
     padding: 0 var(--md-padding);
@@ -15,11 +15,12 @@
 
 // для примера, после теста удалить
 .example-enter {
-  opacity: 0.01;
+  opacity: .01;
 }
 
 .example-enter.example-enter-active {
   opacity: 1;
+
   transition: opacity 300ms ease-in;
 }
 
@@ -28,6 +29,7 @@
 }
 
 .example-leave.example-leave-active {
-  opacity: 0.01;
+  opacity: .01;
+
   transition: opacity 300ms ease-in;
 }

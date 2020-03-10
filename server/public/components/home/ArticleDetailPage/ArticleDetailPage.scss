@@ -1,6 +1,6 @@
 .article-detail-page {
-  margin: 20px auto;
   max-width: 700px;
+  margin: 20px auto;
   padding: 0 8px;
 
   @media (--lg-viewport) {
@@ -12,12 +12,13 @@
   }
 
   &__h1 {
-    padding-top: 12px;
     margin: 0;
+    padding-top: 12px;
+
     font-weight: bold;
+    font-family: "PT Serif", Helvetica, Arial, sans-serif;
     font-style: normal;
     word-break: break-word;
-    font-family: "PT Serif", Helvetica, Arial, sans-serif;
   }
 
   &__h1 + &__date-publication {
@@ -29,12 +30,13 @@
   }
 
   &__h2 {
-    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    margin: 0;
+
+    color: var(--article-h2);
     font-weight: 400;
     font-size: 24px;
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
     word-break: break-word;
-    margin: 0;
-    color: var(--article-h2);
   }
 
   &__h2 + &__info {
@@ -52,18 +54,20 @@
   &__md {
 
     > h1 {
-      padding-top: 12px;
       margin: 0;
+      padding-top: 12px;
+
       font-weight: bold;
-      font-style: normal;
       font-family: "PT Serif", Helvetica, Arial, sans-serif;
+      font-style: normal;
     }
 
     > h2 {
       margin: 48px 0 0 0;
+
       font-weight: bold;
-      font-style: normal;
       font-family: "PT Serif", Helvetica, Arial, sans-serif;
+      font-style: normal;
     }
 
     > h3 {
@@ -77,6 +81,7 @@
 
   &__info {
     display: flex;
+
     color: var(--article-info);
   }
 
@@ -98,11 +103,12 @@
 
   p {
     margin-top: 38px;
-    font-size: 21px;
-    line-height: 1.58;
+
     font-weight: normal;
-    font-style: normal;
+    font-size: 21px;
     font-family: "Lora", Helvetica, Arial, sans-serif;
+    font-style: normal;
+    line-height: 1.58;
   }
 
   * + img {

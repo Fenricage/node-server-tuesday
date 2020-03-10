@@ -12,7 +12,9 @@
   &__figure {
     display: block;
     margin: 0;
+
     text-align: center;
+
     background-color: #ddd;
   }
 
@@ -21,33 +23,37 @@
   }
 
   &__link-wrap {
-    border-radius: 2px;
     display: flex;
     flex-flow: column nowrap;
-    text-decoration: none;
-    padding: 14px;
     height: 100%;
+    padding: 14px;
+
+    text-decoration: none;
+
+    border-radius: 2px;
   }
 
   &__title {
-    text-decoration: none;
-    font-size: 19px;
-    margin-bottom: 8px;
     margin-top: 6px;
+    margin-bottom: 8px;
+
     font-weight: 800;
+    font-size: 19px;
+    text-decoration: none;
   }
 
   &__img {
     display: block;
-    vertical-align: top;
     width: 100%;
     height: auto;
+
+    vertical-align: top;
   }
 
   &__category {
     font-weight: bold;
     font-size: 12px;
-    text-transform: uppercase;
     letter-spacing: 1px;
+    text-transform: uppercase;
   }
 }

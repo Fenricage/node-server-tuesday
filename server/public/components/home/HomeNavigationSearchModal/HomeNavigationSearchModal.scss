@@ -1,21 +1,23 @@
 .home-navigation-search-modal {
   $self: &;
   position: fixed;
-  z-index: 1;
   top: 0;
   right: 0;
   bottom: 0;
-  overflow: auto;
+  left: 0;
+  z-index: 1;
+
   display: flex;
   flex-flow: column nowrap;
-  left: 0;
+  overflow: auto;
+
   background-color: #fff;
 
   &__inner {
     display: flex;
     flex-flow: column nowrap;
-    padding: var(--sm-padding);
     width: 100%;
+    padding: var(--sm-padding);
   }
 
   &__title {
@@ -25,10 +27,11 @@
   &__close {
     width: 40px;
     height: 40px;
+    margin-left: auto;
+
+    background-color: transparent;
     border: 0;
     outline: none;
-    background-color: transparent;
-    margin-left: auto;
   }
 
   &__top-bar {
@@ -38,11 +41,12 @@
   }
 
   &__main-area {
+    position: relative;
+
     display: flex;
     flex-flow: column nowrap;
-    overflow: auto;
-    position: relative;
     height: calc(100vh - 100px);
+    overflow: auto;
 
     @media (--md-viewport) {
 
@@ -77,11 +81,12 @@
   }
 
   &__main-area-inner {
+    position: relative;
+
     display: flex;
     flex-flow: column nowrap;
-    overflow: auto;
-    position: relative;
     height: 100%;
+    overflow: auto;
   }
 
   &__articles {
@@ -91,7 +96,9 @@
 
   &__articles-grid {
     grid-template-columns: 1fr 1fr;
+
     transition: opacity ease-out .2s;
+
     &_is-loading {
       opacity: .3;
     }

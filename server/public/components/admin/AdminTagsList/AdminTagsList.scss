@@ -2,8 +2,8 @@
 
   &__top-bar {
     display: flex;
-    margin-bottom: 1rem;
     justify-content: space-between;
+    margin-bottom: 1rem;
   }
 
   &__total {
@@ -23,9 +23,10 @@
     flex-flow: row wrap;
     margin: -.3rem;
     margin-bottom: 2rem;
-    border-radius: .4rem;
-    background-color: hsla(0, 0%, 96%, 1);
     padding: .7rem 1rem;
+
+    background-color: hsla(0, 0%, 96%, 1);
+    border-radius: .4rem;
   }
 
   &__tags-not-defined {
@@ -33,13 +34,14 @@
   }
 
   & &__input-filter-tags {
-    box-shadow: none;
     width: 60%;
     height: 26px;
-    cursor: text;
-    background-color: hsla(0, 0%, 94%, 1);
     padding: .7rem 1rem;
+
+    background-color: hsla(0, 0%, 94%, 1);
     border-radius: .4rem;
+    box-shadow: none;
+    cursor: text;
 
     &:hover,
     &:focus,

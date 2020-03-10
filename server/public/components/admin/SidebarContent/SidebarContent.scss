@@ -1,23 +1,28 @@
 .b-sidebar-content {
-  background-color: var(--color-dark);
   height: 100vh;
 
+  background-color: var(--color-dark);
+
   &__logo {
-    background-color: var(--color-dark);
     padding: 18px 12px;
-    pointer-events: none;
+
+    background-color: var(--color-dark);
     cursor: default;
 
+    pointer-events: none;
+
     h2 {
-      color: #fff;
+      display: inline-block;
       margin: 0;
       padding: 6px;
-      letter-spacing: 6px;
-      font-size: 16px;
-      text-transform: uppercase;
+
+      color: #fff;
       font-weight: 500;
+      font-size: 16px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+
       border: 2px solid #fff;
-      display: inline-block;
     }
   }
 

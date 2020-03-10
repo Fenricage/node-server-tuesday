@@ -5,11 +5,13 @@
 
 .tag {
   display: inline-block;
-  background-color: var(--color-main-bg-tag);
-  color: var(--color-main-text-tag);
-  border-radius: .2rem;
-  padding: 0 .5rem;
   margin: .3rem;
+  padding: 0 .5rem;
+
+  color: var(--color-main-text-tag);
+
+  background-color: var(--color-main-bg-tag);
+  border-radius: .2rem;
   cursor: pointer;
 
   &__text {
@@ -18,6 +20,7 @@
 
   &__delete {
     margin-left: .3rem;
+
     color: #888;
     text-decoration: underline;
 

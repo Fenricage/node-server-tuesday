@@ -1,37 +1,43 @@
 .loader {
   $self: &;
   position: relative;
-  margin: 0 auto;
+
   width: 70px;
   height: 100%;
+  margin: 0 auto;
 
   &:before {
-    content: "";
     display: block;
     padding-top: 100%;
+
+    content: "";
   }
 
   &__circular {
-    animation: rotate 2s linear infinite;
-    height: 100%;
-    transform-origin: center center;
-    width: 100%;
     position: absolute;
     top: 0;
+    right: 0;
     bottom: 0;
     left: 0;
-    right: 0;
+
+    width: 100%;
+    height: 100%;
     margin: auto;
+
+    transform-origin: center center;
+
+    animation: rotate 2s linear infinite;
   }
 
   &__path {
+    //animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+    //animation: none;
+    animation: dash 1.5s ease-in-out infinite;
+
     stroke: var(--color-black-54);
     stroke-width: 4;
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
-    //animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
-    //animation: none;
-    animation: dash 1.5s ease-in-out infinite;
     stroke-linecap: square;
   }
 
@@ -44,10 +50,11 @@
   }
 
   &_type-cross-button {
-    stroke: var(--color-black-54);
-    stroke-width: 4;
     width: 30px;
     height: 70%;
+
+    stroke: var(--color-black-54);
+    stroke-width: 4;
   }
 }
 

@@ -1,7 +1,7 @@
 .pagination {
   display: flex;
-  margin: 2.3rem 0 0 0;
   justify-content: center;
+  margin: 2.3rem 0 0 0;
 
   @media (--md-viewport) {
 
@@ -25,6 +25,7 @@
   &__previous-link {
     display: block;
     padding: .5rem 1.1rem;
+
     border: 1px solid #ddd;
     outline: none;
   }
@@ -40,14 +41,17 @@
 
   &__break-link {
     display: flex;
-    justify-content: center;
     align-items: center;
-    color: #727272;
+    justify-content: center;
     width: 40px;
     height: 40px;
-    border: 1px solid #ddd;
     margin-left: -1px;
+
+    color: #727272;
+
+    border: 1px solid #ddd;
     outline: none;
+
     &:hover {
       color: var(--color-admin-lprimary);
     }
@@ -63,11 +67,14 @@
 
   &__page_active {
     position: relative;
+
     .pagination__page-link {
-      border-color: #1890ff;
       position: relative;
+
       color: var(--color-admin-lprimary);
       font-weight: 600;
+
+      border-color: #1890ff;
     }
 
     //&:before {
@@ -101,13 +108,16 @@
 
   &__page-link {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: 40px;
-    color: #727272;
     height: 40px;
+
+    color: #727272;
+
     border: 1px solid #ddd;
     outline: none;
+
     &:hover {
       color: var(--color-admin-lprimary);
     }
@@ -121,34 +131,40 @@
   &__next-link {
     display: block;
     padding: .5rem 1.1rem;
+
     border: 1px solid #ddd;
     outline: none;
   }
 
   &__prev {
     display: block;
-    padding: .5rem 1.1rem;
-    border: 1px solid #e3e3e3;
-    color: #666666;
-    outline: none;
     margin-right: 2rem;
+    padding: .5rem 1.1rem;
+
+    color: #666666;
+
+    border: 1px solid #e3e3e3;
+    outline: none;
 
     &[disabled] {
-      opacity: .5;
       cursor: not-allowed;
+      opacity: .5;
     }
   }
 
   &__next {
     display: block;
-    padding: .5rem 1.1rem;
-    border: 1px solid #e3e3e3;
-    color: #666666;
-    outline: none;
     margin-left: 2rem;
+    padding: .5rem 1.1rem;
+
+    color: #666666;
+
+    border: 1px solid #e3e3e3;
+    outline: none;
+
     &[disabled] {
-      opacity: .5;
       cursor: not-allowed;
+      opacity: .5;
     }
   }
 
