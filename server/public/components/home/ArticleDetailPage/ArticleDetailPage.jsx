@@ -3,14 +3,12 @@ import { connect } from 'react-redux';
 import Link from 'next/link';
 import { reqArticleAndSet } from '../../../actions/article';
 import './ArticleDetailPage.scss';
-import ArticleMeta from "../ArticleMeta/ArticleMeta";
-import {getHumanDate, getHumanTime} from "../../../helpers";
+import ArticleMeta from '../ArticleMeta/ArticleMeta';
+import { getHumanDate, getHumanTime } from '../../../helpers';
 
 class ArticleDetailPage extends Component {
-
-
   componentDidMount() {
-    const { match, reqArticleAndSetDispatch, query: { id: queryId }, } = this.props;
+    const { match, reqArticleAndSetDispatch, query: { id: queryId } } = this.props;
     // reqArticleAndSetDispatch(queryId);
   }
 
@@ -32,14 +30,14 @@ class ArticleDetailPage extends Component {
           <time className="article-detail-page__date-publication" dateTime={articleData.get('created_at')} pubdate={date}>{`${date} ${time}`}</time>
           <Link href="#">
             <a href="" className="article-detail-page__category">
-              {articleData.getIn(['category', 'name'])}
+              {articleData.getIn([ 'category', 'name' ])}
             </a>
           </Link>
         </section>
         {articleData.get('preview_img') && (
           <img
             className="article-detail-page__preview-img"
-            src={articleData.getIn(['preview_img', 'img_url'])}
+            src={articleData.getIn([ 'preview_img', 'img_url' ])}
             alt=""
           />
         )}
@@ -49,12 +47,11 @@ class ArticleDetailPage extends Component {
       </section>
     );
   }
-
 }
 
 const mapStateToProps = state => ({
-  articleData: state.getIn(['article', 'data']),
-  isLoadedArticle: state.getIn(['article', 'isLoaded']),
+  articleData: state.getIn([ 'article', 'data' ]),
+  isLoadedArticle: state.getIn([ 'article', 'isLoaded' ]),
 });
 
 const mapDispatchToProps = dispatch => ({
