@@ -26,7 +26,7 @@ const getAllArticleCategoriesFailure = e => ({
   payload: e,
 });
 
-export const getAllArticleCategories = (queryParams) => (dispatch) => {
+export const getAllArticleCategories = queryParams => (dispatch) => {
   dispatch(getAllArticleCategoriesFetch());
   return api.get(API_BROWSER).articeCategories.getAll(queryParams)
     .then((categories) => {
@@ -38,9 +38,21 @@ export const getAllArticleCategories = (queryParams) => (dispatch) => {
     });
 };
 
-export const getAllArticleCategoriesServer = (queryParams) => (dispatch) => {
+export const getAllArticleCategoriesServer = queryParams => (dispatch) => {
   dispatch(getAllArticleCategoriesFetch());
   return api.get(API_SERVER).articeCategories.getAll(queryParams)
+    .then((categories) => {
+      dispatch(getAllArticleCategoriesSuccess(fromJS(categories)));
+    })
+    .catch((e) => {
+      console.error('Get All Article Categories is Failure', { ...e });
+      dispatch(getAllArticleCategoriesFailure(e));
+    });
+};
+
+export const getAllArticleCategoriesUniversal = (queryParams, isServer) => (dispatch) => {
+  const API = isServer ? API_SERVER : API_BROWSER;
+  return api.get(API).articeCategories.getAll(queryParams)
     .then((categories) => {
       dispatch(getAllArticleCategoriesSuccess(fromJS(categories)));
     })
@@ -57,7 +69,6 @@ const reqSetDeletingStatus = id => ({
   payload: [],
 });
 const reqDeleteArticleCategorySuccess = (id) => {
-
   // const isDeleting = store.getState()
   //   .getIn(['articleCategories', 'isDeleting'])
   //   .push(id)

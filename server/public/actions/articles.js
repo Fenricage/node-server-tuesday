@@ -13,6 +13,10 @@ import api from '../shared/api/index';
 
 export const getAllArticles = queryParams => api.get(API_BROWSER).articles.getAll(queryParams);
 export const getAllArticlesServer = queryParams => api.get(API_SERVER).articles.getAll(queryParams);
+export const getAllArticlesUniversal = (queryParams, isServer) => {
+  const API = isServer ? API_SERVER : API_BROWSER;
+  return api.get(API).articles.getAll(queryParams);
+};
 
 
 export const fetchAllArticles = () => ({
@@ -43,6 +47,17 @@ export const getAllArticlesAndSet = queryParams => (dispatch) => {
 export const getAllArticlesAndSetServer = queryParams => (dispatch) => {
   dispatch(fetchAllArticles());
   return getAllArticlesServer(queryParams)
+    .then((articles) => {
+      dispatch(fetchAllArticlesSuccess(fromJS(articles)));
+    })
+    .catch((e) => {
+      dispatch(fetchAllArticlesFailure(e));
+    });
+};
+
+export const getAllArticlesAndSetUniversal = (queryParams, isServer) => (dispatch) => {
+  dispatch(fetchAllArticles());
+  return getAllArticlesUniversal(queryParams, isServer)
     .then((articles) => {
       dispatch(fetchAllArticlesSuccess(fromJS(articles)));
     })

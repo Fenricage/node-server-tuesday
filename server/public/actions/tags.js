@@ -1,5 +1,5 @@
-import api from '../shared/api';
 import { fromJS } from 'immutable';
+import api from '../shared/api';
 import {
   TAGS_INIT,
   TAGS_FETCH_FAILURE,
@@ -20,6 +20,10 @@ import { API_BROWSER, API_SERVER } from '../shared/constants/api';
 
 export const getAllTags = () => api.get(API_BROWSER).tags.getAll();
 export const getAllTagsServer = () => api.get(API_SERVER).tags.getAll();
+export const getAllTagsUniversal = (queryParams, isServer) => {
+  const API = isServer ? API_SERVER : API_BROWSER;
+  return api.get(API).tags.getAll(queryParams);
+};
 
 export const fetchAllATags = () => ({
   type: TAGS_INIT,
@@ -49,6 +53,17 @@ export const getAllTagsAndSet = queryParams => (dispatch) => {
 export const getAllTagsAndSetServer = queryParams => (dispatch) => {
   dispatch(fetchAllATags());
   return getAllTagsServer(queryParams)
+    .then((tags) => {
+      dispatch(fetchAllATagsSuccess(fromJS(tags)));
+    })
+    .catch((e) => {
+      dispatch(fetchAllTagsFailure(e));
+    });
+};
+
+export const getAllTagsAndSetUniversal = (queryParams, isServer) => (dispatch) => {
+  dispatch(fetchAllATags());
+  return getAllTagsUniversal(queryParams, isServer)
     .then((tags) => {
       dispatch(fetchAllATagsSuccess(fromJS(tags)));
     })
@@ -97,9 +112,8 @@ const patchTagSuccess = () => ({
 });
 
 export const patchTag = (id, tagData) => (dispatch) => {
-
   dispatch(fetchPatchTag());
-  console.log('id, tagData', id, tagData)
+  console.log('id, tagData', id, tagData);
   return api.get(API_BROWSER).tags.patch(id, tagData)
     .then((res) => {
       dispatch(patchTagSuccess());
@@ -109,12 +123,10 @@ export const patchTag = (id, tagData) => (dispatch) => {
       dispatch(patchTagFailure());
       console.log('e', e);
     });
-
 };
 
 
 export const reqSetDeletingStatus = (id) => {
-
   // const isDeleting = store.getState()
   //   .getIn(['tags', 'isDeleting'])
   //   .push(id);
@@ -126,7 +138,6 @@ export const reqSetDeletingStatus = (id) => {
   };
 };
 export const deleteTagSuccess = (id) => {
-
   // const isDeleting = store.getState()
   //   .getIn(['tags', 'isDeleting'])
   //   .filter(item => item !== id);
@@ -140,7 +151,6 @@ export const deleteTagSuccess = (id) => {
 
 
 export const deleteTagFailure = (id) => {
-
   // const isDeleting = store.getState()
   //   .getIn(['tags', 'isDeleting'])
   //   .filter(item => item !== id);
@@ -154,7 +164,6 @@ export const deleteTagFailure = (id) => {
 
 
 export const deleteTag = id => async (dispatch) => {
-
   dispatch(reqSetDeletingStatus(id));
 
   return api.get(API_BROWSER).tags.deleteOne(id)
@@ -165,5 +174,4 @@ export const deleteTag = id => async (dispatch) => {
     .catch((e) => {
       dispatch(deleteTagFailure(id));
     });
-
 };

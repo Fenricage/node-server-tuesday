@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import HomeMainPage from '../../components/home/HomeMainPage/HomeMainPage';
-import {getAllArticleCategories, getAllArticleCategoriesServer} from '../../actions/articleCategories';
-import { getAllTagsAndSet, getAllTagsAndSetServer } from '../../actions/tags';
-import {getAllArticlesAndSet, getAllArticlesAndSetServer} from '../../actions/articles';
+import {getAllArticleCategories, getAllArticleCategoriesServer, getAllArticleCategoriesUniversal} from '../../actions/articleCategories';
+import { getAllTagsAndSet, getAllTagsAndSetServer, getAllTagsAndSetUniversal } from '../../actions/tags';
+import {getAllArticlesAndSet, getAllArticlesAndSetServer, getAllArticlesAndSetUniversal} from '../../actions/articles';
 import { getLayout } from '../../shared/layouts/HomeLayout/HomeLayout';
 import { SIZE_PAGE } from '../../shared/constants/page';
 
@@ -43,15 +43,19 @@ HomePageWithLayout.getInitialProps = async ({
   }
   getArticlesQueryParams.extra = extra;
 
-  if (isServer) {
-    await dispatch(getAllArticleCategoriesServer(getArticlesCategoriesQueryParams));
-    await dispatch(getAllTagsAndSetServer());
-    await dispatch(getAllArticlesAndSetServer(getArticlesQueryParams));
-  } else {
-    await dispatch(getAllArticleCategories(getArticlesCategoriesQueryParams));
-    await dispatch(getAllTagsAndSet());
-    await dispatch(getAllArticlesAndSet(getArticlesQueryParams));
-  }
+  // if (isServer) {
+  //   await dispatch(getAllArticleCategoriesServer(getArticlesCategoriesQueryParams));
+  //   await dispatch(getAllTagsAndSetServer());
+  //   await dispatch(getAllArticlesAndSetServer(getArticlesQueryParams));
+  // } else {
+  //   await dispatch(getAllArticleCategories(getArticlesCategoriesQueryParams));
+  //   await dispatch(getAllTagsAndSet());
+  //   await dispatch(getAllArticlesAndSet(getArticlesQueryParams));
+  // }
+
+  await dispatch(getAllArticleCategoriesUniversal(getArticlesCategoriesQueryParams, isServer));
+  await dispatch(getAllTagsAndSetUniversal({}, isServer));
+  await dispatch(getAllArticlesAndSetUniversal(getArticlesQueryParams, isServer));
 
   return { query, pathname };
 };
