@@ -17,15 +17,4 @@
     }
   }
 
-  &_theme-white {
-    fill: #fff;
-
-    #{ $self }__letter {
-      fill: #fff;
-    }
-
-    #{ $self }__rect {
-      stroke: #fff;
-    }
-  }
 }

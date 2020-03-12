@@ -5,7 +5,7 @@ import './Logo.scss';
 const Logo = ({ className }) => (
   <div className={cs({
     logo: true,
-    [`logo_${className}`]: className,
+    [`${className}`]: className,
   })}
   >
     <svg width="126" height="35" viewBox="0 0 126 35" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -13,7 +13,6 @@ import './HomeNavigation.scss';
 
 
 class HomeNavigation extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -86,7 +85,6 @@ class HomeNavigation extends Component {
       const hoveredNodeCoords = e.currentTarget.getBoundingClientRect();
 
       if (!isMouseOverListenerAdded) {
-
         this.setState((prevState, props) => ({
           portal: {
             ...prevState.portal,
@@ -274,7 +272,7 @@ class HomeNavigation extends Component {
         subMenu: {
           title: 'Поиск',
           to: '/',
-          links: ['Абаут ас', 'Контакты'],
+          links: [ 'Абаут ас', 'Контакты' ],
         },
       },
     ];
@@ -320,8 +318,8 @@ class HomeNavigation extends Component {
               {...handlers}
             >
               {item.label}
-              {item.angle &&
-                (
+              {item.angle
+                && (
                   <Angle className="home-nav-link__angle" />
                 )
               }
@@ -375,12 +373,11 @@ class HomeNavigation extends Component {
       </section>
     );
   }
-
 }
 
 
 const mapStateToProps = state => ({
-  articleCategories: state.getIn(['articleCategories', 'data']),
+  articleCategories: state.getIn([ 'articleCategories', 'data' ]),
 });
 
 const mapDispatchToProps = dispatch => ({});

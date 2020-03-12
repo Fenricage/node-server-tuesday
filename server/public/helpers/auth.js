@@ -21,8 +21,6 @@ const auth = async (context) => {
 
   // проверяем валидность токена
   if (Token) {
-
-
     // далее если ответ будет содержать статус 401/403 то управление
     // отойдет интерсептору axios который сделает редирект
     const user = await getCurrentUserServer({
