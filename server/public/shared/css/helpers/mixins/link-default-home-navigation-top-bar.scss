@@ -1,4 +1,6 @@
-.home-nav-link {
+// дефолтный стиль для текстового инпута
+
+@mixin link-default-home-navigation {
   $self: &;
   padding: 13px 10px;
 
@@ -68,4 +70,5 @@
       fill: var(--color-home-nav-font-default);
     }
   }
+
 }
