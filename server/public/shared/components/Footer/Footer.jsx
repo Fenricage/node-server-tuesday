@@ -1,10 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 import Logo from '../../svg/Logo/Logo';
+import HomeNavLink from '../../../components/home/HomeNavLink/HomeNavLink';
 import './Footer.scss';
-import { fromJS } from 'immutable';
 
-const homeNavItems = [
+const footerNavItems = [
   {
     to: '/',
     type: 'link',
@@ -19,23 +19,9 @@ const homeNavItems = [
   },
   {
     to: '/extra',
-    type: 'button',
+    type: 'link',
     label: 'Еще',
     angle: true,
-    subMenu: {
-      title: 'Еще',
-      to: '/',
-      links: fromJS([
-        {
-          label: 'Абаут ас',
-          value: 'about',
-        },
-        {
-          label: 'Контакты',
-          value: 'contacts',
-        },
-      ]),
-    },
   },
   {
     to: '/blog',
@@ -46,13 +32,29 @@ const homeNavItems = [
 ];
 
 
-const Footer = () => (
-  <footer className="footer">
-    <div className="footer__content">
-      <div className="footer__links" />
-      <Logo className="footer__logo" />
-    </div>
-  </footer>
-);
+const Footer = () => {
+  const navigationItems = footerNavItems
+    .map((navItem, index) => {
+      return (
+        <HomeNavLink
+          key={index}
+          to={navItem.to}
+          label={navItem.label}
+          exact={navItem.exact}
+        />
+      );
+    });
+
+  return (
+    <footer className="footer">
+      <div className="footer__content">
+        <section className="footer__links">
+          {navigationItems}
+        </section>
+        <Logo className="footer__logo" />
+      </div>
+    </footer>
+  );
+};
 
 export default Footer;
