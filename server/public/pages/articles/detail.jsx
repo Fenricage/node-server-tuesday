@@ -21,13 +21,12 @@ class ArticleDetailPageWithLayout extends Component {
 }
 
 
-// вызывается и на сервере и на клиенте (при маршриутизации) работает тлько на страницах, на страницах читай что это замена cdm
 ArticleDetailPageWithLayout.getInitialProps = async ({
   query, pathname, store, isServer,
 }) => {
   const { id } = query;
   const { dispatch } = store;
-  // TODO(@fenricage): переписать без использования редакс
+  // TODO(@fenricage): rewrite without using redux
   await dispatch(reqArticleAndSetServer(id));
   await dispatch(getAllTagsAndSetServer());
   await dispatch(getAllArticleCategoriesServer());

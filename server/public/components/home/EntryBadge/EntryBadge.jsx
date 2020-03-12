@@ -10,15 +10,14 @@ import './EntryBadge.scss';
 const EntryBadge = ({ dataItem, router }) => {
   const imgUrls = dataItem.getIn([ 'previewImg', 'img_urls' ]);
 
-  // создаем структуру массив массивов [размер, url]
+  // creating array structure [ size, url ]
   const entries = new List(imgUrls).map(item => new List([ item[0], item[1] ]));
-  // TODO вынести в хелпер
-  // готовим строку для атрибута srcset
-  // eslint-disable-next-line no-unused-vars
-  // важно помнить при тестировании:
-  // браузер лишь при первоначальной загрузке будет брать src set в зависимости от экрана
-  // но если до это го было загружено самое большое изображение и записано в кэш
-  // то браузер для экономии трафика даже на мобилах будет юзать самое большое изображение
+  // TODO(@fenricage): to helper
+  // preparing string for attribute srcset
+  // its important to remember when you testing:
+  // browser only with first load will take srcSet dependenced on size your screen
+  // but if before was loaded most or bigger image and set to cache
+  // then browser for save time and traffic even on mobiles will use most big image
   const imgSrcSet = prepareImgSrcSets(entries);
 
   return (
@@ -38,19 +37,10 @@ const EntryBadge = ({ dataItem, router }) => {
             )}
           </figure>
           <div className="entry-badge__text-wrapper">
-            {/* <Link */}
-            {/*  to={`/categories/${dataItem.get('category')}`} */}
-            {/*  className="entry-badge__category" */}
-            {/* > */}
-            {/*  {dataItem.get('category')} */}
-            {/* </Link> */}
             <span className="entry-badge__category">
               {dataItem.get('category')}
             </span>
             <h3 className="entry-badge__title">{dataItem.get('title')}</h3>
-            {/* <TagListSuggestions */}
-            {/*  tags={dataItem.get('tags')} */}
-            {/* /> */}
           </div>
         </a>
       </Link>
