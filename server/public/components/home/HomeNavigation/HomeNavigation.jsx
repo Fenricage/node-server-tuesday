@@ -285,6 +285,7 @@ class HomeNavigation extends Component {
             <HomeNavLink
               key={index}
               to={item.to}
+              className="home-navigation__link"
               label={item.label}
               exact={item.exact}
             />

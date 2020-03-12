@@ -6,7 +6,7 @@ import cs from 'classnames';
 import './HomeNavLink.scss';
 
 const HomeNavLink = ({
-  exact, to, label, onClick,
+  exact, to, label, onClick, className,
 }) => {
   const router = useRouter();
 
@@ -18,6 +18,7 @@ const HomeNavLink = ({
         className={cs({
           'home-nav-link': true,
           'home-nav-link_selected': router.pathname === to,
+          [`${className}`]: className,
         })}
         onClick={onClick}
       >
