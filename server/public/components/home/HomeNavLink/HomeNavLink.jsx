@@ -6,7 +6,7 @@ import cs from 'classnames';
 import './HomeNavLink.scss';
 
 const HomeNavLink = ({
-  exact, to, label, onClick, className,
+  exact, to, label, onClick, className, children,
 }) => {
   const router = useRouter();
 
@@ -23,7 +23,7 @@ const HomeNavLink = ({
         })}
         onClick={onClick}
       >
-        {label}
+        {children || label}
       </a>
     </Link>
   );

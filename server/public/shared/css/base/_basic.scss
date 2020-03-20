@@ -6,16 +6,17 @@ html {
   padding: 0;
 }
 
-::selection {
-  background: rgba(255, 235, 20, .7);
-}
-
 html {
   color: var(--color-font);
   font: var(--main-font);
 }
 
-#app {
+::selection {
+  background: rgba(255, 235, 20, .7);
+}
+
+#__next {
+  background-color: #fff;
   position: relative;
   //padding: 0 24px;
   box-sizing: border-box;

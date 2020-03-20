@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Logo from '../../svg/Logo/Logo';
+import Star from '../../svg/Star/Star';
 import HomeNavLink from '../../../components/home/HomeNavLink/HomeNavLink';
 import './Footer.scss';
 
@@ -39,9 +40,15 @@ const Footer = () => {
         <HomeNavLink
           key={index}
           to={navItem.to}
-          label={navItem.label}
+          className="footer__nav-item"
           exact={navItem.exact}
-        />
+        >
+          <Star
+            className="footer__nav-item"
+            fill="hsla(0, 0%, 30%, 1)"
+          />
+          {navItem.label}
+        </HomeNavLink>
       );
     });
 

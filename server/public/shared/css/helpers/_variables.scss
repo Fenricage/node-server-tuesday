@@ -2,7 +2,7 @@
 
   // fonts
   --main-font: normal normal 14px/24px "Roboto", Helvetica, Arial, sans-serif;
-  --color-font: #333;
+  --color-font: hsla(0, 0%, 20%, 1);
   // common
   --color-error: hsla(7, 58%, 45%, 1);
   --color-dark: hsla(0, 0%, 13%, 1);
@@ -70,5 +70,6 @@
 
   // footer
   --theme-background: hsla(180, 9%, 98%, 1);
-  --bg-footer: hsla(36, 71%, 97%, 1);
+  --footer-bg: hsla(36, 71%, 97%, 1);
+  --footer-link-color: hsla(0, 0%, 30%, 1);
 }
