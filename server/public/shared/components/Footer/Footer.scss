@@ -52,4 +52,8 @@
   &__nav-item {
     @include link-default-home-navigation-footer;
   }
+
+  &__nav-item + &__nav-item {
+    margin-top: .8rem;
+  }
 }

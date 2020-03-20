@@ -3,7 +3,7 @@ import cs from 'classnames';
 import './Star.scss';
 
 const Star = ({
-  className, width = '8px', height = '8px', fill = '#000',
+  className, width = '12px', height = '12px', fill = '#000',
 }) => (
   <svg
     className={cs({

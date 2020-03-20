@@ -15,13 +15,13 @@ const footerNavItems = [
   {
     to: '/huinya',
     type: 'link',
-    label: 'Хуйня',
+    label: 'Абаут ас',
     exact: false,
   },
   {
     to: '/extra',
     type: 'link',
-    label: 'Еще',
+    label: 'Контакты',
     angle: true,
   },
   {
@@ -45,7 +45,7 @@ const Footer = () => {
         >
           <Star
             className="footer__nav-item"
-            fill="hsla(0, 0%, 30%, 1)"
+            fill="hsla(0, 0%, 30%, .6)"
           />
           {navItem.label}
         </HomeNavLink>
@@ -58,6 +58,7 @@ const Footer = () => {
         <section className="footer__links">
           {navigationItems}
         </section>
+        <br/>
         <Logo className="footer__logo" />
       </div>
     </footer>

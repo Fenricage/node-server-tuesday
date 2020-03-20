@@ -22,33 +22,10 @@
     position: absolute;
     opacity: 0;
     left: 0;
-    top: 7px;
+    top: 5.5px;
     transform-origin: center center;
     color: var(--footer-link-color);
     transition: transform .6s ease, opacity .15s ease;
   }
 
-  //&:hover::before {
-  //  //left: -4px;
-  //  opacity: 1;
-  //  transform: rotate(540deg);
-  //}
-  //
-  //&:before {
-  //  content: '*';
-  //  display: block;
-  //  opacity: 1;
-  //  width: 12px;
-  //  background-color: red;
-  //  height: 12px;
-  //  left: 0;
-  //  transform-origin: center center;
-  //  top: 2px;
-  //  position: absolute;
-  //  color: var(--footer-link-color);
-  //  font-weight: 500;
-  //  font-size: 18px;
-  //  font-family: "Lora", sans-serif;
-  //  transition: all 1s ease-in;
-  //}
 }
