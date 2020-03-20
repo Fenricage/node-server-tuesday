@@ -1,3 +1,5 @@
+// наследуется от элемента, см. пример как эти стили применяются от HomeNavigation к HomeNav
+
 @mixin link-default-home-navigation-top-bar {
   $self: ".home-nav-link";
   padding: 13px 10px;
@@ -59,7 +61,7 @@
     }
   }
 
-  &__angle {
+  #{ $self }__angle {
     margin-left: 5px;
 
     transform: translate(0px, -1px);

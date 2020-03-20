@@ -47,7 +47,7 @@
   }
 
   &__nav-item {
-
+    @include link-default-home-navigation-top-bar;
   }
 
   &__link {

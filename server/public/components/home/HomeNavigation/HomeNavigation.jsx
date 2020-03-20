@@ -285,7 +285,7 @@ class HomeNavigation extends Component {
             <HomeNavLink
               key={index}
               to={item.to}
-              className="home-navigation__link"
+              className="home-navigation__nav-item"
               label={item.label}
               exact={item.exact}
             />
@@ -315,7 +315,7 @@ class HomeNavigation extends Component {
           return (
             <Button
               key={index}
-              className="home-nav-link"
+              className="home-navigation__nav-item"
               {...handlers}
             >
               {item.label}
