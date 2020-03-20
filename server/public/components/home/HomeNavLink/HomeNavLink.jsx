@@ -19,6 +19,7 @@ const HomeNavLink = ({
           'home-nav-link': true,
           'home-nav-link_selected': router.pathname === to,
           [`${className}`]: className,
+          [`${className}_selected`]: className && router.pathname === to,
         })}
         onClick={onClick}
       >
