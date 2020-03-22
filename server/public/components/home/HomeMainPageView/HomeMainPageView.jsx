@@ -10,13 +10,14 @@ const HomeMainPageView = ({
   const transformedArticles = transformArticlesToItemGridData(articles.get('records'));
 
   return (
-    <section className="b-home-main-page">
+    <section className="home-main-page">
       <ItemGridProvider value={{
         viewComponent: 'EntryBadge',
       }}
       >
         <ItemGrid
           data={transformedArticles}
+          className="home-main-page__item-grid"
         />
       </ItemGridProvider>
     </section>

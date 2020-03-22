@@ -76,7 +76,7 @@ $searh-placeholder-color: #ccc;
 
     height: 2px;
 
-    background: linear-gradient(270deg, #54dbb8, #2173b6, #54dbb8, #54dbb8);
+    background: linear-gradient(270deg, rgba(252, 241, 178, 1), rgba(247, 221, 199, 1), rgba(244, 195, 195, 1), rgba(235, 194, 237, 1), rgba(193, 204, 249, 1), rgba(203, 247, 230, 1), rgba(232, 252, 197, 1));
     background-size: 50%;
 
     opacity: 0;
@@ -109,21 +109,33 @@ $searh-placeholder-color: #ccc;
 
 @-webkit-keyframes InputLoaderAnimation {
 
-  0% {background-position: 0% 0%}
+  0% {
+    background-position: 0% 0%
+  }
 
-  100% {background-position: 100% 0%}
+  100% {
+    background-position: 100% 0%
+  }
 }
 
 @-moz-keyframes InputLoaderAnimation {
 
-  0% {background-position: 0% 0%}
+  0% {
+    background-position: 0% 0%
+  }
 
-  100% {background-position: 100% 0%}
+  100% {
+    background-position: 100% 0%
+  }
 }
 
 @keyframes InputLoaderAnimation {
 
-  0% {background-position: 0% 0%}
+  0% {
+    background-position: 0% 0%
+  }
 
-  100% {background-position: 100% 0%}
+  100% {
+    background-position: 100% 0%
+  }
 }

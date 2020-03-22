@@ -17,7 +17,7 @@
 
     text-align: center;
 
-    background-color: rgba(0, 0, 0, .05);
+    background-color: #f2f2f2;
 
     &:before {
       display: block;
@@ -36,9 +36,31 @@
     flex-flow: column nowrap;
     height: 100%;
 
+    color: var(--color-font);
     text-decoration: none;
 
-    border-radius: 2px;
+    padding: 1rem;
+    border: 2px dashed transparent;
+    border-radius: .3rem;
+    margin: 0 -.4rem;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, .03);
+      transition: none;
+    }
+
+    &:active {
+      background-color: var(--color-blog-blue-opacity);
+      border-color: var(--color-blog-blue);
+    }
+
+    @media (--md-viewport) {
+      margin: 0;
+    }
+
+    @media (--lg-viewport) {
+
+    }
   }
 
   &__title {
