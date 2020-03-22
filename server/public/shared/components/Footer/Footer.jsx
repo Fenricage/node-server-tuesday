@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import Logo from '../../svg/Logo/Logo';
 import Star from '../../svg/Star/Star';
 import HomeNavLink from '../../../components/home/HomeNavLink/HomeNavLink';
@@ -44,7 +43,6 @@ const Footer = () => {
           exact={navItem.exact}
         >
           <Star
-            className="footer__nav-item"
             fill="hsla(0, 0%, 30%, .6)"
           />
           {navItem.label}
@@ -58,7 +56,7 @@ const Footer = () => {
         <section className="footer__links">
           {navigationItems}
         </section>
-        <br/>
+        <br />
         <Logo className="footer__logo" />
       </div>
     </footer>

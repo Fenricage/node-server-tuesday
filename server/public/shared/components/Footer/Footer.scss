@@ -51,9 +51,12 @@
 
   &__nav-item {
     @include link-default-home-navigation-footer;
+    //padding-top: .4rem;
+    //padding-bottom: .4rem;
+    //padding: .4rem 0;
   }
 
-  &__nav-item + &__nav-item {
-    margin-top: .8rem;
-  }
+  //&__nav-item + &__nav-item {
+  //  margin-top: .8rem;
+  //}
 }
