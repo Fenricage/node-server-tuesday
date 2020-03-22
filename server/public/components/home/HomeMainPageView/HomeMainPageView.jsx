@@ -13,11 +13,11 @@ const HomeMainPageView = ({
     <section className="home-main-page">
       <ItemGridProvider value={{
         viewComponent: 'EntryBadge',
+        className: 'home-main-page__item-grid',
       }}
       >
         <ItemGrid
           data={transformedArticles}
-          className="home-main-page__item-grid"
         />
       </ItemGridProvider>
     </section>

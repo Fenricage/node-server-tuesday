@@ -39,22 +39,27 @@
     color: var(--color-font);
     text-decoration: none;
 
-    padding: 1rem;
+
     border: 2px dashed transparent;
     border-radius: .3rem;
-    margin: 0 -.4rem;
+    padding-top: 1rem;
 
     &:hover {
-      background-color: rgba(0, 0, 0, .03);
-      transition: none;
+      @media (--md-viewport) {
+        background-color: rgba(0, 0, 0, .03);
+        transition: none;
+      }
     }
 
     &:active {
-      background-color: var(--color-blog-blue-opacity);
-      border-color: var(--color-blog-blue);
+      @media (--md-viewport) {
+        background-color: var(--color-blog-blue-opacity);
+        border-color: var(--color-blog-blue);
+      }
     }
 
     @media (--md-viewport) {
+      padding: 1rem;
       margin: 0;
     }
 
@@ -85,8 +90,8 @@
 
     vertical-align: top;
 
-    -webkit-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
   }
 
   &__category {
