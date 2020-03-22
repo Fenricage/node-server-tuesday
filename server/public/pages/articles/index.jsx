@@ -23,7 +23,10 @@ HomePageWithLayout.getInitialProps = async ({
   query, pathname, store, isServer,
 }) => {
   const { dispatch } = store;
-  const { page = 1, size = SIZE_PAGE, categoryId } = query;
+  const {
+    page = 1, size = SIZE_PAGE, categoryId, offset = SIZE_PAGE,
+  } = query;
+
 
   const getArticlesQueryParams = { page, size, orderBy: { _id: -1 } };
   const getArticlesCategoriesQueryParams = {
