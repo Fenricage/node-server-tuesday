@@ -65,3 +65,69 @@
   src: url("../fonts/Lora/Lora-Bold.ttf");
   src: url("../fonts/Lora/Lora-Bold.ttf") format("truetype");
 }
+
+/*JetBrainsMono*/
+
+@font-face {
+  font-weight: 700;
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  src: url("../fonts/JetBrainsMono/JetBrainsMono-Bold.ttf");
+  src: url("../fonts/JetBrainsMono/JetBrainsMono-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-weight: 700;
+  font-family: "JetBrains Mono";
+  font-style: italic;
+  src: url("../fonts/JetBrainsMono/Lora-BoldItalic.ttf");
+  src: url("../fonts/JetBrainsMono/Lora-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-weight: 900;
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  src: url("../fonts/JetBrainsMono/JetBrainsMono-ExtraBold.ttf");
+  src: url("../fonts/JetBrainsMono/JetBrainsMono-ExtraBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-weight: 900;
+  font-family: "JetBrains Mono";
+  font-style: italic;
+  src: url("../fonts/JetBrainsMono/JetBrainsMono-ExtraBold-Italic.ttf");
+  src: url("../fonts/JetBrainsMono/JetBrainsMono-ExtraBold-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-weight: 500;
+  font-family: "JetBrains Mono";
+  font-style: italic;
+  src: url("../fonts/JetBrainsMono/JetBrainsMono-Italic.ttf");
+  src: url("../fonts/JetBrainsMono/JetBrainsMono-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-weight: 500;
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  src: url("../fonts/JetBrainsMono/JetBrainsMono-Regular.ttf");
+  src: url("../fonts/JetBrainsMono/JetBrainsMono-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-weight: 600;
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  src: url("../fonts/JetBrainsMono/JetBrainsMono-Medium.ttf");
+  src: url("../fonts/JetBrainsMono/JetBrainsMono-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-weight: 600;
+  font-family: "JetBrains Mono";
+  font-style: italic;
+  src: url("../fonts/JetBrainsMono/JetBrainsMono-Medium-Italic.ttf");
+  src: url("../fonts/JetBrainsMono/JetBrainsMono-Medium-Italic.ttf") format("truetype");
+}
