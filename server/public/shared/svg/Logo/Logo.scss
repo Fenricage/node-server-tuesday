@@ -1,20 +1,31 @@
 .logo {
-  $self: &;
-  line-height: 1;
+  color: var(--color-font);
 
-  &__letter {
-
+  &__text {
+    font-size: 1.8rem;
+    font-style: normal;
+    font-family: "JetBrains Mono", serif;
+    font-weight: 700;
   }
-
-  &__rect {
-
-  }
-
-  &:hover {
-
-    #{ $self }__rect {
-      stroke-width: 3px;
-    }
-  }
-
 }
+
+//.logo {
+//  $self: &;
+//  line-height: 1;
+//
+//  &__letter {
+//
+//  }
+//
+//  &__rect {
+//
+//  }
+//
+//  &:hover {
+//
+//    #{ $self }__rect {
+//      stroke-width: 3px;
+//    }
+//  }
+//
+//}
