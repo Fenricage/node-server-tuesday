@@ -50,7 +50,7 @@ const faceSymbolsAnimate = (actionTimer, setLogoText) => {
     const face = faces[i];
     setLogoText(`test ${face}`);
     i ? --i : ++i;
-  }, 500);
+  }, 250);
 
   // cancel function
   return () => {
