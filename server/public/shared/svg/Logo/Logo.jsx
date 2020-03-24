@@ -7,21 +7,39 @@ import './Logo.scss';
 
 const DEFAULT_LOGO = 'test []';
 
+const mathRandomAnimate = (actionTimer, setLogoText) => {
+  actionTimer.current = setInterval(() => {
+    setLogoText(Math.random());
+  }, 300);
+
+  // cancel function
+  return () => {
+    clearInterval(actionTimer.current);
+    setLogoText(DEFAULT_LOGO);
+  };
+};
+
+const mathIncrementAnimate = (actionTimer, setLogoText) => {
+
+  let incrementingValue = 1;
+
+  actionTimer.current = setInterval(() => {
+    setLogoText(DEFAULT_LOGO + incrementingValue++);
+  }, 300);
+
+  // cancel function
+  return () => {
+    clearInterval(actionTimer.current);
+    setLogoText(DEFAULT_LOGO);
+  };
+};
 
 const actionVariations = new Map([
   [
     'js-interval-animation',
     (actionTimer, setLogoText) => {
-
-      actionTimer.current = setInterval(() => {
-        setLogoText(Math.random());
-      }, 300);
-
-      return () => {
-        clearInterval(actionTimer.current);
-        setLogoText(DEFAULT_LOGO);
-      };
-
+      // select random animation
+      return mathIncrementAnimate(actionTimer, setLogoText);
     },
   ],
 ]);
