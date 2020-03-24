@@ -14,7 +14,7 @@ const Logo = ({ className }) => {
 
   const actionTimer = useRef(null);
   const logoRef = useRef(null);
-  console.log('logoRef', logoRef) 
+
   useLayoutEffect(() => {
     if (isAnimating) {
       actionTimer.current = setInterval(() => {
