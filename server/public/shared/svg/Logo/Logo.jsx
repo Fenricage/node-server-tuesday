@@ -5,7 +5,8 @@ import cs from 'classnames';
 import Link from 'next/link';
 import './Logo.scss';
 
-const DEFAULT_LOGO = 'high_develop //:';
+const DEFAULT_LOGO = 'test //:';
+
 
 const mathRandomAnimate = (actionTimer, setLogoText) => {
   actionTimer.current = setInterval(() => {
