@@ -7,10 +7,12 @@ import './Logo.scss';
 
 const DEFAULT_LOGO = 'test []';
 
+
 const actionVariations = new Map([
   [
     'js-interval-animation',
     (actionTimer, setLogoText) => {
+
       actionTimer.current = setInterval(() => {
         setLogoText(Math.random());
       }, 300);
@@ -19,7 +21,7 @@ const actionVariations = new Map([
         clearInterval(actionTimer.current);
         setLogoText(DEFAULT_LOGO);
       };
-      //  пускай вернет функцию которая отменит все, вызовем ее на CWUnmount!
+
     },
   ],
 ]);
@@ -40,6 +42,7 @@ const Logo = ({ className }) => {
       const action = actionVariations.get('js-interval-animation');
       cancelAction = action(actionTimer, setLogoText);
     }
+
     return () => {
       if (isAnimating && cancelAction) {
         cancelAction();

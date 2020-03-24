@@ -44,5 +44,6 @@ module.exports = {
     // STYLES RULES
     'array-bracket-spacing': ['error', 'always'],
     'arrow-body-style': 'off',
+    'padded-blocks': 'off',
   },
 };
