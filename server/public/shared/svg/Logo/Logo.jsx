@@ -57,6 +57,7 @@ const Logo = ({ className }) => {
   const [ logoText, setLogoText ] = useState(DEFAULT_LOGO);
   const [ isAnimating, setAnimating ] = useState(false);
 
+  // one timer, one node ref
   const actionTimer = useRef(null);
   const logoRef = useRef(null);
 
