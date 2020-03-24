@@ -15,7 +15,10 @@ const actionVariations = new Map([
         setLogoText(Math.random());
       }, 300);
 
-      return () => clearInterval(actionTimer.current);
+      return () => {
+        clearInterval(actionTimer.current);
+        setLogoText(DEFAULT_LOGO);
+      };
       //  пускай вернет функцию которая отменит все, вызовем ее на CWUnmount!
     },
   ],
@@ -30,17 +33,6 @@ const Logo = ({ className }) => {
 
   const actionTimer = useRef(null);
   const logoRef = useRef(null);
-
-  // useLayoutEffect(() => {
-  //   if (isAnimating) {
-  //     actionTimer.current = setInterval(() => {
-  //       setLogoText(Math.random());
-  //     }, 300);
-  //   } else {
-  //     clearInterval(actionTimer.current);
-  //     setLogoText(DEFAULT_LOGO);
-  //   }
-  // }, [ isAnimating ]);
 
   useLayoutEffect(() => {
     let cancelAction = null;
