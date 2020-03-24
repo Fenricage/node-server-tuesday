@@ -1,41 +1,29 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {
+  useState, useEffect, useLayoutEffect, useRef,
+} from 'react';
 import cs from 'classnames';
 import Link from 'next/link';
 import './Logo.scss';
 
+const DEFAULT_LOGO = 'test []';
+
+
 const Logo = ({ className }) => {
-  const [ logoText, setLogoText ] = useState('high_develop {}');
+  const [ logoText, setLogoText ] = useState('test {}');
   const [ isAnimating, setAnimating ] = useState(false);
 
   const actionTimer = useRef(null);
-  if (!isAnimating) {
-    return (
-      <Link
-        href="/"
-      >
-        <a
-          className={cs({
-            logo: true,
-            [`${className}`]: className,
-          })}
-          onMouseOver={(e) => {
-            // 1-2
-            // const weightValue = Math.ceil(Math.random() * 2);
-            // actionTimer.current = setTimeout(() => {
-            //
-            // }, 0);
-            console.log('OVER, SET TRUE ANIMATING');
-            setAnimating(true);
-          }}
-          onMouseLeave={() => {
-            // setTimeout(actionTimer.current);
-          }}
-        >
-          <span className="logo__text">{logoText}</span>
-        </a>
-      </Link>
-    );
-  }
+
+  useLayoutEffect(() => {
+    if (isAnimating) {
+      actionTimer.current = setInterval(() => {
+        setLogoText(Math.random());
+      }, 300);
+    } else {
+      clearInterval(actionTimer.current);
+      setLogoText(DEFAULT_LOGO);
+    }
+  }, [ isAnimating ]);
 
   return (
     <Link
@@ -46,17 +34,15 @@ const Logo = ({ className }) => {
           logo: true,
           [`${className}`]: className,
         })}
-        // onMouseOver={(e) => {
-        //   // 1-2
-        //   // const weightValue = Math.ceil(Math.random() * 2);
-        //   actionTimer.current = setTimeout(() => {
-        //
-        //   }, 0);
-        // }}
+        onMouseOver={(e) => {
+          // actionTimer.current = setInterval(() => {
+          //   console.log('isAnimating', isAnimating);
+          // }, 1000);
+          setAnimating(true);
+        }}
         onMouseLeave={() => {
-          // setTimeout(actionTimer.current);
-          console.log('LEAVE, SET FALSE ANIMATING');
           setAnimating(false);
+          // clearInterval(actionTimer.current);
         }}
       >
         <span className="logo__text">{logoText}</span>
