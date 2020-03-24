@@ -7,6 +7,22 @@ import './Logo.scss';
 
 const DEFAULT_LOGO = 'test []';
 
+const actionVariations = new Map([
+  [
+    'js-interval-animation',
+    (actionTimer, setLogoText) => {
+      actionTimer.current = setInterval(() => {
+        setLogoText(Math.random());
+      }, 300);
+
+      return () => clearInterval(actionTimer.current);
+      //  пускай вернет функцию которая отменит все, вызовем ее на CWUnmount!
+    },
+  ],
+]);
+
+// console.log('actionVariations.keys()', Array.from(actionVariations.keys()))
+
 
 const Logo = ({ className }) => {
   const [ logoText, setLogoText ] = useState('test {}');
@@ -15,15 +31,28 @@ const Logo = ({ className }) => {
   const actionTimer = useRef(null);
   const logoRef = useRef(null);
 
+  // useLayoutEffect(() => {
+  //   if (isAnimating) {
+  //     actionTimer.current = setInterval(() => {
+  //       setLogoText(Math.random());
+  //     }, 300);
+  //   } else {
+  //     clearInterval(actionTimer.current);
+  //     setLogoText(DEFAULT_LOGO);
+  //   }
+  // }, [ isAnimating ]);
+
   useLayoutEffect(() => {
+    let cancelAction = null;
     if (isAnimating) {
-      actionTimer.current = setInterval(() => {
-        setLogoText(Math.random());
-      }, 300);
-    } else {
-      clearInterval(actionTimer.current);
-      setLogoText(DEFAULT_LOGO);
+      const action = actionVariations.get('js-interval-animation');
+      cancelAction = action(actionTimer, setLogoText);
     }
+    return () => {
+      if (isAnimating && cancelAction) {
+        cancelAction();
+      }
+    };
   }, [ isAnimating ]);
 
   return (
