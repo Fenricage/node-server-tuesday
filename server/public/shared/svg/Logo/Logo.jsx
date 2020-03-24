@@ -13,7 +13,8 @@ const Logo = ({ className }) => {
   const [ isAnimating, setAnimating ] = useState(false);
 
   const actionTimer = useRef(null);
-
+  const logoRef = useRef(null);
+  console.log('logoRef', logoRef) 
   useLayoutEffect(() => {
     if (isAnimating) {
       actionTimer.current = setInterval(() => {
@@ -44,6 +45,7 @@ const Logo = ({ className }) => {
           setAnimating(false);
           // clearInterval(actionTimer.current);
         }}
+        ref={logoRef}
       >
         <span className="logo__text">{logoText}</span>
       </a>

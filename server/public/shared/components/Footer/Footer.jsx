@@ -56,7 +56,7 @@ const Footer = () => {
         <section className="footer__links">
           {navigationItems}
         </section>
-        <Logo className="footer__logo" />
+        {/*<Logo className="footer__logo" />*/}
       </div>
     </footer>
   );
