@@ -35,8 +35,32 @@ const mathIncrementAnimate = (actionTimer, setLogoText) => {
   };
 };
 
+const faceSymbolsAnimate = (actionTimer, setLogoText) => {
 
-const animateActionsArr = [ mathRandomAnimate, mathIncrementAnimate ];
+  // let incrementingValue = 1;
+
+  // actionTimer.current = setInterval(() => {
+  //   setLogoText(DEFAULT_LOGO + incrementingValue++);
+  // }, 300);
+
+  setLogoText('test {}');
+  const faces = [ '{-_-}', '{*_*}' ];
+  let i = 0;
+  actionTimer.current = setInterval(() => {
+    const face = faces[i];
+    setLogoText(`test ${face}`);
+    i ? --i : ++i;
+  }, 500);
+
+  // cancel function
+  return () => {
+    clearInterval(actionTimer.current);
+    setLogoText(DEFAULT_LOGO);
+  };
+};
+
+
+const animateActionsArr = [ mathRandomAnimate, mathIncrementAnimate, faceSymbolsAnimate ];
 
 const actionVariations = new Map([
   [
@@ -45,7 +69,8 @@ const actionVariations = new Map([
       // select rando function
       const randomNumBetweenActionSize = Math.floor(Math.random() * animateActionsArr.length);
       const randomAnimateAction = animateActionsArr[randomNumBetweenActionSize];
-      return randomAnimateAction(actionTimer, setLogoText);
+      // return randomAnimateAction(actionTimer, setLogoText);
+      return faceSymbolsAnimate(actionTimer, setLogoText);
     },
   ],
 ]);

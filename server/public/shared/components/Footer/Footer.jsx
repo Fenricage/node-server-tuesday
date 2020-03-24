@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '../../svg/Logo/Logo';
+import Logo from '../Logo/Logo';
 import Star from '../../svg/Star/Star';
 import HomeNavLink from '../../../components/home/HomeNavLink/HomeNavLink';
 import './Footer.scss';

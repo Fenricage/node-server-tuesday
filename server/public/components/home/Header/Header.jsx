@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import HomeNavigation from '../HomeNavigation/HomeNavigation';
-import Logo from '../../../shared/svg/Logo/Logo';
+import Logo from '../../../shared/components/Logo/Logo';
 import './Header.scss';
 
 class Header extends Component {
