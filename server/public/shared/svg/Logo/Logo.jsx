@@ -5,7 +5,7 @@ import cs from 'classnames';
 import Link from 'next/link';
 import './Logo.scss';
 
-const DEFAULT_LOGO = 'test []';
+const DEFAULT_LOGO = 'high_develop //:';
 
 const mathRandomAnimate = (actionTimer, setLogoText) => {
   actionTimer.current = setInterval(() => {
@@ -34,12 +34,17 @@ const mathIncrementAnimate = (actionTimer, setLogoText) => {
   };
 };
 
+
+const animateActionsArr = [ mathRandomAnimate, mathIncrementAnimate ];
+
 const actionVariations = new Map([
   [
     'js-interval-animation',
     (actionTimer, setLogoText) => {
-      // select random animation
-      return mathIncrementAnimate(actionTimer, setLogoText);
+      // select rando function
+      const randomNumBetweenActionSize = Math.floor(Math.random() * animateActionsArr.length);
+      const randomAnimateAction = animateActionsArr[randomNumBetweenActionSize];
+      return randomAnimateAction(actionTimer, setLogoText);
     },
   ],
 ]);
@@ -48,7 +53,7 @@ const actionVariations = new Map([
 
 
 const Logo = ({ className }) => {
-  const [ logoText, setLogoText ] = useState('test {}');
+  const [ logoText, setLogoText ] = useState(DEFAULT_LOGO);
   const [ isAnimating, setAnimating ] = useState(false);
 
   const actionTimer = useRef(null);
