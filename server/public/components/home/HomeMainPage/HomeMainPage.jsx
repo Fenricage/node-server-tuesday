@@ -94,7 +94,7 @@ class HomeMainPage extends Component {
       NextRouter.pushRoute(`${router.pathname}/${router.query.categoryId}${queryString}`
         .replace('//', '/'));
     } else {
-      NextRouter.pushRoute(`${router.pathname}${queryString}`
+      NextRouter.pushRoute(`${router.pathname}${queryStsring}`
         .replace('//', '/'));
     }
   };
