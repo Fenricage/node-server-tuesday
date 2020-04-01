@@ -88,48 +88,16 @@ module.exports = {
       saveArticle(req, res, next);
     }
   },
-  // addArticle: (req, res, next) => {
-  //     let {text, title, claps, description} = req.body
-  //     //let obj = { text, title, claps, description, feature_img: _feature_img != null ? `/uploads/${_filename}` : '' }
-  //     if (req.files.image) {
-  //
-  //         cloudinary.uploader.upload(req.files.image.path, (result) => {
-  //             let obj = {text, title, claps, description, feature_img: result.url != null ? result.url : ''}
-  //             saveArticle(obj)
-  //         }, {
-  //             resource_type: 'image',
-  //             eager: [
-  //                 {effect: 'sepia'}
-  //             ]
-  //         })
-  //     } else {
-  //         saveArticle({text, title, claps, description, feature_img: ''})
-  //     }
-  //
-  //     function saveArticle(obj) {
-  //         new Article(obj).save((err, article) => {
-  //             if (err)
-  //                 res.send(err)
-  //             else if (!article)
-  //                 res.send(400)
-  //             else {
-  //                 return article.addAuthor(req.body.author_id).then((_article) => {
-  //                     return res.send(_article)
-  //                 })
-  //             }
-  //             next()
-  //         })
-  //     }
-  // },
   getAll: async (req, res, next) => {
 
+    const LIMIT = 18;
+
     let {
-      page, size, orderBy, extra,
+      orderBy, extra, offset,
     } = req.query;
 
     // Приводим строчные числа к нормальным числам
-    page = Number(page);
-    size = Number(size);
+    offset = Number(offset);
     // если  не undefined то парсим JSON и сразу присваиваем той же переменной
     if (orderBy) {
       orderBy = JSON.parse(orderBy);
@@ -149,14 +117,12 @@ module.exports = {
       }
     }
 
-
-    const offset = size * page - size;
     // высчитываем количество исходя из заданных параметров
     const total = await Article.count(extraFindParams);
     Article.find(extraFindParams, { __v: 0 })
       .sort(orderBy || {})
       .skip(offset)
-      .limit(size)
+      .limit(LIMIT)
       .exec((err, articles) => {
         if (err) res.send(err);
         else if (!articles) res.send(404);
@@ -164,7 +130,7 @@ module.exports = {
           res.send({
             records: articles,
             offset,
-            limit: size,
+            limit: LIMIT,
             total,
           });
         }

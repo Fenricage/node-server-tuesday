@@ -86,68 +86,17 @@ class HomeMainPage extends Component {
     const { match, router } = this.props;
     const { pageSize } = this.state;
 
+    const offset = pageSize * (selected + 1) - pageSize;
+    const queryString = `?page=${selected + 1}&size=${pageSize}&offset=${offset}`;
+
     // "selected" began with 0
     if (router.pathname.startsWith('/categories')) {
-      NextRouter.pushRoute(`${router.pathname}/${router.query.categoryId}?page=${selected + 1}&size=${pageSize}`.replace('//', '/'));
+      NextRouter.pushRoute(`${router.pathname}/${router.query.categoryId}${queryString}`
+        .replace('//', '/'));
     } else {
-      NextRouter.pushRoute(`${router.pathname}?page=${selected + 1}&size=${pageSize}`.replace('//', '/'));
+      NextRouter.pushRoute(`${router.pathname}${queryString}`
+        .replace('//', '/'));
     }
-
-    // setTimeout(() => {
-    //   const neededPaginationNode = document
-    //     .querySelector('.home-main-page__pagination .pagination__page_active');
-    //
-    //   console.log('neededPaginationNode', neededPaginationNode)
-    //
-    //   let nextSibling = {
-    //     node: neededPaginationNode.nextElementSibling,
-    //     siblingCounter: 1,
-    //   }
-    //
-    //   let prevSibling = {
-    //     node: neededPaginationNode.previousElementSibling,
-    //     siblingCounter: 1,
-    //   }
-    //
-    //   while (nextSibling.node.classList.contains('pagination__page') || nextSibling.node.classList.contains('pagination__break-page')) {
-    //     // console.log('nextSibling', nextSibling.node)
-    //
-    //     const classForDelete = nextSibling.node.className
-    //       .split(' ')
-    //       .find(classNameChunk => {
-    //         return /sibling__.*/.test(classNameChunk);
-    //       });
-    //
-    //     if (classForDelete) {
-    //       nextSibling.node.classList.remove(classForDelete);
-    //     }
-    //
-    //     nextSibling.node.classList.add(`sibling__${nextSibling.siblingCounter}`);
-    //     nextSibling.node = nextSibling.node.nextElementSibling;
-    //     nextSibling.siblingCounter = nextSibling.siblingCounter + 1;
-    //   }
-    //
-    //   while (prevSibling.node.classList.contains('pagination__page') || prevSibling.node.classList.contains('pagination__break-page')) {
-    //     // console.log('nextSibling', nextSibling.node)
-    //
-    //     const classForDelete = prevSibling.node.className
-    //       .split(' ')
-    //       .find(classNameChunk => {
-    //         return /sibling__.*/.test(classNameChunk);
-    //       });
-    //
-    //     if (classForDelete) {
-    //       prevSibling.node.classList.remove(classForDelete);
-    //     }
-    //
-    //     prevSibling.node.classList.add(`sibling__${prevSibling.siblingCounter}`);
-    //     prevSibling.node = prevSibling.node.nextElementSibling;
-    //     prevSibling.siblingCounter = prevSibling.siblingCounter + 1;
-    //   }
-    //
-    //
-    //
-    // }, 0);
   };
 
 
@@ -175,13 +124,13 @@ class HomeMainPage extends Component {
           transformArticlesToItemGridData={this.transformArticlesToItemGridData}
         />
         <Pagination
-            total={totalArticles}
-            pageSize={pageSize}
-            className={cs({
-              'home-main-page__pagination': true,
-              hidden: isOnePage,
-            })}
-            onPageChange={this.handlePageClick}
+          total={totalArticles}
+          pageSize={pageSize}
+          className={cs({
+            'home-main-page__pagination': true,
+            hidden: isOnePage,
+          })}
+          onPageChange={this.handlePageClick}
         />
       </section>
 

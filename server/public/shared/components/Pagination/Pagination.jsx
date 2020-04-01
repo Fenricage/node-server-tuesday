@@ -72,12 +72,14 @@ class Pagination extends Component {
   handleClickNextPage = (e) => {
     const { match, router, pageSize } = this.props;
     const { selectedPage } = this.state;
-    console.log('selectedPage', selectedPage);
+
+    const offset = pageSize * (selectedPage + 1) - pageSize;
+    const queryString = `?page=${selectedPage + 1}&size=${pageSize}&offset=${offset}`;
 
     if (router.pathname.startsWith('/categories')) {
-      NextRouter.pushRoute(`${router.pathname}/${router.query.categoryId}?page=${selectedPage + 1}&size=${pageSize}`.replace('//', '/'));
+      NextRouter.pushRoute(`${router.pathname}/${router.query.categoryId}${queryString}`.replace('//', '/'));
     } else {
-      NextRouter.pushRoute(`${router.pathname}?page=${selectedPage + 1}&size=${pageSize}`.replace('//', '/'));
+      NextRouter.pushRoute(`${router.pathname}${queryString}`.replace('//', '/'));
     }
   };
 
@@ -85,11 +87,15 @@ class Pagination extends Component {
     const { match, router, pageSize } = this.props;
     const { selectedPage } = this.state;
 
+    const offset = pageSize * (selectedPage - 1) - pageSize;
+    const queryString = `?page=${selectedPage - 1}&size=${pageSize}&offset=${offset}`;
 
     if (router.pathname.startsWith('/categories')) {
-      NextRouter.pushRoute(`${router.pathname}/${router.query.categoryId}?page=${selectedPage - 1}&size=${pageSize}`.replace('//', '/'));
+      NextRouter.pushRoute(`${router.pathname}/${router.query.categoryId}${queryString}`
+        .replace('//', '/'));
     } else {
-      NextRouter.pushRoute(`${router.pathname}?page=${selectedPage - 1}&size=${pageSize}`.replace('//', '/'));
+      NextRouter.pushRoute(`${router.pathname}${queryString}`
+        .replace('//', '/'));
     }
   };
 

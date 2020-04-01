@@ -24,12 +24,15 @@ HomePageWithLayout.getInitialProps = async ({
 }) => {
   const { dispatch } = store;
   const {
-    page = 1, size = SIZE_PAGE, categoryId, offset = SIZE_PAGE,
+    page = 1, size = SIZE_PAGE, categoryId, offset = 0,
   } = query;
 
 
-  const getArticlesQueryParams = { page, size, orderBy: { _id: -1 } };
-  const getArticlesCategoriesQueryParams = {
+  const articlesQueryParams = {
+    page, size, orderBy: { _id: -1 }, offset,
+  };
+
+  const articlesCategoriesQueryParams = {
     extra: {
       exclude: 'blog',
     },
@@ -40,11 +43,11 @@ HomePageWithLayout.getInitialProps = async ({
   if (categoryId) {
     extra.category = categoryId;
   }
-  getArticlesQueryParams.extra = extra;
+  articlesQueryParams.extra = extra;
 
-  await dispatch(getAllArticleCategoriesUniversal(getArticlesCategoriesQueryParams, isServer));
+  await dispatch(getAllArticleCategoriesUniversal(articlesCategoriesQueryParams, isServer));
   await dispatch(getAllTagsAndSetUniversal({}, isServer));
-  await dispatch(getAllArticlesAndSetUniversal(getArticlesQueryParams, isServer));
+  await dispatch(getAllArticlesAndSetUniversal(articlesQueryParams, isServer));
 
   return { query, pathname };
 };
