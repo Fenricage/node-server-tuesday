@@ -57,7 +57,7 @@ class Pagination extends Component {
     const { router } = this.props;
     // TODO декрементирует на единицу, мешает хэндлерам, пересмотреть логику
     const selectedPage = parseInt(router.query.offset, 10) / ARTICLES_LIMIT + 1;
-    console.log('selectedPage', selectedPage)
+
     if (router.query.offset !== undefined) {
       this.setState({
         selectedPage,

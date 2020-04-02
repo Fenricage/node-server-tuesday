@@ -5,10 +5,10 @@ import cs from 'classnames';
 import { Link, Router as NextRouter } from '../../../routes';
 import './HomeMainPage.scss';
 import { connect } from 'react-redux';
-import { getAllArticlesAndSet } from '../../../actions/articles';
+import { getAllArticlesAndSet, loadMoreArticles } from '../../../actions/articles';
 import HomeMainPageView from '../HomeMainPageView/HomeMainPageView';
 import Pagination from '../../../shared/components/Pagination/Pagination';
-import { SIZE_PAGE } from '../../../shared/constants/page';
+import { ARTICLES_LIMIT, SIZE_PAGE } from '../../../shared/constants/page';
 
 class HomeMainPage extends Component {
   constructor(props) {
@@ -99,6 +99,32 @@ class HomeMainPage extends Component {
     }
   };
 
+  handleLoadMore = (e) => {
+    const {
+      loadMoreArticlesDispatch,
+      router,
+    } = this.props;
+
+    const { pageSize } = this.state;
+
+    let {
+      query: {
+        offset = 0,
+      } = {},
+    } = router;
+
+    offset = Number(offset);
+
+    const articlesQueryParams = {
+      orderBy: {
+        _id: -1,
+      },
+      offset: offset + pageSize,
+      limit: ARTICLES_LIMIT,
+    };
+
+    loadMoreArticlesDispatch(articlesQueryParams);
+  }
 
   render() {
     const {
@@ -123,6 +149,15 @@ class HomeMainPage extends Component {
           isLoadedArticles={isLoadedArticles}
           transformArticlesToItemGridData={this.transformArticlesToItemGridData}
         />
+        <button
+          className={cs({
+            'home-main-page__load-more': true,
+          })}
+          type="button"
+          onClick={this.handleLoadMore}
+        >
+          загрузить еще
+        </button>
         <Pagination
           total={totalArticles}
           pageSize={pageSize}
@@ -146,6 +181,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getAllArticlesAndSetDispatch: queryParams => dispatch(getAllArticlesAndSet(queryParams)),
+  loadMoreArticlesDispatch: queryParams => dispatch(loadMoreArticles(queryParams)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(HomeMainPage));

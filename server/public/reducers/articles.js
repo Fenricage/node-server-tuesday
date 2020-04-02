@@ -6,6 +6,8 @@ import {
   ARTICLES_DELETE_ARTICLE_SUCCESS,
   ARTICLES_DELETE_ARTICLE_FAILURE,
   ARTICLES_DELETE_ARTICLE,
+  ARTICLES_LOADED_MORE_SUCCESS,
+  ARTICLES_LOADED_MORE_FAILURE,
 } from '../shared/constants/articles';
 
 // fromJS преобразует весь нижний обхект в immutable объекты
@@ -36,13 +38,19 @@ export default (state = initialState, action) => {
       return state.set('isDeleting', action.payload);
     case ARTICLES_DELETE_ARTICLE_SUCCESS:
       return state
-        .set('isDeleting', action.payload.isDeleting)
-        // .setIn(['data', 'records'], action.payload.updatedArticles);
+        .set('isDeleting', action.payload.isDeleting);
+      // .setIn(['data', 'records'], action.payload.updatedArticles);
     case ARTICLES_DELETE_ARTICLE_FAILURE:
       return state.merge({
         error: action.payload.e,
         isDeleting: action.payload.isDeleting,
       });
+    case ARTICLES_LOADED_MORE_SUCCESS:
+      // console.log('action.payload', action.payload);
+      console.log('action.payload', action.payload);
+      const currentRecords = state.getIn([ 'data', 'records' ]);
+      // console.log('currentRecords', currentRecords);
+      return state;
     default:
       return state;
   }

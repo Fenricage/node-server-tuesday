@@ -6,6 +6,8 @@ import {
   ARTICLES_DELETE_ARTICLE,
   ARTICLES_DELETE_ARTICLE_FAILURE,
   ARTICLES_DELETE_ARTICLE_SUCCESS,
+  ARTICLES_LOADED_MORE_FAILURE,
+  ARTICLES_LOADED_MORE_SUCCESS,
 } from '../shared/constants/articles';
 
 import { API_BROWSER, API_SERVER } from '../shared/constants/api';
@@ -42,6 +44,21 @@ export const getAllArticlesAndSet = queryParams => (dispatch) => {
     .catch((e) => {
       dispatch(fetchAllArticlesFailure(e));
     });
+};
+
+const loadMoreArticlesSuccess = articles => ({
+  type: ARTICLES_LOADED_MORE_SUCCESS,
+  payload: articles,
+});
+
+export const loadMoreArticles = queryParams => async (dispatch) => {
+  dispatch(fetchAllArticles());
+  try {
+    const articles = await getAllArticles(queryParams);
+    dispatch(loadMoreArticlesSuccess(fromJS(articles)));
+  } catch (e) {
+    console.error("COULDNT LOAD MORE ARTICLES")
+  }
 };
 
 export const getAllArticlesAndSetServer = queryParams => (dispatch) => {
