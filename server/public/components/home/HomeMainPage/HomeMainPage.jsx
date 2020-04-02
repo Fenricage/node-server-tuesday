@@ -87,14 +87,14 @@ class HomeMainPage extends Component {
     const { pageSize } = this.state;
 
     const offset = pageSize * (selected + 1) - pageSize;
-    const queryString = `?page=${selected + 1}&size=${pageSize}&offset=${offset}`;
+    const queryString = `?offset=${offset}`;
 
     // "selected" began with 0
     if (router.pathname.startsWith('/categories')) {
       NextRouter.pushRoute(`${router.pathname}/${router.query.categoryId}${queryString}`
         .replace('//', '/'));
     } else {
-      NextRouter.pushRoute(`${router.pathname}${queryStsring}`
+      NextRouter.pushRoute(`${router.pathname}${queryString}`
         .replace('//', '/'));
     }
   };

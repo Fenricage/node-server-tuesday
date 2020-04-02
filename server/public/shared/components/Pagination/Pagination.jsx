@@ -74,7 +74,7 @@ class Pagination extends Component {
     const { selectedPage } = this.state;
 
     const offset = pageSize * (selectedPage + 1) - pageSize;
-    const queryString = `?page=${selectedPage + 1}&size=${pageSize}&offset=${offset}`;
+    const queryString = `?offset=${offset}`;
 
     if (router.pathname.startsWith('/categories')) {
       NextRouter.pushRoute(`${router.pathname}/${router.query.categoryId}${queryString}`.replace('//', '/'));
@@ -88,7 +88,7 @@ class Pagination extends Component {
     const { selectedPage } = this.state;
 
     const offset = pageSize * (selectedPage - 1) - pageSize;
-    const queryString = `?page=${selectedPage - 1}&size=${pageSize}&offset=${offset}`;
+    const queryString = `?offset=${offset}`;
 
     if (router.pathname.startsWith('/categories')) {
       NextRouter.pushRoute(`${router.pathname}/${router.query.categoryId}${queryString}`

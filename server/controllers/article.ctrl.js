@@ -90,14 +90,14 @@ module.exports = {
   },
   getAll: async (req, res, next) => {
 
-    const LIMIT = 18;
 
     let {
-      orderBy, extra, offset,
+      orderBy, extra, offset, limit,
     } = req.query;
-
+  
     // Приводим строчные числа к нормальным числам
     offset = Number(offset);
+    limit = Number(limit);
     // если  не undefined то парсим JSON и сразу присваиваем той же переменной
     if (orderBy) {
       orderBy = JSON.parse(orderBy);
@@ -122,7 +122,7 @@ module.exports = {
     Article.find(extraFindParams, { __v: 0 })
       .sort(orderBy || {})
       .skip(offset)
-      .limit(LIMIT)
+      .limit(limit)
       .exec((err, articles) => {
         if (err) res.send(err);
         else if (!articles) res.send(404);
@@ -130,7 +130,7 @@ module.exports = {
           res.send({
             records: articles,
             offset,
-            limit: LIMIT,
+            limit: limit,
             total,
           });
         }

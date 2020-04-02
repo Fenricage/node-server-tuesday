@@ -4,7 +4,7 @@ import { getAllArticleCategoriesUniversal } from '../../actions/articleCategorie
 import { getAllTagsAndSetUniversal } from '../../actions/tags';
 import { getAllArticlesAndSetUniversal } from '../../actions/articles';
 import { getLayout } from '../../shared/layouts/HomeLayout/HomeLayout';
-import { SIZE_PAGE } from '../../shared/constants/page';
+import { SIZE_PAGE, ARTICLES_LIMIT } from '../../shared/constants/page';
 
 class HomePageWithLayout extends Component {
   render() {
@@ -29,7 +29,13 @@ HomePageWithLayout.getInitialProps = async ({
 
 
   const articlesQueryParams = {
-    page, size, orderBy: { _id: -1 }, offset,
+    page,
+    size,
+    orderBy: {
+      _id: -1,
+    },
+    offset,
+    limit: ARTICLES_LIMIT,
   };
 
   const articlesCategoriesQueryParams = {
