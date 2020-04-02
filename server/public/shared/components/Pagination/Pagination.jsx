@@ -25,7 +25,7 @@ class Pagination extends Component {
     const { router } = this.props;
     const { router: prevRouter } = prevProps;
 
-    if (router.query.page !== prevRouter.query.page) {
+    if (router.query.offset !== prevRouter.query.offset) {
       this.setSelectedPage();
     }
 
@@ -56,10 +56,9 @@ class Pagination extends Component {
   setSelectedPage = () => {
     const { router } = this.props;
     // TODO декрементирует на единицу, мешает хэндлерам, пересмотреть логику
-    const selectedPage = parseInt(router.query.page, 10);
-
-
-    if (router.query.page !== undefined) {
+    const selectedPage = parseInt(router.query.offset, 10) / ARTICLES_LIMIT + 1;
+    console.log('selectedPage', selectedPage)
+    if (router.query.offset !== undefined) {
       this.setState({
         selectedPage,
       });
@@ -76,7 +75,8 @@ class Pagination extends Component {
 
     const offset = pageSize * (selectedPage + 1) - pageSize;
     const queryString = `?offset=${offset}`;
-
+    // console.log('selectedPage', selectedPage)
+    // console.log('offset', offset)
     if (router.pathname.startsWith('/categories')) {
       NextRouter.pushRoute(`${router.pathname}/${router.query.categoryId}${queryString}`.replace('//', '/'));
     } else {
