@@ -7,6 +7,7 @@ import './HomeMainPage.scss';
 import { connect } from 'react-redux';
 import { getAllArticlesAndSet, loadMoreArticles } from '../../../actions/articles';
 import HomeMainPageView from '../HomeMainPageView/HomeMainPageView';
+import Button from '../../../shared/components/Button/Button';
 import Pagination from '../../../shared/components/Pagination/Pagination';
 import { ARTICLES_LIMIT, SIZE_PAGE } from '../../../shared/constants/page';
 
@@ -99,7 +100,7 @@ class HomeMainPage extends Component {
     }
   };
 
-  handleLoadMore = (e) => {
+  handleLoadMore = async (e) => {
     const {
       loadMoreArticlesDispatch,
       router,
@@ -123,7 +124,14 @@ class HomeMainPage extends Component {
       limit: ARTICLES_LIMIT,
     };
 
-    loadMoreArticlesDispatch(articlesQueryParams);
+    await loadMoreArticlesDispatch(articlesQueryParams);
+
+    NextRouter.pushRoute(
+      `${router.pathname}?offset=${Number(router.query.offset || 0) + ARTICLES_LIMIT}`,
+      {
+        shallow: true, // не запускает getInitialProps
+      },
+    );
   }
 
   render() {
@@ -139,7 +147,10 @@ class HomeMainPage extends Component {
       pageSize,
       initLoaded,
     } = this.state;
+
     const isOnePage = totalArticles <= pageSize;
+    // disable if current offset + ARTICLES_LIMIT more or equal totalArticles
+    const isNoMoreArticles = Number(router.query.offset || 0) + ARTICLES_LIMIT >= totalArticles;
 
     return (
       <section className="home-main-page">
@@ -149,15 +160,23 @@ class HomeMainPage extends Component {
           isLoadedArticles={isLoadedArticles}
           transformArticlesToItemGridData={this.transformArticlesToItemGridData}
         />
-        <button
-          className={cs({
-            'home-main-page__load-more': true,
-          })}
-          type="button"
-          onClick={this.handleLoadMore}
-        >
-          загрузить еще
-        </button>
+
+        {!isNoMoreArticles && (
+          <div className="home-main-page__load-more-box">
+            <Button
+              className={cs({
+                'home-main-page__load-more': true,
+              })}
+              type="button"
+              disabled={isNoMoreArticles}
+              isLoading={!isLoadedArticles}
+              onClick={this.handleLoadMore}
+            >
+            загрузить еще
+            </Button>
+          </div>
+        )}
+
         <Pagination
           total={totalArticles}
           pageSize={pageSize}

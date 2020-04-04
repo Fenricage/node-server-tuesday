@@ -1,7 +1,20 @@
+@import "../../../shared/css/helpers/mixins/button-default-form-row";
+
 .home-main-page {
 
   &__pagination.pagination {
 
     justify-content: space-between;
+  }
+
+  &__load-more-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  &__load-more {
+    @include button-default-form-row;
   }
 }

@@ -46,11 +46,26 @@ export default (state = initialState, action) => {
         isDeleting: action.payload.isDeleting,
       });
     case ARTICLES_LOADED_MORE_SUCCESS:
-      // console.log('action.payload', action.payload);
-      console.log('action.payload', action.payload);
+      // next articles, with limit, total, records, offset
+      const nextArticlesData = action.payload;
+
       const currentRecords = state.getIn([ 'data', 'records' ]);
-      // console.log('currentRecords', currentRecords);
-      return state;
+
+      // merge prev and next records, get next total,limit, offset
+      const mergedData = nextArticlesData.merge({
+        records: currentRecords.concat(nextArticlesData.get('records')),
+      });
+
+      // replace data with merged records and new extra
+      return state.merge({
+        data: mergedData,
+        isLoaded: true,
+      });
+    case ARTICLES_LOADED_MORE_FAILURE:
+      return state.merge({
+        error: action.payload,
+        isLoaded: true,
+      });
     default:
       return state;
   }

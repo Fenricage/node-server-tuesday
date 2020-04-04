@@ -3,7 +3,7 @@ import { withRouter } from 'next/router';
 import ReactPaginate from 'react-paginate';
 import cs from 'classnames';
 import { Router as NextRouter } from '../../../routes';
-import {ARTICLES_LIMIT} from "../../constants/page"
+import { ARTICLES_LIMIT } from '../../constants/page';
 import './Pagination.scss';
 
 class Pagination extends Component {

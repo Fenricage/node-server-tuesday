@@ -17,7 +17,7 @@ const Button = ({
     })}
     {...other}
   >
-    {isLoading ? <Loader className={loaderClassName}/> : children}
+    {isLoading ? <Loader className={loaderClassName} /> : children}
   </button>
 );
 

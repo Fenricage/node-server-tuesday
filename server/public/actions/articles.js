@@ -51,13 +51,18 @@ const loadMoreArticlesSuccess = articles => ({
   payload: articles,
 });
 
+export const loadMoreArticlesFailure = e => ({
+  type: ARTICLES_LOADED_MORE_FAILURE,
+  payload: e,
+});
+
 export const loadMoreArticles = queryParams => async (dispatch) => {
   dispatch(fetchAllArticles());
   try {
     const articles = await getAllArticles(queryParams);
-    dispatch(loadMoreArticlesSuccess(fromJS(articles)));
+    return dispatch(loadMoreArticlesSuccess(fromJS(articles)));
   } catch (e) {
-    console.error("COULDNT LOAD MORE ARTICLES")
+    return dispatch(loadMoreArticlesFailure(e));
   }
 };
 
