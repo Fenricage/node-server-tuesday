@@ -5,7 +5,7 @@ import cs from 'classnames';
 import Link from 'next/link';
 import './Logo.scss';
 
-const DEFAULT_LOGO = 'test //:';
+const DEFAULT_LOGO = 'high_develop //:';
 
 
 const mathRandomAnimate = (actionTimer, setLogoText) => {
@@ -43,12 +43,12 @@ const faceSymbolsAnimate = (actionTimer, setLogoText) => {
   //   setLogoText(DEFAULT_LOGO + incrementingValue++);
   // }, 300);
 
-  setLogoText('test {}');
+  setLogoText('high_develop {*_*}');
   const faces = [ '{-_-}', '{*_*}' ];
   let i = 0;
   actionTimer.current = setInterval(() => {
     const face = faces[i];
-    setLogoText(`test ${face}`);
+    setLogoText(`high_develop ${face}`);
     i ? --i : ++i;
   }, 250);
 
