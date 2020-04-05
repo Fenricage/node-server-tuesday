@@ -8,6 +8,7 @@ class ArticleMeta extends Component {
 
     const { articleMeta } = this.props;
 
+
     return (
       <ArticleMetaView articleMeta={articleMeta} />
     );
