@@ -7,6 +7,7 @@ const ArticleMetaView = ({ articleMeta }) => {
     (articleMetaChunk, index) => <ArticleMetaComponent key={index} data={articleMetaChunk} />,
   );
 
+
   return (
     <section className="article-detail-page__meta">
       {articleMetaComponents}
