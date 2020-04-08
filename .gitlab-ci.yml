@@ -1,8 +1,11 @@
+# alpine - is linux distributive about 5mb
 image: node:10-alpine
+
 
 variables:
   USER: fenricage
 
+# guarantee consistent execution instead of parallel
 stages:
   - test
   - package
