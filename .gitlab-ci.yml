@@ -3,3 +3,10 @@ image: node:10-alpine
 variables:
   USER: fenricage
 
+stages:
+  - test
+  - package
+
+test:
+  stage: test
+  script: echo 'TEEEEST'
