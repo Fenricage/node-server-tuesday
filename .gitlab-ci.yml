@@ -10,6 +10,10 @@ stages:
   - test
   - package
 
-test:
+echo_test:
   stage: test
   script: echo 'TEEEEST'
+
+echo_test2:
+  stage: test
+  script: echo 'TEEEEST 222222222222222'
