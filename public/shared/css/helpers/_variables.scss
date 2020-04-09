@@ -1,0 +1,75 @@
+:root {
+
+  // fonts
+  --main-font: normal normal 14px/24px "Roboto", Helvetica, Arial, sans-serif;
+  --color-font: hsla(0, 0%, 20%, 1);
+  // common
+  --color-error: hsla(7, 58%, 45%, 1);
+  --color-dark: hsla(0, 0%, 13%, 1);
+  --color-ddark: hsla(0, 0%, 9%, 1);
+  --color-ldark: hsla(0, 0%, 18%, 1);
+  --color-ldark-o: hsla(0, 0%, 18%, .05);
+
+  --color-black-54: hsla(0, 0%, 0%, .54);
+
+  // forms
+  --color-form-gray: hsla(0, 0%, 75%, 1);
+  --color-form-black: hsla(0, 0%, 16%, 1);
+  --border-form-element-border-radius: 4px;
+
+  // nav-fonts-color
+  --color-home-nav-font-default: var(--color-black-54);
+  --color-home-nav-font-hover: hsla(0, 0%, 0%, .76);
+  --color-home-nav-font-active: hsla(0, 0%, 0%, .84);
+
+  // pagination color
+
+  // admins colors
+  //--color-admin-primary: hsla(138, 46%, 41%, 1);
+  --color-admin-primary: hsla(0, 0%, 16%, 1);
+  //--color-admin-lprimary: hsla(138, 46%, 65%, 1);
+  --color-admin-lprimary: hsla(0, 0%, 25%, 1);
+  --color-admin-lprimary-o: hsla(138, 46%, 65%, .25);
+
+  // shadows
+  --color-default-shadow: hsla(0, 0%, 0%, .1);
+  --shadow-default: 0 2px 5px 0px var(--color-default-shadow);
+  --shadow-hover: 0 4px 7px 0px var(--color-default-shadow);
+
+  // time
+  --time: var(--color-black-54);
+
+  // category
+  --category: var(--color-black-54);
+
+  // article-info
+  --article-info: var(--color-black-54);
+
+
+  // article
+  --article-h2: var(--color-black-54);
+
+  // paddings layout
+  --sm-padding: 20px;
+  --md-padding: 28px;
+  --lg-padding: 36px;
+
+  // layout
+  --max-width: 1040px;
+
+  // blog
+  --color-blog-blue: hsla(222, 89%, 64%, 1);
+  --color-blog-blue-opacity: hsla(223, 88%, 97%, 1);
+
+  // button
+  --border-button-border-radius: 4px;
+
+  // auth
+  --color-link-auth-switch: hsla(222, 89%, 64%, 1);
+  --color-text-auth-switch: hsla(0, 0%, 47%, 1);
+
+  // footer
+  --theme-background: hsla(180, 9%, 98%, 1);
+  --footer-bg: hsla(36, 71%, 97%, 1);
+  --footer-link-color: hsla(0, 0%, 30%, 1);
+}

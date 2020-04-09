@@ -1,0 +1,53 @@
+.admin-tags-list {
+
+  &__top-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  &__total {
+    display: flex;
+  }
+
+  &__total-text {
+    margin: 0;
+  }
+
+  &__total-value {
+    margin-left: .5rem;
+  }
+
+  &__tags {
+    display: flex;
+    flex-flow: row wrap;
+    margin: -.3rem;
+    margin-bottom: 2rem;
+    padding: .7rem 1rem;
+
+    background-color: hsla(0, 0%, 96%, 1);
+    border-radius: .4rem;
+  }
+
+  &__tags-not-defined {
+    margin: 0;
+  }
+
+  & &__input-filter-tags {
+    width: 60%;
+    height: 26px;
+    padding: .7rem 1rem;
+
+    background-color: hsla(0, 0%, 94%, 1);
+    border-radius: .4rem;
+    box-shadow: none;
+    cursor: text;
+
+    &:hover,
+    &:focus,
+    &:active:not([disabled]) {
+      background-color: hsla(0, 0%, 92%, 1);
+      box-shadow: none;
+    }
+  }
+}

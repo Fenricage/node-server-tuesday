@@ -1,0 +1,46 @@
+// примечание: тут находятся только стили сброса для компонента
+// стилизация под конкретный случай расширяется при помощи миксинов
+// или наслеованием стилей от элемента
+
+.textarea-form-row {
+  $self: ".textarea-form-row";
+
+  &__wrap {
+    display: flex;
+  }
+
+  &__field {
+    display: flex;
+    flex: 1 1 0;
+    flex-flow: column nowrap;
+  }
+
+  &__title {
+    width: 100%;
+    height: 24px;
+    min-height: 24px;
+    margin: 0;
+    padding-bottom: 32px;
+
+    font-weight: 500;
+    font-size: 1.17rem;
+
+    cursor: pointer;
+  }
+
+  &__textarea {
+    width: 100%;
+    padding: 10px 16px;
+
+    font-weight: 400;
+    font-size: 14px;
+    //box-shadow: inset 0 0 0 1px var(--color-form-gray);
+    line-height: 24px;
+
+    border: 0;
+    outline: 0;
+    cursor: text;
+
+    -webkit-appearance: none;
+  }
+}

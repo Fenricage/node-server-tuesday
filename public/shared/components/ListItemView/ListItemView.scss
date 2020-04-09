@@ -1,0 +1,50 @@
+:root {
+  --color-bg-list-item: hsla(360, 100%, 100%, 1);
+  --color-bg-list-item-hover: var(--color-admin-lprimary-o);
+}
+
+
+
+.list-item {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  overflow: hidden;
+
+  background-color: var(--color-bg-list-item);
+  border-radius: 3px;
+  box-shadow: var(--shadow-default);
+
+  &:hover {
+    box-shadow: var(--shadow-hover);
+  }
+
+  & + & {
+    margin-top: 12px;
+  }
+
+  &__link {
+    flex: 1;
+    padding: 10px;
+
+    color: var(--color-font);
+    text-decoration: none;
+
+    &:hover {
+      color: inherit;
+    }
+  }
+
+  &__delete {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+  }
+
+  button {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+}

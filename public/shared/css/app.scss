@@ -1,0 +1,19 @@
+//attention: если будешь импортить что либо в эти файлы то знай:
+// пути надо выставлять относительно этого файла!!!
+@import "helpers/_variables.scss";
+
+@import "helpers/_media.scss";
+
+@import "base/normalize.scss";
+
+@import "base/basic.scss";
+
+@import "base/fonts";
+
+@import "base/typography.scss";
+
+@import "components/buttons.scss";
+
+@import "components/forms.scss";
+
+@import "components/markdown.scss";

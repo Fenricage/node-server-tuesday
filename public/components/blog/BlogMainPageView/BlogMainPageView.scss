@@ -1,0 +1,16 @@
+.blog-main-page {
+  margin-top: 5rem;
+  padding: 0 80px;
+
+  &__title {
+    font-weight: 600;
+    font-size: 2.1rem;
+    letter-spacing: 2px;
+  }
+
+  &__grid {
+    grid-gap: 0px;
+    grid-template-columns: 1fr;
+    margin-bottom: 4rem;
+  }
+}
