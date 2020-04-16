@@ -14,6 +14,7 @@ const nextRoutes = require('../public/routes');
 const app = express();
 const router = express.Router();
 
+
 const url = process.env.MONGODB_URI || config.db;
 const dev = process.env.NODE_ENV !== 'production';
 
