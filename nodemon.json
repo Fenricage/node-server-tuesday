@@ -1,6 +1,6 @@
-//{
-//  "verbose": true,
-//  "ignore": ["node_modules", ".next"],
-//  "watch": ["server/**/*", "server.js"],
-//  "ext": "js json"
-//}
+{
+  "verbose": true,
+  "watch": ["server"],
+  "exec": "cd server && node app.js",
+  "ext": "js json"
+}
