@@ -1,6 +1,5 @@
 {
   "verbose": true,
   "watch": ["server"],
-  "exec": "cd server && node app.js",
   "ext": "js json"
 }

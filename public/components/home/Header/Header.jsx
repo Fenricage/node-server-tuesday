@@ -9,7 +9,7 @@ class Header extends Component {
     return (
       <section className="header">
         <section className="header__top-bar">
-          <Link className="header__logo" to="/">
+          <Link className="header__logo" href="/">
             <Logo />
           </Link>
         </section>
