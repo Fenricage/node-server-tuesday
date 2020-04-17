@@ -15,7 +15,7 @@ class HomePageWithLayout extends Component {
   render() {
     const { query, pathname } = this.props;
     return (
-      <p>main page</p>
+      <p>main page 3</p>
       // <HomeMainPage
       //   query={query}
       //   pathname={pathname}
