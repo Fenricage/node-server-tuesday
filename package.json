@@ -2,10 +2,8 @@
   "name": "node_server_tueday",
   "version": "1.0.0",
   "description": "Server for tuesday system",
-  "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development REACT_APP_SERVER_URL=http://localhost:5000 REACT_APP_CLIENT_URL=http://localhost:7777 nodemon -w server/app.js server/app.js",
-    "dev": "cross-env NODE_ENV=development REACT_APP_SERVER_URL=http://localhost:5000 REACT_APP_CLIENT_URL=http://localhost:7777 nodemon -w server/app.js server/app.js",
+    "dev": "cross-env NODE_ENV=development REACT_APP_SERVER_URL=http://localhost:5000 REACT_APP_CLIENT_URL=http://localhost:7777 nodemon",
     "build": "cd server/public cross-env NODE_ENV=production REACT_APP_SERVER_URL=http://nginx:80 REACT_APP_CLIENT_URL=http://localhost:7777 && next build",
     "export": "cd server/public && next export",
     "prod": "cd server && cross-env NODE_ENV=production nodemon app.js"

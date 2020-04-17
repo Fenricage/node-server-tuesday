@@ -16,9 +16,10 @@ const router = express.Router();
 
 
 
+
 const url = process.env.MONGODB_URI || config.db;
 const dev = process.env.NODE_ENV !== 'production';
-const nextApp = next({ dir: './public', dev }); // dir - indicate where pages
+const nextApp = next({ dir: './public', dev }); // dir - indicate where pages, its detect from node start process dir
 const handler = nextRoutes.getRequestHandler(nextApp); // part of next config
 
 
@@ -30,7 +31,6 @@ try {
 } catch (error) {
   console.error(error);
 }
-
 
 nextApp.prepare().then(() => {
   const port = process.env.PORT || 5000;
