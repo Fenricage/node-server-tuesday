@@ -21,6 +21,7 @@
     font-style: normal;
     word-break: break-word;
     font-size: 30px;
+    line-height: 40px;
 
     @media (--md-viewport) {
       font-size: 40px;
@@ -37,7 +38,7 @@
 
   &__h2 {
     margin: 0;
-
+    line-height: 24px;
     color: var(--article-h2);
     font-weight: 400;
     font-size: 18px;
