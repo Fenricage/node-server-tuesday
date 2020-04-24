@@ -3,24 +3,28 @@
   margin: 20px auto;
   padding: 0 8px;
 
-  @media (--lg-viewport) {
-
-  }
-
   @media (--md-viewport) {
     padding: 0 20px;
+  }
+
+  @media (--lg-viewport) {
+
   }
 
   &__h1 {
     margin: 0;
     padding-top: 12px;
 
-    font-weight: bold;
-    font-family: "PT Serif", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-family: "Lora", Helvetica, Arial, sans-serif;
     letter-spacing: 1px;
     font-style: normal;
     word-break: break-word;
     font-size: 30px;
+
+    @media (--md-viewport) {
+      font-size: 40px;
+    }
   }
 
   &__h1 + &__date-publication {
@@ -39,45 +43,56 @@
     font-size: 18px;
     font-family: "Roboto", Helvetica, Arial, sans-serif;
     word-break: break-word;
+
+    @media (--md-viewport) {
+      font-size: 24px;
+    }
   }
 
   &__h2 + &__info {
     margin-top: 8px;
   }
 
-  &__preview-img {
+  &__meta {
+    $markdown: ".markdown";
 
-  }
+    #{ $markdown }__h1 {
+      font-size: 30px;
+      font-weight: 500;
+      font-family: "Roboto", serif;
+    }
 
-  &__img {
+    #{ $markdown }__h2 {
+      font-size: 26px;
+      font-weight: 500;
+      font-family: "Roboto", serif;
+    }
 
-  }
+    #{ $markdown }__h3 {
+      font-size: 22px;
+      font-weight: 500;
+      font-family: "Roboto", serif;
+    }
 
-  &__md {
+    #{ $markdown }__inline-code {
+      font-family: "JetBrains Mono", serif;
+      font-variant-ligatures: none;
+      font-weight: 600;
+    }
 
-    > h1 {
-      margin: 0;
-      padding-top: 12px;
+    #{ $markdown }__paragraph {
 
-      font-weight: bold;
-      font-family: "PT Serif", Helvetica, Arial, sans-serif;
+      margin-top: 38px;
+
+      font-weight: normal;
+      font-size: 18px;
+      font-family: "Lora", Helvetica, Arial, sans-serif;
       font-style: normal;
-    }
+      line-height: 1.58;
 
-    > h2 {
-      margin: 48px 0 0 0;
-
-      font-weight: bold;
-      font-family: "PT Serif", Helvetica, Arial, sans-serif;
-      font-style: normal;
-    }
-
-    > h3 {
-
-    }
-
-    > p {
-
+      @media (--md-viewport) {
+        font-size: 21px;
+      }
     }
   }
 
@@ -106,16 +121,6 @@
 
   article {
     margin-top: 52px;
-  }
-
-  p {
-    margin-top: 38px;
-
-    font-weight: normal;
-    font-size: 21px;
-    font-family: "Lora", Helvetica, Arial, sans-serif;
-    font-style: normal;
-    line-height: 1.58;
   }
 
   * + img {

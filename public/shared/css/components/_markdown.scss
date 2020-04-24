@@ -53,12 +53,12 @@
   }
 
   &__inline-code {
-    padding: 2px 4px;
+    padding: .1rem .3rem .2rem;
 
-    color: #c0341d;
-
-    background-color: #fbe5e1;
-    border-radius: 4px;
+    color: inherit;
+    font-size: 75%;
+    background-color: #fff6ea;
+    border-radius: .2rem;
   }
 
   &__blockquote {
