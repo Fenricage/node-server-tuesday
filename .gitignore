@@ -5,5 +5,6 @@
 /*/.tern-port
 /.idea
 /server/static
+/static
 /server/public/.next
 /public/.next
