@@ -13,16 +13,18 @@ const createDirPathFromFileName = require('../createDirPathFromFileName');
 const multipleImageConverter = async (req, paramsList) => {
   const { destination } = req.file;
 
+  console.log('\x1b[36m', 'req.file' , req.file, '\x1b[0m');
   // достаем ext
   const extension = mime.extension(req.file.mimetype); // без точки - пример: jpeg
   // создаем уникальное имя
   const uniqFileName = uuid.v4();
   //  формируем 3 папки из нового имени
   const extraDirPath = createDirPathFromFileName(uniqFileName, 6, 2);
-
-
+  console.log('\x1b[36m', 'destination' , destination, '\x1b[0m');
   const fullDirPath = path.join(destination, extraDirPath);
   // проверяем что директория существует
+    console.log('\x1b[36m', 'extraDirPath' , extraDirPath, '\x1b[0m');
+    console.log('\x1b[36m', 'fullDirPath' , fullDirPath, '\x1b[0m');
   const isDirExist = fs.existsSync(fullDirPath);
 
   if (!isDirExist) {

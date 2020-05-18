@@ -9,7 +9,7 @@ module.exports = {
     // возвращает объект который мы оправим на клиент
     // данный трансформер решает какой тип передан и возвращает соответствующий объект
     const attachment = await sharpImageTransformer(req);
-
+    console.log('\x1b[36m', 'attachment' , attachment, '\x1b[0m');
     await new Attachment(attachment)
       .save((err, newAttachment) => {
         if (err) {
