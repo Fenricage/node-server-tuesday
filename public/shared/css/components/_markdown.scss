@@ -73,5 +73,27 @@
       margin: 0;
     }
   }
+
+  &__table {
+
+  }
+
+  &__thead {
+
+    #{ $self }__trow {
+
+    }
+
+    #{ $self }__tcell {
+      background-color: #f2f2f2;
+      border-bottom: solid 2px #ccc;
+    }
+  }
+
+  &__tcell {
+    border: 1px solid #dfdfdf;
+    padding: 10px 16px;
+  }
+
 }
 

@@ -25,6 +25,11 @@ class ArticleMetaComponent extends Component {
       inlineCode: elProps => <code className="markdown__inline-code">{elProps.children}</code>,
       blockquote: elProps => <blockquote className="markdown__blockquote">{elProps.children}</blockquote>,
       code: CodeBlock,
+      table: elProps => <table className="markdown__table">{elProps.children}</table>,
+      tableHead: elProps => <thead className="markdown__thead">{elProps.children}</thead>,
+      tableBody: elProps => <tbody className="markdown__tbody">{elProps.children}</tbody>,
+      tableRow: elProps => <tr className="markdown__trow">{elProps.children}</tr>,
+      tableCell: elProps => <td className="markdown__tcell">{elProps.children}</td>,
     };
   }
 
