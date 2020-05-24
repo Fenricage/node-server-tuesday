@@ -1,0 +1,10 @@
+// дефолтный стиль для текстового инпута
+
+@mixin link-default-home-navigation-category {
+  padding: 12px 0;
+
+  color: var(--color-home-nav-font-default);
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration: none;
+}

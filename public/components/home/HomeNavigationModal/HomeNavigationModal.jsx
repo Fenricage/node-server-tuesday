@@ -49,9 +49,9 @@ const HomeNavigationModal = (props) => {
         <section className="home-nav-modal__main-area">
           <section className="home-nav-modal__main-area-inner">
             {
-              data &&
-              data.links &&
-              data.links
+              data
+              && data.links
+              && data.links
                 .map(
                   (item, index) => (
                     <Link
@@ -73,9 +73,9 @@ const HomeNavigationModal = (props) => {
 
     </div>
 
-  )
+  );
 
-}
+};
 
 
 export default HomeNavigationModal;

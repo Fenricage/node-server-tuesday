@@ -1,3 +1,5 @@
+@import "../../../shared/css/helpers/mixins/link-default-home-navigation-category";
+
 .home-nav-modal {
   $self: &;
   position: fixed;
@@ -19,12 +21,7 @@
   }
 
   &__link {
-    padding: 12px 0;
-
-    color: var(--color-home-nav-font-default);
-    font-weight: 500;
-    text-transform: uppercase;
-    text-decoration: none;
+    @include link-default-home-navigation-category;
   }
 
   &__title {
