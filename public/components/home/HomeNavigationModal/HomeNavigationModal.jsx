@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React from 'react';
 import cs from 'classnames';
 import { Link } from '../../../routes';
 import Times from '../../../shared/icons/Times/Times';
@@ -55,12 +55,13 @@ const HomeNavigationModal = (props) => {
                 .map(
                   (item, index) => (
                     <Link
-                      className="home-nav-modal__link"
                       route={`${data.to}/${item.get('value')}`.replace('//', '/')}
-                      onClick={onClose}
                       key={index}
                     >
-                      <a className="home-nav-modal__link">
+                      <a
+                        className="home-nav-modal__link"
+                        onClick={onClose}
+                      >
                         {item.get('label')}
                       </a>
                     </Link>

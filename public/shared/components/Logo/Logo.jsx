@@ -1,5 +1,5 @@
 import React, {
-  useState, useEffect, useLayoutEffect, useRef,
+  useState, useEffect, useLayoutEffect, useRef, forwardRef
 } from 'react';
 import cs from 'classnames';
 import Link from 'next/link';
@@ -85,7 +85,6 @@ const Logo = ({ className }) => {
 
   // one timer, one node ref
   const actionTimer = useRef(null);
-  const logoRef = useRef(null);
 
   useLayoutEffect(() => {
     let cancelAction = null;
@@ -93,6 +92,7 @@ const Logo = ({ className }) => {
       const action = actionVariations.get('js-interval-animation');
       cancelAction = action(actionTimer, setLogoText);
     }
+
 
     return () => {
       if (isAnimating && cancelAction) {
@@ -120,7 +120,6 @@ const Logo = ({ className }) => {
           setAnimating(false);
           // clearInterval(actionTimer.current);
         }}
-        ref={logoRef}
       >
         <span className="logo__text">{logoText}</span>
       </a>

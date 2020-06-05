@@ -1,10 +1,11 @@
 import React, { Component, createRef } from 'react';
+import cs from 'classnames';
 import { connect } from 'react-redux';
-// import { withRouter } from 'react-router-dom';
 import { fromJS } from 'immutable';
+import { withRouter } from 'next/router';
 import Button from '../../../shared/components/Button/Button';
-import Angle from '../../../shared/icons/Angle/Angle';
 import Portal from '../../../shared/components/Portal/Portal';
+import Angle from '../../../shared/icons/Angle/Angle';
 import HomeNavigationModal from '../HomeNavigationModal/HomeNavigationModal';
 import HomeNavigationSearchModal from '../HomeNavigationSearchModal/HomeNavigationSearchModal';
 import HomeNavLink from '../HomeNavLink/HomeNavLink';
@@ -182,14 +183,15 @@ class HomeNavigation extends Component {
 
   render() {
     const { isPortalOpen, portal } = this.state;
-    const { articleCategories } = this.props;
-
+    const { articleCategories, router } = this.props;
+    const { asPath } = router;
 
     const transformedToMenuFormatArticleCategories = articleCategories
       .map(articleCategory => fromJS({
         label: articleCategory.get('name'),
         value: articleCategory.get('name'),
       }));
+
 
     const homeNavItems = [
       {
@@ -237,6 +239,14 @@ class HomeNavigation extends Component {
         to: '/extra',
         type: 'button',
         label: 'Еще',
+        isActive(routerArg = router) {
+          // its too bad, replace after with this
+          const subMenuLinks = [ '/about', '/contacts' ];
+          const someIsEqual = subMenuLinks.some((link) => {
+            return link === router.asPath;
+          });
+          return someIsEqual;
+        },
         angle: true,
         subMenu: {
           title: 'Еще',
@@ -277,7 +287,7 @@ class HomeNavigation extends Component {
       },
     ];
 
-    // формируем навигационные элементы
+    // creating navigate elements, like a buttons and links, and sublinks :)
     const navItems = homeNavItems.map((item, index) => {
       switch (item.type) {
         case 'link':
@@ -296,6 +306,12 @@ class HomeNavigation extends Component {
           if (item.handlers && Object.keys(item.handlers).length) {
             customHandlers = item.handlers;
           }
+
+          let isActive = false;
+          if (item.isActive && 'function' === typeof item.isActive) {
+            isActive = item.isActive();
+          }
+
           // в onClick забираем данные в замыкание
           // чтобы воспользоваться ими позже
           // формируем объект стандартных хендлеров отдельно на случай
@@ -312,10 +328,18 @@ class HomeNavigation extends Component {
             };
           }
 
+          // test match in beginning of string
+          const matchButtonRegExp = new RegExp(`^${item.to}`);
+
+          const isButtonMatched = asPath.match(matchButtonRegExp);
+
           return (
             <Button
               key={index}
-              className="home-navigation__nav-item"
+              className={cs({
+                'home-navigation__nav-item': true,
+                'home-navigation__nav-item_button-active': isButtonMatched || isActive,
+              })}
               {...handlers}
             >
               {item.label}
@@ -392,4 +416,4 @@ const HomeNavigationConnected = connect(
 // тут нужен withRouter чтобы был перерендер на изменение location,
 // иначе ссылки не видят изиенения
 // и не перерендеривают активный класс
-export default HomeNavigationConnected;
+export default withRouter(HomeNavigationConnected);

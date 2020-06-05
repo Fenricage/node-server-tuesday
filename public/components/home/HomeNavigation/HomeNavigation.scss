@@ -48,6 +48,16 @@
 
   &__nav-item {
     @include link-default-home-navigation-top-bar;
+
+    &_button-active {
+      color: var(--color-home-nav-font-hover);
+
+      .angle {
+        > path {
+          fill: var(--color-home-nav-font-hover);
+        }
+      }
+    }
   }
 
 }
