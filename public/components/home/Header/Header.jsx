@@ -9,6 +9,7 @@ class Header extends Component {
       <section className="header">
         <section className="header__top-bar">
           <Logo />
+
         </section>
         <HomeNavigation />
       </section>
