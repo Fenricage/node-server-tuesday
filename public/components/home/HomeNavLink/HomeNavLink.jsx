@@ -1,25 +1,40 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 // TODO мб стоиь импортнуть Link из ../routes next-route
-import Link from 'next/link';
+// TODO вот эти вот закомменченные, протести
+import { Link } from '../../../routes';
+// import Link from 'next/link';
 import cs from 'classnames';
 import './HomeNavLink.scss';
 
 const HomeNavLink = ({
   exact, to, label, onClick, className, children,
 }) => {
+
   const router = useRouter();
+
+  let isActive;
+
+  // strict equal to with asPath
+  if (exact) {
+    isActive = router.asPath === to;
+  } else {
+    // soft equal for non-exact
+    const softLinkRegExp = new RegExp(`^${to}`);
+    isActive = router.asPath.match(softLinkRegExp);
+  }
 
   return (
     <Link
-      href={to}
+      route={to}
+      // href={to}
     >
       <a
         className={cs({
           'home-nav-link': true,
-          'home-nav-link_selected': router.pathname === to,
+          'home-nav-link_selected': isActive,
           [`${className}`]: className,
-          [`${className}_selected`]: className && router.pathname === to,
+          [`${className}_selected`]: className && isActive,
         })}
         onClick={onClick}
       >

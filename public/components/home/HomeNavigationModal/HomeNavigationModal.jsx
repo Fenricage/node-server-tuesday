@@ -1,8 +1,10 @@
 import React from 'react';
 import cs from 'classnames';
+import { useRouter } from 'next/router';
 import { Link } from '../../../routes';
 import Times from '../../../shared/icons/Times/Times';
 import Button from '../../../shared/components/Button/Button';
+import HomeNavLink from '../HomeNavLink/HomeNavLink';
 import './HomeNavigationModal.scss';
 
 const HomeNavigationModal = (props) => {
@@ -18,6 +20,8 @@ const HomeNavigationModal = (props) => {
       cross,
     },
   } = props;
+
+  const { asPath } = useRouter();
 
   return (
     <div
@@ -54,17 +58,13 @@ const HomeNavigationModal = (props) => {
               && data.links
                 .map(
                   (item, index) => (
-                    <Link
-                      route={`${data.to}/${item.get('value')}`.replace('//', '/')}
+                    <HomeNavLink
+                      to={`${data.to}/${item.get('value')}`.replace('//', '/')}
+                      className="home-nav-modal__link"
+                      label={item.get('label')}
                       key={index}
-                    >
-                      <a
-                        className="home-nav-modal__link"
-                        onClick={onClose}
-                      >
-                        {item.get('label')}
-                      </a>
-                    </Link>
+                      onClick={onClose}
+                    />
                   ),
                 )
             }
@@ -77,6 +77,18 @@ const HomeNavigationModal = (props) => {
   );
 
 };
+
+// <Link
+//     route={`${data.to}/${item.get('value')}`.replace('//', '/')}
+//     key={index}
+// >
+//   <a
+//
+//
+//   >
+//     {item.get('label')}
+//   </a>
+// </Link>
 
 
 export default HomeNavigationModal;

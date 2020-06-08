@@ -11,4 +11,8 @@
   &:hover {
     color: var(--color-home-nav-font-hover);
   }
+
+  &_selected {
+    color: var(--color-home-nav-font-active);
+  }
 }

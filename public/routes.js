@@ -1,6 +1,6 @@
 const routes = require('next-routes');
 
-// Name   Page      Pattern
+// Name     Pattern      Page
 module.exports = routes()
   // HOME
   .add('/', '/')

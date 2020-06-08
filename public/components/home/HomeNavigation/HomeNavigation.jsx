@@ -190,6 +190,7 @@ class HomeNavigation extends Component {
       .map(articleCategory => fromJS({
         label: articleCategory.get('name'),
         value: articleCategory.get('name'),
+        to: `/categories/${articleCategory.get('name')}`,
       }));
 
 
