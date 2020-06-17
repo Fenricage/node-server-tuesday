@@ -5,3 +5,7 @@ import api from '../index';
 export const deleteAttachment = (id, extra) => {
   return api.get(API_BROWSER).attachments.deleteOne(id, extra);
 };
+
+export const getAttachments = () => {
+  return api.get(API_BROWSER).attachments.getAll();
+};

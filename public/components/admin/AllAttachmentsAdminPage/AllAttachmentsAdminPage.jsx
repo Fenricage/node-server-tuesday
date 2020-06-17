@@ -5,6 +5,7 @@ import { API_BROWSER } from '../../../shared/constants/api';
 import api from '../../../shared/api/index';
 import './AllAttachmentsAdminPage.scss';
 import { Map, fromJS, List } from 'immutable';
+import { deleteAttachment, getAttachments } from '../../../shared/api/utils/attachments';
 import cs from 'classnames';
 
 const initialState = fromJS({
@@ -16,8 +17,8 @@ const initialState = fromJS({
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'setAttachmentsData':
 
+    case 'setAttachmentsData': {
       return state
         .merge({
           attachments: Map({
@@ -25,33 +26,16 @@ function reducer(state, action) {
             isLoaded: true,
           }),
         });
+    }
 
-      // return {
-      //   ...state,
-      //   attachments: {
-      //     ...state.attachments,
-      //     data: action.payload,
-      //     isLoaded: true,
-      //   },
-      // };
-    // case 'replaceItemRevisionData':
-    //
-    //   // при отсутствии параметра в match роутера, забираем sequence из item дефолтной ревизии
-    //   const sequence = Number(action.payload) || state.item.data.revision.sequence;
-    //
-    //   const selectedRevision = state.revisions.data.records
-    //     .find((record) => sequence === record.sequence);
-    //
-    //   return {
-    //     ...state,
-    //     item: {
-    //       ...state.item,
-    //       data: {
-    //         ...state.item.data,
-    //         revision: selectedRevision,
-    //       },
-    //     },
-    //   };
+    case 'setAttachmentDeleting': {
+      const attachmentsRecords = state.getIn([ 'attachments', 'data', 'records' ]);
+      const neededIndex = attachmentsRecords.findIndex(record => record.get('_id') === action.payload.id);
+      const updatedRecords = attachmentsRecords.update(neededIndex, record => record.update('isDeleting', () => action.payload.status));
+
+      return state.updateIn([ 'attachments', 'data', 'records' ], () => updatedRecords);
+    }
+
     default:
       throw new Error();
   }
@@ -64,14 +48,15 @@ const AllAttachmentsAdminPage = () => {
 
   useEffect(() => {
     const fetchAttachments = async () => {
-      const attachments = await api.get(API_BROWSER).attachments.getAll();
+      const attachments = await getAttachments();
       dispatch({ type: 'setAttachmentsData', payload: fromJS(attachments) });
     };
     fetchAttachments();
   }, [ dispatch ]);
 
-  const deleteOneAttachment = () => {
-
+  const handleDeleteAttachment = id => async (e) => {
+    dispatch({ type: 'setAttachmentDeleting', payload: { id, status: true } });
+    await deleteAttachment(id);
   };
 
   if (!isAttachmentsLoaded) {
@@ -80,21 +65,15 @@ const AllAttachmentsAdminPage = () => {
 
   return (
     <div className="all-attachments-admin-page">
-
-      {/* {attachmentsData.get('records').map(attachmentRecord => ( */}
-      {/*  <p key={attachmentRecord.get('_id')}>{attachmentRecord.get('_id')}</p> */}
-      {/* ))} */}
-
       <ItemGridProvider value={{
         viewComponent: 'AdminAttachmentEntryBadge',
       }}
-
       >
         <ItemGrid
           data={attachmentsData.get('records')}
+          deleteAttachment={handleDeleteAttachment}
         />
       </ItemGridProvider>
-
     </div>
   );
 };

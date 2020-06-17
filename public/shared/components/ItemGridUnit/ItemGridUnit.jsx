@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ItemGridUnitView from '../ItemGridUnitView/ItemGridUnitView';
 import { itemGridContext, withItemGrid } from '../../contexts';
 import EntryBadge from '../../../components/home/EntryBadge/EntryBadge';
 import BlogEntryBadge from '../../../components/blog/BlogEntryBadge/BlogEntryBadge';
@@ -15,7 +14,6 @@ const gridComponents = {
 
 class ItemGridUnit extends Component {
 
-
   shouldComponentUpdate(nextProps, nextState) {
     if (this.props.dataItem.equals(nextProps.dataItem)) {
       return false;
@@ -25,9 +23,14 @@ class ItemGridUnit extends Component {
 
 
   render() {
-    const { dataItem, contextItemGrid } = this.props;
-    const { viewComponent } = contextItemGrid;
 
+    const {
+      dataItem,
+      contextItemGrid,
+      ...other
+    } = this.props;
+
+    const { viewComponent } = contextItemGrid;
 
     // выбираем view компонент который попадет в гриды
     const Component = gridComponents[viewComponent];
@@ -37,14 +40,16 @@ class ItemGridUnit extends Component {
       <Component
         context={contextItemGrid}
         dataItem={dataItem}
+        {...other}
       />
     );
 
     return (
-      <ItemGridUnitView
-        dataItem={dataItem}
-        viewComponent={GridComponent}
-      />
+      <div className="item-grid-unit">
+        <GridComponent
+          dataItem={dataItem}
+        />
+      </div>
     );
   }
 

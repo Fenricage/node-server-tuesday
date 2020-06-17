@@ -1,9 +1,12 @@
 import React from 'react';
 import { CLIENT_URL } from '../../../shared/utils/config';
-import { deleteAttachment } from '../../../shared/api/utils/attachments';
 import './AdminAttachmentEntryBadge.scss';
 
-const AdminAttachmentEntryBadge = ({ dataItem }) => {
+const AdminAttachmentEntryBadge = ({
+  dataItem,
+  deleteAttachment,
+}) => {
+    console.log('dataItem', dataItem) 
   return (
     <div className="admin-attachment-entry-badge">
       <img
@@ -11,11 +14,8 @@ const AdminAttachmentEntryBadge = ({ dataItem }) => {
         alt=""
         className="admin-attachment-entry-badge__img"
       />
-      <button onClick={() => {
-        deleteAttachment(dataItem.get('_id'));
-      }}
-      >
-        удалить
+      <button onClick={deleteAttachment(dataItem.get('_id'))}>
+        {dataItem.get('isDeleting') ? '...' : 'удалить'}
       </button>
     </div>
   );

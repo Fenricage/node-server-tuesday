@@ -120,7 +120,7 @@
     "react-mde": "^7.4.1",
     "react-paginate": "^6.3.0",
     "react-redux": "^6.0.1",
-    "react-select": "^2.0.0",
+    "react-select": "^3.1.0",
     "react-sidebar": "^3.0.2",
     "react-syntax-highlighter": "^10.3.0",
     "react-transition-group": "^4.3.0",

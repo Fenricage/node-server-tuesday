@@ -5,15 +5,9 @@ import cs from 'classnames';
 import ItemGridUnit from '../ItemGridUnit/ItemGridUnit';
 
 class ItemGrid extends Component {
-
-
   // TODO(@fenricage) оптимихировать ререндер только если разные new List()
   // TODO добавть CSSTRAansition roup animation
   shouldComponentUpdate(nextProps, nextState) {
-
-    // console.log('this className', this.props.contextItemGrid.className)
-    // console.log('next className', nextProps.contextItemGrid.className)
-    // console.log('equal data', this.props.data.equals(nextProps.data))
 
     if (!this.props.data.equals(nextProps.data)) {
       return true;
@@ -22,7 +16,6 @@ class ItemGrid extends Component {
     if (!this.props.contextItemGrid.className !== nextProps.contextItemGrid.className) {
       return true;
     }
-
 
     return false;
 
@@ -35,11 +28,8 @@ class ItemGrid extends Component {
       contextItemGrid: {
         className,
       },
+      ...other
     } = this.props;
-
-
-
-    // console.log("RENDER ITEM GRIRd")
 
     return (
       <section className={cs({
@@ -52,6 +42,7 @@ class ItemGrid extends Component {
             <ItemGridUnit
               key={dataItem.get('_id')}
               dataItem={dataItem}
+              {...other}
             />
           ))
         }
