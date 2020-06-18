@@ -1,10 +1,8 @@
 import React, { useEffect, useState, useReducer } from 'react';
 import { ItemGridProvider } from '../../../shared/contexts/index';
 import ItemGrid from '../../../shared/components/ItemGrid/ItemGrid';
-import { API_BROWSER } from '../../../shared/constants/api';
-import api from '../../../shared/api/index';
 import './AllAttachmentsAdminPage.scss';
-import { Map, fromJS, List } from 'immutable';
+import { Map, fromJS } from 'immutable';
 import { deleteAttachment, getAttachments } from '../../../shared/api/utils/attachments';
 import cs from 'classnames';
 
@@ -36,6 +34,12 @@ function reducer(state, action) {
       return state.updateIn([ 'attachments', 'data', 'records' ], () => updatedRecords);
     }
 
+    case 'deleteAttachment': {
+      const attachmentsRecords = state.getIn([ 'attachments', 'data', 'records' ]);
+      const neededIndex = attachmentsRecords.findIndex(record => record.get('_id') === action.payload.id);
+      return state.updateIn([ 'attachments', 'data', 'records' ], records => records.delete(neededIndex));
+    }
+
     default:
       throw new Error();
   }
@@ -54,9 +58,10 @@ const AllAttachmentsAdminPage = () => {
     fetchAttachments();
   }, [ dispatch ]);
 
-  const handleDeleteAttachment = id => async (e) => {
+  const handleDeleteAttachment = id => async () => {
     dispatch({ type: 'setAttachmentDeleting', payload: { id, status: true } });
     await deleteAttachment(id);
+    dispatch({ type: 'deleteAttachment', payload: { id } });
   };
 
   if (!isAttachmentsLoaded) {

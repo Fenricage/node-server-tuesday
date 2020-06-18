@@ -6,7 +6,6 @@ const AdminAttachmentEntryBadge = ({
   dataItem,
   deleteAttachment,
 }) => {
-    console.log('dataItem', dataItem) 
   return (
     <div className="admin-attachment-entry-badge">
       <img
