@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 // TODO мб стоиь импортнуть Link из ../routes next-route
 // TODO вот эти вот закомменченные, протести
 import { Link } from '../../../routes';
-// import Link from 'next/link';
 import cs from 'classnames';
 import './HomeNavLink.scss';
 
