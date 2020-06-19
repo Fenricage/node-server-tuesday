@@ -1,15 +1,9 @@
-.b-sidebar-content {
+.sidebar-content {
   height: 100vh;
-
-  background-color: var(--color-dark);
 
   &__logo {
     padding: 18px 12px;
-
-    background-color: var(--color-dark);
     cursor: default;
-
-    pointer-events: none;
 
     h2 {
       display: inline-block;

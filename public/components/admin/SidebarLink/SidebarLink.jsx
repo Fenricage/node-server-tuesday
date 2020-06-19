@@ -1,20 +1,36 @@
 import React from 'react';
-// import { NavLink } from 'react-router-dom';
-import Link from 'next/link';
+import { Link } from '../../../routes';
 import './SidebarLink.scss';
 
-const SidebarLink = ({ exact, to, label }) => (
-  <Link
-    exact={exact}
-    href={to}
-    activeClassName="is-selected"
-  >
-    <a
-      className="b-sidebar-link"
+const SidebarLink = ({
+  exact, to, label, icon: IconElement,
+}) => {
+
+  const IconComponent = () => {
+    return React.cloneElement(
+      IconElement,
+      {
+        className: 'sidebar-link__icon',
+      },
+    );
+  };
+
+  return (
+    <Link
+      exact={exact}
+      href={to}
+      activeClassName="is-selected"
     >
-      {label}
-    </a>
-  </Link>
-);
+      <a
+        className="sidebar-link"
+      >
+        <IconComponent />
+        <span className="sidebar-link__label">
+          {label}
+        </span>
+      </a>
+    </Link>
+  );
+};
 
 export default SidebarLink;

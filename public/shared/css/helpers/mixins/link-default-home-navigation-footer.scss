@@ -1,7 +1,7 @@
 // наследуется от элемента, см. пример как эти стили применяются от Footer к HomeNav
 
 @mixin link-default-home-navigation-footer {
-  $self: ".home-nav-link";
+  $self: ".custom-nav-link";
   position: relative;
   color: var(--footer-link-color);
   font-size: 13px;

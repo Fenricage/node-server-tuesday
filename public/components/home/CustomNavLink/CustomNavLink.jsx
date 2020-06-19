@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 // TODO вот эти вот закомменченные, протести
 import { Link } from '../../../routes';
 import cs from 'classnames';
-import './HomeNavLink.scss';
+import './CustomNavLink.scss';
 
-const HomeNavLink = ({
+const CustomNavLink = ({
   exact, to, label, onClick, className, children,
 }) => {
 
@@ -30,8 +30,8 @@ const HomeNavLink = ({
     >
       <a
         className={cs({
-          'home-nav-link': true,
-          'home-nav-link_selected': isActive,
+          'custom-nav-link': true,
+          'custom-nav-link_selected': isActive,
           [`${className}`]: className,
           [`${className}_selected`]: className && isActive,
         })}
@@ -43,4 +43,4 @@ const HomeNavLink = ({
   );
 };
 
-export default HomeNavLink;
+export default CustomNavLink;

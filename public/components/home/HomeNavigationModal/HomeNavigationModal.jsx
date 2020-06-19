@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { Link } from '../../../routes';
 import Times from '../../../shared/icons/Times/Times';
 import Button from '../../../shared/components/Button/Button';
-import HomeNavLink from '../HomeNavLink/HomeNavLink';
+import CustomNavLink from '../CustomNavLink/CustomNavLink';
 import './HomeNavigationModal.scss';
 
 const HomeNavigationModal = (props) => {
@@ -58,7 +58,7 @@ const HomeNavigationModal = (props) => {
               && data.links
                 .map(
                   (item, index) => (
-                    <HomeNavLink
+                    <CustomNavLink
                       to={`${data.to}/${item.get('value')}`.replace('//', '/')}
                       className="home-nav-modal__link"
                       label={item.get('label')}

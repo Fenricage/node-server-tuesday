@@ -8,7 +8,7 @@ import Portal from '../../../shared/components/Portal/Portal';
 import Angle from '../../../shared/icons/Angle/Angle';
 import HomeNavigationModal from '../HomeNavigationModal/HomeNavigationModal';
 import HomeNavigationSearchModal from '../HomeNavigationSearchModal/HomeNavigationSearchModal';
-import HomeNavLink from '../HomeNavLink/HomeNavLink';
+import CustomNavLink from '../CustomNavLink/CustomNavLink';
 
 import './HomeNavigation.scss';
 
@@ -101,7 +101,7 @@ class HomeNavigation extends Component {
       const hoveredNode = e.currentTarget;
       // вешаем модификатор как на ссылках при селекте
       // TODO: в метод или хелпер
-      hoveredNode.classList.add('home-nav-link_selected');
+      hoveredNode.classList.add('custom-nav-link_selected');
 
       this.setState((prevState, props) => ({
         isPortalOpen: true,
@@ -141,7 +141,7 @@ class HomeNavigation extends Component {
         // убираем модификатор с наведенного баттона при оутсайд маусовере
         // TODO: в метод
         if (this.state.portal.hoveredNode) {
-          this.state.portal.hoveredNode.classList.remove('home-nav-link_selected');
+          this.state.portal.hoveredNode.classList.remove('custom-nav-link_selected');
         }
         this.setState({
           isPortalOpen: false,
@@ -175,7 +175,7 @@ class HomeNavigation extends Component {
 
     // TODO: в метод
     if (this.state.portal.hoveredNode) {
-      this.state.portal.hoveredNode.classList.remove('home-nav-link_selected');
+      this.state.portal.hoveredNode.classList.remove('custom-nav-link_selected');
     }
 
     document.removeEventListener('mouseover', this.handleDetectOutsideMouseOver);
@@ -293,7 +293,7 @@ class HomeNavigation extends Component {
       switch (item.type) {
         case 'link':
           return (
-            <HomeNavLink
+            <CustomNavLink
               key={index}
               to={item.to}
               className="home-navigation__nav-item"
@@ -346,7 +346,7 @@ class HomeNavigation extends Component {
               {item.label}
               {item.angle
                 && (
-                  <Angle className="home-nav-link__angle" />
+                  <Angle className="custom-nav-link__angle" />
                 )
               }
             </Button>

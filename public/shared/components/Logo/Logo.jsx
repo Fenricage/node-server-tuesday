@@ -1,5 +1,5 @@
 import React, {
-  useState, useEffect, useLayoutEffect, useRef, forwardRef
+  useState, useEffect, useLayoutEffect, useRef, forwardRef,
 } from 'react';
 import cs from 'classnames';
 import Link from 'next/link';
@@ -79,7 +79,7 @@ const actionVariations = new Map([
 // console.log('actionVariations.keys()', Array.from(actionVariations.keys()))
 
 
-const Logo = ({ className }) => {
+const Logo = ({ className, active }) => {
   const [ logoText, setLogoText ] = useState(DEFAULT_LOGO);
   const [ isAnimating, setAnimating ] = useState(false);
 
@@ -101,6 +101,18 @@ const Logo = ({ className }) => {
     };
   }, [ isAnimating ]);
 
+  const handleMouseOverLogo = () => {
+    // actionTimer.current = setInterval(() => {
+    //   console.log('isAnimating', isAnimating);
+    // }, 1000);
+    setAnimating(true);
+  };
+
+  const handleMouseLeaveLogo = () => {
+    setAnimating(false);
+    // clearInterval(actionTimer.current);
+  };
+
   return (
     <Link
       href="/"
@@ -110,16 +122,8 @@ const Logo = ({ className }) => {
           logo: true,
           [`${className}`]: className,
         })}
-        onMouseOver={(e) => {
-          // actionTimer.current = setInterval(() => {
-          //   console.log('isAnimating', isAnimating);
-          // }, 1000);
-          setAnimating(true);
-        }}
-        onMouseLeave={() => {
-          setAnimating(false);
-          // clearInterval(actionTimer.current);
-        }}
+        onMouseOver={active ? handleMouseOverLogo : null}
+        onMouseLeave={active ? handleMouseLeaveLogo : null}
       >
         <span className="logo__text">{logoText}</span>
       </a>

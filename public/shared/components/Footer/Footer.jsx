@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../Logo/Logo';
 import Star from '../../svg/Star/Star';
-import HomeNavLink from '../../../components/home/HomeNavLink/HomeNavLink';
+import CustomNavLink from '../../../components/home/CustomNavLink/CustomNavLink';
 import './Footer.scss';
 
 const footerNavItems = [
@@ -36,7 +36,7 @@ const Footer = () => {
   const navigationItems = footerNavItems
     .map((navItem, index) => {
       return (
-        <HomeNavLink
+        <CustomNavLink
           key={index}
           to={navItem.to}
           className="footer__nav-item"
@@ -46,7 +46,7 @@ const Footer = () => {
             fill="hsla(0, 0%, 30%, .6)"
           />
           {navItem.label}
-        </HomeNavLink>
+        </CustomNavLink>
       );
     });
 

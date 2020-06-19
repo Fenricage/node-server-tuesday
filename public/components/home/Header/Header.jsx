@@ -8,7 +8,7 @@ class Header extends Component {
     return (
       <section className="header">
         <section className="header__top-bar">
-          <Logo />
+          <Logo active/>
 
         </section>
         <HomeNavigation />
