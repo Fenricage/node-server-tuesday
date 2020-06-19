@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from '../../../routes';
+import CustomNavLink from '../../home/CustomNavLink/CustomNavLink';
 import './SidebarLink.scss';
 
 const SidebarLink = ({
@@ -16,20 +16,17 @@ const SidebarLink = ({
   };
 
   return (
-    <Link
+    <CustomNavLink
+      to={to}
+      label={label}
       exact={exact}
-      href={to}
-      activeClassName="is-selected"
+      className="sidebar-link"
     >
-      <a
-        className="sidebar-link"
-      >
-        <IconComponent />
-        <span className="sidebar-link__label">
-          {label}
-        </span>
-      </a>
-    </Link>
+      <IconComponent />
+      <span className="sidebar-link__label">
+        {label}
+      </span>
+    </CustomNavLink>
   );
 };
 

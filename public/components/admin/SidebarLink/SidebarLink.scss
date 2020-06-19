@@ -1,3 +1,5 @@
+@import "../../../shared/css/helpers/functions/shade";
+
 .sidebar-link {
   display: block;
   padding: 8px 12px;
@@ -10,8 +12,12 @@
     background-color: var(--color-ldark-o);
   }
 
-  &.is-selected {
-    background-color: var(--color-ddark);
+  &_selected {
+    background-color: shade(hsla(0, 0%, 18%, .05), 10%);
+
+    &:hover {
+      background-color: shade(hsla(0, 0%, 18%, .05), 10%);
+    }
   }
 
   &__icon {
