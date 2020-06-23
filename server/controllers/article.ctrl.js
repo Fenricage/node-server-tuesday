@@ -94,7 +94,7 @@ module.exports = {
     let {
       orderBy, extra, offset, limit,
     } = req.query;
-  
+
     // Приводим строчные числа к нормальным числам
     offset = Number(offset);
     limit = Number(limit);
@@ -118,7 +118,7 @@ module.exports = {
     }
 
     // высчитываем количество исходя из заданных параметров
-    const total = await Article.count(extraFindParams);
+    const total = await Article.countDocuments(extraFindParams);
     Article.find(extraFindParams, { __v: 0 })
       .sort(orderBy || {})
       .skip(offset)

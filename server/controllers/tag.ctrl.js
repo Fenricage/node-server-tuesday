@@ -78,8 +78,7 @@ module.exports = {
   },
   getAll: async (req, res, next) => {
 
-    // FIXME заменить на countDocuments
-    const total = await Tag.count();
+    const total = await Tag.estimatedDocumentCount();
 
     Tag.find({}, { __v: 0 })
       .exec((err, tags) => {

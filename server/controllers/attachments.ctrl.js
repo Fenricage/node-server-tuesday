@@ -25,7 +25,7 @@ module.exports = {
       });
   },
   getAll: async (req, res, next) => {
-    const total = await Attachment.count({});
+    const total = await Attachment.estimatedDocumentCount();
     Attachment.find({}, { __v: 0 })
       .exec((err, attachments) => {
         if (err) res.send(err);
