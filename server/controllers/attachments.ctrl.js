@@ -17,7 +17,6 @@ module.exports = {
         } else if (!newAttachment) {
           res.send('There was a problem adding the information to the database');
         } else {
-          console.log('INSIDE SEND');
           res
             .status(201)
             .send(newAttachment);
@@ -73,7 +72,7 @@ module.exports = {
       } else if (!attachment.deletedCount) {
         res
           .status(404)
-          .send({ error: 'Article not found' });
+          .send({ error: 'Attachment not found' });
       } else {
         // delete all attachments
         try {

@@ -4,25 +4,29 @@ const uuid = require('uuid');
 
 const storage = multer.diskStorage({
 
-  // выполняется первым
+  // run first
   destination: (req, file, cb) => {
     // определяем в какую папку класть по типу
     const type = req.params.type || 'trash';
 
-    const path = `./static/${type}`;
+    const originalDestination = `./static/${type}/originals`;
+
+    // destination for resized files
+    file.destinationPath = `./static/${type}`;
+
 
     // создаем если папки еще нет
-    if (!fs.existsSync(path)) {
+    if (!fs.existsSync(originalDestination)) {
       fs.mkdirSync(
-        path,
+        originalDestination,
         { recursive: true },
         err => console.error('mkdirSync couldnot create new directories', err),
       );
     }
 
-    cb(null, path);
+    cb(null, originalDestination);
   },
-  // выполняется вторым
+  // run second
   filename: (req, file, cb) => {
     cb(null, `${new Date().toISOString()}_${file.originalname}`);
   },
