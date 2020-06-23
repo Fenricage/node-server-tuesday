@@ -7,6 +7,8 @@ const AttachmentSchema = new mongoose.Schema(
     img_urls: Object,
     isLinked: Boolean,
     originalName: String,
+    original: String,
+    meta: Object,
   },
 );
 
