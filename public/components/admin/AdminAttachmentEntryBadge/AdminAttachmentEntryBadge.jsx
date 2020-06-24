@@ -1,6 +1,8 @@
 import React, { useReducer, useState } from 'react';
 import { CLIENT_URL } from '../../../shared/utils/config';
 import Modal from '../../../shared/components/Modal/Modal';
+import ReactMarkdown from 'react-markdown/with-html';
+import CodeBlock from '../../../shared/components/CodeBlock/CodeBlock';
 import './AdminAttachmentEntryBadge.scss';
 import { fromJS } from 'immutable';
 
@@ -27,7 +29,6 @@ const AdminAttachmentEntryBadge = ({
   dataItem,
   deleteAttachment,
 }) => {
-
   const [ state, dispatch ] = useReducer(reducer, dataItem, init);
   const isModalOpen = state.get('isModalOpen');
 
@@ -39,6 +40,10 @@ const AdminAttachmentEntryBadge = ({
   const handleClickCloseModal = () => {
     dispatch({ type: 'setModalOpen', payload: false });
   };
+
+  const prettiedModelJSON = JSON.stringify(dataItem.toJS(), null, 4);
+  const forMarkdownJSON = `\`\`\`json\n${prettiedModelJSON}\n\`\`\``;
+
 
   return (
     <>
@@ -55,10 +60,17 @@ const AdminAttachmentEntryBadge = ({
       <button onClick={handleClickOpenModal}>show all data</button>
       <Modal
         open={isModalOpen}
-        className="admin-attachment-entry-badge__modal"
+        closeNode={<span>x</span>}
+        className="admin-attachment-entry-badge-modal"
         onClose={handleClickCloseModal}
       >
-        ХУЙ
+        <div className="admin-attachment-entry-badge-modal__inner">
+          <ReactMarkdown
+            source={forMarkdownJSON || ''}
+            escapeHtml={false}
+            renderers={{ code: CodeBlock }}
+          />
+        </div>
       </Modal>
     </>
   );

@@ -104,7 +104,9 @@ class Modal extends Component {
     const closeNodeMutated = cloneElement(
       closeNode,
       {
-        className: 'modal__close-node',
+        className: cs('modal__close-node', {
+          [`${className}__close-node`]: className,
+        }),
       },
     );
 
@@ -118,17 +120,23 @@ class Modal extends Component {
           onClick={this.handleSmokeCloseModal}
         >
           <div
-            className="modal__content-box"
+            className={cs('modal__content-box', {
+              [`${className}__content-box`]: className,
+            })}
             ref={this.modal}
           >
             <button
-              className="modal__close"
+              className={cs('modal__close', {
+                [`${className}__close`]: className,
+              })}
               onClick={this.handleCloseModal}
             >
               {closeNodeMutated}
             </button>
             <div
-              className="modal__content"
+              className={cs('modal__content', {
+                [`${className}__content`]: className,
+              })}
             >
               {children}
             </div>

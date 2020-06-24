@@ -3,9 +3,21 @@
   &__img {
     width: 100%;
   }
+}
 
-  &__modal {
-    z-index: 1;
+.admin-attachment-entry-badge-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, .1);
+
+  &__content-box {
+    width: 60%;
+  }
+
+  &__inner {
+    height: 70vh;
     background-color: #fff;
   }
 }
