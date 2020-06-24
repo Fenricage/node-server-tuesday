@@ -19,6 +19,7 @@ const stylesSidebar = {
   sidebar: {
     background: 'white',
     width: '250px',
+    zIndex: 1,
   },
 };
 

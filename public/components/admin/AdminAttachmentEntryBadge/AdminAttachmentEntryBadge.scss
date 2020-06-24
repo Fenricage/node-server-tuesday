@@ -3,4 +3,9 @@
   &__img {
     width: 100%;
   }
+
+  &__modal {
+    z-index: 1;
+    background-color: #fff;
+  }
 }
