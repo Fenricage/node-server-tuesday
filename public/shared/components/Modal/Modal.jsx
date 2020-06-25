@@ -91,6 +91,7 @@ class Modal extends Component {
       className,
       closeNode,
       children,
+      smoke,
     } = this.props;
 
     const {

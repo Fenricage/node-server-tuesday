@@ -60,6 +60,7 @@ const AdminAttachmentEntryBadge = ({
       <button onClick={handleClickOpenModal}>show all data</button>
       <Modal
         open={isModalOpen}
+        smoke
         closeNode={<span>x</span>}
         className="admin-attachment-entry-badge-modal"
         onClose={handleClickCloseModal}
