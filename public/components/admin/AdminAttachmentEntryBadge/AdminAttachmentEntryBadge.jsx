@@ -1,7 +1,7 @@
 import React, { useReducer, useState } from 'react';
+import ReactMarkdown from 'react-markdown/with-html';
 import { CLIENT_URL } from '../../../shared/utils/config';
 import Modal from '../../../shared/components/Modal/Modal';
-import ReactMarkdown from 'react-markdown/with-html';
 import CodeBlock from '../../../shared/components/CodeBlock/CodeBlock';
 import './AdminAttachmentEntryBadge.scss';
 import { fromJS } from 'immutable';
@@ -32,12 +32,26 @@ const AdminAttachmentEntryBadge = ({
   const [ state, dispatch ] = useReducer(reducer, dataItem, init);
   const isModalOpen = state.get('isModalOpen');
 
+  const setBlurOnLayout = (value) => {
+    const layoutNode = document.querySelector('.l-admin');
+    if (value) {
+      layoutNode.style.filter = 'blur(2px)';
+    } else {
+      layoutNode.style.filter = '';
+      layoutNode.removeAttribute('style');
+    }
+
+
+  };
+
 
   const handleClickOpenModal = () => {
+    setBlurOnLayout(true);
     dispatch({ type: 'setModalOpen', payload: true });
   };
 
   const handleClickCloseModal = () => {
+    setBlurOnLayout(false);
     dispatch({ type: 'setModalOpen', payload: false });
   };
 

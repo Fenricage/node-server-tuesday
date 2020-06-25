@@ -7,7 +7,7 @@ import BlogMainPageView from '../BlogMainPageView/BlogMainPageView';
 import { SIZE_PAGE } from '../../../shared/constants/page';
 import './BlogMainPage.scss';
 
-class HomeMainPage extends Component {
+class BlogMainPage extends Component {
 
   constructor(props) {
     super(props);
@@ -129,4 +129,4 @@ const mapDispatchToProps = dispatch => ({
   getAllArticlesAndSetDispatch: queryParams => dispatch(getAllArticlesAndSet(queryParams)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(HomeMainPage));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(BlogMainPage));

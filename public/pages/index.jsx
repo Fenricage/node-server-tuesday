@@ -10,17 +10,19 @@ import {
 } from '../actions/articles';
 import { getLayout } from '../shared/layouts/HomeLayout/HomeLayout';
 import { SIZE_PAGE } from '../shared/constants/page';
+import TestGrid from '../shared/components/TestGrid/TestGrid';
 
 class HomePageWithLayout extends Component {
   render() {
     const { query, pathname } = this.props;
-    return (
-      <p>main page 3</p>
-      // <HomeMainPage
-      //   query={query}
-      //   pathname={pathname}
-      // />
-    );
+    return (<TestGrid />);
+    // return (
+    //   <p>main page 2</p>
+    // <HomeMainPage
+    //   query={query}
+    //   pathname={pathname}
+    // />
+    // );
   }
 }
 
