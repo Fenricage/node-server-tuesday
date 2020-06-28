@@ -33,26 +33,11 @@ const AdminAttachmentEntryBadge = ({
   const [ state, dispatch ] = useReducer(reducer, dataItem, init);
   const isModalOpen = state.get('isModalOpen');
 
-  const setBlurOnLayout = (value) => {
-    const layoutNode = document.querySelector('.l-admin');
-    if (value) {
-      layoutNode.style.filter = 'blur(2px)';
-    } else {
-      layoutNode.style.filter = '';
-      layoutNode.removeAttribute('style');
-    }
-
-
-  };
-
-
   const handleClickOpenModal = () => {
-    // setBlurOnLayout(true);
     dispatch({ type: 'setModalOpen', payload: true });
   };
 
   const handleClickCloseModal = () => {
-    // setBlurOnLayout(false);
     dispatch({ type: 'setModalOpen', payload: false });
   };
 
