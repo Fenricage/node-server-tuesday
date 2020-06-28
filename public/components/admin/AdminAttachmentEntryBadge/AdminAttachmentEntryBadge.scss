@@ -11,13 +11,28 @@
   align-items: center;
   z-index: 1;
   background-color: rgba(0, 0, 0, .1);
+  backdrop-filter: blur(15px);
 
   &__content-box {
     width: 60%;
+    background-color: #fff;
+    border-radius: .5rem;
+    padding: 2rem;
   }
 
   &__inner {
     height: 70vh;
-    background-color: #fff;
+  }
+
+  &__close {
+    border: 0;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    margin-left: auto;
+
+    > svg {
+      width: 100%;
+    }
   }
 }

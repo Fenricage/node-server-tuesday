@@ -5,6 +5,7 @@ import Modal from '../../../shared/components/Modal/Modal';
 import CodeBlock from '../../../shared/components/CodeBlock/CodeBlock';
 import './AdminAttachmentEntryBadge.scss';
 import { fromJS } from 'immutable';
+import Times from '../../../shared/icons/Times/Times';
 
 function init(data) {
   return fromJS({
@@ -46,12 +47,12 @@ const AdminAttachmentEntryBadge = ({
 
 
   const handleClickOpenModal = () => {
-    setBlurOnLayout(true);
+    // setBlurOnLayout(true);
     dispatch({ type: 'setModalOpen', payload: true });
   };
 
   const handleClickCloseModal = () => {
-    setBlurOnLayout(false);
+    // setBlurOnLayout(false);
     dispatch({ type: 'setModalOpen', payload: false });
   };
 
@@ -74,8 +75,7 @@ const AdminAttachmentEntryBadge = ({
       <button onClick={handleClickOpenModal}>show all data</button>
       <Modal
         open={isModalOpen}
-        smoke
-        closeNode={<span>x</span>}
+        closeNode={<Times />}
         className="admin-attachment-entry-badge-modal"
         onClose={handleClickCloseModal}
       >
