@@ -21,7 +21,7 @@
   }
 
   &__inner {
-    height: 70vh;
+
   }
 
   &__close {
@@ -34,5 +34,13 @@
     > svg {
       width: 100%;
     }
+  }
+
+  &__collapse {
+    transition: height ease .15s;
+  }
+
+  &__collapse-content {
+
   }
 }
