@@ -1,11 +1,12 @@
 import React, { useReducer, useState } from 'react';
 import ReactMarkdown from 'react-markdown/with-html';
 import { Collapse } from 'react-collapse';
+import { fromJS } from 'immutable';
 import { CLIENT_URL } from '../../../shared/utils/config';
 import Modal from '../../../shared/components/Modal/Modal';
 import CodeBlock from '../../../shared/components/CodeBlock/CodeBlock';
-import { fromJS } from 'immutable';
 import Times from '../../../shared/icons/Times/Times';
+import CollapseToggle from '../../../shared/components/CollapseToggle/CollapseToggle';
 import './AdminAttachmentEntryBadge.scss';
 
 const theme = {
@@ -54,7 +55,7 @@ const AdminAttachmentEntryBadge = ({
 
   return (
     <>
-      <div className="admin-attachment-entry-badge"п >
+      <div className="admin-attachment-entry-badge" п>
         <img
           src={`${CLIENT_URL}/${dataItem.get('img_url')}`}
           alt=""
@@ -72,7 +73,13 @@ const AdminAttachmentEntryBadge = ({
         onClose={handleClickCloseModal}
       >
         <div className="admin-attachment-entry-badge-modal__inner">
-          <button onClick={() => setCodeBlockOpened(prevState => !prevState)}>toggle</button>
+          {/* <button onClick={() => setCodeBlockOpened(prevState => !prevState)}>toggle</button> */}
+          <CollapseToggle
+            isOpen={isCodeBlockOpened}
+            isOpenText="Show this model's code"
+            isCloseText="Hide this model's code"
+            onClick={() => setCodeBlockOpened(prevState => !prevState)}
+          />
           <Collapse isOpened={isCodeBlockOpened} theme={theme}>
             <ReactMarkdown
               source={forMarkdownJSON || ''}

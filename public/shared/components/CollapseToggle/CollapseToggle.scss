@@ -1,0 +1,12 @@
+.collapse-toggle {
+  $self: &;
+  border: 0;
+  background-color: transparent;
+
+  &_is-open {
+
+    #{ $self }__angle {
+
+    }
+  }
+}
