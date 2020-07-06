@@ -55,7 +55,7 @@ const AdminAttachmentEntryBadge = ({
 
   return (
     <>
-      <div className="admin-attachment-entry-badge" п>
+      <div className="admin-attachment-entry-badge" >
         <img
           src={`${CLIENT_URL}/${dataItem.get('img_url')}`}
           alt=""

@@ -28,6 +28,7 @@ const CollapseToggle = (props) => {
     <button
       className={cs('collapse-toggle', className, {
         'collapse-toggle_is-open': isOpen,
+        [`${className}_is-open`]: className && isOpen,
       })}
       onClick={onClick}
     >
