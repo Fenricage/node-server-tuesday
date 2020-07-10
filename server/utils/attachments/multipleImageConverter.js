@@ -32,7 +32,6 @@ const multipleImageConverter = async (req, paramsList) => {
   }
 
   // путь в который сохранится преобразованное изображение
-  // TODO: добавить размеры в виде _200x300
 
   return Promise.all(
     paramsList.map(async (item, index) => {

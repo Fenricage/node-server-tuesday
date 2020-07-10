@@ -1,3 +1,5 @@
+// this config should be used only with article previews
+// its configured for img srcSet and optimized browser requesets
 module.exports = [
   {
     resize: {

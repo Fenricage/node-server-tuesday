@@ -55,7 +55,7 @@ const AdminAttachmentEntryBadge = ({
 
   return (
     <>
-      <div className="admin-attachment-entry-badge" >
+      <div className="admin-attachment-entry-badge">
         <img
           src={`${CLIENT_URL}/${dataItem.get('img_url')}`}
           alt=""
@@ -73,11 +73,12 @@ const AdminAttachmentEntryBadge = ({
         onClose={handleClickCloseModal}
       >
         <div className="admin-attachment-entry-badge-modal__inner">
-          {/* <button onClick={() => setCodeBlockOpened(prevState => !prevState)}>toggle</button> */}
           <CollapseToggle
             isOpen={isCodeBlockOpened}
-            isOpenText="Show this model's code"
-            isCloseText="Hide this model's code"
+            className="admin-attachment-entry-badge__collapse"
+            bemClassName="admin-attachment-entry-badge-collapse"
+            isOpenText="Hide this model's code"
+            isCloseText="Show this model's code"
             onClick={() => setCodeBlockOpened(prevState => !prevState)}
           />
           <Collapse isOpened={isCodeBlockOpened} theme={theme}>

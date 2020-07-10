@@ -1,7 +1,8 @@
 const multipleImageConverter = require('./multipleImageConverter');
 
-const configArticlePreview = require('./attachmentTypeConfigurations/articlePreview')
-const configArticlePreviewBlog = require('./attachmentTypeConfigurations/articlePreviewBlog')
+// configs, its basis for resize images
+const configArticlePreview = require('./attachmentTypeConfigurations/articlePreview');
+const configArticlePreviewBlog = require('./attachmentTypeConfigurations/articlePreviewBlog');
 
 
 const sharpImageTransformer = async (req) => {

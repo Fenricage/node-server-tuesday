@@ -1,7 +1,16 @@
 .collapse-toggle {
   $self: &;
+  padding: 0;
   border: 0;
   background-color: transparent;
+
+  &__text {
+
+  }
+
+  &__angle {
+
+  }
 
   &_is-open {
 

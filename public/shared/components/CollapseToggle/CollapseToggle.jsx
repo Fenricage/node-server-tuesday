@@ -7,6 +7,7 @@ const CollapseToggle = (props) => {
 
   const {
     className,
+    bemClassName,
     isOpen,
     onClick,
     isOpenText,
@@ -16,10 +17,15 @@ const CollapseToggle = (props) => {
   const renderChildren = () => {
     return (
       <>
-        <span className="collapse-toggle__text">
+        <span className={cs('collapse-toggle__text', {
+          [`${bemClassName}__text`]: bemClassName,
+        })}>
           {isOpen ? isOpenText : isCloseText}
         </span>
-        <Angle className="collapse-toggle__angle"/>
+        <Angle className={cs('collapse-toggle__angle', {
+          [`${bemClassName}__angle`]: bemClassName,
+        })}
+        />
       </>
     );
   };
@@ -28,7 +34,9 @@ const CollapseToggle = (props) => {
     <button
       className={cs('collapse-toggle', className, {
         'collapse-toggle_is-open': isOpen,
-        [`${className}_is-open`]: className && isOpen,
+        [`${className}`]: className,
+        [`${bemClassName}`]: bemClassName,
+        [`${bemClassName}_is-open`]: bemClassName && isOpen,
       })}
       onClick={onClick}
     >

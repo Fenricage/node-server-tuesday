@@ -1,4 +1,6 @@
+/*** Entry Badge ***/
 .admin-attachment-entry-badge {
+
 
   &__img {
     width: 100%;
@@ -42,5 +44,38 @@
 
   &__collapse-content {
 
+  }
+}
+
+/*** Collapse ***/
+.admin-attachment-entry-badge-collapse {
+  --color-collapse: hsl(0, 0%, 33%);
+
+  &__text {
+    display: inline-block;
+    padding-bottom: .25rem;
+    border-bottom: 1px dashed var(--color-collapse);
+    color: var(--color-collapse);
+  }
+
+  &__angle {
+
+    margin-left: .5rem;
+    transition: all ease .5s;
+
+    > path {
+      fill: var(--color-collapse);
+    }
+  }
+
+  &_is-open {
+
+    .admin-attachment-entry-badge-collapse__text {
+
+    }
+
+    .admin-attachment-entry-badge-collapse__angle {
+      transform: rotate(-180deg);
+    }
   }
 }
