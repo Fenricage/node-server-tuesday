@@ -3,6 +3,7 @@ const multipleImageConverter = require('./multipleImageConverter');
 // configs, its basis for resize images
 const configArticlePreview = require('./attachmentTypeConfigurations/articlePreview');
 const configArticlePreviewBlog = require('./attachmentTypeConfigurations/articlePreviewBlog');
+const configImageDefaulg = require('./attachmentTypeConfigurations/defaultImg');
 
 
 const sharpImageTransformer = async (req) => {
@@ -23,7 +24,7 @@ const sharpImageTransformer = async (req) => {
         ...convertedAttachments,
       };
     default:
-      convertedAttachments = await multipleImageConverter(req, configArticlePreview);
+      convertedAttachments = await multipleImageConverter(req, configImageDefaulg);
       return {
         ...convertedAttachments,
         isLinked: false,

@@ -24,7 +24,7 @@ const multipleImageConverter = async (req, paramsList) => {
 
   const fullDirPath = path.join(destinationPath, extraDirPath);
 
-  // проверяем что директория существует
+  // check that directory is exists
   const isDirExist = fs.existsSync(fullDirPath);
 
   if (!isDirExist) {
@@ -51,8 +51,8 @@ const multipleImageConverter = async (req, paramsList) => {
       });
 
 
-      // метим главное изображение для того чтобы поместить данное свойство в модель
-      // ширина понадобится для именования свойств
+      // mark main image for put it prop in model
+      // width will necessary for naming props (or filename)
       return {
         mainImg: item.mainImg || false,
         url: imagePath,
