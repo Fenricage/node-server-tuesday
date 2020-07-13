@@ -1,6 +1,7 @@
 const fs = require('fs');
 const multer = require('multer');
 const uuid = require('uuid');
+const extensions = require('./allowedAttachmentsExtensionsList');
 
 const storage = multer.diskStorage({
 
@@ -33,7 +34,7 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-  if ('image/jpeg' === file.mimetype || 'image/png' === file.mimetype || 'image/gif' === file.mimetype) {
+  if (extensions.includes(file.mimetype)) {
     cb(null, true);
   } else {
     cb(null, false);

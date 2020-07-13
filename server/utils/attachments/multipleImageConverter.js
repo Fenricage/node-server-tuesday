@@ -35,7 +35,10 @@ const multipleImageConverter = async (req, paramsList) => {
 
   return Promise.all(
     paramsList.map(async (item, index) => {
-      const image = await sharp(req.file.path)
+      const image = await sharp(req.file.path, {
+        sequentialRead: true,
+      })
+        .withMetadata() // need for correct work other functions
         .resize({
           ...item.resize,
         //  TODO нужно переключение форматов

@@ -18,7 +18,7 @@ class ArticleDetailPage extends Component {
 
     const date = getHumanDate(articleData.get('created_at'));
     const time = getHumanTime(articleData.get('created_at'));
-    console.log('articleData', articleData) 
+    console.log('articleData', articleData)
     // if (!isLoadedArticle) {
     //   return <p>loader...</p>;
     // }
