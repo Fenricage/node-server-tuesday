@@ -7,6 +7,6 @@
   "ignore": [
     "server/static"
   ],
-  "exec": "ts-node server/app.js",
+  "exec": "ts-node --project tsconfig.server.json server/app.ts",
   "ext": "js json"
 }

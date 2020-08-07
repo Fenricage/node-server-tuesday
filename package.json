@@ -7,7 +7,7 @@
     "build": "cd public cross-env NODE_ENV=production REACT_APP_SERVER_URL=http://nginx:80 REACT_APP_CLIENT_URL=http://localhost:7777 && next build",
     "export": "cd public && next export",
     "prod": "cross-env NODE_ENV=production nodemon",
-    "prod:server": "cross-env NODE_ENV=production forever start server/app.js"
+    "prod:server": "cross-env NODE_ENV=production forever start server/app.ts"
   },
   "author": "fenricage",
   "license": "ISC",
