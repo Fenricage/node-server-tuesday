@@ -7,6 +7,6 @@
   "ignore": [
     "server/static"
   ],
-  "exec": "node server/app.js",
+  "exec": "ts-node server/app.js",
   "ext": "js json"
 }
