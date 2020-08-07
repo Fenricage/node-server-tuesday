@@ -30,7 +30,6 @@ class TagsAdminForm extends Component {
 
     // ресетим или сетим новое значени в поле при изменение стейта выделенного тега
     if (prevSelectedTag !== selectedTag) {
-      console.log('selectedTag', selectedTag);
       if (selectedTag.get('code')) {
         changeFieldValue(form, 'tags', selectedTag.get('code'));
       } else {

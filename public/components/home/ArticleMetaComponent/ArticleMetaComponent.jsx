@@ -41,7 +41,6 @@ class ArticleMetaComponent extends Component {
 
     switch (data.get('type')) {
       case 'attachment':
-        console.log('data', data)
         currentComponent = (
           <img className="article-detail-page__img" src={data.getIn(['value', 'img_url'])} alt="" />
         );
@@ -59,8 +58,6 @@ class ArticleMetaComponent extends Component {
       default:
         currentComponent = null;
     }
-
-    console.log('currentComponent', currentComponent)
 
     return (
       <Fragment>

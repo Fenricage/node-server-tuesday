@@ -60,10 +60,8 @@ export const patchArticleCategory = (id, articleCategoryData) => (dispatch) => {
   return api.get(API_BROWSER).articeCategories.patch(id, articleCategoryData)
     .then((res) => {
       dispatch(patchArticleCategorySuccess());
-      console.log('res', res);
     })
     .catch((e) => {
       dispatch(patchArticleCategoryFailure());
-      console.log('e', e);
     });
 };

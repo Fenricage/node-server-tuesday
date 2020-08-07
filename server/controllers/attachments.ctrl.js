@@ -78,7 +78,7 @@ module.exports = {
         try {
           await Promise.all(attachmentPromises);
         } catch {
-          console.log('\x1b[36m', 'one of attachment already deleted', '\x1b[0m');
+          console.log('\x1b[36m', 'One of attachment already deleted', '\x1b[0m');
         }
 
         res.send(deletingAttachment);

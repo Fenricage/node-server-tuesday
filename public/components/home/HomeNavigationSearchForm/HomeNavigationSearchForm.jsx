@@ -92,7 +92,7 @@ class HomeNavigationSearchForm extends Component {
     } = this.props;
 
     const { isFocused } = this.state;
-    console.log('isFocused', isFocused)
+
     return (
       <section className={cs({
         "home-navigation-search-form": true,

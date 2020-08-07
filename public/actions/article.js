@@ -70,11 +70,9 @@ export const createArticle = articleData => (dispatch) => {
   return api.get(API_BROWSER).articles.create(articleData)
     .then((res) => {
       dispatch(createArticleSuccess());
-      console.log('res', res);
     })
     .catch((e) => {
       dispatch(createArticleFailure());
-      console.log('e', e);
     });
 };
 

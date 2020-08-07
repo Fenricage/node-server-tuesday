@@ -20,7 +20,7 @@ const ArticleSchema = new mongoose.Schema(
 );
 
 ArticleSchema.methods.saveArticle = function (cb) {
-  console.log('this', this);
+  // console.log('this', this);
 };
 
 

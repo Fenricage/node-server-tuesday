@@ -14,7 +14,6 @@ const register = async (values, dispatch) => {
       Router.push({pathname: '/auth/login'})
     }
   } catch (e) {
-    console.log('e', e)
     console.error('Register is Failed', { ...e });
     dispatch(setRegisteringLoader(false));
     dispatch(setStatusText({

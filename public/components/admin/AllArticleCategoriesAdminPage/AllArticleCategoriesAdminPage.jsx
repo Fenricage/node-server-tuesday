@@ -47,8 +47,6 @@ class AllArticleCategoriesAdminPage extends Component {
     } = this.props;
 
 
-    console.log('articleCategories', articleCategories)
-
     const { initArticleCategoriesLoaded } = this.state;
 
 

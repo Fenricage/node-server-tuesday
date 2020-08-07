@@ -95,9 +95,7 @@ module.exports = {
   },
   deleteOne: async (req, res, next) => {
     const { id } = req.params;
-    console.log('\x1b[36m', 'id' , id, '\x1b[0m');
     const deletingTag = await Tag.findById(id);
-    console.log('\x1b[36m', 'deletingTag' , deletingTag, '\x1b[0m');
 
     Tag.deleteOne({ _id: id }, (err, tag) => {
       if (err) {
@@ -162,14 +160,10 @@ module.exports = {
   updateOne: async (req, res, next) => {
     const { id } = req.params;
     const { code } = req.body;
-    console.log('id', id);
-    console.log('code', code);
 
     // TODO привести к функции для одного тега, сделать проверку мб внутри функции?
     const formattedTagTest = formatTagsFromCommonSeparated(code, CLIENT_SEPARATOR);
-    console.log('formattedTagTest', formattedTagTest);
     const formattedTag = formatTagsFromCommonSeparated(code, CLIENT_SEPARATOR)[0];
-    console.log('formattedTag', formattedTag);
     // FIXME заменить на useFindAndModify
     Tag.findOneAndUpdate({ _id: id }, formattedTag, { new: false }, (err, tag) => {
       if (err) {

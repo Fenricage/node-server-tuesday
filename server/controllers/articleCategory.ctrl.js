@@ -72,7 +72,7 @@ module.exports = {
       { 'category._id': req.body._id },
       { $set: { 'category.name': req.body.name } },
       (err, result) => {
-        console.log('result', result);
+        // console.log('result', result);
       },
     );
     /**

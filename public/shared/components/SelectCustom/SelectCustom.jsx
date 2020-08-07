@@ -32,7 +32,6 @@ class SelectCustom extends Component {
      * в формат для Select
      */
     if (input.value) {
-      console.log('input.value', input.value);
       transformedValue = toSelectFormatValuesTransform(input.value);
     }
 

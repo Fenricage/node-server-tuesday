@@ -4,7 +4,6 @@ import {
 
 const patchArticleCategory = (id) => async (values, dispatch) => {
   try {
-    console.log('values', values);
     await dispatch(patchArticleCategoryAction(id, values));
   } catch (e) {
     console.error('Patch article is failed', { ...e });

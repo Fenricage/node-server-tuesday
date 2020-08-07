@@ -63,8 +63,6 @@ const ServerApi = function (address) {
               // NextRouter.push('/auth/login');
               // err.response.writeHead(302, { Location: '/auth/login' });
               // err.response.end();
-              console.log('\x1b[36m', 'err.response' , err.response, '\x1b[0m');
-              console.log('\x1b[36m', 'context' , context, '\x1b[0m');
               context.res.writeHead(302, { Location: '/auth/login' });
               context.res.end();
               return;

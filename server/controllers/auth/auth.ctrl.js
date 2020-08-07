@@ -39,7 +39,6 @@ module.exports = {
         return res.status(404).send('No user found.');
       }
 
-      console.log('\x1b[36m', 'user TEEEEEEEEEEES!!!!!!', user, '\x1b[0m');
       res
         .status(200)
         .send({
@@ -80,8 +79,6 @@ module.exports = {
       const token = jwt.sign({ id: user._id }, config.secret, {
         expiresIn: 86400, // expires in 24 hours
       });
-
-      console.log('\x1b[36m', 'token', token, '\x1b[0m');
 
       // отдаем ок респонс, отправляем токен
       res

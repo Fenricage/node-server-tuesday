@@ -90,11 +90,9 @@ export const createTags = tagsData => (dispatch) => {
   return api.get(API_BROWSER).tags.create(tagsData)
     .then((res) => {
       dispatch(createTagsSuccess());
-      console.log('res', res);
     })
     .catch((e) => {
       dispatch(createTagsFailure());
-      console.log('e', e);
     });
 };
 
@@ -113,15 +111,12 @@ const patchTagSuccess = () => ({
 
 export const patchTag = (id, tagData) => (dispatch) => {
   dispatch(fetchPatchTag());
-  console.log('id, tagData', id, tagData);
   return api.get(API_BROWSER).tags.patch(id, tagData)
     .then((res) => {
       dispatch(patchTagSuccess());
-      console.log('res', res);
     })
     .catch((e) => {
       dispatch(patchTagFailure());
-      console.log('e', e);
     });
 };
 
