@@ -68,6 +68,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.7.2",
+    "@types/express": "^4.17.7",
+    "@types/mongoose": "^5.7.36",
     "@zeit/next-css": "^1.0.2-canary.2",
     "@zeit/next-sass": "^1.0.2-canary.2",
     "awesome-debounce-promise": "^2.1.0",
