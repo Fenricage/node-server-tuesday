@@ -1,4 +1,4 @@
-import {fromJS} from 'immutable';
+import { fromJS } from 'immutable';
 import {
   ARTICLE_CATEGORY_CREATE_FETCH,
   ARTICLE_CATEGORY_CREATE_FETCH_FAILURE,
@@ -19,7 +19,7 @@ const initialState = fromJS({
   isPatching: false,
 });
 
-export default (state = initialState, action) => {
+const ArticleCategoryReducer = (state = initialState, action) => {
   switch (action.type) {
     case ARTICLE_CATEGORY_INIT:
       return initialState;
@@ -27,25 +27,27 @@ export default (state = initialState, action) => {
       return state.merge({
         data: action.payload,
         isLoaded: true,
-      })
+      });
     case ARTICLE_CATEGORY_FETCH_FAILURE:
       return state.merge({
         error: action.payload,
         isLoaded: true,
-      })
+      });
     case ARTICLE_CATEGORY_CREATE_FETCH:
-      return state.set('isCreating', true)
+      return state.set('isCreating', true);
     case ARTICLE_CATEGORY_CREATE_FETCH_SUCCESS:
-      return state.set('isCreating', false)
+      return state.set('isCreating', false);
     case ARTICLE_CATEGORY_CREATE_FETCH_FAILURE:
-      return state.set('isCreating', false)
+      return state.set('isCreating', false);
     case ARTICLE_CATEGORY_PATCH_FETCH:
-      return state.set('isPatching', true)
+      return state.set('isPatching', true);
     case ARTICLE_CATEGORY_PATCH_FETCH_SUCCESS:
-      return state.set('isPatching', false)
+      return state.set('isPatching', false);
     case ARTICLE_CATEGORY_PATCH_FETCH_FAILURE:
-      return state.set('isPatching', false)
+      return state.set('isPatching', false);
     default:
       return state;
   }
 };
+
+export default ArticleCategoryReducer;

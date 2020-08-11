@@ -23,7 +23,7 @@ const initialState = fromJS({
   isDeleting: [],
 });
 
-export default (state = initialState, action) => {
+const TagsReducer = (state = initialState, action) => {
   switch (action.type) {
     case TAGS_INIT:
       return initialState;
@@ -61,3 +61,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default TagsReducer;

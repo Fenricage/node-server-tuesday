@@ -15,7 +15,7 @@ const initialState = fromJS({
   isLoaded: false,
 });
 
-export default (state = initialState, action) => {
+const ArticleCategoriesReducer = (state = initialState, action) => {
   switch (action.type) {
     case ARTICLE_CATEGORIES_GET_ALL_FETCH:
       return state.set('isLoaded', false);
@@ -46,3 +46,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default ArticleCategoriesReducer;

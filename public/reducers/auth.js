@@ -25,8 +25,7 @@ const initialState = fromJS({
   currentUserInfo: null,
 });
 
-
-export default (state = initialState, action) => {
+const AuthReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case SET_AUTH_LOADING_STATUS:
@@ -82,3 +81,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default AuthReducer;

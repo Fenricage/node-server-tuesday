@@ -19,7 +19,7 @@ const initialState = fromJS({
   isPatching: false,
 });
 
-export default (state = initialState, action) => {
+const ArticleReducer = (state = initialState, action) => {
   switch (action.type) {
     case ARTICLE_INIT:
       return initialState;
@@ -49,3 +49,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default ArticleReducer;

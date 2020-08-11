@@ -20,7 +20,7 @@ export const initialState = fromJS({
   isLoaded: false,
 });
 
-export default (state = initialState, action) => {
+const ArticlesReducer = (state = initialState, action) => {
   switch (action.type) {
     case ARTICLES_FETCH:
       return state.set('isLoaded', false);
@@ -39,7 +39,7 @@ export default (state = initialState, action) => {
     case ARTICLES_DELETE_ARTICLE_SUCCESS:
       return state
         .set('isDeleting', action.payload.isDeleting);
-      // .setIn(['data', 'records'], action.payload.updatedArticles);
+    // .setIn(['data', 'records'], action.payload.updatedArticles);
     case ARTICLES_DELETE_ARTICLE_FAILURE:
       return state.merge({
         error: action.payload.e,
@@ -70,3 +70,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default ArticlesReducer;

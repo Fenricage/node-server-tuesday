@@ -15,7 +15,7 @@ const initialState = fromJS({
   isLoaded: false,
 });
 
-export default (state = initialState, action) => {
+const UsersReducer = (state = initialState, action) => {
   switch (action.type) {
     case USERS_INIT:
       return initialState;
@@ -45,3 +45,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default UsersReducer;
