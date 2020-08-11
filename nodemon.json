@@ -2,11 +2,11 @@
   "verbose": true,
   "watch": [
     "server",
-    "server/app.js"
+    "server/app.ts"
   ],
   "ignore": [
     "server/static"
   ],
   "exec": "ts-node --project tsconfig.server.json server/app.ts",
-  "ext": "js json"
+  "ext": "js json ts tsx yml"
 }
