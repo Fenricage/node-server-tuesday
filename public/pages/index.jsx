@@ -16,17 +16,11 @@ class HomePageWithLayout extends Component {
   render() {
     const { query, pathname } = this.props;
     return (<TestGrid />);
-    // return (
-    //   <p>main page 2</p>
-    // <HomeMainPage
-    //   query={query}
-    //   pathname={pathname}
-    // />
-    // );
   }
 }
 
-// вызывается и на сервере и на клиенте (при маршриутизации) работает тлько на страницах, на страницах читай что это замена cdm
+// getInitialProps call both on the server-side and on the client-side (when routing)
+// it works only at pages, not in components, in client it work as cdm, but it has differences
 HomePageWithLayout.getInitialProps = async ({
   query,
   pathname,
@@ -43,7 +37,7 @@ HomePageWithLayout.getInitialProps = async ({
     },
   };
 
-  // готовим extra для categories
+  // prepare extra for categories
   // TODO надо наверное объединить все индексные страницы в одну
   const extra = {};
   if (categoryId) {
