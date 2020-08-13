@@ -1,5 +1,5 @@
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   env: {
     browser: true,
     commonjs: true,
@@ -7,9 +7,14 @@ module.exports = {
   },
   // inherits eslint config from airbnb
   extends: [
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'airbnb',
   ],
   parserOptions: {
+    project: 'tsconfig.server.json',
+    tsconfigRootDir: '.',
     ecmaFeatures: {
       experimentalObjectRestSpread: true,
       jsx: true,

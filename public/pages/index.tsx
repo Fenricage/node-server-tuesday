@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NextPageContext, NextPage } from 'next';
 import {
   getAllArticleCategoriesServer,
   getAllArticleCategories,
@@ -12,6 +13,12 @@ import { getLayout } from '../shared/layouts/HomeLayout/HomeLayout';
 import { SIZE_PAGE } from '../shared/constants/page';
 import TestGrid from '../shared/components/TestGrid/TestGrid';
 
+
+interface MainPageContext extends NextPageContext {
+  isServer: boolean;
+  store: any;
+}
+
 class HomePageWithLayout extends Component {
   render() {
     const { query, pathname } = this.props;
@@ -21,12 +28,14 @@ class HomePageWithLayout extends Component {
 
 // getInitialProps call both on the server-side and on the client-side (when routing)
 // it works only at pages, not in components, in client it work as cdm, but it has differences
-HomePageWithLayout.getInitialProps = async ({
-  query,
-  pathname,
-  store,
-  isServer,
-}) => {
+HomePageWithLayout.getInitialProps = async (context: MainPageContext) => {
+  const {
+    query,
+    pathname,
+    store,
+    isServer,
+  } = context;
+
   const { dispatch } = store;
   const { page = 1, size = SIZE_PAGE, categoryId } = query;
 
