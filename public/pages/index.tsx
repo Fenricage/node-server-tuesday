@@ -14,10 +14,14 @@ import { SIZE_PAGE } from '../shared/constants/page';
 import TestGrid from '../shared/components/TestGrid/TestGrid';
 
 
-interface MainPageContext extends NextPageContext {
+type AdditionalMainPageContext = {
   isServer: boolean;
-  store: any;
+  store: unknown;
 }
+
+// custom type and nextjs interface intersection
+type MainPageContext = NextPageContext & AdditionalMainPageContext;
+
 
 class HomePageWithLayout extends Component {
   render() {
