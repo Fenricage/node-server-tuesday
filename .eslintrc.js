@@ -13,7 +13,7 @@ module.exports = {
     'airbnb',
   ],
   parserOptions: {
-    project: 'tsconfig.server.json',
+    project: ['tsconfig.server.json', './public/tsconfig.json'],
     tsconfigRootDir: '.',
     ecmaFeatures: {
       experimentalObjectRestSpread: true,
