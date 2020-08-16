@@ -47,7 +47,7 @@ module.exports = {
   ],
   parserOptions: {
     // TODO(@fenricage): замедляет работу eslint, ведет к ошибке - "20 sec no results from eslint"
-    project: ['tsconfig.server.json'],
+    // project: ['tsconfig.server.json'],
     // tsconfigRootDir: '.',
     ecmaFeatures: {
       experimentalObjectRestSpread: true,
