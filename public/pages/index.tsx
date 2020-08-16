@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { NextPageContext, NextPage } from 'next';
+import { NextPageContext } from 'next';
+import { ParsedUrlQuery } from 'querystring';
 import {
   getAllArticleCategoriesServer,
   getAllArticleCategories,
@@ -20,11 +21,15 @@ type AdditionalMainPageContext = {
 }
 
 // custom type and nextjs interface intersection
-type MainPageContext = NextPageContext & AdditionalMainPageContext;
+export type MainPageContext = NextPageContext & AdditionalMainPageContext;
 
 
 class HomePageWithLayout extends Component {
-  render() {
+  static getInitialProps: (context: MainPageContext) => Promise<{
+    query: ParsedUrlQuery; pathname: string;
+  }>
+
+  render(): JSX.Element {
     const { query, pathname } = this.props;
     return (<TestGrid />);
   }
@@ -43,8 +48,14 @@ HomePageWithLayout.getInitialProps = async (context: MainPageContext) => {
   const { dispatch } = store;
   const { page = 1, size = SIZE_PAGE, categoryId } = query;
 
-  const getArticlesQueryParams = { page, size, orderBy: { _id: -1 } };
-  const getArticlesCategoriesQueryParams = {
+  const articlesQueryParams = {
+    page,
+    size,
+    orderBy: { _id: -1 },
+    extra: undefined,
+  };
+
+  const articleCategoriesQueryParams = {
     extra: {
       exclude: 'blog',
     },
@@ -52,22 +63,30 @@ HomePageWithLayout.getInitialProps = async (context: MainPageContext) => {
 
   // prepare extra for categories
   // TODO надо наверное объединить все индексные страницы в одну
-  const extra = {};
+  const extra = {
+    category: undefined,
+  };
+
   if (categoryId) {
     extra.category = categoryId;
   }
-  getArticlesQueryParams.extra = extra;
+
+  articlesQueryParams.extra = extra;
 
   if (isServer) {
+
     await dispatch(
-      getAllArticleCategoriesServer(getArticlesCategoriesQueryParams),
+      getAllArticleCategoriesServer(articleCategoriesQueryParams),
     );
     await dispatch(getAllTagsAndSetServer());
-    await dispatch(getAllArticlesAndSetServer(getArticlesQueryParams));
+    await dispatch(getAllArticlesAndSetServer(articlesQueryParams));
+
   } else {
-    await dispatch(getAllArticleCategories(getArticlesCategoriesQueryParams));
+
+    await dispatch(getAllArticleCategories(articleCategoriesQueryParams));
     await dispatch(getAllTagsAndSet());
-    await dispatch(getAllArticlesAndSet(getArticlesQueryParams));
+    await dispatch(getAllArticlesAndSet(articlesQueryParams));
+
   }
 
   return { query, pathname };

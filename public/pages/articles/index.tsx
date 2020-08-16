@@ -6,22 +6,32 @@ import { getAllArticlesAndSetUniversal } from '../../actions/articles';
 import { getLayout } from '../../shared/layouts/HomeLayout/HomeLayout';
 import { SIZE_PAGE, ARTICLES_LIMIT } from '../../shared/constants/page';
 
+// @types
+import { MainPageContext } from '../index';
+
 class HomePageWithLayout extends Component {
-  render() {
+
+  render(): JSX.Element {
+
     const { query, pathname } = this.props;
+
     return (
       <HomeMainPage
         query={query}
         pathname={pathname}
       />
     );
+
   }
 }
 
 
-HomePageWithLayout.getInitialProps = async ({
-  query, pathname, store, isServer,
-}) => {
+HomePageWithLayout.getInitialProps = async (context: MainPageContext) => {
+
+  const {
+    query, pathname, store, isServer,
+  } = context;
+
   const { dispatch } = store;
   const {
     page = 1, size = SIZE_PAGE, categoryId, offset = 0,
@@ -36,6 +46,7 @@ HomePageWithLayout.getInitialProps = async ({
     },
     offset,
     limit: ARTICLES_LIMIT,
+    extra: undefined,
   };
 
   const articlesCategoriesQueryParams = {
@@ -45,7 +56,9 @@ HomePageWithLayout.getInitialProps = async ({
   };
 
   // TODO(@fenricage): need to unite this logic of index-pages to component
-  const extra = {};
+  const extra = {
+    category: undefined,
+  };
   if (categoryId) {
     extra.category = categoryId;
   }
