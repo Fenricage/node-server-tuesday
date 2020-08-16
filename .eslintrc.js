@@ -30,6 +30,11 @@ const stylesRules = {
   'padded-blocks': 'off',
 }
 
+const rules = {
+  ...functionalRules,
+  ...stylesRules,
+}
+
 module.exports = {
   parser: '@typescript-eslint/parser',
   env: {
@@ -58,7 +63,6 @@ module.exports = {
   plugins: ['react', 'react-hooks'],
   // adds and overrides rules
   rules: {
-    ...functionalRules,
-    ...stylesRules
+    ...rules,
   },
 };
