@@ -6,7 +6,15 @@
     "noEmit": false,
     "isolatedModules": false
   },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "static"
+  ],
   "include": [
-    "server"
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.ts",
+    "**/*.tsx"
   ]
 }

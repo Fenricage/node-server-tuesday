@@ -41,12 +41,14 @@ module.exports = {
   extends: [
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    // TODO(@fenricage): замедляет работу eslint, ведет к ошибке - "20 sec no results from eslint"
+    // 'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'airbnb',
   ],
   parserOptions: {
-    project: ['tsconfig.server.json', './public/tsconfig.json'],
-    tsconfigRootDir: '.',
+    // TODO(@fenricage): замедляет работу eslint, ведет к ошибке - "20 sec no results from eslint"
+    project: ['tsconfig.server.json'],
+    // tsconfigRootDir: '.',
     ecmaFeatures: {
       experimentalObjectRestSpread: true,
       jsx: true,
