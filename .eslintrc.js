@@ -4,13 +4,13 @@ const functionalRules = {
   'jsx-a11y/anchor-is-valid': [
     'error',
     {
-      components: ['Link'],
-      specialLink: ['to'],
+      components: [ 'Link' ],
+      specialLink: [ 'to' ],
     },
   ],
   // checks that condition's value is first, then variable
   // if ("red" === color) {}
-  'yoda': [
+  yoda: [
     'error',
     'always',
     {
@@ -21,19 +21,19 @@ const functionalRules = {
   'no-plusplus': 'off', // regulates unary operators -- and  ++
   'react-hooks/rules-of-hooks': 'error', // hook's rules for fill effect dep
   'react-hooks/exhaustive-deps': 'warn', // hook's rules for fill effect dep
-  'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx', '.tsx'] }],
-}
+  'react/jsx-filename-extension': [ 1, { extensions: [ '.js', '.jsx', '.tsx' ] } ],
+};
 
 const stylesRules = {
-  'array-bracket-spacing': ['error', 'always'],
+  'array-bracket-spacing': [ 'error', 'always' ],
   'arrow-body-style': 'off',
   'padded-blocks': 'off',
-}
+};
 
 const rules = {
   ...functionalRules,
   ...stylesRules,
-}
+};
 
 module.exports = {
   parser: '@typescript-eslint/parser',
@@ -42,17 +42,9 @@ module.exports = {
     commonjs: true,
     es6: true,
   },
-  // inherits eslint config from airbnb
-  extends: [
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
-    // TODO(@fenricage): замедляет работу eslint, ведет к ошибке - "20 sec no results from eslint"
-    // 'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    'airbnb',
-  ],
   parserOptions: {
     // TODO(@fenricage): замедляет работу eslint, ведет к ошибке - "20 sec no results from eslint"
-    // project: ['tsconfig.server.json'],
+    // project: [ 'tsconfig.server.json' ],
     // tsconfigRootDir: '.',
     ecmaFeatures: {
       experimentalObjectRestSpread: true,
@@ -60,9 +52,33 @@ module.exports = {
     },
     sourceType: 'module',
   },
-  plugins: ['react', 'react-hooks'],
+  plugins: [ 'react', 'react-hooks' ],
   // adds and overrides rules
-  rules: {
-    ...rules,
-  },
+  overrides: [
+    {
+      files: [ '**/*.js', '**/*.jsx' ],
+      extends: [
+        'airbnb',
+      ],
+      rules: {
+        ...rules,
+      },
+    },
+    {
+      files: [ '**/*.ts', '**/*.tsx' ],
+      extends: [
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended',
+        // 'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        'airbnb',
+      ],
+      plugins: [
+        '@typescript-eslint',
+      ],
+      rules: {
+        ...rules,
+        'react/prop-types': 'off',
+      },
+    },
+  ],
 };
