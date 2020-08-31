@@ -20,6 +20,7 @@ const BlogMainPageView = ({
   //   return <p>loader hom main page view ...</p>;
   // }
   // трансформируем данные под грид
+
   const transformedArticles = transformArticlesToItemGridData(articles.get('records'));
 
   return (

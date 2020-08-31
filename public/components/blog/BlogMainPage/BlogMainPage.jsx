@@ -41,6 +41,7 @@ class BlogMainPage extends Component {
 
   }
 
+  // TODO(@fenricage): сейчас не используется, по причине getInitialProps
   getArticles = () => {
     const {
       getAllArticlesAndSetDispatch,

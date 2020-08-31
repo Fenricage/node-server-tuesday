@@ -5,8 +5,7 @@ import cs from 'classnames';
 import ItemGridUnit from '../ItemGridUnit/ItemGridUnit';
 
 class ItemGrid extends Component {
-  // TODO(@fenricage) оптимихировать ререндер только если разные new List()
-  // TODO добавть CSSTRAansition roup animation
+
   shouldComponentUpdate(nextProps, nextState) {
 
     if (!this.props.data.equals(nextProps.data)) {
@@ -20,7 +19,6 @@ class ItemGrid extends Component {
     return false;
 
   }
-
 
   render() {
     const {
@@ -38,7 +36,7 @@ class ItemGrid extends Component {
       })}
       >
         {
-          data.map(dataItem => (
+          data.map((dataItem) => (
             <ItemGridUnit
               key={dataItem.get('_id')}
               dataItem={dataItem}

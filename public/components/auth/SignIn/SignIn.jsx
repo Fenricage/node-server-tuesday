@@ -71,6 +71,9 @@ class SignInForm extends Component {
               <a className="signin__switch-link">Sign up</a>
             </Link>
           </p>
+          <Link href="/admin">
+            <a className="signin__switch-link">Admin</a>
+          </Link>
         </form>
       </section>
     );

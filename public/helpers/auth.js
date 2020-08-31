@@ -8,6 +8,7 @@ const auth = async (context) => {
   const { Token } = nextCookie(context);
   // это сработает на стороне сервера
   if (context.req && !Token) {
+    console.log('\x1b[36m', 'Token' , Token, '\x1b[0m');
     context.res.writeHead(302, { Location: '/auth/login' });
     context.res.end();
     return;
@@ -15,6 +16,7 @@ const auth = async (context) => {
 
   // а это на клиенте, если сюда попали при помощи клиентского роутинга
   if (!Token) {
+    console.log('T', Token)
     // тут проверяем валидность токена
     NextRouter.push('/auth/login');
   }

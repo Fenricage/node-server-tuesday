@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { withRouter } from 'next/router';
-import { fromJS } from 'immutable';
 import cs from 'classnames';
-import { Link, Router as NextRouter } from '../../../routes';
+import { Router as NextRouter } from '../../../routes';
 import './HomeMainPage.scss';
 import { connect } from 'react-redux';
 import { getAllArticlesAndSet, loadMoreArticles } from '../../../actions/articles';
-import HomeMainPageView from '../HomeMainPageView/HomeMainPageView';
 import Button from '../../../shared/components/Button/Button';
 import Pagination from '../../../shared/components/Pagination/Pagination';
 import { ARTICLES_LIMIT, SIZE_PAGE } from '../../../shared/constants/page';
+import ItemGrid from '../../../shared/components/ItemGrid/ItemGrid';
+import { ItemGridProvider } from '../../../shared/contexts';
 
 class HomeMainPage extends Component {
   constructor(props) {
@@ -20,7 +20,6 @@ class HomeMainPage extends Component {
     };
   }
 
-
   componentDidUpdate(prevProps, prevState) {
     const {
       router,
@@ -30,7 +29,6 @@ class HomeMainPage extends Component {
       router: prevRouter,
     } = prevProps;
 
-
     // сравниваем пути? мб стоит query параметры срапавнивать
 
     // if (router.asPath !== prevRouter.asPath) {
@@ -38,7 +36,7 @@ class HomeMainPage extends Component {
     // }
   }
 
-
+  // TODO(@fenricage): сейчас не используется, по причине getInitialProps
   getArticles = () => {
     const {
       getAllArticlesAndSetDispatch,
@@ -73,15 +71,6 @@ class HomeMainPage extends Component {
     queryParams.extra = extra;
     return getAllArticlesAndSetDispatch(queryParams);
   };
-
-  // TODO:(@fenticage) эта хуйня нужна вообщзе? в хелперы есть клон уже к тому же
-  transformArticlesToItemGridData = articles => articles.map(article => fromJS({
-    _id: article.get('_id'),
-    previewImg: article.get('preview_img') ? article.get('preview_img') : '',
-    title: article.get('title'),
-    category: article.getIn([ 'category', 'name' ]),
-    tags: article.get('tags'),
-  }));
 
   handlePageClick = ({ selected }) => {
     const { match, router } = this.props;
@@ -154,12 +143,15 @@ class HomeMainPage extends Component {
 
     return (
       <section className="home-main-page">
-        <HomeMainPageView
-          articles={articles}
-          initLoaded={initLoaded}
-          isLoadedArticles={isLoadedArticles}
-          transformArticlesToItemGridData={this.transformArticlesToItemGridData}
-        />
+        <ItemGridProvider value={{
+          viewComponent: 'EntryBadge',
+          className: 'home-main-page__item-grid',
+        }}
+        >
+          <ItemGrid
+            data={articles.get('records')}
+          />
+        </ItemGridProvider>
 
         {!isNoMoreArticles && (
           <div className="home-main-page__load-more-box">
@@ -172,7 +164,7 @@ class HomeMainPage extends Component {
               isLoading={!isLoadedArticles}
               onClick={this.handleLoadMore}
             >
-            загрузить еще
+              загрузить еще
             </Button>
           </div>
         )}
@@ -192,15 +184,15 @@ class HomeMainPage extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   articles: state.getIn([ 'articles', 'data' ]),
   isLoadedArticles: state.getIn([ 'articles', 'isLoaded' ]),
   totalArticles: state.getIn([ 'articles', 'data', 'total' ]),
 });
 
-const mapDispatchToProps = dispatch => ({
-  getAllArticlesAndSetDispatch: queryParams => dispatch(getAllArticlesAndSet(queryParams)),
-  loadMoreArticlesDispatch: queryParams => dispatch(loadMoreArticles(queryParams)),
+const mapDispatchToProps = (dispatch) => ({
+  getAllArticlesAndSetDispatch: (queryParams) => dispatch(getAllArticlesAndSet(queryParams)),
+  loadMoreArticlesDispatch: (queryParams) => dispatch(loadMoreArticles(queryParams)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(HomeMainPage));

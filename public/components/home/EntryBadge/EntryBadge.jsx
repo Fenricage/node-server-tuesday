@@ -8,10 +8,11 @@ import { CLIENT_URL } from '../../../shared/utils/config';
 import './EntryBadge.scss';
 
 const EntryBadge = ({ dataItem, router }) => {
-  const imgUrls = dataItem.getIn([ 'previewImg', 'img_urls' ]);
+  const imgUrls = dataItem.getIn([ 'preview_img', 'img_urls' ]);
 
   // creating array structure [ size, url ]
-  const entries = new List(imgUrls).map(item => new List([ item[0], item[1] ]));
+  const entries = new List(imgUrls).map((item) => new List([ item[0], item[1] ]));
+
   // TODO(@fenricage): to helper
   // preparing string for attribute srcset
   // its important to remember when you testing:
@@ -25,12 +26,12 @@ const EntryBadge = ({ dataItem, router }) => {
       <Link href={`/articles/${dataItem.get('_id')}`}>
         <a className="entry-badge__link-wrap">
           <figure className="entry-badge__figure">
-            {dataItem.get('previewImg') && (
+            {dataItem.get('preview_img') && (
               <Image
                 width={940}
                 height={493}
                 className="entry-badge__img"
-                src={`${CLIENT_URL}/${dataItem.getIn([ 'previewImg', 'img_url' ])}`}
+                src={`${CLIENT_URL}/${dataItem.getIn([ 'preview_img', 'img_url' ])}`}
                 srcSet={imgSrcSet}
                 alt=""
               />
@@ -38,7 +39,7 @@ const EntryBadge = ({ dataItem, router }) => {
           </figure>
           <div className="entry-badge__text-wrapper">
             <span className="entry-badge__category">
-              {dataItem.get('category')}
+              {dataItem.getIn([ 'category', 'name' ])}
             </span>
             <h3 className="entry-badge__title">{dataItem.get('title')}</h3>
           </div>
