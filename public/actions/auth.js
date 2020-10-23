@@ -17,7 +17,7 @@ import {
   LOGOUT,
 } from '../shared/constants/auth';
 
-export const setStatusText = text => ({
+export const setStatusText = (text) => ({
   type: SET_STATUS_TEXT,
   payload: text,
 });
@@ -30,7 +30,7 @@ export const logout = () => {
   };
 };
 
-export const setRegisteringLoader = status => ({
+export const setRegisteringLoader = (status) => ({
   type: SET_REGISTER_LOADING_STATUS,
   payload: status,
 });
@@ -38,10 +38,6 @@ export const setRegisteringLoader = status => ({
 export const getCurrentUserServer = (extra, context) => getApiDependingOnContext(context).auth.currentUser(extra, context)
   .then((user) => {
     return user;
-  })
-  .catch((e) => {
-    console.error('error getCurrenUser', { ...e });
-    return e.response.data;
   });
 
 export const getCurrentUser = () => api.get(API_BROWSER).auth.currentUser()
@@ -91,7 +87,7 @@ export const authLoginUserFailure = (status, text) => {
   };
 };
 
-export const setAuthLoader = status => ({
+export const setAuthLoader = (status) => ({
   type: SET_AUTH_LOADING_STATUS,
   payload: status,
 });
@@ -100,7 +96,7 @@ export const registerUserSuccess = () => ({
   type: REGISTER_USER_SUCCESS,
 });
 
-export const registerUser = values => (dispatch) => {
+export const registerUser = (values) => (dispatch) => {
   dispatch(setRegisteringLoader(true));
   return api.get(API_BROWSER).auth.register(values)
     .then((res) => {
@@ -114,7 +110,7 @@ export const registerUser = values => (dispatch) => {
     });
 };
 
-export const loginUser = values => (dispatch) => {
+export const loginUser = (values) => (dispatch) => {
   dispatch(setAuthLoader(true));
   return api.get(API_BROWSER).auth.login(values)
     .then((res) => {
