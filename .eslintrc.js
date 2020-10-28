@@ -22,6 +22,7 @@ const functionalRules = {
   'react-hooks/rules-of-hooks': 'error', // hook's rules for fill effect dep
   'react-hooks/exhaustive-deps': 'warn', // hook's rules for fill effect dep
   'react/jsx-filename-extension': [ 1, { extensions: [ '.js', '.jsx', '.tsx' ] } ],
+  'no-else-return': 'off',
 };
 
 const stylesRules = {
