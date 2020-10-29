@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AdminLayout from '../../../shared/layouts/AdminLayout/AdminLayout';
 import AllArticleCategoriesAdminPage from '../../../components/admin/AllArticleCategoriesAdminPage/AllArticleCategoriesAdminPage';
+import withAuthSync from '../../../hoc/withAuthSync';
 
 class ArticleCategoriesAdminPage extends Component {
 
@@ -24,4 +25,4 @@ ArticleCategoriesAdminPage.getInitialProps = async ({ query, pathname }) => {
   return { query, pathname };
 };
 
-export default ArticleCategoriesAdminPage;
+export default withAuthSync(ArticleCategoriesAdminPage);

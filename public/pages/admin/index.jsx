@@ -8,7 +8,7 @@ class IndexAdminPage extends Component {
   render() {
     return (
       <AdminLayout>
-        <MainAdminPage/>
+        <MainAdminPage />
       </AdminLayout>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AdminLayout from '../../../shared/layouts/AdminLayout/AdminLayout';
 import ArticleCategoryCreateAdminPage from '../../../components/admin/ArticleCategoryCreateAdminPage/ArticleCategoryCreateAdminPage';
+import withAuthSync from '../../../hoc/withAuthSync';
 
 class ArticleCategoryCreateAdminPageWithLayout extends Component {
 
@@ -24,4 +25,4 @@ ArticleCategoryCreateAdminPageWithLayout.getInitialProps = async ({ query, pathn
   return { query, pathname };
 };
 
-export default ArticleCategoryCreateAdminPageWithLayout;
+export default withAuthSync(ArticleCategoryCreateAdminPageWithLayout);
