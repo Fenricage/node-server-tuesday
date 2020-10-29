@@ -10,6 +10,7 @@ const withAuthSync = WrappedComponent => class extends Component {
     static async getInitialProps(ctx) {
       const token = await auth(ctx);
 
+      // awaiting execute getInitialProps of inner component
       const componentProps =
         WrappedComponent.getInitialProps &&
         (await WrappedComponent.getInitialProps(ctx));
