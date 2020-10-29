@@ -23,7 +23,6 @@ export const setStatusText = (text) => ({
 });
 
 export const logout = () => {
-  localStorage.removeItem('token');
   Cookies.remove('Token');
   return {
     type: LOGOUT,
@@ -56,7 +55,6 @@ export const checkAuthFailure = () => ({
 });
 
 export const checkAuth = () => (dispatch) => {
-  const token = localStorage.getItem('token');
 
   return api.get(API_BROWSER).auth.currentUser() // check that token is verificate
     .then((res) => { //
@@ -69,7 +67,7 @@ export const checkAuth = () => (dispatch) => {
 };
 
 export const authLoginUserSuccess = (token) => {
-  localStorage.setItem('token', token);
+
   return {
     type: AUTH_LOGIN_USER_SUCCESS,
     payload: token,
@@ -77,7 +75,7 @@ export const authLoginUserSuccess = (token) => {
 };
 
 export const authLoginUserFailure = (status, text) => {
-  localStorage.removeItem('token');
+
   return {
     type: AUTH_LOGIN_USER_FAILURE,
     payload: {

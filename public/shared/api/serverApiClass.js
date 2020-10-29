@@ -28,7 +28,6 @@ class ServerApiClass {
       // axios.defaults.baseURL = extra && extra.baseUrl ? extra.baseUrl : `${SERVER_URL}/api`;
     }
 
-    // localStorage.getItem('token') ? headers['x-access-token'] = `${localStorage.getItem('token')}` : headers['x-access-token'] = null;
     extra.headers = extra.headers ? extra.headers : {};
 
     // const {Token} = nextCookie(context)
@@ -51,29 +50,29 @@ class ServerApiClass {
           resolve(response.data);
         })
         .catch((err) => {
-          if (!err.response) {
-            reject(err);
-          } else {
-
-            // если статус относится к неавторизованным то удаляем токен и делаем релирект на логин
-            if (401 === err.response.status || 403 === err.response.status) {
-              // localStorage.removeItem('token');
-              // Cookies.remove('Token');
-              // console.log('\x1b[36m', 'Cookies.get(Token)' , Cookies.get('Token'), '\x1b[0m');
-              // NextRouter.push('/auth/login');
-              // err.response.writeHead(302, { Location: '/auth/login' });
-              // err.response.end();
-              this.context.res
-                .writeHead(302, {
-                  Location: '/auth/login',
-                  'Set-Cookie': 'Token=deleted; Path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT',
-                })
-                .end();
-              return;
-              // console.log('\x1b[36m', '401, 403' , 401, 403, '\x1b[0m');
-            }
-            reject(err);
-          }
+          reject(err);
+          // if (!err.response) {
+          //   reject(err);
+          // } else {
+          //
+          //   // если статус относится к неавторизованным то удаляем токен и делаем релирект на логин
+          //   // if (401 === err.response.status || 403 === err.response.status) {
+          //     // Cookies.remove('Token');
+          //     // console.log('\x1b[36m', 'Cookies.get(Token)' , Cookies.get('Token'), '\x1b[0m');
+          //     // NextRouter.push('/auth/login');
+          //     // err.response.writeHead(302, { Location: '/auth/login' });
+          //     // err.response.end();
+          //     // this.context.res
+          //     //   .writeHead(302, {
+          //     //     Location: '/auth/login',
+          //     //     'Set-Cookie': 'Token=deleted; Path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT',
+          //     //   })
+          //     //   .end();
+          //     // return;
+          //     // console.log('\x1b[36m', '401, 403' , 401, 403, '\x1b[0m');
+          //   // }
+          //
+          // }
         });
     });
   };

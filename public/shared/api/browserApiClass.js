@@ -55,18 +55,20 @@ class BrowserApiClass {
           resolve(response.data);
         })
         .catch((err) => {
-          if (!err.response) {
-            reject(err);
-          } else {
-            if (401 === err.response.status || 403 === err.response.status) {
-
-              localStorage.removeItem('token');
-              Cookies.remove('Token');
-              NextRouter.pushRoute('/auth/login');
-
-            }
-            reject(err);
-          }
+          reject(err);
+          // if (!err.response) {
+          //
+          // } else {
+          //   console.log("1")
+          //   console.log('\x1b[36m', 'err' , err, '\x1b[0m');
+          //   // if (401 === err.response.status || 403 === err.response.status) {
+          //   //
+          //   //   Cookies.remove('Token');
+          //   //   NextRouter.pushRoute('/auth/login');
+          //   //
+          //   // }
+          //   reject(err);
+          // }
         });
     });
   };

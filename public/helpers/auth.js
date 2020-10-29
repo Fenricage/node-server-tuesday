@@ -1,14 +1,17 @@
-import Cookies from 'js-cookie';
 import nextCookie from 'next-cookies';
+import Cookies from 'js-cookie';
 import { Router as NextRouter } from '../routes';
 import { getCurrentUserServer } from '../actions/auth';
 
 const auth = async (context) => {
+
   // забираем токен из кукисов
+  const { isServer } = context;
   const { Token } = nextCookie(context);
+
+  /* Redirect if Token doesnt exists */
   // это сработает на стороне сервера
-  if (context.req && !Token) {
-    console.log('\x1b[36m', 'Token' , Token, '\x1b[0m');
+  if (isServer && !Token) {
     context.res.writeHead(302, { Location: '/auth/login' });
     context.res.end();
     return;
@@ -16,36 +19,51 @@ const auth = async (context) => {
 
   // а это на клиенте, если сюда попали при помощи клиентского роутинга
   if (!Token) {
-    console.log('T', Token)
     // тут проверяем валидность токена
     NextRouter.push('/auth/login');
   }
+  /***/
 
-  // проверяем валидность токена
+  /* Execute if Token is exists */
+  // check token valid
   if (Token) {
-    // далее если ответ будет содержать статус 401/403 то управление
-    // отойдет интерсептору axios который сделает редирект
-    const user = await getCurrentUserServer({
-      headers: {
-        'x-access-token': `${Token}`,
-      },
-    }, context);
 
-    // TODO можно отказаться от интерсептора и сделать редирект тут, опираясь на auth: false
-    // TODO в КРАЙНЕМ СЛУЧАЕ
-    // TODO или можно прокинуть контекст
-    // если ответил что авторизация не прошла
-    // if (!user.auth) {
-    //   // для сервера
-    //   if (context.req) {
-    //     context.res.writeHead(302, { Location: '/auth/login' });
-    //     context.res.end();
-    //     return;
-    //   }
-    //   // для клиента
-    //   NextRouter.push('/auth/login');
-    // }
+    try {
+
+      const user = await getCurrentUserServer({
+        headers: {
+          'x-access-token': `${Token}`,
+        },
+      }, context);
+
+    } catch (e) {
+
+      /* Redirect if doesnt authorized or not enough access permissions, also clear Token cookie */
+      if (403 === e.response.status || 401 === e.response.status) {
+
+        if (isServer) {
+
+          context.res.writeHead(302, {
+            Location: '/auth/login',
+            'Set-Cookie': 'Token=deleted; Path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT', // removes Token
+          });
+
+          context.res.end();
+
+          return;
+        } else {
+          Cookies.remove('Token');
+          NextRouter.push('/auth/login');
+        }
+      /***/
+      } else {
+        console.error('Unexpected Unhandled Error', { ...e });
+      }
+
+    }
+
   }
+  /***/
 
   return Token;
 };
