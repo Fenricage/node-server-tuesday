@@ -34,16 +34,9 @@ export const setRegisteringLoader = (status) => ({
   payload: status,
 });
 
-export const getCurrentUserServer = (extra, context) => getApiDependingOnContext(context).auth.currentUser(extra, context)
+export const getCurrentUser = (extra, context) => getApiDependingOnContext(context).auth.currentUser(extra, context)
   .then((user) => {
     return user;
-  });
-
-export const getCurrentUser = () => api.get(API_BROWSER).auth.currentUser()
-  .then((res) => {
-  })
-  .catch((e) => {
-    console.error('error getCurrenUser', { ...e });
   });
 
 export const checkAuthSuccess = () => ({

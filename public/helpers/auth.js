@@ -1,7 +1,7 @@
 import nextCookie from 'next-cookies';
 import Cookies from 'js-cookie';
 import { Router as NextRouter } from '../routes';
-import { getCurrentUserServer } from '../actions/auth';
+import { getCurrentUser } from '../actions/auth';
 
 const auth = async (context) => {
 
@@ -30,7 +30,7 @@ const auth = async (context) => {
 
     try {
 
-      const user = await getCurrentUserServer({
+      const user = await getCurrentUser({
         headers: {
           'x-access-token': `${Token}`,
         },
