@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { withRouter, Link } from 'react-router-dom';
 import Link from 'next/link';
 import RemoveCrossIcon from '../../icons/RemoveCrossIcon/RemoveCrossIcon';
 import Button from '../Button/Button';
 import './ListItemView.scss';
 
 const ListItemView = ({
-  match,
   onDeleteItem,
   isCurrentItemDeleting,
   item,
@@ -15,9 +13,6 @@ const ListItemView = ({
 }) => {
   return (
     <section className="list-item">
-      {/* <Link className="list-item__link" to={`${match.path}/${item.get('_id')}`}> */}
-      {/*  {item.get('title')} */}
-      {/* </Link> */}
       <Link href={`${pathname}/${item.get('_id')}`}>
         <a
           className="list-item__link"
@@ -46,5 +41,4 @@ ListItemView.defaultProps = {
   onDeleteItem: () => () => console.error('You are forgot to pass func onDeleteItem to ListItemView'),
 };
 
-// export default withRouter(ListItemView);
 export default ListItemView;

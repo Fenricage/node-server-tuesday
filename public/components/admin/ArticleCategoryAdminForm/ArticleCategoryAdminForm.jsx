@@ -1,32 +1,24 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './ArticleCategoryAdminForm.scss';
 
 import {
   Field,
-  FieldArray,
   reduxForm,
   change,
 } from 'redux-form/immutable';
 
 import Input from '../../../shared/components/Input/Input';
-import SelectCustom from '../../../shared/components/SelectCustom/SelectCustom';
 
 import patchArticleCategory from './dispatchControllers/patchArticleCategory';
 
 class ArticleCategoryAdminForm extends Component {
 
   onHandleSubmitForm = () => {
-    const { handleSubmit, match, query } = this.props;
-    // if (match.params.id) {
-    //   return handleSubmit(patchArticleCategory(match.params.id));
-    // }
+    const { handleSubmit, query } = this.props;
     if (query.id) {
       return handleSubmit(patchArticleCategory(query.id));
     }
-    // return handleSubmit(createArticle);
-
   }
 
   render() {
@@ -61,17 +53,6 @@ class ArticleCategoryAdminForm extends Component {
 
 }
 
-ArticleCategoryAdminForm.propTypes = {
-  // handleSubmit: PropTypes.func.isRequired,
-  // isCreating: PropTypes.bool.isRequired,
-  // articleCategories: PropTypes.arrayOf(PropTypes.object).isRequired,
-  // toOptionsTransformer: PropTypes.func.isRequired,
-  // changeFieldValue: PropTypes.func.isRequired,
-};
-
-ArticleCategoryAdminForm.defaultProps = {
-
-};
 
 const mapStateToProps = state => ({
   initialValues: state.getIn(['articleCategory', 'data']),

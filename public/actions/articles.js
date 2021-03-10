@@ -9,12 +9,10 @@ import {
   ARTICLES_LOADED_MORE_FAILURE,
   ARTICLES_LOADED_MORE_SUCCESS,
 } from '../shared/constants/articles';
-import { API_BROWSER, API_SERVER } from '../shared/constants/api';
+import { API_BROWSER } from '../shared/constants/api';
 import api from '../shared/api/index';
 
 export const getAllArticles = (queryParams) => api.get(API_BROWSER).articles.getAll(queryParams);
-
-export const getAllArticlesServer = (queryParams) => api.get(API_SERVER).articles.getAll(queryParams);
 
 export const getAllArticlesUniversal = (queryParams, computedApi) => {
   return computedApi.articles.getAll(queryParams);
@@ -65,16 +63,6 @@ export const loadMoreArticles = (queryParams) => async (dispatch) => {
   }
 };
 
-export const getAllArticlesAndSetServer = (queryParams) => (dispatch) => {
-  dispatch(fetchAllArticles());
-  return getAllArticlesServer(queryParams)
-    .then((articles) => {
-      dispatch(fetchAllArticlesSuccess(fromJS(articles)));
-    })
-    .catch((e) => {
-      dispatch(fetchAllArticlesFailure(e));
-    });
-};
 
 export const getAllArticlesAndSetUniversal = (queryParams, computedApi) => (dispatch) => {
   dispatch(fetchAllArticles());

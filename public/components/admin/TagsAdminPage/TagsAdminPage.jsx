@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fromJS, Map } from 'immutable';
+import { Map } from 'immutable';
 import './TagsAdminPage.scss';
 import { connect } from 'react-redux';
 
@@ -77,14 +77,11 @@ const mapStateToProps = (state, ownProps) => ({
   tags: state.getIn(['tags', 'data']),
   isLoadedTags: state.getIn(['tags', 'isLoaded']),
   isDeletingTags: state.getIn(['tags', 'isDeleting']),
-  // isDeletingArticles: state.articles.isDeleting,
 });
 
 const mapDispatchToProps = dispatch => ({
   getAllTagsAndSetDispatch: () => dispatch(getAllTagsAndSet()),
   deleteTagDispatch: id => dispatch(deleteTag(id)),
-  // getAllArticlesAndSetDispatch: () => dispatch(getAllArticlesAndSet()),
-  // reqDeleteArticleDispatch: id => dispatch(reqDeleteArticle(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TagsAdminPage);

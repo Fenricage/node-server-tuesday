@@ -1,13 +1,16 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-// TODO мб стоиь импортнуть Link из ../routes next-route
-// TODO вот эти вот закомменченные, протести
-import { Link } from '../../../routes';
 import cs from 'classnames';
+import { Link } from '../../../routes';
 import './CustomNavLink.scss';
 
 const CustomNavLink = ({
-  exact, to, label, onClick, className, children,
+  exact,
+  to,
+  label,
+  onClick,
+  className,
+  children,
 }) => {
 
   const router = useRouter();

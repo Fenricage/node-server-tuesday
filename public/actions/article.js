@@ -11,10 +11,9 @@ import {
   ARTICLE_PATCH_FETCH_SUCCESS,
 } from '../shared/constants/article';
 import api from '../shared/api/index';
-import { API_BROWSER, API_SERVER } from '../shared/constants/api';
+import { API_BROWSER } from '../shared/constants/api';
 
-export const getOneArticle = id => api.get(API_BROWSER).articles.getOne(id);
-export const getOneArticleServer = id => api.get(API_SERVER).articles.getOne(id);
+export const getOneArticle = (id) => api.get(API_BROWSER).articles.getOne(id);
 export const getOneArticleUniversal = (id, computedApi) => computedApi.articles.getOne(id);
 
 export const initArticle = () => ({
@@ -22,30 +21,19 @@ export const initArticle = () => ({
 });
 
 
-export const fetchOneArticlesSuccess = article => ({
+export const fetchOneArticlesSuccess = (article) => ({
   type: ARTICLE_FETCH_SUCCESS,
   payload: article,
 });
 
-export const fetchOneArticlesFailure = e => ({
+export const fetchOneArticlesFailure = (e) => ({
   type: ARTICLE_FETCH_FAILURE,
   payload: e,
 });
 
-export const reqArticleAndSet = id => (dispatch) => {
+export const reqArticleAndSet = (id) => (dispatch) => {
   dispatch(initArticle());
   return getOneArticle(id)
-    .then((article) => {
-      dispatch(fetchOneArticlesSuccess(fromJS(article)));
-    })
-    .catch((e) => {
-      dispatch(fetchOneArticlesFailure(e));
-    });
-};
-
-export const reqArticleAndSetServer = (id) => (dispatch) => {
-  dispatch(initArticle());
-  return getOneArticleServer(id)
     .then((article) => {
       dispatch(fetchOneArticlesSuccess(fromJS(article)));
     })
@@ -77,7 +65,7 @@ export const createArticleSuccess = () => ({
   type: ARTICLE_CREATE_FETCH_SUCCESS,
 });
 
-export const createArticle = articleData => (dispatch) => {
+export const createArticle = (articleData) => (dispatch) => {
   dispatch(fetchCreateArticle());
   return api.get(API_BROWSER).articles.create(articleData)
     .then((res) => {

@@ -50,15 +50,6 @@ export const reqSetDeletingStatus = (id) => {
 };
 
 export const reqDeleteUserSuccess = (id) => {
-
-  // const isDeleting = store.getState()
-  //   .getIn(['users', 'isDeleting'])
-  //   .filter(item => item !== id);
-  //
-  // const updatedUsers = store.getState()
-  //   .getIn(['users', 'data'])
-  //   .filter(user => user.get('_id') !== id);
-
   return {
     type: USERS_DELETE_USER_SUCCESS,
     payload: {
@@ -69,9 +60,6 @@ export const reqDeleteUserSuccess = (id) => {
 };
 
 export const reqDeleteUserFailure = (id, e) => {
-  // const isDeleting = store.getState()
-  //   .getIn(['users', 'isDeleting'])
-  //   .filter(item => item !== id);
   return {
     type: USERS_DELETE_USER_FAILURE,
     payload: {
