@@ -16,9 +16,8 @@ export const getAllArticles = (queryParams) => api.get(API_BROWSER).articles.get
 
 export const getAllArticlesServer = (queryParams) => api.get(API_SERVER).articles.getAll(queryParams);
 
-export const getAllArticlesUniversal = (queryParams, isServer) => {
-  const API = isServer ? API_SERVER : API_BROWSER;
-  return api.get(API).articles.getAll(queryParams);
+export const getAllArticlesUniversal = (queryParams, computedApi) => {
+  return computedApi.articles.getAll(queryParams);
 };
 
 export const fetchAllArticles = () => ({
@@ -77,9 +76,9 @@ export const getAllArticlesAndSetServer = (queryParams) => (dispatch) => {
     });
 };
 
-export const getAllArticlesAndSetUniversal = (queryParams, isServer) => (dispatch) => {
+export const getAllArticlesAndSetUniversal = (queryParams, computedApi) => (dispatch) => {
   dispatch(fetchAllArticles());
-  return getAllArticlesUniversal(queryParams, isServer)
+  return getAllArticlesUniversal(queryParams, computedApi)
     .then((articles) => {
       dispatch(fetchAllArticlesSuccess(fromJS(articles)));
     })

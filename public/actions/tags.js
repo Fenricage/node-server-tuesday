@@ -15,14 +15,11 @@ import {
   TAGS_PATCH_FETCH_SUCCESS,
 } from '../shared/constants/tags';
 import { API_BROWSER, API_SERVER } from '../shared/constants/api';
-// import { store } from '../index';
 
 
 export const getAllTags = () => api.get(API_BROWSER).tags.getAll();
-export const getAllTagsServer = () => api.get(API_SERVER).tags.getAll();
-export const getAllTagsUniversal = (queryParams, isServer) => {
-  const API = isServer ? API_SERVER : API_BROWSER;
-  return api.get(API).tags.getAll(queryParams);
+export const getAllTagsUniversal = (queryParams, computedApi) => {
+  return computedApi.tags.getAll(queryParams);
 };
 
 export const fetchAllATags = () => ({
@@ -50,20 +47,9 @@ export const getAllTagsAndSet = queryParams => (dispatch) => {
     });
 };
 
-export const getAllTagsAndSetServer = queryParams => (dispatch) => {
+export const getAllTagsAndSetUniversal = (queryParams, computedApi) => (dispatch) => {
   dispatch(fetchAllATags());
-  return getAllTagsServer(queryParams)
-    .then((tags) => {
-      dispatch(fetchAllATagsSuccess(fromJS(tags)));
-    })
-    .catch((e) => {
-      dispatch(fetchAllTagsFailure(e));
-    });
-};
-
-export const getAllTagsAndSetUniversal = (queryParams, isServer) => (dispatch) => {
-  dispatch(fetchAllATags());
-  return getAllTagsUniversal(queryParams, isServer)
+  return getAllTagsUniversal(queryParams, computedApi)
     .then((tags) => {
       dispatch(fetchAllATagsSuccess(fromJS(tags)));
     })

@@ -10,7 +10,6 @@ import {
 import { API_BROWSER, API_SERVER } from '../shared/constants/api';
 import api from '../shared/api/index';
 
-// import { store } from '../index';
 
 const getAllArticleCategoriesFetch = () => ({
   type: ARTICLE_CATEGORIES_GET_ALL_FETCH,
@@ -26,7 +25,7 @@ const getAllArticleCategoriesFailure = e => ({
   payload: e,
 });
 
-export const getAllArticleCategories = queryParams => (dispatch) => {
+export const getAllArticleCategories = (queryParams) => (dispatch) => {
   dispatch(getAllArticleCategoriesFetch());
   return api.get(API_BROWSER).articeCategories.getAll(queryParams)
     .then((categories) => {
@@ -38,7 +37,7 @@ export const getAllArticleCategories = queryParams => (dispatch) => {
     });
 };
 
-export const getAllArticleCategoriesServer = queryParams => (dispatch) => {
+export const getAllArticleCategoriesServer = (queryParams) => (dispatch) => {
   dispatch(getAllArticleCategoriesFetch());
   return api.get(API_SERVER).articeCategories.getAll(queryParams)
     .then((categories) => {
@@ -50,9 +49,8 @@ export const getAllArticleCategoriesServer = queryParams => (dispatch) => {
     });
 };
 
-export const getAllArticleCategoriesUniversal = (queryParams, isServer) => (dispatch) => {
-  const API = isServer ? API_SERVER : API_BROWSER;
-  return api.get(API).articeCategories.getAll(queryParams)
+export const getAllArticleCategoriesUniversal = (queryParams, computedApi) => (dispatch) => {
+  return computedApi.articeCategories.getAll(queryParams)
     .then((categories) => {
       dispatch(getAllArticleCategoriesSuccess(fromJS(categories)));
     })

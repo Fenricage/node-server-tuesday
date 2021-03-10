@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
 import HomeMainPage from '../../components/home/HomeMainPage/HomeMainPage';
-import {getAllArticleCategories, getAllArticleCategoriesServer} from '../../actions/articleCategories';
-import { getAllTagsAndSet, getAllTagsAndSetServer } from '../../actions/tags';
-import {getAllArticlesAndSet, getAllArticlesAndSetServer} from '../../actions/articles';
+
+// actions
+import {
+  getAllArticleCategoriesUniversal,
+} from '../../actions/articleCategories';
+import {
+  getAllTagsAndSetUniversal,
+} from '../../actions/tags';
+import {
+  getAllArticlesAndSetUniversal,
+} from '../../actions/articles';
+
 import { getLayout } from '../../shared/layouts/HomeLayout/HomeLayout';
-import {SIZE_PAGE} from "../../shared/constants/page";
+import { SIZE_PAGE } from '../../shared/constants/page';
+import getApiDependingOnContext from '../../shared/api/getApiDependingOnContext';
 
 class HomePageWithLayout extends Component {
 
@@ -22,9 +32,14 @@ class HomePageWithLayout extends Component {
 
 
 // вызывается и на сервере и на клиенте (при маршриутизации) работает тлько на страницах, на страницах читай что это замена cdm
-HomePageWithLayout.getInitialProps = async ({
-  query, pathname, store, isServer,
-}) => {
+HomePageWithLayout.getInitialProps = async (context) => {
+
+  const {
+    query,
+    pathname,
+    store,
+  } = context;
+
   const { dispatch } = store;
   const { page = 1, size = SIZE_PAGE, categoryId } = query;
   const queryParams = { page, size, orderBy: { _id: -1 } };
@@ -37,19 +52,12 @@ HomePageWithLayout.getInitialProps = async ({
   }
   queryParams.extra = extra;
 
-  if(isServer) {
-    await dispatch(getAllArticleCategoriesServer());
-    await dispatch(getAllTagsAndSetServer());
-    await dispatch(getAllArticlesAndSetServer(queryParams));
-  } else {
-    await dispatch(getAllArticleCategories());
-    await dispatch(getAllTagsAndSet());
-    await dispatch(getAllArticlesAndSet(queryParams));
-  }
-  // console.log('\x1b[36m', 'store.getState()', store.getState().toJS(), '\x1b[0m');
+  const api = getApiDependingOnContext(context);
 
-  // console.log(' SECOND GET INITIAL PROPS COMPONENT');
-  // console.log("SERVE AND CLIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEENT!!!!!!!!!") вызывает и на клиенте при маршритизации why?
+  await dispatch(getAllArticleCategoriesUniversal({}, api));
+  await dispatch(getAllTagsAndSetUniversal({}, api));
+  await dispatch(getAllArticlesAndSetUniversal(queryParams, api));
+
   return { query, pathname };
 };
 

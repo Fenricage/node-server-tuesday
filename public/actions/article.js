@@ -15,6 +15,7 @@ import { API_BROWSER, API_SERVER } from '../shared/constants/api';
 
 export const getOneArticle = id => api.get(API_BROWSER).articles.getOne(id);
 export const getOneArticleServer = id => api.get(API_SERVER).articles.getOne(id);
+export const getOneArticleUniversal = (id, computedApi) => computedApi.articles.getOne(id);
 
 export const initArticle = () => ({
   type: ARTICLE_INIT,
@@ -42,9 +43,20 @@ export const reqArticleAndSet = id => (dispatch) => {
     });
 };
 
-export const reqArticleAndSetServer = id => (dispatch) => {
+export const reqArticleAndSetServer = (id) => (dispatch) => {
   dispatch(initArticle());
   return getOneArticleServer(id)
+    .then((article) => {
+      dispatch(fetchOneArticlesSuccess(fromJS(article)));
+    })
+    .catch((e) => {
+      dispatch(fetchOneArticlesFailure(e));
+    });
+};
+
+export const reqArticleAndSetUniversal = (id, computedApi) => (dispatch) => {
+  dispatch(initArticle());
+  return getOneArticleUniversal(id, computedApi)
     .then((article) => {
       dispatch(fetchOneArticlesSuccess(fromJS(article)));
     })

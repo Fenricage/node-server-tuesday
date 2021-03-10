@@ -51,7 +51,7 @@ class HomeLayout extends Component {
     // }
 
     return (
-      <Fragment>
+      <>
         <section className="l-home">
           <Header />
           <main>
@@ -59,7 +59,7 @@ class HomeLayout extends Component {
           </main>
         </section>
         <Footer />
-      </Fragment>
+      </>
     );
   }
 
@@ -67,11 +67,11 @@ class HomeLayout extends Component {
 
 
 const mapStateToProps = (state, ownProps) => ({
-  isLoadedArticleCategories: state.getIn(['articleCategories', 'isLoaded']),
-  isLoadedTags: state.getIn(['tags', 'isLoaded']),
+  isLoadedArticleCategories: state.getIn([ 'articleCategories', 'isLoaded' ]),
+  isLoadedTags: state.getIn([ 'tags', 'isLoaded' ]),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   getAllArticleCategoriesDispatch: () => dispatch(getAllArticleCategories()),
   getAllTagsAndSetDispatch: () => dispatch(getAllTagsAndSet()),
 });
@@ -82,6 +82,6 @@ const HomeLayoutConnected = connect(
   mapDispatchToProps,
 )(HomeLayout);
 
-export const getLayout = page => <HomeLayoutConnected>{page}</HomeLayoutConnected>;
+export const getLayout = (page) => <HomeLayoutConnected>{page}</HomeLayoutConnected>;
 
 export default HomeLayoutConnected;

@@ -1,5 +1,5 @@
 import api from '../shared/api/index';
-import { fromJS, Map } from 'immutable';
+import { fromJS } from 'immutable';
 import {
   USERS_FETCH_FAILURE,
   USERS_FETCH_SUCCESS,
@@ -11,19 +11,16 @@ import {
 import { API_BROWSER } from '../shared/constants/api';
 
 
-// import { store } from '../index';
-
-
 const reqUsersFetchInit = () => ({
   type: USERS_INIT,
 });
 
-const reqUsersFetchSuccess = users => ({
+const reqUsersFetchSuccess = (users) => ({
   type: USERS_FETCH_SUCCESS,
   payload: users,
 });
 
-const reqUsersFetchFailure = e => ({
+const reqUsersFetchFailure = (e) => ({
   type: USERS_FETCH_FAILURE,
   payload: e,
 });
@@ -85,7 +82,7 @@ export const reqDeleteUserFailure = (id, e) => {
 };
 
 
-export const reqDeleteUser = id => (dispatch) => {
+export const reqDeleteUser = (id) => (dispatch) => {
   dispatch(reqSetDeletingStatus(id));
   return api.get(API_BROWSER).articles.delete(id)
     .then((user) => {

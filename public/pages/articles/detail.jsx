@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import HomeLayout from '../../shared/layouts/HomeLayout/HomeLayout';
 import ArticleDetailPage from '../../components/home/ArticleDetailPage/ArticleDetailPage';
-import { reqArticleAndSetServer } from '../../actions/article';
-import { getAllTagsAndSetServer } from '../../actions/tags';
-import { getAllArticleCategoriesServer } from '../../actions/articleCategories';
+import { reqArticleAndSetUniversal } from '../../actions/article';
+import { getAllTagsAndSetUniversal } from '../../actions/tags';
+import { getAllArticleCategoriesUniversal } from '../../actions/articleCategories';
+import getApiDependingOnContext from '../../shared/api/getApiDependingOnContext';
 
 
 class ArticleDetailPageWithLayout extends Component {
   render() {
+
     const { query, pathname } = this.props;
+
     return (
       <HomeLayout>
         <ArticleDetailPage
@@ -21,15 +24,22 @@ class ArticleDetailPageWithLayout extends Component {
 }
 
 
-ArticleDetailPageWithLayout.getInitialProps = async ({
-  query, pathname, store, isServer,
-}) => {
+ArticleDetailPageWithLayout.getInitialProps = async (context) => {
+
+  const {
+    query,
+    pathname,
+    store,
+  } = context;
+
   const { id } = query;
   const { dispatch } = store;
-  // TODO(@fenricage): rewrite without using redux
-  await dispatch(reqArticleAndSetServer(id));
-  await dispatch(getAllTagsAndSetServer());
-  await dispatch(getAllArticleCategoriesServer());
+
+  const api = getApiDependingOnContext(context);
+
+  await dispatch(reqArticleAndSetUniversal(id, api));
+  await dispatch(getAllTagsAndSetUniversal({}, api));
+  await dispatch(getAllArticleCategoriesUniversal({}, api));
 
   return { query, pathname };
 };

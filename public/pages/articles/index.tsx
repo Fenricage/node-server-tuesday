@@ -8,6 +8,7 @@ import { SIZE_PAGE, ARTICLES_LIMIT } from '../../shared/constants/page';
 
 // @types
 import { MainPageContext } from '../index';
+import getApiDependingOnContext from '../../shared/api/getApiDependingOnContext';
 
 class HomePageWithLayout extends Component {
 
@@ -29,7 +30,9 @@ class HomePageWithLayout extends Component {
 HomePageWithLayout.getInitialProps = async (context: MainPageContext) => {
 
   const {
-    query, pathname, store, isServer,
+    query,
+    pathname,
+    store,
   } = context;
 
   const { dispatch } = store;
@@ -64,9 +67,11 @@ HomePageWithLayout.getInitialProps = async (context: MainPageContext) => {
   }
   articlesQueryParams.extra = extra;
 
-  await dispatch(getAllArticleCategoriesUniversal(articlesCategoriesQueryParams, isServer));
-  await dispatch(getAllTagsAndSetUniversal({}, isServer));
-  await dispatch(getAllArticlesAndSetUniversal(articlesQueryParams, isServer));
+  const api = getApiDependingOnContext(context);
+
+  await dispatch(getAllArticleCategoriesUniversal(articlesCategoriesQueryParams, api)); // done
+  await dispatch(getAllTagsAndSetUniversal({}, api));
+  await dispatch(getAllArticlesAndSetUniversal(articlesQueryParams, api));
 
   return { query, pathname };
 };

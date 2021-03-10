@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import { NextPageContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import {
-  getAllArticleCategoriesServer,
-  getAllArticleCategories,
-} from '../actions/articleCategories';
-import { getAllTagsAndSet, getAllTagsAndSetServer } from '../actions/tags';
-import {
-  getAllArticlesAndSetServer,
-  getAllArticlesAndSet,
-} from '../actions/articles';
+
+// actions
+import { getAllArticleCategoriesUniversal } from '../actions/articleCategories';
+import { getAllTagsAndSetUniversal } from '../actions/tags';
+import { getAllArticlesAndSetUniversal } from '../actions/articles';
+
 import { getLayout } from '../shared/layouts/HomeLayout/HomeLayout';
 import { SIZE_PAGE } from '../shared/constants/page';
 import TestGrid from '../shared/components/TestGrid/TestGrid';
+import getApiDependingOnContext from '../shared/api/getApiDependingOnContext';
 
 
 type AdditionalMainPageContext = {
@@ -42,7 +40,6 @@ HomePageWithLayout.getInitialProps = async (context: MainPageContext) => {
     query,
     pathname,
     store,
-    isServer,
   } = context;
 
   const { dispatch } = store;
@@ -73,21 +70,11 @@ HomePageWithLayout.getInitialProps = async (context: MainPageContext) => {
 
   articlesQueryParams.extra = extra;
 
-  if (isServer) {
+  const api = getApiDependingOnContext(context);
 
-    await dispatch(
-      getAllArticleCategoriesServer(articleCategoriesQueryParams),
-    );
-    await dispatch(getAllTagsAndSetServer());
-    await dispatch(getAllArticlesAndSetServer(articlesQueryParams));
-
-  } else {
-
-    await dispatch(getAllArticleCategories(articleCategoriesQueryParams));
-    await dispatch(getAllTagsAndSet());
-    await dispatch(getAllArticlesAndSet(articlesQueryParams));
-
-  }
+  await dispatch(getAllArticleCategoriesUniversal(articleCategoriesQueryParams, api));
+  await dispatch(getAllTagsAndSetUniversal({}, api));
+  await dispatch(getAllArticlesAndSetUniversal(articlesQueryParams, api));
 
   return { query, pathname };
 };

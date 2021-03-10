@@ -4,6 +4,7 @@ import { getAllArticleCategoriesUniversal } from '../../actions/articleCategorie
 import { getAllTagsAndSetUniversal } from '../../actions/tags';
 import { getAllArticlesAndSetUniversal } from '../../actions/articles';
 import { getLayout } from '../../shared/layouts/BlogLayout/BlogLayout';
+import getApiDependingOnContext from '../../shared/api/getApiDependingOnContext';
 
 class HomePageWithLayout extends Component {
   render() {
@@ -17,9 +18,15 @@ class HomePageWithLayout extends Component {
   }
 }
 
-HomePageWithLayout.getInitialProps = async ({
-  query, pathname, store, isServer,
-}) => {
+HomePageWithLayout.getInitialProps = async (context) => {
+
+  const {
+    query,
+    pathname,
+    store,
+    isServer,
+  } = context;
+
   const { dispatch } = store;
   const {
     page = 1,
@@ -32,9 +39,11 @@ HomePageWithLayout.getInitialProps = async ({
     page, size, orderBy: { _id: -1 }, extra: { category: categoryId },
   };
 
-  await dispatch(getAllArticleCategoriesUniversal({}, isServer));
-  await dispatch(getAllTagsAndSetUniversal({}, isServer));
-  await dispatch(getAllArticlesAndSetUniversal(queryParams, isServer));
+  const api = getApiDependingOnContext(context);
+
+  await dispatch(getAllArticleCategoriesUniversal({}, api));
+  await dispatch(getAllTagsAndSetUniversal({}, api));
+  await dispatch(getAllArticlesAndSetUniversal(queryParams, api));
 
   return { query, pathname };
 };
