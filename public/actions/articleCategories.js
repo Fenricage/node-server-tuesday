@@ -8,7 +8,7 @@ import {
   ARTICLE_CATEGORIES_DELETE_ARTICLE_SUCCESS,
 } from '../shared/constants/articleCategories';
 import { API_BROWSER } from '../shared/constants/api';
-import api from '../shared/api/index';
+import api from '../shared/api';
 
 
 const getAllArticleCategoriesFetch = () => ({

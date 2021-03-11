@@ -10,7 +10,7 @@ import {
   ARTICLE_PATCH_FETCH_FAILURE,
   ARTICLE_PATCH_FETCH_SUCCESS,
 } from '../shared/constants/article';
-import api from '../shared/api/index';
+import api from '../shared/api';
 import { API_BROWSER } from '../shared/constants/api';
 
 export const getOneArticle = (id) => api.get(API_BROWSER).articles.getOne(id);

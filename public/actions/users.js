@@ -1,4 +1,4 @@
-import api from '../shared/api/index';
+import api from '../shared/api';
 import { fromJS } from 'immutable';
 import {
   USERS_FETCH_FAILURE,

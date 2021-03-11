@@ -1,4 +1,4 @@
-const endpoints = r => ({
+const endpoints = (r) => ({
   auth: {
     getToken: (username, password) => r('/token/obtain/',
       {

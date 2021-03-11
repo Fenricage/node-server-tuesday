@@ -5,7 +5,7 @@ import {
 import { fromJS } from 'immutable';
 import FileInput from '../../../../shared/components/FileInput/FileInput';
 import './ArticleAttachment.scss';
-import api from '../../../../shared/api/index';
+import api from '../../../../shared/api';
 import { API_BROWSER } from '../../../../shared/constants/api';
 
 

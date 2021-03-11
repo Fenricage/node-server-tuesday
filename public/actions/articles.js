@@ -10,7 +10,7 @@ import {
   ARTICLES_LOADED_MORE_SUCCESS,
 } from '../shared/constants/articles';
 import { API_BROWSER } from '../shared/constants/api';
-import api from '../shared/api/index';
+import api from '../shared/api';
 
 export const getAllArticles = (queryParams) => api.get(API_BROWSER).articles.getAll(queryParams);
 

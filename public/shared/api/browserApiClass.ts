@@ -1,8 +1,12 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { CLIENT_URL, NODE_ENV } from '../utils/config';
+import { ApiHeaders } from './types';
+
 
 class BrowserApiClass {
+
+  headers: ApiHeaders;
 
   constructor(endpointsObject, context) {
     this.headers = {
@@ -25,9 +29,9 @@ class BrowserApiClass {
       axios.defaults.baseURL = extra && extra.baseUrl ? `${extra.baseUrl}/api` : `${CLIENT_URL}/api`;
     }
 
-    Cookies.get('Token') ?
-      this.headers['x-access-token'] = `${Cookies.get('Token')}` :
-      this.headers['x-access-token'] = null;
+    Cookies.get('Token')
+      ? this.headers['x-access-token'] = `${Cookies.get('Token')}`
+      : this.headers['x-access-token'] = null;
 
     extra.headers = extra.headers ? extra.headers : {};
 

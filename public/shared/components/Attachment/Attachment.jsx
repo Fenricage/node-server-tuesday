@@ -5,7 +5,7 @@ import {
 } from 'redux-form/immutable';
 import FileInput from '../FileInput/FileInput';
 import './Attachment.scss';
-import api from '../../api/index';
+import api from '../../api';
 import { API_SERVER, API_BROWSER } from '../../constants/api';
 
 class Attachment extends Component {

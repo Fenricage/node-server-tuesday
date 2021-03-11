@@ -1,7 +1,7 @@
 import Router from 'next/router';
 import Cookies from 'js-cookie';
 import { API_BROWSER, API_SERVER } from '../shared/constants/api';
-import api from '../shared/api/index';
+import api from '../shared/api';
 import getApiDependingOnContext from '../shared/api/getApiDependingOnContext';
 
 import {

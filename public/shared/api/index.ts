@@ -1,8 +1,17 @@
 import endpoints from './endpoints';
+import { API_BROWSER, API_SERVER } from '../constants/api';
 
-class Api {
+type AllowedApiKeys = typeof API_BROWSER | typeof API_SERVER;
 
-  constructor(props) {
+interface ApiInterface {
+
+}
+
+class Api implements ApiInterface {
+
+  store: Record<AllowedApiKeys | string, unknown>;
+
+  constructor() {
     this.store = {};
   }
 
