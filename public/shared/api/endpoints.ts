@@ -1,4 +1,16 @@
-const endpoints = (r) => ({
+import { ApiRequestDecoration } from './types';
+
+type AuthEndpoints = {
+
+}
+
+type Endpoints = {
+
+}
+
+
+
+const endpoints = (r: ApiRequestDecoration) => ({
   auth: {
     getToken: (username, password) => r('/token/obtain/',
       {
@@ -8,31 +20,31 @@ const endpoints = (r) => ({
           password,
         },
       }),
+    register: (data) => r('/register', {
+      method: 'post',
+      data,
+    }),
+    login: (data) => r('/login', {
+      method: 'post',
+      data,
+    }),
+    currentUser: (extra) => r('/me', {
+      method: 'get',
+      ...extra,
+    }),
     changePassword: (userId, data) => r(`/users/${userId}/password/`, {
       method: 'post',
       data,
     }),
-    register: data => r('/register', {
-      method: 'post',
-      data,
-    }),
-    login: data => r('/login', {
-      method: 'post',
-      data,
-    }),
-    currentUser: extra => r('/me', {
-      method: 'get',
-      ...extra,
-    }),
   },
   utils: {
-    clientPhoto: formData => r('/utils/photos/',
+    clientPhoto: (formData) => r('/utils/photos/',
       {
         method: 'post',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         data: formData,
       }),
-    getPhoto: formData => r('/imgread',
+    getPhoto: (formData) => r('/imgread',
       {
         method: 'get',
       }),
@@ -42,7 +54,7 @@ const endpoints = (r) => ({
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         data: formData,
       }),
-    getAttachment: id => r(`/attachments/${id}`,
+    getAttachment: (id) => r(`/attachments/${id}`,
       {
         method: 'get',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -53,11 +65,11 @@ const endpoints = (r) => ({
       {
         method: 'get',
       }),
-    getRole: roleId => r(`/users/roles/${roleId}`,
+    getRole: (roleId) => r(`/users/roles/${roleId}`,
       {
         method: 'get',
       }),
-    createRole: data => r('/users/roles/',
+    createRole: (data) => r('/users/roles/',
       {
         method: 'post',
         data,
@@ -67,7 +79,7 @@ const endpoints = (r) => ({
         method: 'put',
         data,
       }),
-    deleteRole: id => r(`/users/roles/${id}`,
+    deleteRole: (id) => r(`/users/roles/${id}`,
       {
         method: 'delete',
       }),
@@ -77,12 +89,12 @@ const endpoints = (r) => ({
       {
         method: 'get',
       }),
-    createUser: data => r('/users/',
+    createUser: (data) => r('/users/',
       {
         method: 'post',
         data,
       }),
-    getUser: id => r(`/users/${id}/`,
+    getUser: (id) => r(`/users/${id}/`,
       {
         method: 'get',
       }),
@@ -91,7 +103,7 @@ const endpoints = (r) => ({
         method: 'put',
         data,
       }),
-    deleteUser: id => r(`/users/${id}/`,
+    deleteUser: (id) => r(`/users/${id}/`,
       {
         method: 'delete',
       }),
@@ -104,16 +116,16 @@ const endpoints = (r) => ({
           ...queryParams,
         },
       }),
-    getOne: id => r(`/article/${id}`,
+    getOne: (id) => r(`/article/${id}`,
       {
         method: 'get',
       }),
-    create: data => r('/article',
+    create: (data) => r('/article',
       {
         method: 'post',
         data,
       }),
-    delete: id => r(`/article/${id}`,
+    delete: (id) => r(`/article/${id}`,
       {
         method: 'delete',
       }),
@@ -122,25 +134,25 @@ const endpoints = (r) => ({
         method: 'patch',
         data,
       }),
-    search: query => r('/article/search',
+    search: (query) => r('/article/search',
       {
         method: 'post',
         data: query,
       }),
   },
   articeCategories: {
-    getAll: queryParams => r('articles/categories',
+    getAll: (queryParams) => r('articles/categories',
       {
         method: 'get',
         params: {
           ...queryParams,
         },
       }),
-    deleteOne: id => r(`articles/categories/${id}`,
+    deleteOne: (id) => r(`articles/categories/${id}`,
       {
         method: 'delete',
       }),
-    getOne: id => r(`/articles/categories/${id}`,
+    getOne: (id) => r(`/articles/categories/${id}`,
       {
         method: 'get',
       }),
@@ -151,11 +163,11 @@ const endpoints = (r) => ({
       }),
   },
   tags: {
-    getAll: extra => r('tags', {
+    getAll: (extra) => r('tags', {
       method: 'get',
       ...extra,
     }),
-    create: data => r('tags', {
+    create: (data) => r('tags', {
       method: 'post',
       data,
     }),
@@ -164,13 +176,13 @@ const endpoints = (r) => ({
         method: 'patch',
         data,
       }),
-    deleteOne: id => r(`tags/${id}`,
+    deleteOne: (id) => r(`tags/${id}`,
       {
         method: 'delete',
       }),
   },
   attachments: {
-    getAll: extra => r('/attachments', {
+    getAll: (extra) => r('/attachments', {
       method: 'get',
       ...extra,
     }),

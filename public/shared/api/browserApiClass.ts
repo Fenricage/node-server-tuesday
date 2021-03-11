@@ -17,7 +17,7 @@ class BrowserApiClass {
     this.context = context;
   }
 
-  r = (url: string, extra = {}) => {
+  r = (url: string, extra = {}) : Promise<unknown> => {
 
     // проверка на прод или дев, корректирует запросы
     if (NODE_ENV !== 'development') {
